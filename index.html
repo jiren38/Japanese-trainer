@@ -2,55 +2,168 @@
 <html lang="it"><head><meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
 <title>Impariamo il giapponese – Studio</title>
+<meta name="theme-color" content="#c2412d">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='14' fill='%23c2412d'/%3E%3Ctext x='32' y='45' font-size='38' text-anchor='middle' fill='white' font-family='serif'%3E%E8%AA%9E%3C/text%3E%3C/svg%3E">
+<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Noto+Sans+JP:wght@400;500;700&family=Noto+Serif+JP:wght@500;700&display=swap" rel="stylesheet">
 <style>
-:root{--bg:#f6f4ef;--card:#fff;--tx:#1d2330;--mu:#6b7280;--ac:#c2410c;--ac2:#0f766e;--bd:#e3ded3;--ok:#15803d;--ko:#b91c1c;box-sizing:border-box;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px);color-scheme:light}
-@media(prefers-color-scheme:dark){:root:not([data-theme="light"]){--bg:#14171d;--card:#1e232c;--tx:#eceff4;--mu:#9aa3b2;--ac:#fb923c;--ac2:#2dd4bf;--bd:#323a47;--ok:#4ade80;--ko:#f87171;color-scheme:dark}}
-:root[data-theme="dark"]{--bg:#14171d;--card:#1e232c;--tx:#eceff4;--mu:#9aa3b2;--ac:#fb923c;--ac2:#2dd4bf;--bd:#323a47;--ok:#4ade80;--ko:#f87171;color-scheme:dark}
-*{box-sizing:border-box}html{scroll-padding-top:env(safe-area-inset-top,0px)}
-body{margin:0;background:var(--bg);color:var(--tx);font:16px/1.5 system-ui,-apple-system,"Hiragino Sans","Noto Sans JP",sans-serif}
-.wrap{display:flex;gap:16px;max-width:900px;margin:0 auto;padding:16px}
-aside{width:200px;flex:none}main{flex:1;min-width:0;max-width:640px}
-.u{display:flex;gap:8px;align-items:center;padding:6px 4px;cursor:pointer}.u.off{opacity:.4;cursor:default}
-.li{display:flex;gap:8px;align-items:center;padding:8px 12px;border-bottom:1px solid var(--bd)}.li span{flex:1}.li.rm span{text-decoration:line-through;opacity:.5}
-.li button{border:0;background:none;color:var(--ko);font-size:18px;cursor:pointer}
+/* ===== Design system ===== */
+:root{--bg:#f6f3ec;--bg2:#efeadf;--card:#fffdf9;--tx:#1c1f26;--mu:#6b6f78;--ac:#c2412d;--ac-soft:#f6e1da;--ac2:#2f5d8a;--ac2-soft:#e2ebf4;--bd:#e4ddd0;--ok:#2f7d4f;--ok-soft:#dcefe2;--ko:#b3362b;--ko-soft:#f6dcd8;--shadow:0 1px 2px rgba(28,31,38,.05),0 6px 20px rgba(28,31,38,.06);--r:14px;--jp:"Noto Sans JP","Hiragino Sans","Yu Gothic",sans-serif;--jps:"Noto Serif JP","Hiragino Mincho ProN","Yu Mincho",serif;--ui:Inter,system-ui,-apple-system,"Segoe UI",sans-serif;color-scheme:light}
+@media(prefers-color-scheme:dark){:root:not([data-theme="light"]){--bg:#121418;--bg2:#181b21;--card:#1d2027;--tx:#eceef2;--mu:#9aa0ab;--ac:#f07a63;--ac-soft:#3a2420;--ac2:#7fb0e0;--ac2-soft:#1e2a38;--bd:#2c313b;--ok:#5cc489;--ok-soft:#183325;--ko:#f07a6e;--ko-soft:#3a1f1d;--shadow:0 1px 2px rgba(0,0,0,.3),0 8px 24px rgba(0,0,0,.25);color-scheme:dark}}
+:root[data-theme="dark"]{--bg:#121418;--bg2:#181b21;--card:#1d2027;--tx:#eceef2;--mu:#9aa0ab;--ac:#f07a63;--ac-soft:#3a2420;--ac2:#7fb0e0;--ac2-soft:#1e2a38;--bd:#2c313b;--ok:#5cc489;--ok-soft:#183325;--ko:#f07a6e;--ko-soft:#3a1f1d;--shadow:0 1px 2px rgba(0,0,0,.3),0 8px 24px rgba(0,0,0,.25);color-scheme:dark}
+*{box-sizing:border-box}html{scroll-padding-top:120px;-webkit-text-size-adjust:100%}
+body{margin:0;background:var(--bg);color:var(--tx);font:16px/1.55 var(--ui);font-feature-settings:"cv11";-webkit-font-smoothing:antialiased}
+:lang(ja),.big,.mid,.jp-example,.jp-answer,.ex-prompt,.ex-choice,.ex-tiles .btn,.day-cell,.li span,.kanji-hints{font-family:var(--ui),var(--jp)}
+button{font-family:inherit}
+a{color:var(--ac)}
+:focus-visible{outline:2px solid var(--ac2);outline-offset:2px}
+/* ===== Struttura ===== */
+.app{max-width:980px;margin:0 auto;padding:0 20px 40px}
+.top{position:sticky;top:0;z-index:20;display:flex;align-items:center;justify-content:space-between;gap:12px;padding:calc(env(safe-area-inset-top,0px) + 14px) 0 12px;background:color-mix(in srgb,var(--bg) 92%,transparent);backdrop-filter:saturate(1.4) blur(10px);-webkit-backdrop-filter:saturate(1.4) blur(10px)}
+.brand{display:flex;align-items:center;gap:12px;min-width:0}
+.logo{display:grid;place-items:center;width:44px;height:44px;border-radius:12px;background:var(--ac);color:#fff;font:700 23px/1 var(--jps);box-shadow:0 3px 10px color-mix(in srgb,var(--ac) 35%,transparent);flex:none}
+.brand-title{font-weight:700;font-size:18px;letter-spacing:-.01em;line-height:1.2}
+.brand-sub{color:var(--mu);font-size:13px;line-height:1.3}
+.icon-btn{display:grid;place-items:center;width:40px;height:40px;border-radius:12px;border:1px solid var(--bd);background:var(--card);color:var(--tx);font-size:17px;cursor:pointer}
+.icon-btn:hover{border-color:var(--ac2)}
+/* tabs */
+.tabs{display:flex;gap:4px;padding:4px;margin:2px 0 12px;background:var(--bg2);border:1px solid var(--bd);border-radius:14px;overflow-x:auto;scrollbar-width:none}
+.tabs::-webkit-scrollbar{display:none}
+.tab{flex:1 0 auto;display:flex;align-items:center;justify-content:center;gap:6px;border:0;background:transparent;color:var(--mu);padding:9px 9px;border-radius:10px;font:500 13.5px/1.2 var(--ui);cursor:pointer;white-space:nowrap;transition:background .15s,color .15s}
+.tab i{font-style:normal;font:700 15px/1 var(--jp);opacity:.85}
+.tab:hover{color:var(--tx)}
+.tab.on{background:var(--card);color:var(--ac);box-shadow:var(--shadow)}
+.tab .short{display:none}
+/* barra unità */
+.units{display:flex;align-items:center;flex-wrap:wrap;gap:6px;margin:0 0 18px}
+.units-label{font-size:13px;font-weight:600;color:var(--mu);margin-right:4px}
+.chip{border:1px solid var(--bd);background:var(--card);color:var(--tx);padding:6px 13px;border-radius:999px;font:500 14px/1.2 var(--ui);cursor:pointer;transition:all .15s}
+.chip:hover{border-color:var(--ac)}
+.chip.on{background:var(--ac);border-color:var(--ac);color:#fff}
+.units-soon{font-size:12px;color:var(--mu);margin-left:4px}
+#v{min-height:50vh}
+/* ===== Componenti di base ===== */
+.btn{display:inline-flex;align-items:center;justify-content:center;gap:6px;border:1px solid var(--bd);background:var(--card);color:var(--tx);padding:10px 16px;border-radius:12px;font:500 15px/1.25 var(--ui);cursor:pointer;white-space:nowrap;transition:background .15s,border-color .15s,transform .05s}
+.btn:hover{border-color:color-mix(in srgb,var(--ac) 55%,var(--bd))}
+.btn:active{transform:translateY(1px)}
+.btn:disabled{opacity:.45;cursor:not-allowed}
 .btn.on{background:var(--ac);color:#fff;border-color:var(--ac)}
-#menu{display:none}
-@media(max-width:760px){.wrap{display:block}aside{display:none;width:auto;margin-bottom:14px}aside.open{display:block}#menu{display:inline-block}}
-h1{font-size:20px;margin:4px 0 12px}h1 small{color:var(--mu);font-weight:400;font-size:13px;display:block}
-nav{display:flex;gap:6px;overflow-x:auto;margin-bottom:14px}
-nav button,.btn{border:1px solid var(--bd);background:var(--card);color:var(--tx);padding:9px 14px;border-radius:10px;font:inherit;cursor:pointer;white-space:nowrap}
-nav button.on{background:var(--ac);color:#fff;border-color:var(--ac)}
-.card{background:var(--card);border:1px solid var(--bd);border-radius:16px;padding:22px;text-align:center;min-height:240px;display:flex;flex-direction:column;justify-content:center;gap:8px;cursor:pointer}.kanji-pad-wrap{width:min(100%,420px);margin:8px auto 0;text-align:left}.kanji-pad{display:block;width:100%;height:180px;border:1px solid var(--bd);border-radius:10px;background:var(--bg);touch-action:none;cursor:crosshair}.kanji-pad-label{font-size:13px;color:var(--mu);margin-bottom:5px}.kanji-hints{font-size:18px;line-height:1.7}.kanji-clue{font-size:20px;font-weight:600}.kanji-pad-clear{margin-top:7px;padding:6px 10px;font-size:14px}.kanji-drawing-preview{display:block;width:min(100%,420px);height:145px;margin:10px auto 0;border:1px solid var(--bd);border-radius:10px;object-fit:contain;background:var(--bg)}.stroke-order-wrap{width:min(100%,320px);margin:10px auto 0}.stroke-order-svg{display:block;width:100%;height:auto;max-height:300px;background:var(--bg);border:1px solid var(--bd);border-radius:10px}.stroke-order-status{text-align:center;color:var(--mu);font-size:13px;margin:5px 0}.stroke-order-credit{text-align:center;color:var(--mu);font-size:11px;margin-top:5px}.stroke-order-credit a{color:var(--ac)}
-.big{font-size:54px;line-height:1.2}.mid{font-size:28px}.mu{color:var(--mu);font-size:14px}
-.row{display:flex;gap:10px;margin-top:12px}.row .btn{flex:1;font-weight:600}
 .ok{background:var(--ok);color:#fff;border-color:var(--ok)}.ko{background:var(--ko);color:#fff;border-color:var(--ko)}
-.bar{height:8px;background:var(--bd);border-radius:6px;overflow:hidden;margin:6px 0 14px}.bar i{display:block;height:100%;background:var(--ac2)}
-.opt{display:block;width:100%;margin:8px 0;text-align:left}.opt.ok,.opt.ko{color:#fff}
-.g{background:var(--card);border:1px solid var(--bd);border-radius:12px;padding:12px 14px;margin-bottom:10px}
-.g b{color:var(--ac)}.tag{font-size:12px;color:var(--ac2);font-weight:600}
-.ex-head{display:flex;align-items:center;justify-content:space-between;gap:10px;margin:4px 0 12px}
-.ex-title{font-size:20px;font-weight:700}.ex-sub{color:var(--mu);font-size:13px}
-.ex-prompt{font-size:19px;line-height:1.8;white-space:pre-line;padding:18px;margin-bottom:12px}
-.ex-answer{font:inherit;color:var(--tx);background:var(--card);border:1px solid var(--bd);border-radius:12px;padding:14px;width:100%;min-height:52px}.ex-inline-blank{display:inline-block;width:4.5em;min-width:3.5em;margin:0 3px;padding:3px 6px;border:1px solid var(--ac);border-radius:7px;background:var(--card);color:var(--tx);font:inherit;font-size:.92em;line-height:1.4;text-align:center;vertical-align:baseline}.ex-inline-blank:focus{outline:2px solid color-mix(in srgb,var(--ac) 45%,transparent);outline-offset:1px}
+.btn.ok:hover,.btn.ko:hover,.btn.on:hover{filter:brightness(1.05)}
+.row{display:flex;gap:10px;margin-top:12px}.row .btn{flex:1;font-weight:600}
+.g{background:var(--card);border:1px solid var(--bd);border-radius:var(--r);padding:16px 18px;margin-bottom:12px;box-shadow:var(--shadow)}
+.g b{color:var(--ac)}
+.tag{display:inline-block;font-size:12px;font-weight:600;color:var(--ac2);background:var(--ac2-soft);padding:2px 9px;border-radius:999px}
+.mu{color:var(--mu);font-size:14px}
+.bar{height:8px;background:var(--bd);border-radius:99px;overflow:hidden;margin:6px 0 14px}.bar i{display:block;height:100%;background:linear-gradient(90deg,var(--ac2),color-mix(in srgb,var(--ac2) 60%,var(--ok)));border-radius:99px;transition:width .3s}
+.big{font:700 64px/1.15 var(--jps)}.mid{font:500 30px/1.35 var(--ui),var(--jp)}
+.card>.mid:first-child{font-size:40px;font-weight:700}
+.card .rd{color:var(--ac);font:500 20px/1.4 var(--ui),var(--jp)}.card .mean{font-size:20px;font-weight:500;max-width:32ch}
+@media(max-width:900px) and (min-width:721px){.tab i{display:none}}
+/* toolbar delle carte */
+.toolbar{display:flex;flex-wrap:wrap;align-items:center;gap:8px;margin:0 0 14px}
+.seg{display:inline-flex;padding:3px;background:var(--bg2);border:1px solid var(--bd);border-radius:12px}
+.seg .btn{border:0;background:transparent;padding:8px 14px;border-radius:9px;color:var(--mu)}
+.seg .btn.on{background:var(--card);color:var(--ac);box-shadow:var(--shadow)}
+.toolbar .tool{padding:8px 12px;font-size:14px;border-radius:10px}
+.toolbar .tool.on{background:var(--ac-soft);color:var(--ac);border-color:color-mix(in srgb,var(--ac) 40%,var(--bd))}
+.toolbar .spacer{flex:1}
+/* flashcard */
+.card{position:relative;background:var(--card);border:1px solid var(--bd);border-radius:20px;padding:30px 24px;text-align:center;min-height:300px;display:flex;flex-direction:column;justify-content:center;align-items:center;gap:10px;cursor:pointer;box-shadow:var(--shadow);transition:transform .12s,box-shadow .12s}
+.card:hover{box-shadow:0 2px 4px rgba(0,0,0,.06),0 14px 34px rgba(28,31,38,.1)}
+.card .mid:first-child,.card .big:first-child{margin-top:4px}
+.card-meta{display:flex;justify-content:space-between;align-items:center;gap:8px;font-size:13px;color:var(--mu);margin-bottom:6px}
+.flip-hint{margin-top:8px;font-size:12px;color:var(--mu)}
+.kbd{display:inline-block;padding:1px 6px;border:1px solid var(--bd);border-bottom-width:2px;border-radius:5px;font:600 11px/1.4 var(--ui);color:var(--mu);background:var(--bg2)}
+.kanji-pad-wrap{width:min(100%,420px);margin:8px auto 0;text-align:left}.kanji-pad{display:block;width:100%;height:200px;border:1px dashed var(--bd);border-radius:12px;background:var(--bg);touch-action:none;cursor:crosshair}.kanji-pad-label{font-size:13px;color:var(--mu);margin-bottom:5px}.kanji-hints{font-size:18px;line-height:1.7;display:flex;gap:22px;flex-wrap:wrap;justify-content:center}.kanji-clue{font-size:22px;font-weight:600}.kanji-pad-clear{margin-top:7px;padding:7px 10px;font-size:14px}.kanji-drawing-preview{display:block;width:min(100%,420px);height:150px;margin:10px auto 0;border:1px solid var(--bd);border-radius:12px;object-fit:contain;background:var(--bg)}.stroke-order-wrap{width:min(100%,320px);margin:10px auto 0}.stroke-order-svg{display:block;width:100%;height:auto;max-height:300px;background:var(--bg);border:1px solid var(--bd);border-radius:12px}.stroke-order-status{text-align:center;color:var(--mu);font-size:13px;margin:5px 0}.stroke-order-credit{text-align:center;color:var(--mu);font-size:11px;margin-top:5px}
+/* elenco */
+.list{background:var(--card);border:1px solid var(--bd);border-radius:var(--r);overflow:hidden;box-shadow:var(--shadow)}
+.li{display:flex;gap:10px;align-items:center;padding:11px 16px;border-bottom:1px solid var(--bd)}.li:last-child{border-bottom:0}.li span{flex:1}.li.rm span{text-decoration:line-through;opacity:.5}
+.li .w{font:500 19px/1.3 var(--ui),var(--jp)}.li .r{color:var(--ac2);font-size:14px}.li .m{color:var(--mu);font-size:14px}
+.li .unit{font-size:11px;font-weight:600;color:var(--mu);background:var(--bg2);border-radius:6px;padding:1px 6px}
+.li button{border:0;background:none;color:var(--ko);font-size:18px;cursor:pointer;border-radius:8px}
+.li button:hover{background:var(--bg2)}
+.li button.star{color:var(--mu);font-size:20px;min-width:32px;padding:2px}.li button.star.fav-on{color:#e0a526}.li button.star:hover{color:#e0a526}.li button[title="Rimuovi"],.li button[title="Ripristina"]{min-width:30px}
+/* quiz */
+.opt{display:block;width:100%;margin:8px 0;text-align:left;padding:13px 16px;font-size:17px;white-space:normal}.opt.ok,.opt.ko{color:#fff}
+/* ===== Home ===== */
+.hero{display:flex;justify-content:space-between;align-items:flex-end;gap:16px;flex-wrap:wrap;margin:4px 0 16px}
+.hero h2{margin:0;font-size:26px;letter-spacing:-.02em}.hero p{margin:4px 0 0;color:var(--mu)}
+.stats{display:grid;grid-template-columns:repeat(auto-fill,minmax(240px,1fr));gap:12px;margin-bottom:14px}
+.stat{background:var(--card);border:1px solid var(--bd);border-radius:var(--r);padding:16px 18px;box-shadow:var(--shadow);display:flex;flex-direction:column;gap:6px;cursor:pointer;transition:border-color .15s,transform .12s;text-align:left;font:inherit;color:inherit}
+.stat:hover{border-color:var(--ac);transform:translateY(-1px)}
+.stat .ico{display:grid;place-items:center;width:38px;height:38px;border-radius:10px;background:var(--ac-soft);color:var(--ac);font:700 18px/1 var(--jp)}
+.stat .ttl{font-weight:600}.stat .num{font-size:26px;font-weight:700;letter-spacing:-.02em}.stat .num small{font-size:14px;color:var(--mu);font-weight:500}
+.stat .bar{margin:2px 0 0}
+.tip{display:flex;gap:12px;align-items:flex-start;background:var(--ac2-soft);border:1px solid color-mix(in srgb,var(--ac2) 25%,var(--bd));color:var(--tx);border-radius:var(--r);padding:14px 16px;margin-bottom:12px;font-size:14px}
+.tip b{color:var(--ac2)}
+.unit-table{width:100%;border-collapse:collapse;font-size:14px}
+.unit-table th,.unit-table td{padding:9px 8px;border-bottom:1px solid var(--bd);text-align:left}
+.unit-table th{color:var(--mu);font-weight:600;font-size:12px;text-transform:uppercase;letter-spacing:.04em}
+.unit-table td.n{font-variant-numeric:tabular-nums}
+.mini-bar{height:6px;background:var(--bd);border-radius:99px;overflow:hidden;min-width:60px}.mini-bar i{display:block;height:100%;background:var(--ac2)}
+/* ===== Esercizi ===== */
+.ex-head{display:flex;align-items:center;justify-content:space-between;gap:10px;margin:4px 0 14px}
+.ex-title{font-size:22px;font-weight:700;letter-spacing:-.01em}.ex-sub{color:var(--mu);font-size:13px}
+.ex-prompt{font-size:20px;line-height:1.85;white-space:pre-line;padding:20px 4px 8px;margin-bottom:12px}
+.ex-instr{font:600 14px/1.5 var(--ui);color:var(--mu);margin-bottom:8px;white-space:normal}
+.ex-answer{font:inherit;font-size:18px;color:var(--tx);background:var(--bg);border:1px solid var(--bd);border-radius:12px;padding:14px;width:100%;min-height:54px}.ex-answer:focus{border-color:var(--ac2);outline:none;box-shadow:0 0 0 3px var(--ac2-soft)}
+.ex-inline-blank{display:inline-block;width:4.5em;min-width:3.5em;margin:0 3px;padding:3px 6px;border:1.5px solid var(--ac);border-radius:8px;background:var(--card);color:var(--tx);font:inherit;font-size:.92em;line-height:1.4;text-align:center;vertical-align:baseline}.ex-inline-blank:focus{outline:2px solid color-mix(in srgb,var(--ac) 45%,transparent);outline-offset:1px}
 .ex-tiles{display:flex;flex-wrap:wrap;gap:8px;min-height:58px;align-items:center}
-.ex-choice{padding:13px 16px;font-size:17px;white-space:normal;min-height:48px}
-.ex-feedback{padding:14px;border-left:4px solid var(--ac2);line-height:1.7}
+.ex-tiles .btn{font-size:18px;padding:9px 14px}
+.ex-choices{display:grid;gap:8px}
+.ex-choice{padding:14px 16px;font-size:18px;white-space:normal;min-height:52px;justify-content:flex-start;text-align:left}
+.ex-feedback{padding:16px;border-left:4px solid var(--ac2);line-height:1.7}
 .ex-feedback b{font-size:17px}.ex-count{font-variant-numeric:tabular-nums}
-.ex-type-grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:10px;margin:12px 0}
-.ex-type{display:flex;align-items:center;gap:10px;text-align:left;white-space:normal;padding:12px;min-height:58px}
+.ex-type-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:10px;margin:12px 0;align-items:start}
+.ex-type{display:flex;align-items:center;gap:10px;text-align:left;white-space:normal;padding:12px 14px;min-height:58px;width:100%;justify-content:flex-start}
 .ex-type input{accent-color:var(--ac);width:18px;height:18px;flex:none}
-.ex-type span{flex:1}.ex-type small{color:var(--mu);white-space:nowrap}
-@media(max-width:520px){.ex-type-grid{grid-template-columns:1fr}}
-@media(max-width:520px){.ex-head{align-items:flex-start;flex-direction:column}.ex-prompt{font-size:17px;padding:14px}.ex-choice{width:100%;text-align:left}}
-
-.gr-rule h3{margin:7px 0 5px;font-size:18px}.gr-explain{margin:7px 0;line-height:1.65}.gr-model{margin-top:10px;padding:10px 12px;background:color-mix(in srgb,var(--mu) 10%,var(--card));border-radius:9px;line-height:1.65}.gr-model b{color:var(--tx)}.gr-translation{color:var(--tx);font-weight:500}.gr-more{margin-top:9px;border-top:1px solid var(--bd);padding-top:8px}.gr-more summary{cursor:pointer;list-style:none;color:var(--ac);font-weight:600;user-select:none}.gr-more summary::-webkit-details-marker{display:none}.gr-more summary:before{content:"▸";display:inline-block;margin-right:8px;transition:transform .15s}.gr-more[open] summary:before{transform:rotate(90deg)}.gr-examples{display:grid;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));gap:8px;margin-top:10px}.gr-example{padding:10px;background:color-mix(in srgb,var(--mu) 8%,var(--card));border:1px solid var(--bd);border-radius:9px}.jp-example{font-size:18px;margin-bottom:4px}.day-scheme{margin:10px 0;padding:12px;background:color-mix(in srgb,var(--mu) 8%,var(--card));border:1px solid var(--bd);border-radius:10px}.day-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(92px,1fr));gap:7px;margin:9px 0}.day-cell{display:flex;flex-direction:column;gap:2px;padding:8px;background:var(--card);border:1px solid var(--bd);border-radius:8px}.day-cell span{font-size:16px;font-weight:600}.day-cell small{color:var(--mu)}.day-scheme p{margin:8px 0 0;line-height:1.5}.answer-romaji{margin:7px 0}.answer-romaji summary{cursor:pointer;list-style:none;color:var(--ac);font-weight:600}.answer-romaji summary::-webkit-details-marker{display:none}.answer-romaji summary:before{content:"▸";display:inline-block;margin-right:7px;transition:transform .15s}.answer-romaji[open] summary:before{transform:rotate(90deg)}.answer-romaji div{margin:5px 0 0 18px;color:var(--mu);font-size:14px}.li button.star{color:var(--mu);font-size:20px;min-width:30px;padding:2px}.li button.star.fav-on{color:#f4b942}.li button.star:hover{color:#f4b942}.li button[title="Rimuovi"],.li button[title="Ripristina"]{min-width:28px}.jp-answer{font-size:20px;line-height:1.7;margin-top:5px}.ex-level-select{width:100%;margin-top:7px}.ex-type-card{min-width:0}.ex-type-grid{align-items:start}.ex-type-card{display:flex;flex-direction:column;gap:4px}.ex-level-select{font-size:13px;padding:8px 10px;background:var(--card);color:var(--tx)}.ex-type-grid{grid-template-columns:repeat(auto-fit,minmax(210px,1fr))}.ex-type{width:100%}.ex-type small{font-weight:700;color:var(--ac)}</style>
-<style>
-.counter-key{display:flex;flex-wrap:wrap;align-items:center;gap:7px 16px;margin:9px 0 12px;color:var(--mu);font-size:12px}.counter-key-mark{display:inline-flex;align-items:center;gap:6px}.counter-key-swatch{display:inline-block;width:12px;height:12px;border:1px solid var(--ac);border-radius:3px;background:color-mix(in srgb,var(--ac) 18%,var(--card))}.day-cell.counter-changed{border-color:var(--ac);background:color-mix(in srgb,var(--ac) 12%,var(--card))}.counter-change-label{display:block;margin-top:4px;color:var(--ac);font-size:10px;font-style:normal;font-weight:700;line-height:1.2}
+.ex-type span{flex:1}.ex-type small{font-weight:600;color:var(--ac);font-size:12px}
+.ex-level-select{width:100%;margin-top:7px;font-size:13px;padding:8px 10px;background:var(--card);color:var(--tx)}.ex-type-card{min-width:0;display:flex;flex-direction:column;gap:4px}
+.jp-answer{font-size:22px;line-height:1.7;margin-top:5px}
+.answer-romaji{margin:7px 0}.answer-romaji summary{cursor:pointer;list-style:none;color:var(--ac);font-weight:600}.answer-romaji summary::-webkit-details-marker{display:none}.answer-romaji summary:before{content:"▸";display:inline-block;margin-right:7px;transition:transform .15s}.answer-romaji[open] summary:before{transform:rotate(90deg)}.answer-romaji div{margin:5px 0 0 18px;color:var(--mu);font-size:14px}
+/* ===== Grammatica ===== */
+.gr-rule{padding:18px 20px}.gr-rule h3{margin:8px 0 6px;font-size:19px;letter-spacing:-.01em}.gr-explain{margin:7px 0;line-height:1.7}
+.gr-model{margin-top:12px;padding:12px 14px;background:var(--bg2);border-left:3px solid var(--ac);border-radius:0 10px 10px 0;line-height:1.7;color:var(--tx);font-size:15px}.gr-model .gr-translation{color:var(--mu);font-weight:500}.gr-model b{color:var(--tx)}.gr-translation{color:var(--tx);font-weight:500}
+.gr-more{margin-top:10px;border-top:1px solid var(--bd);padding-top:9px}.gr-more summary{cursor:pointer;list-style:none;color:var(--ac);font-weight:600;user-select:none}.gr-more summary::-webkit-details-marker{display:none}.gr-more summary:before{content:"▸";display:inline-block;margin-right:8px;transition:transform .15s}.gr-more[open] summary:before{transform:rotate(90deg)}
+.gr-examples{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:8px;margin-top:10px}.gr-example{padding:11px 12px;background:var(--bg2);border:1px solid var(--bd);border-radius:10px}.jp-example{font-size:19px;margin-bottom:4px}
+.gr-toc{display:flex;flex-wrap:wrap;gap:6px;margin:0 0 14px}
+.gr-toc a{font-size:13px;text-decoration:none;color:var(--tx);background:var(--card);border:1px solid var(--bd);border-radius:999px;padding:5px 11px}
+.gr-toc a:hover{border-color:var(--ac);color:var(--ac)}
+.gr-unit{font-size:13px;font-weight:700;text-transform:uppercase;letter-spacing:.06em;color:var(--mu);margin:22px 0 10px}
+.day-scheme{margin:12px 0;padding:14px;background:var(--bg2);border:1px solid var(--bd);border-radius:12px}.day-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(100px,1fr));gap:7px;margin:9px 0}.day-cell{display:flex;flex-direction:column;gap:2px;padding:9px;background:var(--card);border:1px solid var(--bd);border-radius:9px}.day-cell b{font:700 17px/1.3 var(--ui),var(--jp)}.day-cell span{font-size:16px;font-weight:600}.day-cell small{color:var(--mu)}.day-scheme p{margin:8px 0 0;line-height:1.5}
+.counter-key{display:flex;flex-wrap:wrap;align-items:center;gap:7px 16px;margin:9px 0 12px;color:var(--mu);font-size:12px}.counter-key-mark{display:inline-flex;align-items:center;gap:6px}.counter-key-swatch{display:inline-block;width:12px;height:12px;border:1px solid var(--ac);border-radius:3px;background:var(--ac-soft)}.day-cell.counter-changed{border-color:var(--ac);background:var(--ac-soft)}.counter-change-label{display:block;margin-top:4px;color:var(--ac);font-size:10px;font-style:normal;font-weight:700;line-height:1.2}
+@media(hover:none){.kbd-hint{display:none!important}}
+/* ===== Telefono ===== */
+@media(max-width:720px){
+ .app{padding:0 14px calc(92px + env(safe-area-inset-bottom,0px))}
+ .brand-title{font-size:16px}.logo{width:38px;height:38px;font-size:20px}
+ .stats{grid-template-columns:repeat(2,minmax(0,1fr));gap:10px}.stat{padding:14px}.stat .num{font-size:22px}
+ .tabs{position:fixed;left:0;right:0;bottom:0;z-index:30;margin:0;border-radius:0;border:0;border-top:1px solid var(--bd);background:color-mix(in srgb,var(--card) 94%,transparent);backdrop-filter:blur(12px);-webkit-backdrop-filter:blur(12px);padding:6px 6px calc(6px + env(safe-area-inset-bottom,0px));gap:0;justify-content:space-between}
+ .tab{flex:1 1 0;min-width:0;flex-direction:column;gap:3px;padding:6px 0;font-size:9.5px;letter-spacing:-.02em;border-radius:10px;overflow:hidden}
+ .tab .short{max-width:100%;overflow:hidden;text-overflow:ellipsis}
+ .units-soon{display:none}
+ .ex-start{position:sticky;bottom:calc(76px + env(safe-area-inset-bottom,0px));z-index:5;box-shadow:0 8px 24px rgba(0,0,0,.25)}
+ .ex-type{min-height:46px;padding:9px 12px}.ex-type-grid{gap:7px}
+ .toolbar{flex-wrap:nowrap;gap:6px}.toolbar .spacer{flex:1 1 0;min-width:0}.seg .btn{padding:8px 11px}.toolbar .tool{padding:8px 10px}
+ .tab i{font-size:17px}
+ .tab .long{display:none}.tab .short{display:block}
+ .tab.on{box-shadow:none;background:var(--ac-soft)}
+ .units{margin-bottom:14px}
+ .big{font-size:56px}.mid{font-size:26px}
+ .card{min-height:260px;padding:26px 16px}
+ .ex-head{align-items:flex-start;flex-direction:column}.ex-prompt{font-size:18px;padding:14px 2px 6px}.ex-choice{width:100%}
+ .ex-type-grid{grid-template-columns:1fr}
+ .hero h2{font-size:22px}
+ .toolbar .tool .lbl{display:none}
+}
 </style>
-</head><body><div class="wrap"><aside id="side"></aside><main>
-<h1>Impariamo il giapponese <small>Volume 1 · studio personale · Unità 1, 2, 3 e 4 caricate · le altre si aggiungono unità per unità</small></h1>
-<nav id="nav"></nav><div id="v"></div>
-</main></div>
+</head><body><div class="app">
+<header class="top"><div class="brand"><div class="logo" aria-hidden="true">語</div><div><div class="brand-title">Impariamo il giapponese</div><div class="brand-sub" id="brand-sub">Volume 1 · studio personale</div></div></div><button class="icon-btn" onclick="th()" title="Tema chiaro / scuro" aria-label="Cambia tema">◐</button></header>
+<nav id="nav" class="tabs" aria-label="Sezioni"></nav>
+<div id="side" class="units" aria-label="Unità da studiare"></div>
+<main id="v"></main>
+</div>
 <script>
 // ===== DATI (per aggiungere un’unità basta aggiungere righe qui) =====
 // ===== REGOLA (vale per ogni nuova unità) =====
@@ -109,7 +222,7 @@ const KR=[
 ["分","ふん · fun","contatore per minuti",4],["同じ","おなじ · onaji","lo stesso",4]
 ];
 // grammatica: [unità, titolo, spiegazione, esempio]
-const G=[[1,"です (copula)","Il predicato nominale è un nome + です, che vale “essere”. Con か finale diventa domanda.","私の犬は12キロです。 Watashi no inu wa 12 kiro desu. “Il mio cane pesa 12 chili.”"],[1,"の (specificazione)","Lega due nomi: il primo specifica o modifica il secondo, che viene dopo.","日本語の学生 nihongo no gakusei = studente di lingua giapponese"],[1,"方 kata / 人 jin","Entrambi = “persona”. 方 è più formale (2ª e 3ª persona) e si lega con の; 人 è meno formale e si attacca al nome (日本人).","日本の方 nihon no kata · 日本人 nihonjin"],[1,"は (tema)","La particella は (si legge “wa”) evidenzia il tema/soggetto della frase.","川口さんは学生です。"],[1,"さん","Suffisso dopo il nome della 2ª e 3ª persona, mai della 1ª.","山下さん Yamashita-san"],[1,"Negazione di です","ではありません dewaarimasen oppure じゃありません jaarimasen. Non cambia con numero o genere.","川口さんは山下さんの友だちじゃありません。"],[1,"そうですか","“Davvero?”, “Ah sì?”: mostra che hai capito e che sei interessato alla conversazione.","そうですか。Sō desu ka."],[1,"か (domanda)","Quando です è seguito dalla particella finale か, la frase diventa una domanda.","あなたはかいしゃいんですか。 “È un impiegato?”"],[1,"ええ","Usato nelle risposte affermative, più colloquiale di はい. Come そうですか, mostra anche interesse nella conversazione.","ええ、そうです。"],[1,"へえ","Esclamazione informale che sottolinea stupore.","へえ hē"],[1,"何 nan / nani","Pronome interrogativo “che cosa?”. Quando 何 compare nella frase, questa termina con か.","あなたのしゅみは何ですか。"],[1,"も (anche)","Particella enfatica che significa “anche”, riferita al sostantivo che la precede.","マリアさんもアラビア語の学生です。 “Anche Maria è una studentessa di arabo.”"],[1,"と (e)","Tra due sostantivi equivale alla congiunzione “e”.","わたしのしゅみはえいがとおんがくです。 “I miei hobby sono il cinema e la musica.”"],[1,"Omissione del predicato","Se l’argomento è chiaro, si può lasciare solo il soggetto e dire la frase con intonazione ascendente, come una domanda.","お名前は？ Onamae wa? “Il suo nome?”"],
+const G=[[1,"です (copula)","Il predicato nominale è un nome + です, che vale “essere”. Con か finale diventa domanda.","私のいぬは12キロです。 Watashi no inu wa 12 kiro desu. “Il mio cane pesa 12 chili.”"],[1,"の (specificazione)","Lega due nomi: il primo specifica o modifica il secondo, che viene dopo.","日本語の学生 nihongo no gakusei = studente di lingua giapponese"],[1,"方 kata / 人 jin","Entrambi = “persona”. 方 è più formale (2ª e 3ª persona) e si lega con の; 人 è meno formale e si attacca al nome (日本人).","日本の方 nihon no kata · 日本人 nihonjin"],[1,"は (tema)","La particella は (si legge “wa”) evidenzia il tema/soggetto della frase.","かわぐちさんは学生です。"],[1,"さん","Suffisso dopo il nome della 2ª e 3ª persona, mai della 1ª.","山下さん Yamashita-san"],[1,"Negazione di です","ではありません dewaarimasen oppure じゃありません jaarimasen. Non cambia con numero o genere.","かわぐちさんは山下さんのともだちじゃありません。"],[1,"そうですか","“Davvero?”, “Ah sì?”: mostra che hai capito e che sei interessato alla conversazione.","そうですか。Sō desu ka."],[1,"か (domanda)","Quando です è seguito dalla particella finale か, la frase diventa una domanda.","あなたはかいしゃいんですか。 “È un impiegato?”"],[1,"ええ","Usato nelle risposte affermative, più colloquiale di はい. Come そうですか, mostra anche interesse nella conversazione.","ええ、そうです。"],[1,"へえ","Esclamazione informale che sottolinea stupore.","へえ hē"],[1,"何 nan / nani","Pronome interrogativo “che cosa?”. Quando 何 compare nella frase, questa termina con か.","あなたのしゅみは何ですか。"],[1,"も (anche)","Particella enfatica che significa “anche”, riferita al sostantivo che la precede.","マリアさんもアラビア語の学生です。 “Anche Maria è una studentessa di arabo.”"],[1,"と (e)","Tra due sostantivi equivale alla congiunzione “e”.","わたしのしゅみはえいがとおんがくです。 “I miei hobby sono il cinema e la musica.”"],[1,"Omissione del predicato","Se l’argomento è chiaro, si può lasciare solo il soggetto e dire la frase con intonazione ascendente, come una domanda.","お名前は？ Onamae wa? “Il suo nome?”"],
 [2,"Dimostrativi: これ・それ・あれ","I pronomi dimostrativi indicano una persona o una cosa senza nominarla: これ (vicino a chi parla), それ (vicino a chi ascolta), あれ (lontano da entrambi). Non cambiano per genere o numero.","これは何ですか。 Kore wa nan desu ka. “Che cos’è questo?”"],
 [2,"Dimostrativi: この・その・あの","Queste forme accompagnano sempre un nome: この本 = questo libro; その本 = quel libro vicino a chi ascolta; あの建物 = quell’edificio laggiù. Non usarle da sole.","この本は日本語の本です。 Kono hon wa nihongo no hon desu."],
 [2,"誰・誰の (chi / di chi)","誰 (dare) significa “chi?”. Con の diventa 誰の (dare no), “di chi?”. La particella の si usa come nell’Unità 1 per indicare possesso o specificazione.","これは誰の本ですか。 Kore wa dare no hon desu ka. “Di chi è questo libro?”"],
@@ -120,7 +233,7 @@ const G=[[1,"です (copula)","Il predicato nominale è un nome + です, che va
 [2,"Prefisso cortese お (お誕生日)","Mettendo il prefisso お (o) davanti a un sostantivo, l’espressione diventa più formale e gentile: 誕生日 → お誕生日. Si usa parlando delle cose dell’interlocutore, non delle proprie.","森さんのお誕生日はいつですか。 Mori-san no otanjōbi wa itsu desu ka."],
 [2,"何の: di che cosa? che tipo di?","何の (nan no) + nome chiede il contenuto o il tipo di qualcosa, mentre 誰の chiede il proprietario. それは何の本ですか → “Di che cosa parla quel libro?”; これは誰の本ですか → “Di chi è questo libro?”.","それは何の本ですか。 Sore wa nan no hon desu ka."],
 [2,"Due serie di numeri","Esistono due serie numeriche: una di origine cinese (いち, に, さん…) e una di origine giapponese (ひと, ふた, み…). Si sceglie la serie in base al classificatore: i mesi usano la serie cinese, i primi dieci giorni del mese quella giapponese.","一月 ichigatsu · 二日 futsuka"],
-[2,"Età: ～歳・何歳","歳 (さい, sai) è il contatore degli anni di età; 何歳 (なんさい, nansai) chiede “quanti anni?”. La forma tradizionale per vent’anni è はたち (二十歳). Alcuni numeri cambiano pronuncia davanti a sai: いっさい, はっさい, はたち. Nel libro l’età è scritta con 才, forma semplificata di 歳: si leggono entrambi さい (何才 = 何歳).","モリさんは二十一歳です。 Mori-san wa nijūissai desu."],
+[2,"Età: ～才・何才","才 (さい, sai) è il contatore degli anni di età; 何才 (なんさい, nansai) chiede “quanti anni?”. La forma tradizionale per vent’anni è はたち (二十才). Alcuni numeri cambiano pronuncia davanti a sai: いっさい, はっさい, はたち. Il libro scrive l’età con 才 (さい).","モリさんは二十一才です。 Mori-san wa nijūissai desu."],
 [2,"Numeri di telefono","Per leggere un numero di telefono si pronunciano le cifre una per una, senza un contatore. 何番 (なんばん, nanban) chiede “quale numero?”. La struttura delle domande con ですか riprende l’Unità 1.","電話番号は何番ですか。 Denwa bangō wa nanban desu ka."],
 [2,"Ripasso: は・です・か insieme ai dimostrativi","Per fare una domanda con un dimostrativo, conserva la struttura già studiata: tema + は + nome/predicato + です + か. の può aggiungere una specificazione o indicare il proprietario.","あの建物は美術館ですか。 Ano tatemono wa bijutsukan desu ka."],
 [3,"どこ・どこの: chiedere dove","どこ (doko) è l’interrogativo “dove?”. どこの + nome chiede “di quale luogo?”. La struttura riprende は, の e です già studiati.","レストランはどこですか。 Resutoran wa doko desu ka."],
@@ -138,10 +251,10 @@ const G=[[1,"です (copula)","Il predicato nominale è un nome + です, che va
 [3,"La particella finale よ","よ (yo) si usa a fine frase per enfatizzare quanto si sta dicendo.","この近くですよ。 Kono chikaku desu yo."],
 [3,"La particella finale ね","ね (ne) si usa a fine frase per condividere l’affermazione con l’interlocutore e cercarne la partecipazione.","本屋さんがいいですね。 Honya-san ga ii desu ne."],
 [4,"どこ con あります・います","Nell’Unità 3 どこ si usava con です. Ora si usa anche con i verbi あります e います per chiedere dove si trova qualcosa o qualcuno.","不動産屋はどこにありますか。 Fudōsanya wa doko ni arimasu ka."],
-[4,"あります・います: esserci","あります (arimasu) e います (imasu) significano “esserci” ed esprimono esistenza e presenza: あります per le cose inanimate, います per gli esseri viventi. Schema: luogo + に + soggetto + が + あります/います. Se il soggetto non è l’informazione nuova si usa は: soggetto + は + luogo + に + あります/います; in questo caso l’informazione importante è il luogo.","大学に学生が大勢います。 Daigaku ni gakusei ga ōzei imasu."],
+[4,"あります・います: esserci","あります (arimasu) e います (imasu) significano “esserci” ed esprimono esistenza e presenza: あります per le cose inanimate, います per gli esseri viventi. Schema: luogo + に + soggetto + が + あります/います. Se il soggetto non è l’informazione nuova si usa は: soggetto + は + luogo + に + あります/います; in questo caso l’informazione importante è il luogo.","大学に学生がおおぜいいます。 Daigaku ni gakusei ga ōzei imasu."],
 [4,"L’ausiliare -ます: presente e passato","Con あります e います si impara l’ausiliare -masu, che servirà per tutti i verbi dell’Unità 5. Presente (non passato): -ます (affermativo), -ません (negativo). Passato: -ました (affermativo), -ませんでした (negativo).","あります · ありません · ありました · ありませんでした"],
-[4,"Indicare la posizione: luogo + の + 上・下・中…","Per precisare dove si trova qualcosa si usa: luogo + の + indicazione di posizione. Indicazioni: 上 ue (sopra), 下 shita (sotto), 左 hidari (sinistra), 右 migi (destra), 中 naka (dentro), 外 soto (fuori), 前 mae (davanti), 近く chikaku (vicino), 横 yoko (di fianco), 間 aida (tra).","鞄の中 kaban no naka “dentro la borsa” · 机の上 tsukue no ue “sopra la scrivania”"],
-[4,"何か・誰か・どこか (indefiniti)","Gli interrogativi 何, 誰, どこ seguiti da か diventano indefiniti: 何か “qualcosa”, 誰か “qualcuno”, どこか “da qualche parte”. Alla risposta negativa si usa 何も + negativo: 何もありません “non c’è nulla”.","椅子の下に何かありますか。 Isu no shita ni nani ka arimasu ka."],
+[4,"Indicare la posizione: luogo + の + 上・下・中…","Per precisare dove si trova qualcosa si usa: luogo + の + indicazione di posizione. Indicazioni: 上 ue (sopra), 下 shita (sotto), 左 hidari (sinistra), 右 migi (destra), 中 naka (dentro), 外 soto (fuori), 前 mae (davanti), 近く chikaku (vicino), 横 yoko (di fianco), 間 aida (tra).","かばんの中 kaban no naka “dentro la borsa” · つくえの上 tsukue no ue “sopra la scrivania”"],
+[4,"何か・誰か・どこか (indefiniti)","Gli interrogativi 何, 誰, どこ seguiti da か diventano indefiniti: 何か “qualcosa”, 誰か “qualcuno”, どこか “da qualche parte”. Alla risposta negativa si usa 何も + negativo: 何もありません “non c’è nulla”.","いすの下に何かありますか。 Isu no shita ni nani ka arimasu ka."],
 [4,"や: elenco non completo","と unisce i nomi quando l’elenco è completo. Se invece si citano solo alcuni esempi si usa や (ya), spesso con など alla fine (“ecc.”).","大学の前や駅の近くなどにあります。 Daigaku no mae ya eki no chikaku nado ni arimasu."],
 [4,"その: riferimento a ciò di cui si è parlato","その può non indicare la posizione, ma riferirsi a qualcosa già nominato nel discorso: その不動産屋 = “quell’agenzia (di cui abbiamo parlato)”.","その不動産屋に友だちがいます。 Sono fudōsanya ni tomodachi ga imasu."],
 [4,"I giorni della settimana","I giorni si formano con un kanji + 曜日 (yōbi). Per chiedere il giorno si usa 何曜日 (nanyōbi).","今日は金曜日です。 Kyō wa kinyōbi desu."],
@@ -166,24 +279,30 @@ const act=t=>D()[t].map((_,i)=>i).filter(i=>sel(uOf(t,i))&&!S.rm[key(t,i)]);
 (function migrateKeys(){if(S.kv>=2)return;
  const OLD={k:"人,日,本,学,生,先,中,下,上,山,語,何,月,店,今,一,二,三,四,五,六,七,八,九,十,子,火,水,木,近,円,犬,体,前,後,右,左,外,毎,川".split(","),
  v:"はい|1,はじめまして|1,さん|1,いいえ|1,そうです|1,まんが|1,しつれい（失礼）ですが|1,日本の方|1,どうぞよろしくおねがい（願）いします|1,中国の方|1,これ|2,それ|2,あれ|2,この|2,その|2,あの|2,誰の|2,友だち|2,いつ|2,どうもありがとうございました|2,また|2,一緒に|2,出かけましょう|2,おいしい|3,どこ|3,ええと|3,たとえば|3,さくら|3,近く|3,いらっしゃいませ|3,おすすめ|3,さしみ|3,やきとり|3,すきやき|3,いくら|3,にく（肉）|3,やさい|3,じゃあ|3,それから|3,飲み物|3,ちょっと|3,だけ|3,買いもの|3,いい|3,いいですか|3,それに|3,あそこ|3,本屋さん|3,子ども服|3,うりば|3,すし屋|3,さかな（魚）|3,てんぷら|3,はがき|3,ご飯|3,お昼|3,こうばん（交番）|3,でも|2,お誕生日|2,何の|2,えき（駅）|2,じしょ（辞書）|2,かばん|2,えんぴつ|2,うた（歌）|2,妹さん|2,お母さん|2,お父さん|2,お兄さん|2".split(","),
- r:"会話|1,日本|1,森|1,日本人|1,日本語|1,学生|1,大学|1,会社員|1,趣味|1,何|1,映画|1,私|1,音楽|1,韓国人|1,中国人|1,中国|1,中国語|1,先生|1,読書|1,料理|1,名前|1,国|1,仕事|1,専門|1,歴史|1,写真|1,建物|2,美術館|2,劇場|2,誰|2,誰の|2,友だち|2,誕生日|2,何月|2,何日|2,何歳|2,今月|2,今日|2,一日|2,二日|2,三日|2,四日|2,五日|2,六日|2,七日|2,八日|2,九日|2,十日|2,子供|2,喫茶店|2,近く|3,階|3,二階|3,肉|3,飲み物|3,本|3,時|3,半|3,買いもの|3,冊|3,枚|3,本屋さん|3,映画館|3,銀行|3,交番|3,子供|3,服|3,売り場|3,郵便局|3,時計|3,食器|3,リビング用品|3,服（メンズ）|3,靴|3,食料品|3,酒|3,果物|3,切符|3,傘|3,全部で|3,皿|3,切手|3,劇場|3,魚|3,すし屋|3,子ども服|3,火曜日|3,水曜日|3,木曜日|3,十円|3,子犬|3,大体|3,午前|3,名前|3,体|3,前|3,後ろ|3,午後|3,右|3,左|3,左右|3,外|3,外国|3,外国人|3,毎日|3,毎月|3,毎年|3,川|3,何時|3,何階|3,野菜|3,何本|3,二時半|3,オペラ劇場|2,携帯電話|2,番号|2,何番|2,小学生|2,子|2,一緒に|2,出かけましょう|2,車|2,駅|2,辞書|2,試験|2,日本文学|2,文学|2,美術|2,図書館|2,雑誌|2,教科書|2,歌|2,何才|2,番|2,大学生|1,山田|1,入口|1,夜|3,学校|3,前川|3".split(",")};
+ r:"会話|1,日本|1,森|1,日本人|1,日本語|1,学生|1,大学|1,会社員|1,趣味|1,何|1,映画|1,私|1,音楽|1,韓国人|1,中国人|1,中国|1,中国語|1,先生|1,読書|1,料理|1,名前|1,国|1,仕事|1,専門|1,歴史|1,写真|1,建物|2,美術館|2,劇場|2,誰|2,誰の|2,友だち|2,誕生日|2,何月|2,何日|2,何才|2,今月|2,今日|2,一日|2,二日|2,三日|2,四日|2,五日|2,六日|2,七日|2,八日|2,九日|2,十日|2,子供|2,喫茶店|2,近く|3,階|3,二階|3,肉|3,飲み物|3,本|3,時|3,半|3,買いもの|3,冊|3,枚|3,本屋さん|3,映画館|3,銀行|3,交番|3,子供|3,服|3,売り場|3,郵便局|3,時計|3,食器|3,リビング用品|3,服（メンズ）|3,靴|3,食料品|3,酒|3,果物|3,切符|3,傘|3,全部で|3,皿|3,切手|3,劇場|3,魚|3,すし屋|3,子ども服|3,火曜日|3,水曜日|3,木曜日|3,十円|3,子犬|3,大体|3,午前|3,名前|3,体|3,前|3,後ろ|3,午後|3,右|3,左|3,左右|3,外|3,外国|3,外国人|3,毎日|3,毎月|3,毎年|3,川|3,何時|3,何階|3,野菜|3,何本|3,二時半|3,オペラ劇場|2,携帯電話|2,番号|2,何番|2,小学生|2,子|2,一緒に|2,出かけましょう|2,車|2,駅|2,辞書|2,試験|2,日本文学|2,文学|2,美術|2,図書館|2,雑誌|2,教科書|2,歌|2,何才|2,番|2,大学生|1,山田|1,入口|1,夜|3,学校|3,前川|3".split(",")};
  // forme vecchie → forme nuove del libro
- const ALIAS={"しつれい（失礼）ですが":"失礼ですが","どうぞよろしくおねがい（願）いします":"どうぞよろしくお願いします","にく（肉）":"肉","さかな（魚）":"魚","こうばん（交番）":"交番","えき（駅）":"駅","じしょ（辞書）":"辞書","うた（歌）":"歌","一緒に":"いっしょに","ええと":"ええっと","売り場":"うりば","靴":"くつ","果物":"くだもの","傘":"かさ","野菜":"やさい","何歳":"何才"};
+ const ALIAS={"しつれい（失礼）ですが":"失礼ですが","どうぞよろしくおねがい（願）いします":"どうぞよろしくお願いします","にく（肉）":"肉","さかな（魚）":"魚","こうばん（交番）":"交番","えき（駅）":"駅","じしょ（辞書）":"辞書","うた（歌）":"歌","一緒に":"いっしょに","ええと":"ええっと","売り場":"うりば","靴":"くつ","果物":"くだもの","傘":"かさ","野菜":"やさい","何才":"何才"};
  const find=(word,unit,pref)=>{const w=ALIAS[word]||word;for(const t of [pref,...["v","r"].filter(x=>x!==pref)]){const a=D()[t];let i=a.findIndex((c,j)=>c[0]===w&&uOf(t,j)===unit);if(i<0)i=a.findIndex(c=>c[0]===w);if(i>=0)return key(t,i)}return null};
  const conv=k=>{const m=/^([vkr])(\d+)$/.exec(k);if(!m)return k;const t=m[1],raw=OLD[t][+m[2]];if(!raw)return null;if(t==="k"){const i=K.findIndex(c=>c[0]===raw);return i<0?null:key("k",i)}const [w,u]=raw.split("|");return find(w,+u,t)};
  for(const store of ["box","rm","fav","qe"]){const src=S[store];if(!src)continue;const out={};for(const [k,v] of Object.entries(src)){const nk=conv(k);if(!nk)continue;if(store==="box")out[nk]=Math.max(out[nk]||0,v);else if(store==="qe")out[nk]=(out[nk]||0)+v;else out[nk]=out[nk]||v}S[store]=out}
  S.kv=2;save()})();
 let mode="s",rnd=false,miss=[],favOnly=false;
-function side(){const have=AV();$("side").innerHTML=`<b>Unità da studiare</b><div class="u" onclick="allU()"><input type="checkbox" ${!S.un?"checked":""}><b>Tutto il libro</b></div>`+[...Array(12)].map((_,n)=>{const u=n+1,h=have.includes(u);return `<label class="u ${h?"":"off"}"><input type="checkbox" ${h&&sel(u)?"checked":""} ${h?"":"disabled"} onchange="tog(${u})">Unità ${u}${h?"":" (presto)"}</label>`}).join("")}
+// Barra delle unità sempre visibile: "Tutte" oppure una o più unità
+function side(){const have=[...new Set(AV())].sort((a,b)=>a-b),last=Math.max(...have);
+ $("brand-sub").textContent=`Volume 1 · Unità ${have.length>1?have[0]+"–"+last:have[0]} · studio personale`;
+ $("side").innerHTML=`<span class="units-label">Unità</span><button class="chip ${!S.un?"on":""}" onclick="allU()" aria-pressed="${!S.un}">Tutte</button>`+have.map(u=>`<button class="chip ${S.un&&sel(u)?"on":""}" aria-pressed="${!!(S.un&&sel(u))}" onclick="pickU(${u})" title="Aggiungi o togli l’Unità ${u}">${u}</button>`).join("")+(last<12?`<span class="units-soon">· ${last+1}–12 in arrivo</span>`:"")}
+// da "Tutte", un clic sceglie solo quell'unità; poi ogni clic aggiunge o toglie un'unità
+function pickU(u){const n=new Set(AV()).size;if(!S.un)S.un=[u];else if(S.un.includes(u))S.un=S.un.filter(x=>x!==u);else S.un=S.un.concat(u);if(!S.un.length||S.un.length===n)S.un=null;save();refresh()}
 function allU(){S.un=null;save();refresh()}
 function tog(u){const have=AV();let c=S.un||have.slice();c=c.includes(u)?c.filter(x=>x!=u):c.concat(u);S.un=c.length==have.length?null:c;save();refresh()}
 function refresh(){q=[];Q.run=false;side();go(cur)}
-const tabs=[["vo","Vocaboli"],["ka","Kanji scrittura"],["kr","Kanji lettura"],["qz","Quiz"],["gr","Grammatica"],["es","Esercizi"],["pr","Progressi"]];
-let cur="vo",q=[],qi=0,flip=false,kanjiDrawing=null,kanjiDrawActive=false;
+// [id, etichetta, icona, etichetta breve per il telefono]
+const tabs=[["ho","Inizio","⌂","Inizio"],["vo","Vocaboli","あ","Parole"],["ka","Kanji scrittura","字","Scrittura"],["kr","Kanji lettura","読","Lettura"],["gr","Grammatica","文","Regole"],["es","Esercizi","練","Esercizi"],["qz","Quiz","問","Quiz"],["pr","Progressi","▤","Progressi"]];
+let cur="ho",q=[],qi=0,flip=false,kanjiDrawing=null,kanjiDrawActive=false;
 if(S.th)document.documentElement.dataset.theme=S.th;
-function nav(){ $("nav").innerHTML=`<button id="menu" onclick="$('side').classList.toggle('open')">☰ Unità</button>`+tabs.map(t=>`<button class="${t[0]==cur?"on":""}" onclick="mode='s';go('${t[0]}')">${t[1]}</button>`).join("")+`<button onclick="th()">◐</button>`}
+function nav(){ $("nav").innerHTML=tabs.map(t=>`<button class="tab ${t[0]==cur?"on":""}" ${t[0]==cur?'aria-current="page"':""} onclick="mode='s';go('${t[0]}')"><i aria-hidden="true">${t[2]}</i><span class="long">${t[1]}</span><span class="short">${t[3]}</span></button>`).join("")}
 function th(){const d=matchMedia("(prefers-color-scheme: dark)").matches;const n=(document.documentElement.dataset.theme||(d?"dark":"light"))=="dark"?"light":"dark";document.documentElement.dataset.theme=S.th=n;save()}
-function go(t){cur=t;flip=false;qi=0;favOnly=false;nav();({vo:()=>deck("v"),ka:()=>deck("k"),kr:()=>deck("r"),qz:quiz,es:exStart,gr:gram,pr:prog})[t]()}
+function go(t){cur=t;flip=false;qi=0;favOnly=false;nav();window.scrollTo(0,0);({ho:home,vo:()=>deck("v"),ka:()=>deck("k"),kr:()=>deck("r"),qz:quiz,es:exStart,gr:gram,pr:prog})[t]()}
 // coda di ripasso: le carte con box più basso escono prima
 function favAct(t){S.fav=S.fav||{};return act(t).filter(i=>S.fav[key(t,i)])}
 function toggleFav(t,i){S.fav=S.fav||{};const k=key(t,i);if(S.fav[k])delete S.fav[k];else S.fav[k]=1;save();deck(t)}
@@ -191,25 +310,30 @@ function studyFav(t){if(!favAct(t).length)return;favOnly=true;mode="s";q=[];qi=0
 function toggleFavOnly(t){favOnly=!favOnly;q=[];qi=0;flip=false;deck(t)}
 function toggleReverse(t){S.reverse=S.reverse||{};S.reverse[t]=!S.reverse[t];save();flip=false;kanjiDrawing=null;deck(t)}
 function build(t){const a=act(t).filter(i=>!favOnly||!!(S.fav&&S.fav[key(t,i)]));return rnd?a.map(x=>[Math.random(),x]).sort((p,q)=>p[0]-q[0]).map(p=>p[1]):a}
-function tg(t){return `<div class="row" style="margin:0 0 12px;flex-wrap:wrap"><button class="btn ${mode=="s"?"on":""}" onclick="mode='s';deck('${t}')">Studia</button><button class="btn ${mode=="l"?"on":""}" onclick="mode='l';deck('${t}')">Elenco (${act(t).length}/${D()[t].filter((_,i)=>sel(uOf(t,i))).length})</button>${mode=="s"?`<button class="btn ${S.reverse&&S.reverse[t]?"on":""}" aria-pressed="${!!(S.reverse&&S.reverse[t])}" onclick="toggleReverse('${t}')">↔ ${S.reverse&&S.reverse[t]?"Inverso: attivo":"Inverti le carte"}</button><button class="btn ${favOnly?"on":""}" onclick="toggleFavOnly('${t}')">★ ${favOnly?"Tutti gli elementi":"Solo preferiti"} (${favAct(t).length})</button>${rnd?`<button class="btn" onclick="reshuf('${t}')">🔀 Mescola di nuovo</button><button class="btn on" onclick="shuf('${t}')">↺ 順番に naturale</button>`:`<button class="btn" onclick="shuf('${t}')">🔀 Mescola</button>`}`:""}</div>`}
+function tg(t){const rev=!!(S.reverse&&S.reverse[t]),revLbl=t==="k"?"Scrivi il kanji":t==="v"?"Dall’italiano":"Dall’italiano";
+ return `<div class="toolbar"><div class="seg" role="tablist"><button class="btn ${mode=="s"?"on":""}" onclick="mode='s';deck('${t}')">Studia</button><button class="btn ${mode=="l"?"on":""}" onclick="mode='l';deck('${t}')">Elenco · ${act(t).length}</button></div>${mode=="s"?`<span class="spacer"></span><button class="btn tool ${rev?"on":""}" aria-pressed="${rev}" title="Inverti le carte: parti dal significato" onclick="toggleReverse('${t}')">↔ <span class="lbl">${revLbl}</span></button><button class="btn tool ${favOnly?"on":""}" aria-pressed="${favOnly}" title="Studia solo i preferiti" onclick="toggleFavOnly('${t}')">★ <span class="lbl">Preferiti</span> ${favAct(t).length}</button><button class="btn tool ${rnd?"on":""}" aria-pressed="${rnd}" title="${rnd?"Torna all’ordine del libro":"Mescola le carte"}" onclick="shuf('${t}')">🔀 <span class="lbl">${rnd?"Mescolate":"Mescola"}</span></button>${rnd?`<button class="btn tool" title="Mescola di nuovo" onclick="reshuf('${t}')">↻</button>`:""}`:""}</div>`}
 function shuffleRemaining(t,randomize){rnd=randomize;if(q.length&&q.t==t){const completed=q.slice(0,qi),remaining=q.slice(qi);const tail=randomize?remaining.map(x=>[Math.random(),x]).sort((a,b)=>a[0]-b[0]).map(x=>x[1]):remaining.slice().sort((a,b)=>a-b);q=completed.concat(tail);q.t=t}else{q=build(t);q.t=t;qi=0}flip=false;deck(t)}
 function shuf(t){shuffleRemaining(t,!rnd)}
 function reshuf(t){shuffleRemaining(t,true)}
 function again(t){q=miss.slice();q.t=t;miss=[];qi=0;flip=false;deck(t)}
-function lst(t){const a=D()[t],u=[];S.fav=S.fav||{};a.forEach((c,i)=>{if(!sel(uOf(t,i)))return;const r=S.rm[key(t,i)],f=!!S.fav[key(t,i)],x=t=="v"||t=="r"?`${c[0]} · ${c[1]} · ${c[2]}`:`<b>${c[0]}</b> · 音 ${c[1]} · 訓 ${c[2]} · ${c[3]}`;u.push(`<div class="li ${r?"rm":""}"><span>${x} <small class="mu">U${uOf(t,i)}</small></span><button class="star ${f?"fav-on":""}" title="${f?"Togli dai preferiti":"Aggiungi ai preferiti"}" aria-label="${f?"Togli dai preferiti":"Aggiungi ai preferiti"}" onclick="toggleFav('${t}',${i})">${f?"★":"☆"}</button><button title="${r?"Ripristina":"Rimuovi"}" aria-label="${r?"Ripristina":"Rimuovi"}" onclick="rm('${t}',${i})">${r?"↺":"✕"}</button></div>`)});const n=favAct(t).length;el(tg(t)+`<div class="card" style="cursor:default;text-align:left;padding:4px 0;min-height:0;justify-content:flex-start">${u.join("")||"<div class='mu' style='padding:16px'>Nessun elemento nelle unità selezionate.</div>"}</div><button class="btn ok" style="width:100%;margin-top:10px" ${n?"":"disabled"} onclick="studyFav('${t}')">★ Studia solo i preferiti (${n})</button>`)}
+function lst(t){const a=D()[t],u=[];S.fav=S.fav||{};a.forEach((c,i)=>{if(!sel(uOf(t,i)))return;const r=S.rm[key(t,i)],f=!!S.fav[key(t,i)],x=t=="v"||t=="r"?`<span class="w">${c[0]}</span> <span class="r">${c[1]}</span><br><span class="m">${c[2]}</span>`:`<span class="w" style="font-family:var(--jps);font-size:24px">${c[0]}</span> <span class="m">${c[3]}</span><br><span class="r">音 ${c[1]} · 訓 ${c[2]}</span>`;u.push(`<div class="li ${r?"rm":""}"><span>${x}</span><span class="unit" style="flex:none">U${uOf(t,i)}</span><button class="star ${f?"fav-on":""}" title="${f?"Togli dai preferiti":"Aggiungi ai preferiti"}" aria-label="${f?"Togli dai preferiti":"Aggiungi ai preferiti"}" onclick="toggleFav('${t}',${i})">${f?"★":"☆"}</button><button title="${r?"Ripristina":"Rimuovi"}" aria-label="${r?"Ripristina":"Rimuovi"}" onclick="rm('${t}',${i})">${r?"↺":"✕"}</button></div>`)});const n=favAct(t).length;el(tg(t)+`<div class="mu" style="margin:-4px 0 10px">☆ aggiungi ai preferiti · ✕ togli dallo studio (↺ per rimetterla)</div><div class="list">${u.join("")||"<div class='mu' style='padding:16px'>Nessun elemento nelle unità selezionate.</div>"}</div><button class="btn ok" style="width:100%;margin-top:12px" ${n?"":"disabled"} onclick="studyFav('${t}')">★ Studia solo i preferiti (${n})</button>`)}
 function rm(t,i){const k=key(t,i);if(S.rm[k])delete S.rm[k];else S.rm[k]=1;q=[];save();deck(t)}
 function deck(t){
  if(mode=="l")return lst(t);
  if(!q.length||q.t!=t){q=build(t);q.t=t;qi=0;flip=false;miss=[];kanjiDrawing=null}
  if(qi>=q.length){el(tg(t)+`<div class="card" style="cursor:default"><div class="big">${q.length?"🎉":"📭"}</div><div>${q.length?"Sessione completata!":(favOnly?"Nessun preferito in questa sessione. Aggiungi elementi con la stellina nell’elenco.":"Nessun elemento: scegli almeno un’unità nel menu.")}</div>${miss.length?`<button class="btn ok" onclick="again('${t}')">Ripeti solo i “Non lo so” (${miss.length})</button>`:""}<button class="btn" onclick="q=[];deck('${t}')">Ricomincia</button></div>`);return}
  const i=q[qi],c=({v:V,k:K,r:KR})[t][i],rev=!!(S.reverse&&S.reverse[t]);let front,back;
- if(t=="v"){front=rev?`<div class="mid">${c[2]}</div>`:`<div class="mid">${c[0]}</div>`;back=rev?`<div class="mid">${c[0]}</div><div class="mu">${c[1]}</div>`:`<div class="mid">${c[2]}</div><div class="mu">${c[1]}</div>`}
- else if(t=="r"){front=rev?`<div class="mid">${c[2]}</div>`:`<div class="mid">${c[0]}</div>`;back=rev?`<div class="mid">${c[0]}</div><div class="mid" style="color:var(--ac)">${c[1]}</div>`:`<div class="mid" style="color:var(--ac)">${c[1]}</div><div class="mid">${c[2]}</div>`}
+ if(t=="v"){front=rev?`<div class="mean" style="font-size:26px">${c[2]}</div>`:`<div class="mid">${c[0]}</div>`;back=`<div class="mid">${c[0]}</div><div class="rd">${c[1]}</div><div class="mean">${c[2]}</div>`}
+ else if(t=="r"){front=rev?`<div class="mean" style="font-size:26px">${c[2]}</div>`:`<div class="mid">${c[0]}</div>`;back=`<div class="mid">${c[0]}</div><div class="rd">${c[1]}</div><div class="mean">${c[2]}</div>`}
  else {const clue=`<div class="kanji-clue">${c[3]}</div><div class="kanji-hints"><div><span class="mu">On · 音読み</span><br>${c[1]}</div><div><span class="mu">Kun · 訓読み</span><br>${c[2]}</div><div class="mu">${c[4]} tratti</div></div>`,pad=`<div class="kanji-pad-wrap" onclick="event.stopPropagation()"><div class="kanji-pad-label">Prova a scrivere il kanji a mano</div><canvas id="kanji-pad" class="kanji-pad" aria-label="Area per scrivere il kanji" onpointerdown="startKanjiDraw(event)" onpointermove="moveKanjiDraw(event)" onpointerup="stopKanjiDraw()" onpointercancel="stopKanjiDraw()" onpointerleave="stopKanjiDraw()" onclick="event.stopPropagation()"></canvas><div class="row" style="margin-top:7px"><button class="btn kanji-pad-clear" onclick="event.stopPropagation();clearKanjiPad()">Cancella</button><button class="btn kanji-pad-clear" onclick="event.stopPropagation();showKanjiStrokeOrder()">Mostra ordine dei tratti</button></div><div id="stroke-guide" class="stroke-order-wrap" hidden></div></div>`;const target=`<div class="big">${c[0]}</div>`,preview=kanjiDrawing?`<img class="kanji-drawing-preview" src="${kanjiDrawing}" alt="Il kanji che hai scritto">`:"";front=rev?clue+pad:target;back=rev?target+preview:clue}
  const p=Math.round(qi/q.length*100),visible=flip?back:front;
- el(tg(t)+`<div class="mu">Carta ${qi+1}/${q.length} · livello ${bx(key(t,i))}/5${rev?" · studio inverso":""}</div><div class="bar"><i style="width:${p}%"></i></div><div class="card" onclick="flip=!flip;deck('${t}')">${visible}<div class="mu">Tocca per girare</div></div>${t==="k"&&rev&&!flip?`<div class="mu" style="text-align:center;margin-top:5px">Scrivi il kanji partendo dagli indizi, poi gira la carta per confrontarlo.</div>`:""}${flip?`<div class="row"><button class="btn ko" onclick="ans('${t}',${i},0)">Non lo so</button><button class="btn ok" onclick="ans('${t}',${i},1)">Lo so</button></div>`:""}`);
+ const lv=bx(key(t,i)),dots=[1,2,3,4,5].map(n=>`<span style="display:inline-block;width:7px;height:7px;border-radius:50%;margin-left:3px;background:${n<=lv?"var(--ac2)":"var(--bd)"}"></span>`).join("");
+ el(tg(t)+`<div class="card-meta"><span>Carta ${qi+1} di ${q.length} · Unità ${uOf(t,i)}${rev?" · inversa":""}</span><span title="Livello di memoria ${lv}/5">${dots}</span></div><div class="bar"><i style="width:${p}%"></i></div><div class="card" role="button" tabindex="0" aria-label="Gira la carta" onclick="flip=!flip;deck('${t}')">${visible}<div class="flip-hint">${flip?"":"Tocca la carta per girarla<span class=\"kbd-hint\"> · <span class=\"kbd\">Spazio</span></span>"}</div></div>${t==="k"&&rev&&!flip?`<div class="mu" style="text-align:center;margin-top:8px">Scrivi il kanji partendo dagli indizi, poi gira la carta per confrontarlo.</div>`:""}${flip?`<div class="row"><button class="btn ko" onclick="ans('${t}',${i},0)">✕ Non lo so <span class="kbd kbd-hint" style="background:transparent;color:#fff;border-color:rgba(255,255,255,.5)">1</span></button><button class="btn ok" onclick="ans('${t}',${i},1)">✓ Lo so <span class="kbd kbd-hint" style="background:transparent;color:#fff;border-color:rgba(255,255,255,.5)">2</span></button></div>`:""}`);
  if(t==="k"&&rev&&!flip)initKanjiPad()
 }
+// Tastiera per le carte: Spazio/Invio = gira · 1 o ← = Non lo so · 2 o → = Lo so
+document.addEventListener("keydown",e=>{const t={vo:"v",ka:"k",kr:"r"}[cur];if(!t||mode!=="s"||/INPUT|TEXTAREA|SELECT|BUTTON|^A$/.test(e.target.tagName)||e.ctrlKey||e.metaKey||e.altKey)return;if(!q.length||qi>=q.length)return;
+ if(e.key===" "||e.key==="Enter"){e.preventDefault();flip=!flip;deck(t)}else if(flip&&(e.key==="1"||e.key==="ArrowLeft")){e.preventDefault();ans(t,q[qi],0)}else if(flip&&(e.key==="2"||e.key==="ArrowRight")){e.preventDefault();ans(t,q[qi],1)}});
 function initKanjiPad(){const canvas=$("kanji-pad");if(!canvas)return;const rect=canvas.getBoundingClientRect(),dpr=window.devicePixelRatio||1;canvas.width=Math.max(1,Math.round(rect.width*dpr));canvas.height=Math.max(1,Math.round(rect.height*dpr));const ctx=canvas.getContext("2d");ctx.scale(dpr,dpr);ctx.lineWidth=4;ctx.lineCap="round";ctx.lineJoin="round";ctx.strokeStyle=getComputedStyle(document.documentElement).getPropertyValue("--tx").trim()||"#222";if(kanjiDrawing){const img=new Image();img.onload=()=>ctx.drawImage(img,0,0,rect.width,rect.height);img.src=kanjiDrawing}}
 function startKanjiDraw(e){e.stopPropagation();const canvas=e.currentTarget,ctx=canvas.getContext("2d"),r=canvas.getBoundingClientRect();canvas.setPointerCapture(e.pointerId);kanjiDrawActive=true;ctx.beginPath();ctx.moveTo(e.clientX-r.left,e.clientY-r.top)}
 function moveKanjiDraw(e){if(!kanjiDrawActive)return;e.stopPropagation();const canvas=e.currentTarget,ctx=canvas.getContext("2d"),r=canvas.getBoundingClientRect();ctx.lineTo(e.clientX-r.left,e.clientY-r.top);ctx.stroke()}
@@ -224,7 +348,7 @@ const G_TR={
 "4|どこ con あります・います":"Dov’è l’agenzia immobiliare?","4|あります・います: esserci":"All’università ci sono molti studenti.","4|Indicare la posizione: luogo + の + 上・下・中…":"","4|何か・誰か・どこか (indefiniti)":"C’è qualcosa sotto la sedia?","4|や: elenco non completo":"Ci sono davanti all’università, vicino alla stazione, ecc.","4|その: riferimento a ciò di cui si è parlato":"In quell’agenzia c’è un mio amico.","4|I giorni della settimana":"Oggi è venerdì.","4|から・まで: da… a…":"L’esame da che ora è?","4|Durata: ～時間":"Le due ore di pranzo sono di pausa, vero?","4|Contare oggetti: ～つ":"Ce ne sono due.",
 "2|Prefisso cortese お (お誕生日)":"Quando è il compleanno del signor Mori?","2|何の: di che cosa? che tipo di?":"Di che cosa è quel libro? (Che libro è?)","2|Due serie di numeri":"gennaio · il due del mese",
 "1|です (copula)":"Il mio cane pesa 12 chili.","1|の (specificazione)":"Studente di lingua giapponese.","1|方 kata / 人 jin":"Una persona giapponese (forma cortese) · una persona giapponese.","1|は (tema)":"Il signor Kawaguchi è uno studente.","1|さん":"Signor Yamashita.","1|Negazione di です":"Il signor Kawaguchi non è amico del signor Yamashita.","1|そうですか":"Ah, capisco. / Davvero?","1|か (domanda)":"Lei è un impiegato?","1|ええ":"Sì, esatto.","1|へえ":"Ah, davvero!","1|何 nan / nani":"Qual è il tuo hobby?","1|も (anche)":"Anche Maria è una studentessa di arabo.","1|と (e)":"I miei hobby sono il cinema e la musica.","1|Omissione del predicato":"Il suo nome?",
-"2|Dimostrativi: これ・それ・あれ":"Che cos’è questo?","2|Dimostrativi: この・その・あの":"Questo libro è un libro di giapponese.","2|誰・誰の (chi / di chi)":"Di chi è questo libro?","2|Omissione del nome già noto":"Quello è di Elena (il nome “libro” è sottinteso).","2|Mesi: numero + 月":"Di quale mese è il compleanno?","2|Giorni del mese":"Il compleanno è il 20 maggio.","2|Compleanno: いつ":"Quando è il compleanno del signor Mori?","2|Età: ～歳・何歳":"Il signor Mori ha 21 anni.","2|Numeri di telefono":"Qual è il numero di telefono?","2|Ripasso: は・です・か insieme ai dimostrativi":"Quell’edificio laggiù è un museo delle Belle Arti?",
+"2|Dimostrativi: これ・それ・あれ":"Che cos’è questo?","2|Dimostrativi: この・その・あの":"Questo libro è un libro di giapponese.","2|誰・誰の (chi / di chi)":"Di chi è questo libro?","2|Omissione del nome già noto":"Quello è di Elena (il nome “libro” è sottinteso).","2|Mesi: numero + 月":"Di quale mese è il compleanno?","2|Giorni del mese":"Il compleanno è il 20 maggio.","2|Compleanno: いつ":"Quando è il compleanno del signor Mori?","2|Età: ～才・何才":"Il signor Mori ha 21 anni.","2|Numeri di telefono":"Qual è il numero di telefono?","2|Ripasso: は・です・か insieme ai dimostrativi":"Quell’edificio laggiù è un museo delle Belle Arti?",
 "3|どこ・どこの: chiedere dove":"Dov’è il ristorante?","3|Questo posto e laggiù: ここ・そこ・あそこ":"La libreria è laggiù.","3|Piani: ～階・何階":"Quel ristorante è al secondo piano.","3|Libri e volumi: ～冊":"Due libri e tre quaderni, per favore.","3|Oggetti piatti e sottili: ～枚":"Cinque francobolli, per favore.","3|Oggetti cilindrici: ～本":"Tre spiedini, per favore.","3|Chiedere il prezzo: いくら":"Quanto costa questo?","3|Orari: ～時・半・何時":"Adesso sono le due e mezza.","3|Richieste: ～をください":"Un pranzo con yakitori, per favore.","3|おいしい: l’aggettivo prima del nome":"Cucina giapponese deliziosa.","3|ええと: prendere tempo mentre si pensa":"Dunque, due libri e sette CD.","3|は come tema: “per quanto mi riguarda”":"Per me, il pranzo con sashimi.","3|La particella finale よ":"È qui vicino.","3|La particella finale ね":"La libreria va bene, vero?"
 };
 const G_EX={
@@ -240,16 +364,16 @@ const G_EX={
 "1|へえ":[["へえ、そうですか。","Hē, sō desu ka.","Ah, davvero? (Informale.)"]],
 "1|何 nan / nani":[["これは何ですか。","Kore wa nan desu ka.","Che cos’è questo?"]],
 "1|も (anche)":[["田中さんも学生です。","Tanaka-san mo gakusei desu.","Anche il signor Tanaka è uno studente."]],
-"1|と (e)":[["コーヒーとお茶","Kōhī to ocha","Caffè e tè."]],
+"1|と (e)":[["コーヒーとおちゃ","Kōhī to ocha","Caffè e tè."]],
 "1|Omissione del predicato":[["お名前は？","Onamae wa?","Il suo nome? (Si sottintende “qual è?”.)"]],
-"2|Dimostrativi: これ・それ・あれ":[["それは何ですか。","Sore wa nan desu ka.","Che cos’è quello vicino a te?"],["あれは学校です。","Are wa gakkō desu.","Quello laggiù è una scuola."]],
+"2|Dimostrativi: これ・それ・あれ":[["それは何ですか。","Sore wa nan desu ka.","Che cos’è quello vicino a te?"],["あれはがっこうです。","Are wa gakkō desu.","Quello laggiù è una scuola."]],
 "2|Dimostrativi: この・その・あの":[["その本はだれのですか。","Sono hon wa dare no desu ka.","Di chi è quel libro vicino a te?"],["あの人は先生です。","Ano hito wa sensei desu.","Quella persona laggiù è un insegnante."]],
 "2|誰・誰の (chi / di chi)":[["あの人は誰ですか。","Ano hito wa dare desu ka.","Chi è quella persona laggiù?"],["これは誰のかばんですか。","Kore wa dare no kaban desu ka.","Di chi è questa borsa?"]],
-"2|Omissione del nome già noto":[["この傘は私のです。","Kono kasa wa watashi no desu.","Questo ombrello è mio. (Si sottintende “ombrello” dopo の.)"]],
+"2|Omissione del nome già noto":[["このかさは私のです。","Kono kasa wa watashi no desu.","Questo ombrello è mio. (Si sottintende “ombrello” dopo の.)"]],
 "2|Mesi: numero + 月":[["今日は六月です。","Kyō wa rokugatsu desu.","Oggi è giugno."],["誕生日は九月です。","Tanjōbi wa kugatsu desu.","Il compleanno è a settembre. (九月 si legge kugatsu.)"]],
 "2|Giorni del mese":[["今日は三日です。","Kyō wa mikka desu.","Oggi è il giorno 3 del mese."],["誕生日は十月十四日です。","Tanjōbi wa jūgatsu jūyokka desu.","Il compleanno è il 14 ottobre."]],
 "2|Compleanno: いつ":[["誕生日はいつですか。","Tanjōbi wa itsu desu ka.","Quando è il tuo compleanno?"],["四月二日です。","Shigatsu futsuka desu.","È il 2 aprile."]],
-"2|Età: ～歳・何歳":[["何歳ですか。","Nansai desu ka.","Quanti anni hai?"],["二十歳です。","Hatachi desu.","Ho vent’anni. (Lettura speciale.)"]],
+"2|Età: ～才・何才":[["何才ですか。","Nansai desu ka.","Quanti anni hai?"],["二十才です。","Hatachi desu.","Ho vent’anni. (Lettura speciale.)"]],
 "2|Numeri di telefono":[["電話番号は三四五六です。","Denwa bangō wa san-yon-go-roku desu.","Il numero di telefono è 3456 (letto cifra per cifra)."]],
 "2|Ripasso: は・です・か insieme ai dimostrativi":[["これは私の本です。","Kore wa watashi no hon desu.","Questo è il mio libro."]],
 "3|おいしい: l’aggettivo prima del nome":[["おいしいレストラン","Oishii resutoran","Un ristorante delizioso."],["おいしい日本料理","Oishii Nihon ryōri","Cucina giapponese deliziosa."]],
@@ -275,7 +399,7 @@ const G_SCHEMES={
 "4|L’ausiliare -ます: presente e passato":{title:"Forme di -ます",changed:[],rows:[["presente +","あります","-masu"],["presente −","ありません","-masen"],["passato +","ありました","-mashita"],["passato −","ありませんでした","-masendeshita"]],note:"Le stesse desinenze valgono per います: います, いません, いました, いませんでした."},
 "2|Due serie di numeri":{title:"Serie cinese · serie giapponese",changed:[],rows:[["一","いち · ひと","ichi · hito"],["二","に · ふた","ni · futa"],["三","さん · み","san · mi"],["四","し · よん/よ","shi · yon/yo"],["五","ご · いつ","go · itsu"],["六","ろく · む","roku · mu"],["七","しち · なな","shichi · nana"],["八","はち · や","hachi · ya"],["九","きゅう/く · ここの","kyū/ku · kokono"],["十","じゅう · とお","jū · tō"]],note:"In ogni casella: prima la lettura della serie cinese, poi quella della serie giapponese."},
 "2|Mesi: numero + 月":{title:"Lettura dei mesi",changed:["4月","7月","9月"],rows:[["1月","いちがつ","ichigatsu"],["2月","にがつ","nigatsu"],["3月","さんがつ","sangatsu"],["4月","しがつ","shigatsu · forma speciale"],["5月","ごがつ","gogatsu"],["6月","ろくがつ","rokugatsu"],["7月","しちがつ","shichigatsu"],["8月","はちがつ","hachigatsu"],["9月","くがつ","kugatsu · forma speciale"],["10月","じゅうがつ","jūgatsu"],["11月","じゅういちがつ","jūichigatsu"],["12月","じゅうにがつ","jūnigatsu"]],note:"Le letture da ricordare perché non seguono la forma numerale più ovvia sono 4月 (しがつ), 7月 (しちがつ) e 9月 (くがつ). 何月 si legge なんがつ (nangatsu)."},
-"2|Età: ～歳・何歳":{title:"Lettura dei numeri con 歳",changed:["1歳","8歳","10歳","20歳"],rows:[["1歳","いっさい","issai"],["2歳","にさい","nisai"],["3歳","さんさい","sansai"],["4歳","よんさい","yonsai"],["5歳","ごさい","gosai"],["6歳","ろくさい","rokusai"],["7歳","ななさい","nanasai"],["8歳","はっさい","hassai · suono contratto"],["9歳","きゅうさい","kyūsai"],["10歳","じゅっさい","jussai / jissai · suono contratto"],["20歳","はたち","hatachi · forma speciale"]],note:"何歳 si legge なんさい (nansai). Memorizza le forme contratte di 1, 8 e 10 anni e la forma speciale はたち per vent’anni."},
+"2|Età: ～才・何才":{title:"Lettura dei numeri con 才",changed:["1才","8才","10才","20才"],rows:[["1才","いっさい","issai"],["2才","にさい","nisai"],["3才","さんさい","sansai"],["4才","よんさい","yonsai"],["5才","ごさい","gosai"],["6才","ろくさい","rokusai"],["7才","ななさい","nanasai"],["8才","はっさい","hassai · suono contratto"],["9才","きゅうさい","kyūsai"],["10才","じゅっさい","jussai / jissai · suono contratto"],["20才","はたち","hatachi · forma speciale"]],note:"何才 si legge なんさい (nansai). Memorizza le forme contratte di 1, 8 e 10 anni e la forma speciale はたち per vent’anni."},
 "3|Piani: ～階・何階":{title:"Lettura dei piani con 階",changed:["1階","3階","6階","8階","10階"],rows:[["1階","いっかい","ikkai"],["2階","にかい","nikai"],["3階","さんがい","sangai · forma speciale"],["4階","よんかい","yonkai"],["5階","ごかい","gokai"],["6階","ろっかい","rokkai"],["7階","ななかい","nanakai"],["8階","はっかい","hakkai"],["9階","きゅうかい","kyūkai"],["10階","じゅっかい","jukkai / jikkai"]],note:"Il libro sottolinea in particolare さんがい per 3階. Anche davanti ad altri numeri si sentono contrazioni; usa lo schema come guida alle letture."},
 "3|Libri e volumi: ～冊":{title:"Lettura di 冊",changed:["1冊","8冊","10冊"],rows:[["1冊","いっさつ","issatsu"],["2冊","にさつ","nisatsu"],["3冊","さんさつ","sansatsu"],["4冊","よんさつ","yonsatsu"],["5冊","ごさつ","gosatsu"],["6冊","ろくさつ","rokusatsu"],["7冊","ななさつ","nanasatsu"],["8冊","はっさつ","hassatsu · suono contratto"],["9冊","きゅうさつ","kyūsatsu"],["10冊","じゅっさつ","jussatsu / jissatsu"]],note:"冊 segue il numero e conta libri o quaderni. Fai attenzione soprattutto alla forma contratta はっさつ."},
 "3|Oggetti piatti e sottili: ～枚":{title:"Lettura di 枚",changed:[],rows:[["1枚","いちまい","ichimai"],["2枚","にまい","nimai"],["3枚","さんまい","sanmai"],["4枚","よんまい","yonmai"],["5枚","ごまい","gomai"],["6枚","ろくまい","rokumai"],["7枚","ななまい","nanamai"],["8枚","はちまい","hachimai"],["9枚","きゅうまい","kyūmai"],["10枚","じゅうまい","jūmai"]],note:"枚 si aggiunge dopo il numero e mantiene una lettura regolare; serve per oggetti piatti e sottili, come i francobolli."},
@@ -283,17 +407,34 @@ const G_SCHEMES={
 "3|Orari: ～時・半・何時":{title:"Lettura delle ore con 時",changed:["4時","9時"],rows:[["1時","いちじ","ichiji"],["2時","にじ","niji"],["3時","さんじ","sanji"],["4時","よじ","yoji · forma speciale"],["5時","ごじ","goji"],["6時","ろくじ","rokuji"],["7時","しちじ","shichiji"],["8時","はちじ","hachiji"],["9時","くじ","kuji · forma speciale"],["10時","じゅうじ","jūji"],["11時","じゅういちじ","jūichiji"],["12時","じゅうにじ","jūniji"]],note:"Il testo indica come letture speciali よじ per 4時 e くじ per 9時. 何時 si legge なんじ (nanji); 半 aggiunge “e mezza”."}
 };
 function gram(){
- el(G.filter(g=>sel(g[0])).map(g=>{
+ const rules=G.map((g,i)=>[g,i]).filter(([g])=>sel(g[0]));let lastU=0;
+ const toc=`<div class="ex-head"><div><div class="ex-title">Grammatica</div><div class="ex-sub">${rules.length} regole dalle note grammaticali del libro</div></div></div><details class="g gr-more" style="margin-top:0"><summary>Indice delle regole (${rules.length})</summary>${[...new Set(rules.map(([g])=>g[0]))].map(u=>`<div class="gr-unit" style="margin:12px 0 6px">Unità ${u}</div><div class="gr-toc">${rules.filter(([g])=>g[0]===u).map(([g,i])=>`<a href="#gr-${i}" onclick="event.preventDefault();document.getElementById('gr-${i}').scrollIntoView({behavior:'smooth'})">${g[1]}</a>`).join("")}</div>`).join("")}</details>`;
+ el(toc+rules.map(([g,gi])=>{const head=g[0]!==lastU?`<div class="gr-unit">Unità ${g[0]}</div>`:"";lastU=g[0];return head+(()=>{
   const key=g[0]+"|"+g[1],demos=G_EX[key]||[],days=g[1]==="Giorni del mese",scheme=G_SCHEMES[key];
   const dayHtml=days?`<div class="day-scheme"><b>Giorni con lettura speciale</b><div class="counter-key"><span class="counter-key-mark"><i class="counter-key-swatch"></i> Lettura speciale / variazione fonetica</span><span>Le altre forme seguono numero + classificatore.</span></div><div class="day-grid">${DAY_READINGS.map(d=>`<div class="day-cell counter-changed"><b>${d[0]}</b><span>${d[1]}</span><small>${d[2]}</small><em class="counter-change-label">lettura speciale</em></div>`).join("")}</div><p class="mu">Queste letture si memorizzano come forme fisse; il giorno 11 e molti altri si formano con il numero + にち (nichi).</p></div>`:"";
   const schemeHtml=scheme?`<div class="day-scheme counter-scheme"><b>${scheme.title}</b><div class="counter-key"><span class="counter-key-mark"><i class="counter-key-swatch"></i> Variazione fonetica / lettura speciale</span><span>Non evidenziato = numero + classificatore regolari.</span></div><div class="day-grid">${scheme.rows.map(d=>{const changed=(scheme.changed||[]).includes(d[0]);return `<div class="day-cell${changed?" counter-changed":""}"><b>${d[0]}</b><span>${d[1]}</span><small>${d[2]}</small>${changed?`<em class="counter-change-label">variazione</em>`:""}</div>`}).join("")}</div><p class="mu">${scheme.note}</p></div>`:"";
-  return `<article class="g gr-rule"><span class="tag">Unità ${g[0]}</span><h3>${g[1]}</h3><p class="gr-explain">${g[2]}</p>${dayHtml}${schemeHtml}<div class="mu gr-model"><b>Esempio:</b> ${g[3]} <span class="gr-translation">${G_TR[key]?`— ${G_TR[key]}`:""}</span></div>${demos.length?`<details class="gr-more"><summary>Mostra altri esempi</summary><div class="gr-examples">${demos.map(d=>`<div class="gr-example"><div class="jp-example">${d[0]}</div><div class="mu">${d[1]}</div><div class="gr-translation">${d[2]}</div></div>`).join("")}</div></details>`:""}</article>`
- }).join(""));
+  return `<article class="g gr-rule" id="gr-${gi}"><span class="tag">Unità ${g[0]}</span><h3>${g[1]}</h3><p class="gr-explain">${g[2]}</p>${dayHtml}${schemeHtml}<div class="mu gr-model"><b>Esempio:</b> <span class="jp-example" style="font-size:18px">${g[3]}</span> <span class="gr-translation">${G_TR[key]?`— ${G_TR[key]}`:""}</span></div>${demos.length?`<details class="gr-more"><summary>Mostra altri esempi</summary><div class="gr-examples">${demos.map(d=>`<div class="gr-example"><div class="jp-example">${d[0]}</div><div class="mu">${d[1]}</div><div class="gr-translation">${d[2]}</div></div>`).join("")}</div></details>`:""}</article>`
+ })()}).join(""));
 }
-function prog(){const kn=t=>act(t).filter(i=>bx(key(t,i))>=3).length;
- const a=kn("v"),b=kn("k"),r=kn("r"),pc=(x,n)=>n?Math.round(x/n*100):0;
- const row=(l,x,n)=>`<div class="g"><b>${l}</b> · ${x}/${n} padroneggiati (livello 3+)<div class="bar"><i style="width:${pc(x,n)}%"></i></div></div>`;
- el(row("Vocaboli",a,act("v").length)+row("Kanji di scrittura",b,act("k").length)+row("Kanji di lettura",r,act("r").length)+`<div class="g"><b>Quiz</b> · ${S.qok||0} corrette su ${S.qz||0}</div><button class="btn" onclick="if(confirm('Azzerare i progressi?')){S={box:{},th:S.th,rm:S.rm,un:S.un};save();prog()}">Azzera progressi</button>`)}
+// Statistiche per sezione (t) e unità (u, facoltativa): totale attivo, padroneggiati (livello 3+), già visti
+function secStats(t,u){const idx=D()[t].map((_,i)=>i).filter(i=>(u?uOf(t,i)===u:sel(uOf(t,i)))&&!S.rm[key(t,i)]);return{n:idx.length,ok:idx.filter(i=>bx(key(t,i))>=3).length,seen:idx.filter(i=>bx(key(t,i))>0).length}}
+const SECS=[["v","vo","Vocaboli","あ"],["k","ka","Kanji scrittura","字"],["r","kr","Kanji lettura","読"]];
+function prog(){const pc=(x,n)=>n?Math.round(x/n*100):0,units=[...new Set(AV())].sort((a,b)=>a-b).filter(sel);
+ const cards=SECS.map(([t,id,l,ic])=>{const s=secStats(t);return `<button class="stat" onclick="go('${id}')"><span class="ico">${ic}</span><span class="ttl">${l}</span><span class="num">${s.ok}<small> / ${s.n} padroneggiati</small></span><div class="bar"><i style="width:${pc(s.ok,s.n)}%"></i></div><span class="mu">${s.seen} già viste · livello 3+ = padroneggiato</span></button>`}).join("");
+ const ex=EX.filter(x=>!x._generated&&sel(x[1])&&exerciseJPReady(x)),exSeen=ex.filter(x=>(S.exSeen||{})[exerciseIdentity(x)]).length;
+ const tbl=`<div class="g"><b>Per unità</b><table class="unit-table" style="margin-top:8px"><thead><tr><th>Unità</th>${SECS.map(s=>`<th>${s[2]}</th>`).join("")}<th>Esercizi visti</th></tr></thead><tbody>${units.map(u=>{const e=EX.filter(x=>!x._generated&&x[1]===u&&exerciseJPReady(x)),es=e.filter(x=>(S.exSeen||{})[exerciseIdentity(x)]).length;return `<tr><td><b style="color:var(--tx)">${u}</b></td>${SECS.map(([t])=>{const s=secStats(t,u);return `<td class="n">${s.ok}/${s.n}<div class="mini-bar"><i style="width:${pc(s.ok,s.n)}%"></i></div></td>`}).join("")}<td class="n">${es}/${e.length}<div class="mini-bar"><i style="width:${pc(es,e.length)}%"></i></div></td></tr>`}).join("")}</tbody></table></div>`;
+ el(`<div class="ex-head"><div><div class="ex-title">Progressi</div><div class="ex-sub">Una carta è “padroneggiata” quando arriva al livello 3 su 5 rispondendo “Lo so”.</div></div></div><div class="stats" style="grid-template-columns:repeat(auto-fill,minmax(200px,1fr))">${cards}<div class="stat" style="cursor:default"><span class="ico">練</span><span class="ttl">Esercizi del libro</span><span class="num">${exSeen}<small> / ${ex.length} visti</small></span><div class="bar"><i style="width:${pc(exSeen,ex.length)}%"></i></div><span class="mu">Quiz: ${S.qok||0} corrette su ${S.qz||0}</span></div></div>${tbl}<button class="btn" onclick="if(confirm('Azzerare i progressi di carte, quiz ed esercizi? Preferiti e carte tolte restano.')){S={box:{},th:S.th,rm:S.rm,fav:S.fav,un:S.un,kv:2,exLen:S.exLen,exTypes:S.exTypes};save();prog()}">Azzera progressi</button>`)}
+// Pagina iniziale: riepilogo delle unità scelte e accesso rapido a ogni sezione
+function home(){const pc=(x,n)=>n?Math.round(x/n*100):0,units=[...new Set(AV())].sort((a,b)=>a-b),selU=units.filter(sel);
+ const due=SECS.map(([t])=>secStats(t)),todo=SECS.map(([t,id,l],k)=>[id,l,due[k].n-due[k].ok]).filter(x=>x[2]>0).sort((a,b)=>b[2]-a[2])[0];
+ const gN=G.filter(g=>sel(g[0])).length,ex=EX.filter(x=>!x._generated&&sel(x[1])&&exerciseJPReady(x)),exNew=ex.filter(x=>!(S.exSeen||{})[exerciseIdentity(x)]).length;
+ const card=(id,ic,l,big,sub,p)=>`<button class="stat" onclick="mode='s';go('${id}')"><span class="ico">${ic}</span><span class="ttl">${l}</span><span class="num">${big}</span>${p!==undefined?`<div class="bar"><i style="width:${p}%"></i></div>`:""}<span class="mu">${sub}</span></button>`;
+ el(`<div class="hero"><div><h2>おかえり！ <span style="font-weight:500;color:var(--mu);font-size:.7em">Bentornato/a</span></h2><p>Stai studiando ${selU.length===units.length?"tutte le unità caricate":"l’Unità "+selU.join(", ")} del Volume 1. Cambia unità con i pulsanti qui sopra.</p></div>${todo?`<button class="btn on" onclick="mode='s';go('${todo[0]}')">Continua: ${todo[1]} →</button>`:""}</div>
+ <div class="stats">${SECS.map(([t,id,l,ic],k)=>card(id,ic,l,`${due[k].ok}<small> / ${due[k].n}</small>`,`${due[k].n-due[k].ok} da ripassare`,pc(due[k].ok,due[k].n))).join("")}
+ ${card("gr","文","Grammatica",`${gN}<small> regole</small>`,"Spiegazioni ed esempi del libro")}
+ ${card("es","練","Esercizi",`${exNew}<small> nuovi</small>`,`${ex.length} esercizi del libro in totale`,pc(ex.length-exNew,ex.length))}
+ ${card("qz","問","Quiz","<small>Ripasso veloce</small>","Domande a scelta su vocaboli e kanji")}</div>
+ <div class="tip"><span style="font-size:20px">💡</span><div><b>Come studiare un’unità</b><br>1. Leggi la <b>Grammatica</b> · 2. Ripassa <b>Vocaboli</b> e <b>Kanji</b> con le carte<span class="kbd-hint"> (gira con <span class="kbd">Spazio</span>, rispondi con <span class="kbd">1</span>/<span class="kbd">2</span>)</span> · 3. Fai gli <b>Esercizi</b> del libro · 4. Controlla i <b>Progressi</b>.</div></div>`)}
 // ===== QUIZ a sessioni: nessuna ripetizione finché non hai visto tutte le voci; gli errori hanno priorità =====
 const rs=a=>a.map(x=>[Math.random(),x]).sort((p,q)=>p[0]-q[0]).map(p=>p[1]);
 const Q={run:false,list:[],i:0,ok:0,miss:[],ans:false,cur:null,msg:"",rep:[],cfg:Object.assign({cat:{v:1,k:1,r:1},modes:{it:1,jp:1,rd:0},n:10,pri:true},S.qcfg||{})};
@@ -352,9 +493,9 @@ const EX=[
 ["mc",1,"Trova il termine non pertinente.",["テニス","サッカー","先生","バレー"],2,"先生 non è uno sport."],
 ["mc",1,"Trova il termine non pertinente.",["フランス","イギリス","中国語","アメリカ"],2,"中国語 è una lingua, gli altri sono paesi."],
 ["mc",1,"Trova il termine non pertinente.",["ルカ","大学","トム","ミラ"],1,"大学 non è un nome di persona."],
-["mc",1,"Vero o falso?\n"+T+"「ケンさんのしゅみはおんがくとサッカーです。」",["正しい","正しくない"],0,""],
-["mc",1,"Vero o falso?\n"+T+"「ミラさんは学生です。」",["正しい","正しくない"],1,"Mira è impiegata (かいしゃいん)."],
-["mc",1,"Vero o falso?\n"+T+"「ケンさんもかいしゃいんです。」",["正しい","正しくない"],1,"Ken è studente."],
+["mc",1,"Vero o falso?\n"+T+"「ケンさんのしゅみはおんがくとサッカーです。」",["ただしい","ただしくない"],0,""],
+["mc",1,"Vero o falso?\n"+T+"「ミラさんは学生です。」",["ただしい","ただしくない"],1,"Mira è impiegata (かいしゃいん)."],
+["mc",1,"Vero o falso?\n"+T+"「ケンさんもかいしゃいんです。」",["ただしい","ただしくない"],1,"Ken è studente."],
 ["mc",1,"Quale forma è più formale?",["日本人","日本の方"],1,"方 è più formale di 人."],
 ["mc",1,"Come si dice “Non sono impiegato”?",["私はかいしゃいんです","私はかいしゃいんですか","私のかいしゃいんではありません","私はかいしゃいんではありません"],3,""],
 ["mc",1,"Cosa significa「お名前は？」(predicato omesso, intonazione ascendente)?",["Il suo nome?","Che lavoro fa?","Di che paese è?","Qual è il suo hobby?"],0,"Se il tema è chiaro si può omettere です e alzare l’intonazione."],
@@ -387,10 +528,10 @@ const EX=[
 ["fill",1,"Completa in hiragana.\nあなたのしゅみは（　）ですか。",["なん","なに"],"何 si legge nan o nani a seconda della frase; qui entrambe le letture sono accettate."],
 ["mc",1,"Leggi il dialogo e scegli la risposta corretta.\nルカ：しゅみはえいがです。\nモリ：私のしゅみもえいがです。\nChi ha come hobby il cinema?",["Solo Ruka","Solo Mori","Ruka e Mori","Nessuno dei due"],2,"Mori dice 私のしゅみもえいがです: anche il suo hobby è il cinema."],
 ["mc",1,"Leggi il dialogo e scegli la risposta corretta.\nモリ：ルカさんはローマ大学の学生ですか。\nルカ：はい、そうです。\nChe cosa studia Ruka?",["Alla scuola di Roma","All’università di Roma","Lavora in un’azienda","È professore"],1,"ローマ大学の学生 significa “studente dell’università di Roma”."],
-["mc",1,"Vero o falso?\nルカさんはイタリア人です。ローマ大学の日本語の学生です。会社員ではありません。しゅみはえいがです。\n「ルカさんは会社員です。」",["正しい","正しくない"],1,"Il testo dice 会社員ではありません: Ruka non è un’impiegata."],
-["mc",1,"Vero o falso?\nルカさんはイタリア人です。ローマ大学の日本語の学生です。会社員ではありません。しゅみはえいがです。\n「ルカさんのしゅみはえいがです。」",["正しい","正しくない"],0,"Il testo afferma che il suo hobby è il cinema (えいが)."],
+["mc",1,"Vero o falso?\nルカさんはイタリア人です。ローマ大学の日本語の学生です。会社員ではありません。しゅみはえいがです。\n「ルカさんは会社員です。」",["ただしい","ただしくない"],1,"Il testo dice 会社員ではありません: Ruka non è un’impiegata."],
+["mc",1,"Vero o falso?\nルカさんはイタリア人です。ローマ大学の日本語の学生です。会社員ではありません。しゅみはえいがです。\n「ルカさんのしゅみはえいがです。」",["ただしい","ただしくない"],0,"Il testo afferma che il suo hobby è il cinema (えいが)."],
 ["mc",1,"Scegli la lettura corretta del kanji.\n人",["ひと","ほん","やま","なか"],0,"人 significa “persona”; la lettura kun più comune è ひと. In 日本人 si legge じん."],
-["mc",1,"Scegli il significato corretto.\n日本",["lingua giapponese","Giappone","studente","giorno"],1,"日本 si legge Nihon o Nippon e significa “Giappone”."],
+["mc",1,"Scegli il significato corretto.\n日本",["lingua giapponese","Giappone","studente","giorno, sole"],1,"日本 si legge Nihon o Nippon e significa “Giappone”."],
 ["mc",1,"Scegli la lettura di 学生.",["がくせい","せんせい","にほんご","だいがく"],0,"学生 si legge がくせい e significa “studente”."],
 ["mc",1,"Quale parola significa “professore, maestro”?",["先生","学生","日本","大学"],0,"先生 si legge せんせい."],
 ["mc",1,"Scegli la lettura kun di 山.",["さん","やま","ほん","ひと"],1,"山 si legge やま nella lettura kun e サン in composti come 富士山 (ふじさん)."],
@@ -413,42 +554,42 @@ const EX=[
 ["mc",2,"Quale pronome significa “quello laggiù, lontano da chi parla e da chi ascolta”?",["これ","それ","あれ","この"],2,"あれ (are) indica una cosa lontana da entrambi gli interlocutori."],
 ["mc",2,"Come si dice “settembre” in giapponese?",["しちがつ","くがつ","きゅうがつ","はちがつ"],1,"Settembre è 九月, letto くがつ (kugatsu), una lettura irregolare da ricordare."],
 ["mc",2,"Qual è la lettura di “primo giorno del mese” 一日?",["いちにち","ついたち","ひとつ","いちがつ"],1,"一日 si legge ついたち (tsuitachi) quando indica il primo giorno del mese."],
-["mc",2,"Completa la domanda: “Quanti anni hai?”",["何月ですか","何日ですか","何歳ですか","何番ですか"],2,"何歳 (nansai) significa “quanti anni?”. 月 chiede il mese, 日 il giorno, 番 il numero."],
-["mc",2,"Quale frase chiede il numero di telefono?",["電話番号は何歳ですか","電話番号は何番ですか","電話番号は何月ですか","電話番号は誰ですか"],1,"何番ですか (nanban desu ka) chiede quale numero; si pronunciano le cifre una per una."],
-["mc",2,"Vero o falso?\nルカ：これは何ですか。\nモリ：それはイタリアのガイドブックです。\n「モリはガイドブックを持っています。」",["正しい","正しくない"],0,"Mori risponde che il libro è una guida turistica italiana. それ indica ciò che è vicino a chi ascolta."],
-["mc",2,"Vero o falso?\nモリ：これは誰の本ですか。\nルカ：エレナさんのです。\n「本はエレナさんのです。」",["正しい","正しくない"],0,"Il nome 本 è sottinteso nella risposta, ma の indica che il libro appartiene a Elena."],
+["mc",2,"Completa la domanda: “Quanti anni hai?”",["何月ですか","何日ですか","何才ですか","何番ですか"],2,"何才 (nansai) significa “quanti anni?”. 月 chiede il mese, 日 il giorno, 番 il numero."],
+["mc",2,"Quale frase chiede il numero di telefono?",["電話番号は何才ですか","電話番号は何番ですか","電話番号は何月ですか","電話番号は誰ですか"],1,"何番ですか (nanban desu ka) chiede quale numero; si pronunciano le cifre una per una."],
+["mc",2,"Vero o falso?\nルカ：これは何ですか。\nモリ：それはイタリアのガイドブックです。\n「モリはガイドブックをもっています。」",["ただしい","ただしくない"],0,"Mori risponde che il libro è una guida turistica italiana. それ indica ciò che è vicino a chi ascolta."],
+["mc",2,"Vero o falso?\nモリ：これは誰の本ですか。\nルカ：エレナさんのです。\n「本はエレナさんのです。」",["ただしい","ただしくない"],0,"Il nome 本 è sottinteso nella risposta, ma の indica che il libro appartiene a Elena."],
 ["mc",2,"Trova il termine non pertinente.",["これ","それ","あれ","この"],3,"この è un aggettivo dimostrativo e richiede un nome dopo; gli altri tre sono pronomi che possono stare da soli."],
-["mc",2,"Trova il termine non pertinente.",["一月","三月","九月","何歳"],3,"何歳 chiede l’età; gli altri termini sono mesi (月)."],
+["mc",2,"Trova il termine non pertinente.",["一月","三月","九月","何才"],3,"何才 chiede l’età; gli altri termini sono mesi (月)."],
 ["mc",2,"Scegli il significato di 喫茶店.",["edificio","libro","caffetteria","numero di telefono"],2,"喫茶店 (きっさてん, kissaten) significa caffetteria o sala da tè."],
 ["mc",2,"Scegli la lettura corretta di 語.",["みせ","かた・る","つき","いま"],1,"語 si legge ゴ nei composti, per esempio 日本語 (にほんご), e かた・る come verbo “narrare”."],
 ["mc",2,"Quale kanji significa “negozio”?",["店","月","何","今"],0,"店 si legge テン o みせ; 喫茶店 significa caffetteria."],
 ["mc",2,"Quale lettura corrisponde a “oggi” 今日?",["こんげつ","きょう","なんにち","ついたち"],1,"今日 si legge きょう (kyō) e significa “oggi”."],
-["mc",2,"Leggi il testo e rispondi.\nマリアさんの誕生日は五月二十日です。今、二十一歳です。\nQuanti anni ha Maria?",["20","21","25","30"],1,"二十一歳 si legge にじゅういっさい: 21 anni. Ricorda il contatore 歳 (sai)."],
-["mc",2,"Leggi il testo e rispondi.\nマリアさんの誕生日は五月二十日です。今、二十一歳です。\nIn quale mese è il suo compleanno?",["marzo","aprile","maggio","settembre"],2,"五月 (ごがつ, gogatsu) è maggio; 二十日 (はつか, hatsuka) è il ventesimo giorno."],
+["mc",2,"Leggi il testo e rispondi.\nマリアさんの誕生日は五月二十日です。今、二十一才です。\nQuanti anni ha Maria?",["20","21","25","30"],1,"二十一才 si legge にじゅういっさい: 21 anni. Ricorda il contatore 才 (sai)."],
+["mc",2,"Leggi il testo e rispondi.\nマリアさんの誕生日は五月二十日です。今、二十一才です。\nIn quale mese è il suo compleanno?",["marzo","aprile","maggio","settembre"],2,"五月 (ごがつ, gogatsu) è maggio; 二十日 (はつか, hatsuka) è il ventesimo giorno."],
 ["mc",2,"Leggi il dialogo e rispondi.\nルカ：あの建物は何ですか。\nモリ：あれは美術館です。\nChe cos’è l’edificio?",["una libreria","un museo delle Belle Arti","un teatro dell’Opera","una caffetteria"],1,"美術館 (bijutsukan) significa museo delle Belle Arti."],
 ["mc",2,"Leggi il dialogo e rispondi.\nルカ：これは誰の本ですか。\nモリ：エレナさんのです。\nDi chi è il libro?",["di Luca","di Mori","di Elena","di Ruka"],2,"エレナさんのです significa “è di Elena”; il nome 本 è sottinteso perché il contesto è chiaro."],
 ["fill",2,"Completa con la particella corretta.\nこれはエレナさん（　）本です。\n“Questo è il libro di Elena.”",["の"],"の indica il possesso, come nell’Unità 1: Elena → libro."],
 ["fill",2,"Completa in hiragana.\n（　）本は誰のですか。\n“Di chi è questo libro?”",["この"],"この precede il nome 本; これ sarebbe usato da solo, senza un nome subito dopo."],
 ["fill",2,"Completa in hiragana.\n誕生日は（　）ですか。\n“Quando è il compleanno?”",["いつ"],"いつ significa “quando?”. La particella は introduce il tema, come nell’Unità 1."],
 ["fill",2,"Completa in hiragana.\n誕生日はごがつ（　）です。\n“Il compleanno è il 20 maggio.”",["はつか"],"二十日は はつか (hatsuka), lettura irregolare del ventesimo giorno del mese."],
-["fill",2,"Completa in hiragana.\nモリさんは二十一（　）です。\n“Mori ha 21 anni.”",["さい"],"歳 si legge さい e conta gli anni di età. 21 anni: にじゅういっさい."],
+["fill",2,"Completa in hiragana.\nモリさんは二十一（　）です。\n“Mori ha 21 anni.”",["さい"],"才 si legge さい e conta gli anni di età. 21 anni: にじゅういっさい."],
 ["fill",2,"Completa con la parola interrogativa.\n電話番号は（　）ですか。\n“Qual è il numero di telefono?”",["なんばん","何番"],"何番 (なんばん, nanban) chiede quale numero; il telefono si legge cifra per cifra."],
 ["fill",2,"Completa in hiragana.\n今日は（　）ですか。\n“Che giorno è oggi?”",["なんにち"],"何日 si legge なんにち (nannichi) e chiede il giorno del mese."],
 ["fill",2,"Completa usando la forma corretta.\nこれは誰（　）本ですか。",["の"],"La costruzione 誰の本 (dare no hon) chiede “il libro di chi?”; の esprime relazione/possesso."],
 ["ord",2,"Metti in ordine: “Questo è il libro di Elena.”",["これ","は","エレナさん","の","本","です"],"これ è pronome; の collega la proprietaria al libro. La struttura は…です riprende l’Unità 1."],
 ["ord",2,"Metti in ordine la domanda: “Di chi è quel libro laggiù?”",["あの","本","は","誰","の","です","か"],"あの precede il nome 本; 誰の chiede il proprietario; か chiude la domanda."],
 ["ord",2,"Metti in ordine: “Il compleanno di Mori è il 1° gennaio.”",["モリさん","の","誕生日","は","一月","一日","です"],"の collega Mori al compleanno. 一月 è gennaio; 一日 si legge ついたち per il primo del mese."],
-["ord",2,"Metti in ordine la domanda: “Quanti anni ha Ruka?”",["ルカさん","は","何歳","です","か"],"何歳ですか chiede l’età; は riprende la struttura di domanda dell’Unità 1."],
+["ord",2,"Metti in ordine la domanda: “Quanti anni ha Ruka?”",["ルカさん","は","何才","です","か"],"何才ですか chiede l’età; は riprende la struttura di domanda dell’Unità 1."],
 ["tx",2,"Trasforma in domanda: これはエレナさんの本です。",["これはエレナさんの本ですか"],"Aggiungi か alla fine di です, come nell’Unità 1."],
 ["tx",2,"Rispondi in giapponese: これは誰の本ですか。（エレナさん）\nÈ di Elena.",["エレナさんのです","エレナさんの本です"],"Se il contesto chiarisce che si parla del libro, puoi omettere 本 e rispondere エレナさんのです."],
 ["tx",2,"Traduci: “Questo edificio è un museo delle Belle Arti.”",["この建物は美術館です"],"この precede 建物; は introduce il tema e です completa la frase, ripassando l’Unità 1."],
 ["tx",2,"Scrivi in giapponese: “Il mio compleanno è il 20 maggio.”",["私の誕生日は五月二十日です","私のたんじょうびは五月二十日です"],"私の riprende il possessivo dell’Unità 1; 五月二十日は ごがつはつか."],
 ["tx",2,"Scrivi in giapponese: “Questo è il libro di Mori.”",["これはモリさんの本です","これは森さんの本です"],"これ è il pronome “questo”; の collega il proprietario al nome libro."],
-["write",2,"Presentati con le nuove strutture. Scrivi il tuo compleanno (mese e giorno), la tua età e il tuo hobby. Usa 私は…, 誕生日は…, 何歳, しゅみは…です。",["私はマリアです。誕生日は五月二十日です。二十一歳です。しゅみは読書です。"],"Confronta: は introduce il tema, の può indicare possesso, 月 e 日 formano la data, 歳 conta gli anni. Puoi omettere 私は se il soggetto è chiaro."],
+["write",2,"Presentati con le nuove strutture. Scrivi il tuo compleanno (mese e giorno), la tua età e il tuo hobby. Usa 私は…, 誕生日は…, 何才, しゅみは…です。",["私はマリアです。誕生日は五月二十日です。二十一才です。しゅみは読書です。"],"Confronta: は introduce il tema, の può indicare possesso, 月 e 日 formano la data, 才 conta gli anni. Puoi omettere 私は se il soggetto è chiaro."],
 ["write",2,"Scrivi un breve dialogo. Chiedi di chi è un libro e rispondi; poi chiedi quando è il compleanno del tuo interlocutore. Usa una volta una regola dell’Unità 1.",["これは誰の本ですか。エレナさんのです。誕生日はいつですか。"],"Modello possibile: これは誰の本ですか。エレナさんのです。誕生日はいつですか。 Puoi aggiungere さん, は, の, です e か già studiati."],
 ["listen",2,"Ascolta il dialogo e scegli di chi è il libro.","ルカ：これは誰の本ですか。\nモリ：エレナさんのです。",["di Luca","di Mori","di Elena","di Ruka"],2,"エレナさんのです significa “è di Elena”; il nome 本 è sottinteso."],
 ["listen",2,"Ascolta il dialogo e scegli la data del compleanno.","ルカ：誕生日はいつですか。\nモリ：五月二十日です。",["20 maggio","1 gennaio","20 marzo","5 febbraio"],0,"五月二十日 si legge ごがつはつか, 20 maggio."],
-["listen",2,"Ascolta il dialogo e scegli l’età di Mori.","ルカ：モリさんは何歳ですか。\nモリ：二十一歳です。",["19 anni","20 anni","21 anni","22 anni"],2,"二十一歳 si legge にじゅういっさい: 21 anni." ],
+["listen",2,"Ascolta il dialogo e scegli l’età di Mori.","ルカ：モリさんは何才ですか。\nモリ：二十一才です。",["19 anni","20 anni","21 anni","22 anni"],2,"二十一才 si legge にじゅういっさい: 21 anni." ],
 ["tx",2,"Scrivi in hiragana il nome di questa città: Tōkyō.",["とうきょう"],"Nelle trascrizioni con vocale lunga, ō si rende spesso con おう: Tōkyō → とうきょう."],
 ["tx",2,"Scrivi in hiragana il nome di questa città: Kyōto.",["きょうと"],"La vocale lunga ō si scrive spesso おう: Kyōto → きょうと."],
 ["tx",2,"Scrivi in katakana il nome del paese: Italia.",["イタリア"],"I nomi stranieri si scrivono in katakana: Italia → イタリア."],
@@ -459,7 +600,7 @@ const EX=[
 ["tx",2,"Scrivi il kanji che significa “sei” e si legge roku.",["六"],"六 si legge ロク (roku); nel giorno del mese 六日 si legge むいか."],
 ["tx",2,"Scrivi in hiragana la lettura di 日本語.",["にほんご"],"日本語 si legge にほんご (nihongo): 日本 + 語. 語 è un kanji dell’Unità 2."],
 ["tx",2,"Scrivi in hiragana la lettura del 1° giorno del mese 一日.",["ついたち"],"Una data importante da memorizzare: 一日 si legge ついたち, non いちにち."],
-["mc",2,"Guarda le informazioni e rispondi.\nエレナ：誕生日 4月15日 · 21歳\nモリ：誕生日 1月1日 · 37歳\nQuando è il compleanno di Elena?",["15 aprile","1 gennaio","20 maggio","15 marzo"],0,"エレナさんは四月十五日 (しがつじゅうごにち) が誕生日です. の e la struttura con は riprendono l’Unità 1."],
+["mc",2,"Guarda le informazioni e rispondi.\nエレナ：誕生日 4月15日 · 21才\nモリ：誕生日 1月1日 · 37才\nQuando è il compleanno di Elena?",["15 aprile","1 gennaio","20 maggio","15 marzo"],0,"エレナさんは四月十五日 (しがつじゅうごにち) が誕生日です. の e la struttura con は riprendono l’Unità 1."],
 ["listen",2,"Ascolta il numero e scegli la sequenza corretta.","電話番号は三九二一です。",["3921","3291","3912","9321"],0,"Nel numero di telefono si leggono le cifre una dopo l’altra: 三・九・二・一." ]
 ];
 let eq=[],ei=0,emiss=[],eok=0,sh=[],pk=[];
@@ -475,40 +616,40 @@ const EX_ADVANCED=[
 ["fill",2,"文を完成してください。\nこれは（　）本ですか。田中さん（　）です。\n誕生日は（　）ですか。七月（　）です。",["だれの・の・いつ・ふつか","だれののいつふつか"],"","complete"],
 ["ord",2,"言葉を正しい順番に並べてください。\n（田中さんは大学の学生ですか。）",["田中さん","は","大学","の","学生","です","か"],"","order"],
 ["tx",2,"次の文を質問文にしてください。\n田中さんは大学の学生です。",["田中さんは大学の学生ですか"],"","transform"],
-["mc",2,"会話を読んで、文が正しいか選んでください。\nA：これは誰の本ですか。\nB：田中さんのです。\n「これは田中さんの本です。」",["正しい","正しくない"],0,"","truefalse"],
+["mc",2,"会話を読んで、文が正しいか選んでください。\nA：これは誰の本ですか。\nB：田中さんのです。\n「これは田中さんの本です。」",["ただしい","ただしくない"],0,"","truefalse"],
 ["mc",2,"仲間ではないものを選んでください。",["本","ガイドブック","辞書","誕生日"],3,"","odd"],
 ["mc",2,"会話を読んで答えてください。\nA：誕生日はいつですか。\nB：六月二十四日です。",["六月二十四日","六月十四日","四月二十日","一月一日"],0,"","comprehension"],
-["mc",2,"文を読んで答えてください。\nミナさんは九月九日生まれです。今、二十歳です。\nミナさんは何歳ですか。",["十八歳です。","十九歳です。","二十歳です。","二十一歳です。"],2,"","reading"],
+["mc",2,"文を読んで答えてください。\nミナさんは九月九日生まれです。今、二十才です。\nミナさんは何才ですか。",["十八才です。","十九才です。","二十才です。","二十一才です。"],2,"","reading"],
 ["listen",2,"会話を聞いて、誕生日を選んでください。","A：誕生日はいつですか。\nB：三月三日です。",["三月三日","三月四日","四月三日","五月三日"],0,"","listen"],
 ["tx",2,"ひらがなで書いてください。\n誕生日は五月二十日です。",["たんじょうびはごがつはつかです"],"","kana"],
 ["tx",2,"漢字で書いてください。\nにほんご",["日本語"],"","kanji"],
-["write",2,"日本語で自己紹介を書いてください。名前、誕生日、年齢、趣味を入れてください。",["私はマリアです。誕生日は五月二十日です。二十一歳です。趣味は音楽です。"],"","free"]
+["write",2,"日本語で自己紹介を書いてください。名前、誕生日、年齢、趣味を入れてください。",["私はマリアです。誕生日は五月二十日です。二十一才です。趣味は音楽です。"],"","free"]
 ];
 EX_ADVANCED.forEach(x=>{x._group=x.pop();x._difficulty=3;EX.push(x)});
 // ===== ESERCIZI DEL LIBRO (stesse frasi, nomi e tabelle del volume; ultimo campo = gruppo) =====
 const TB1="名前：ジュリア／さとう／チョウ／マイケル\n国：イタリア／日本／中国／イギリス\n仕事：学生／かいしゃいん／学生／エンジニア\n大学（専門）：ローマ大学（れきし）／ー／ケンブリッジ大学（ビジネス）／ー\n趣味：どくしょ・日本語・りょうり／おんがく／テニス・りょうり・しゃしん／おんがく・サッカー\n";
 const TX2="私の誕生日は5月20日です。今、37才です。私のしゅみは読書です。これは私の本です。これはともだちのＤＶＤです。日本のドラマのＤＶＤです。これもともだちのＣＤです。日本のポップ音楽のです。\n";
-const DP3="《さくらデパート》\n10階：レストラン・トイレ\n9階：銀行・映画館\n8階：本屋・郵便局\n7階：ギフト・時計\n6階：食器・リビング用品・タオル・喫茶店\n5階：子ども服・トイレ\n4階：服（メンズ）\n3階：服\n2階：服\n1階：コスメ・かばん・くつ\n地下1階：食料品・ワイン・酒・くだもの\n";
+const DP3="《さくらデパート》\n10階：レストラン・トイレ\n9階：銀行・映画館\n8階：本屋・郵便局\n7階：ギフト・時計\n6階：食器・リビング用品・タオル・喫茶店\n5階：子ども服・トイレ\n4階：服（メンズ）\n3階：服\n2階：服\n1階：コスメ・かばん・くつ\nちか1階：食料品・ワイン・酒・くだもの\n";
 const RD3="おいしい日本料理は、まず、おさしみとおすしです。おさしみはさかなです。おすしはさかなとごはんです。日本料理のレストランはナポリ大学の近くです。レストランは本屋の左です。レストランの名前は前川です。お昼のランチはさしみランチ、やきとりランチ、すきやきランチです。夜はてんぷらメニューです。お昼のランチは20ユーロです。夜のメニューは30ユーロです。\n";
 const EX_BOOK=[
 // --- Unità 1 ---
-["tx",1,"例：日本／日本人 → しつれいですが、日本の方ですか。はい、日本人です。\nイタリア／イタリア人",["しつれいですが、イタリアの方ですか。はい、イタリア人です","失礼ですが、イタリアの方ですか。はい、イタリア人です"],"Domanda cortese con の方, risposta con 人 (esercizio 1 del libro).","transform"],
-["tx",1,"例：日本／かんこく人 → しつれいですが、日本の方ですか。いいえ、日本人ではありません。かんこく人です。\nイタリア／スペイン人",["しつれいですが、イタリアの方ですか。いいえ、イタリア人ではありません。スペイン人です","しつれいですが、イタリアの方ですか。いいえ、イタリア人じゃありません。スペイン人です"],"Risposta negativa: ではありません, poi la nazionalità corretta.","transform"],
-["tx",1,"例：日本／かんこく人 → しつれいですが、日本の方ですか。いいえ、日本人ではありません。かんこく人です。\n日本／中国人",["しつれいですが、日本の方ですか。いいえ、日本人ではありません。中国人です","しつれいですが、日本の方ですか。いいえ、日本人じゃありません。中国人です"],"","transform"],
-["tx",1,"例：日本／日本人 → しつれいですが、日本の方ですか。はい、日本人です。\nフランス／フランス人",["しつれいですが、フランスの方ですか。はい、フランス人です"],"","transform"],
-["tx",1,"例：日本／かんこく人 → しつれいですが、日本の方ですか。いいえ、日本人ではありません。かんこく人です。\nイギリス／アイルランド人",["しつれいですが、イギリスの方ですか。いいえ、イギリス人ではありません。アイルランド人です","しつれいですが、イギリスの方ですか。いいえ、イギリス人じゃありません。アイルランド人です"],"","transform"],
-["tx",1,"例：森、日本人 → 森です。私は日本人です。\nルカ、イタリア",["ルカです。私はイタリア人です"],"Per presentarti dici il nome senza さん, poi la nazionalità con 人 (esercizio 3).","transform"],
-["tx",1,"例：森、日本人 → 森です。私は日本人です。\nチン、中国",["チンです。私は中国人です"],"","transform"],
-["tx",1,"例：森、日本人 → 森です。私は日本人です。\nソフィー、フランス",["ソフィーです。私はフランス人です"],"","transform"],
-["tx",1,"例：森、日本人 → 森です。私は日本人です。\nトム、アメリカ",["トムです。私はアメリカ人です"],"","transform"],
-["tx",1,"例：あなたはかいしゃいんですか。（いいえ）→ いいえ、そうではありません。／いいえ、かいしゃいんではありません。\nあなたは先生ですか。（いいえ）",["いいえ、そうではありません","いいえ、先生ではありません","いいえ、そうじゃありません","いいえ、先生じゃありません"],"Con いいえ puoi rispondere そうではありません oppure ripetere il nome + ではありません (esercizio 8).","transform"],
-["tx",1,"例：あなたはかいしゃいんですか。（はい）→ はい、そうです。／はい、かいしゃいんです。\nあなたは日本人ですか。（はい）",["はい、そうです","はい、日本人です"],"","transform"],
-["tx",1,"例：あなたはかいしゃいんですか。（いいえ）→ いいえ、そうではありません。／いいえ、かいしゃいんではありません。\n森さんは学生ですか。（いいえ）",["いいえ、そうではありません","いいえ、学生ではありません","いいえ、そうじゃありません","いいえ、学生じゃありません"],"Attenzione: ではありません, non ではりません.","transform"],
-["mc",1,"Vero o falso?\n"+TB1+"「マイケルさんはイギリス人です。チョウさんもイギリス人です。」",["正しい","正しくない"],1,"チョウさん è cinese (中国).","truefalse"],
-["mc",1,"Vero o falso?\n"+TB1+"「チョウさんはビジネスの学生です。」",["正しい","正しくない"],0,"Chō studia business a Cambridge.","truefalse"],
-["mc",1,"Vero o falso?\n"+TB1+"「ジュリアさんもビジネスの学生です。」",["正しい","正しくない"],1,"Giulia studia storia (れきし).","truefalse"],
-["mc",1,"Vero o falso?\n"+TB1+"「ジュリアさんのしゅみはりょうりと日本語としゃしんです。」",["正しい","正しくない"],1,"Gli hobby di Giulia sono どくしょ, 日本語 e りょうり: しゃしん è di Chō.","truefalse"],
-["mc",1,"Vero o falso?\n"+TB1+"「さとうさんはかいしゃいんです。」",["正しい","正しくない"],0,"","truefalse"],
+["tx",1,"れい：日本／日本人 → しつれいですが、日本の方ですか。はい、日本人です。\nイタリア／イタリア人",["しつれいですが、イタリアの方ですか。はい、イタリア人です","失礼ですが、イタリアの方ですか。はい、イタリア人です"],"Domanda cortese con の方, risposta con 人 (esercizio 1 del libro).","transform"],
+["tx",1,"れい：日本／かんこく人 → しつれいですが、日本の方ですか。いいえ、日本人ではありません。かんこく人です。\nイタリア／スペイン人",["しつれいですが、イタリアの方ですか。いいえ、イタリア人ではありません。スペイン人です","しつれいですが、イタリアの方ですか。いいえ、イタリア人じゃありません。スペイン人です"],"Risposta negativa: ではありません, poi la nazionalità corretta.","transform"],
+["tx",1,"れい：日本／かんこく人 → しつれいですが、日本の方ですか。いいえ、日本人ではありません。かんこく人です。\n日本／中国人",["しつれいですが、日本の方ですか。いいえ、日本人ではありません。中国人です","しつれいですが、日本の方ですか。いいえ、日本人じゃありません。中国人です"],"","transform"],
+["tx",1,"れい：日本／日本人 → しつれいですが、日本の方ですか。はい、日本人です。\nフランス／フランス人",["しつれいですが、フランスの方ですか。はい、フランス人です"],"","transform"],
+["tx",1,"れい：日本／かんこく人 → しつれいですが、日本の方ですか。いいえ、日本人ではありません。かんこく人です。\nイギリス／アイルランド人",["しつれいですが、イギリスの方ですか。いいえ、イギリス人ではありません。アイルランド人です","しつれいですが、イギリスの方ですか。いいえ、イギリス人じゃありません。アイルランド人です"],"","transform"],
+["tx",1,"れい：森、日本人 → 森です。私は日本人です。\nルカ、イタリア",["ルカです。私はイタリア人です"],"Per presentarti dici il nome senza さん, poi la nazionalità con 人 (esercizio 3).","transform"],
+["tx",1,"れい：森、日本人 → 森です。私は日本人です。\nチン、中国",["チンです。私は中国人です"],"","transform"],
+["tx",1,"れい：森、日本人 → 森です。私は日本人です。\nソフィー、フランス",["ソフィーです。私はフランス人です"],"","transform"],
+["tx",1,"れい：森、日本人 → 森です。私は日本人です。\nトム、アメリカ",["トムです。私はアメリカ人です"],"","transform"],
+["tx",1,"れい：あなたはかいしゃいんですか。（いいえ）→ いいえ、そうではありません。／いいえ、かいしゃいんではありません。\nあなたは先生ですか。（いいえ）",["いいえ、そうではありません","いいえ、先生ではありません","いいえ、そうじゃありません","いいえ、先生じゃありません"],"Con いいえ puoi rispondere そうではありません oppure ripetere il nome + ではありません (esercizio 8).","transform"],
+["tx",1,"れい：あなたはかいしゃいんですか。（はい）→ はい、そうです。／はい、かいしゃいんです。\nあなたは日本人ですか。（はい）",["はい、そうです","はい、日本人です"],"","transform"],
+["tx",1,"れい：あなたはかいしゃいんですか。（いいえ）→ いいえ、そうではありません。／いいえ、かいしゃいんではありません。\n森さんは学生ですか。（いいえ）",["いいえ、そうではありません","いいえ、学生ではありません","いいえ、そうじゃありません","いいえ、学生じゃありません"],"Attenzione: ではありません, non ではりません.","transform"],
+["mc",1,"Vero o falso?\n"+TB1+"「マイケルさんはイギリス人です。チョウさんもイギリス人です。」",["ただしい","ただしくない"],1,"チョウさん è cinese (中国).","truefalse"],
+["mc",1,"Vero o falso?\n"+TB1+"「チョウさんはビジネスの学生です。」",["ただしい","ただしくない"],0,"Chō studia business a Cambridge.","truefalse"],
+["mc",1,"Vero o falso?\n"+TB1+"「ジュリアさんもビジネスの学生です。」",["ただしい","ただしくない"],1,"Giulia studia storia (れきし).","truefalse"],
+["mc",1,"Vero o falso?\n"+TB1+"「ジュリアさんのしゅみはりょうりと日本語としゃしんです。」",["ただしい","ただしくない"],1,"Gli hobby di Giulia sono どくしょ, 日本語 e りょうり: しゃしん è di Chō.","truefalse"],
+["mc",1,"Vero o falso?\n"+TB1+"「さとうさんはかいしゃいんです。」",["ただしい","ただしくない"],0,"","truefalse"],
 ["fill",1,"A：ジュリアさんはイギリス（　）方ですか。\nB：いいえ、イギリス人（　）ありません。イタリア人です。",["の・では","の・じゃ"],"の lega il paese a 方; la negazione è ではありません (esercizio 17b).","particle"],
 ["fill",1,"A：私はローマ大学（　）学生です。チョウさん（　）学生ですか。\nC：はい、ケンブリッジ大学（　）学生です。",["の・も・の"],"","particle"],
 ["fill",1,"キムさん（　）しゅみはどくしょです。チンさん（　）しゅみ（　）どくしょです。",["の・の・も"],"Anche l’hobby di Chin è la lettura: serve も, non と (esercizio 15.5).","particle"],
@@ -520,9 +661,9 @@ const EX_BOOK=[
 ["mc",1,"Scegli il kanji che completa la parola.\n先（　）",["生","本","人","学"],0,"先生 (せんせい).","kanji"],["mc",1,"Scegli il kanji che completa la parola.\n日（　）",["生","本","大","学"],1,"日本 (にほん).","kanji"],["mc",1,"Scegli il kanji che completa la parola.\nフランス（　）",["本","人","生","大"],1,"フランス人.","kanji"],["mc",1,"Scegli il kanji che completa la parola.\n大（　）",["人","本","学","日"],2,"大学 (だいがく).","kanji"],
 ["tx",1,"Scrivi il kanji che significa “grande” (ダイ / おお・きい)",["大"],"","kanji"],["tx",1,"Scrivi il kanji che significa “piccolo” (ショウ / ちい・さい)",["小"],"","kanji"],["tx",1,"Scrivi il kanji che significa “risaia” (デン / た)",["田"],"","kanji"],["tx",1,"Scrivi il kanji che significa “bocca” (コウ / くち)",["口"],"","kanji"],
 // --- Unità 2 ---
-["tx",2,"例：これ／ボールペン → これは何ですか。それはボールペンです。\nあれ／駅",["あれは何ですか。あれは駅です"],"あれ resta あれ anche nella risposta (esercizio 2).","transform"],
-["tx",2,"例：これ／ボールペン → これは何ですか。それはボールペンです。\nこれ／喫茶店",["これは何ですか。それは喫茶店です"],"Se chi chiede dice これ, chi risponde usa それ.","transform"],
-["tx",2,"例：これ／ボールペン → これは何ですか。それはボールペンです。\nこれ／大学",["これは何ですか。それは大学です"],"","transform"],
+["tx",2,"れい：これ／ボールペン → これは何ですか。それはボールペンです。\nあれ／駅",["あれは何ですか。あれは駅です"],"あれ resta あれ anche nella risposta (esercizio 2).","transform"],
+["tx",2,"れい：これ／ボールペン → これは何ですか。それはボールペンです。\nこれ／喫茶店",["これは何ですか。それは喫茶店です"],"Se chi chiede dice これ, chi risponde usa それ.","transform"],
+["tx",2,"れい：これ／ボールペン → これは何ですか。それはボールペンです。\nこれ／大学",["これは何ですか。それは大学です"],"","transform"],
 ["mc",2,"A：あれは（　）カメラですか。\nB：マリアさんのカメラです。",["誰の","何の","いつ","何番"],0,"La risposta indica il proprietario: 誰の (esercizio 4).","choice"],
 ["mc",2,"A：あれは（　）カメラですか。\nB：パソコンのカメラです。",["誰の","何の","いつ","何番"],1,"La risposta indica il tipo: 何の.","choice"],
 ["mc",2,"A：あれは（　）本ですか。\nB：日本語の本です。",["誰の","何の","いつ","だれ"],1,"","choice"],
@@ -536,7 +677,7 @@ const EX_BOOK=[
 ["tx",2,"あれはヨーさんのペンですか。（いいえ・先生）",["いいえ、あれはヨーさんのではありません。先生のです","いいえ、ヨーさんのではありません。先生のです","いいえ、ヨーさんのじゃありません。先生のです"],"","transform"],
 ["tx",2,"日本語・試験・7/14",["日本語の試験はいつですか。七月十四日です","日本語の試験はいつですか。7月14日です"],"14日 si legge じゅうよっか (esercizio 10).","transform"],
 ["tx",2,"お母さん・誕生日・6/6",["お母さんの誕生日はいつですか。六月六日です","お母さんの誕生日はいつですか。6月6日です"],"6日 si legge むいか.","transform"],
-["tx",2,"ルカさんのお父さん・44才",["ルカさんのお父さんは何才ですか。四十四才です","ルカさんのお父さんは何才ですか。44才です"],"才 e 歳 si leggono entrambi さい (esercizio 11).","transform"],
+["tx",2,"ルカさんのお父さん・44才",["ルカさんのお父さんは何才ですか。四十四才です","ルカさんのお父さんは何才ですか。44才です"],"才 e 才 si leggono entrambi さい (esercizio 11).","transform"],
 ["tx",2,"森さんの妹さん・18才",["森さんの妹さんは何才ですか。十八才です","森さんの妹さんは何才ですか。18才です"],"","transform"],
 ["mc",2,TX2+"私の誕生日はいつですか。",["五月二十日です","三月二十日です","五月十日です","七月二十日です"],0,"5月20日 = ごがつはつか (esercizio 18).","reading"],
 ["mc",2,TX2+"私は何才ですか。",["二十七才です","三十七才です","三十才です","十七才です"],1,"","reading"],
@@ -550,22 +691,22 @@ const EX_BOOK=[
 ["mc",2,"Scegli il kanji che completa la parola.\n五（　）",["月","本","語","生"],0,"五月 (ごがつ).","kanji"],["mc",2,"Scegli il kanji che completa la parola.\nフランス（　）",["月","語","大","学"],1,"フランス語.","kanji"],["mc",2,"Scegli il kanji che completa la parola.\n先（　）",["本","学","生","月"],2,"先生.","kanji"],
 ["tx",2,"Scrivi il kanji mancante:\nこれは［　］ですか。（なん）",["何"],"","kanji"],["tx",2,"Scrivi il kanji mancante:\nルカさんは［　］本語の学生です。（に）",["日"],"日本語.","kanji"],["tx",2,"Scrivi il kanji mancante:\nこの子は小学［　］ですか。（せい）",["生"],"小学生.","kanji"],["tx",2,"Scrivi il kanji mancante:\nその本は日［　］語のです。（ほん）",["本"],"日本語.","kanji"],
 // --- Unità 3 ---
-["tx",3,"例：えんぴつはどこですか。（ここ）→ えんぴつはここです。\n日本語の本はどこですか。（そこ）",["日本語の本はそこです","そこです"],"Esercizio 1 del libro.","transform"],
-["tx",3,"例：えんぴつはどこですか。（ここ）→ えんぴつはここです。\nマリアさんのかばんはどこですか。（ここ）",["マリアさんのかばんはここです","ここです"],"","transform"],
-["tx",3,"例：えんぴつはどこですか。（ここ）→ えんぴつはここです。\nイタリア音楽の本はどこですか。（あそこ）",["イタリア音楽の本はあそこです","あそこです"],"","transform"],
-["tx",3,"例：えんぴつはどこですか。（ここ）→ えんぴつはここです。\nフランスのガイドブックはどこですか。（ここ）",["フランスのガイドブックはここです","ここです"],"","transform"],
-["tx",3,"例：ここ、映画館 → ここは映画館ですか。\nそこ、銀行",["そこは銀行ですか"],"Esercizio 2 del libro: forma la domanda.","transform"],
-["tx",3,"例：ここ、映画館 → ここは映画館ですか。\nあそこ、交番",["あそこは交番ですか"],"","transform"],
-["tx",3,"例：ここ、映画館 → ここは映画館ですか。\nここ、郵便局",["ここは郵便局ですか"],"","transform"],
-["tx",3,"例：ここ、映画館 → ここは映画館ですか。\nそこ、学校",["そこは学校ですか"],"学校 (がっこう) = scuola.","transform"],
-["mc",3,"Vero o falso?\n"+DP3+"「時計うりばは七階です。」",["正しい","正しくない"],0,"Esercizio 3a: guarda la piantina della Sakura Department.","truefalse"],
-["mc",3,"Vero o falso?\n"+DP3+"「喫茶店も七階です。」",["正しい","正しくない"],1,"Il 喫茶店 è al sesto piano.","truefalse"],
-["mc",3,"Vero o falso?\n"+DP3+"「服うりばは三階と四階です。」",["正しい","正しくない"],1,"I vestiti sono al 2°, 3° e 4° piano.","truefalse"],
-["mc",3,"Vero o falso?\n"+DP3+"「ワイン・酒うりばは一階です。」",["正しい","正しくない"],1,"Vino e sake sono al piano interrato (地下一階).","truefalse"],
-["mc",3,"Vero o falso?\n"+DP3+"「郵便局は八階です。」",["正しい","正しくない"],0,"","truefalse"],
-["mc",3,DP3+"A：くつうりばは何階ですか。",["一階です","二階です","地下一階です","五階です"],0,"Esercizio 3b.","comprehension"],
+["tx",3,"れい：えんぴつはどこですか。（ここ）→ えんぴつはここです。\n日本語の本はどこですか。（そこ）",["日本語の本はそこです","そこです"],"Esercizio 1 del libro.","transform"],
+["tx",3,"れい：えんぴつはどこですか。（ここ）→ えんぴつはここです。\nマリアさんのかばんはどこですか。（ここ）",["マリアさんのかばんはここです","ここです"],"","transform"],
+["tx",3,"れい：えんぴつはどこですか。（ここ）→ えんぴつはここです。\nイタリア音楽の本はどこですか。（あそこ）",["イタリア音楽の本はあそこです","あそこです"],"","transform"],
+["tx",3,"れい：えんぴつはどこですか。（ここ）→ えんぴつはここです。\nフランスのガイドブックはどこですか。（ここ）",["フランスのガイドブックはここです","ここです"],"","transform"],
+["tx",3,"れい：ここ、映画館 → ここは映画館ですか。\nそこ、銀行",["そこは銀行ですか"],"Esercizio 2 del libro: forma la domanda.","transform"],
+["tx",3,"れい：ここ、映画館 → ここは映画館ですか。\nあそこ、交番",["あそこは交番ですか"],"","transform"],
+["tx",3,"れい：ここ、映画館 → ここは映画館ですか。\nここ、郵便局",["ここは郵便局ですか"],"","transform"],
+["tx",3,"れい：ここ、映画館 → ここは映画館ですか。\nそこ、がっこう",["そこはがっこうですか"],"がっこう = scuola.","transform"],
+["mc",3,"Vero o falso?\n"+DP3+"「時計うりばは七階です。」",["ただしい","ただしくない"],0,"Esercizio 3a: guarda la piantina della Sakura Department.","truefalse"],
+["mc",3,"Vero o falso?\n"+DP3+"「喫茶店も七階です。」",["ただしい","ただしくない"],1,"Il 喫茶店 è al sesto piano.","truefalse"],
+["mc",3,"Vero o falso?\n"+DP3+"「服うりばは三階と四階です。」",["ただしい","ただしくない"],1,"I vestiti sono al 2°, 3° e 4° piano.","truefalse"],
+["mc",3,"Vero o falso?\n"+DP3+"「ワイン・酒うりばは一階です。」",["ただしい","ただしくない"],1,"Vino e sake sono al piano interrato (ちか一階).","truefalse"],
+["mc",3,"Vero o falso?\n"+DP3+"「郵便局は八階です。」",["ただしい","ただしくない"],0,"","truefalse"],
+["mc",3,DP3+"A：くつうりばは何階ですか。",["一階です","二階です","ちか一階です","五階です"],0,"Esercizio 3b.","comprehension"],
 ["mc",3,DP3+"A：本屋は何階ですか。",["九階です","八階です","七階です","六階です"],1,"","comprehension"],
-["mc",3,DP3+"A：食料品うりばは何階ですか。",["一階です","地下一階です","十階です","六階です"],1,"地下 (ちか) = sotterraneo.","comprehension"],
+["mc",3,DP3+"A：食料品うりばは何階ですか。",["一階です","ちか一階です","十階です","六階です"],1,"地下 (ちか) = sotterraneo.","comprehension"],
 ["mc",3,DP3+"A：トイレはどこですか。",["十階と五階です","十階と六階です","一階です","五階だけです"],0,"","comprehension"],
 ["tx",3,"Scrivi in hiragana il prezzo:\nバスの切符はいくらですか。（1,50ユーロ）",["いちユーロごじゅっセントです","いちユーロごじゅうセントです"],"Esercizio 4: セント = centesimi.","kana"],
 ["tx",3,"Scrivi in hiragana il prezzo:\n日本のえいがのＤＶＤはいくらですか。（30ユーロ）",["さんじゅうユーロです"],"","kana"],
@@ -578,12 +719,12 @@ const EX_BOOK=[
 ["mc",3,"（　）を四冊ください。",["はがき","ビール","ノート","えんぴつ"],2,"冊 conta libri e quaderni.","choice"],
 ["fill",3,"チケットを五（　）ください。",["枚","まい"],"","complete"],
 ["fill",3,"本を二（　）とボールペンを三（　）ください。",["冊・本","さつ・ぼん"],"三本 si legge さんぼん.","complete"],
-["tx",3,"例：えんぴつ　2 → えんぴつを二本ください。\nノート　1",["ノートを一冊ください","ノートを1冊ください"],"Esercizio 6.","transform"],
-["tx",3,"例：えんぴつ　2 → えんぴつを二本ください。\nかさ　2",["かさを二本ください","かさを2本ください"],"","transform"],
-["tx",3,"例：えんぴつ　2 → えんぴつを二本ください。\nやきとり　3",["やきとりを三本ください","やきとりを3本ください"],"","transform"],
-["tx",3,"例：えんぴつ　2 → えんぴつを二本ください。\n70円切手　4",["七十円切手を四枚ください","70円切手を4枚ください","70円切手を四枚ください"],"","transform"],
-["tx",3,"例：えんぴつ　2 → えんぴつを二本ください。\n切符　2",["切符を二枚ください","切符を2枚ください"],"","transform"],
-["tx",3,"例：えんぴつ　2 → えんぴつを二本ください。\nはがき　7",["はがきを七枚ください","はがきを7枚ください"],"","transform"],
+["tx",3,"れい：えんぴつ　2 → えんぴつを二本ください。\nノート　1",["ノートを一冊ください","ノートを1冊ください"],"Esercizio 6.","transform"],
+["tx",3,"れい：えんぴつ　2 → えんぴつを二本ください。\nかさ　2",["かさを二本ください","かさを2本ください"],"","transform"],
+["tx",3,"れい：えんぴつ　2 → えんぴつを二本ください。\nやきとり　3",["やきとりを三本ください","やきとりを3本ください"],"","transform"],
+["tx",3,"れい：えんぴつ　2 → えんぴつを二本ください。\n70円切手　4",["七十円切手を四枚ください","70円切手を4枚ください","70円切手を四枚ください"],"","transform"],
+["tx",3,"れい：えんぴつ　2 → えんぴつを二本ください。\n切符　2",["切符を二枚ください","切符を2枚ください"],"","transform"],
+["tx",3,"れい：えんぴつ　2 → えんぴつを二本ください。\nはがき　7",["はがきを七枚ください","はがきを7枚ください"],"","transform"],
 ["mc",3,"かさを一（　）ください。",["冊","枚","本"],2,"Esercizio 7: oggetti lunghi → 本.","choice"],["mc",3,"辞書を一（　）ください。",["冊","枚","本"],0,"Volumi → 冊.","choice"],["mc",3,"ボールペンを一（　）ください。",["冊","枚","本"],2,"","choice"],["mc",3,"ビールを一（　）ください。",["冊","枚","本"],2,"Bottiglia → 本.","choice"],["mc",3,"ノートを一（　）ください。",["冊","枚","本"],0,"","choice"],["mc",3,"ＣＤを一（　）ください。",["冊","枚","本"],1,"Oggetto piatto → 枚.","choice"],["mc",3,"雑誌を一（　）ください。",["冊","枚","本"],0,"","choice"],["mc",3,"切符を一（　）ください。",["冊","枚","本"],1,"","choice"],["mc",3,"えんぴつを一（　）ください。",["冊","枚","本"],2,"","choice"],["mc",3,"切手を一（　）ください。",["冊","枚","本"],1,"","choice"],["mc",3,"写真を一（　）ください。",["冊","枚","本"],1,"","choice"],["mc",3,"皿を一（　）ください。",["冊","枚","本"],1,"","choice"],["mc",3,"やきとりを一（　）ください。",["冊","枚","本"],2,"Lo spiedino è lungo → 本.","choice"],["mc",3,"教科書を一（　）ください。",["冊","枚","本"],0,"","choice"],["mc",3,"はがきを一（　）ください。",["冊","枚","本"],1,"","choice"],
 ["mc",3,"仲間ではないものを選んでください。",["レストラン","喫茶店","本屋","すし屋"],2,"Il 本屋 non è un locale dove si mangia (esercizio 8).","odd"],
 ["mc",3,"仲間ではないものを選んでください。",["かばん","郵便局","劇場","銀行"],0,"かばん è un oggetto, gli altri sono luoghi.","odd"],
@@ -594,8 +735,8 @@ const EX_BOOK=[
 ["mc",3,RD3+"お昼のランチは何ですか。",["さしみランチ、やきとりランチ、すきやきランチです","てんぷらメニューです","おすしだけです","ピザです"],0,"","reading"],
 ["mc",3,RD3+"さしみは何ですか。",["さかなです","にくです","やさいです","ごはんです"],0,"","reading"],
 ["mc",3,RD3+"日本料理のレストランはどこですか。",["ナポリ大学の近くです","ローマ大学の近くです","本屋の右です","駅の近くです"],0,"La レストラン è a sinistra (左) della libreria.","reading"],
-["mc",3,RD3+"てんぷらはお昼ですか。",["いいえ、夜です","はい、お昼です","はい、そうです","いいえ、朝です"],0,"","reading"],
-["write",3,"パーティーの注文：マルゲリータ3、カプリチョーザ2、ビール3、コーラ1。何時ですか。家はどこですか。",["マルゲリータを三枚とカプリチョーザを二枚ください。それから、ビールを三本とコーラを一本ください。七時半です。家は大学の近くです。三階です。"],"Esercizio 10: usa をください, i contatori e 何時/どこ.","free"],
+["mc",3,RD3+"てんぷらはお昼ですか。",["いいえ、夜です","はい、お昼です","はい、そうです","いいえ、あさです"],0,"","reading"],
+["write",3,"パーティーのちゅうもん：マルゲリータ3、カプリチョーザ2、ビール3、コーラ1。何時ですか。いえはどこですか。",["マルゲリータを三枚とカプリチョーザを二枚ください。それから、ビールを三本とコーラを一本ください。七時半です。いえは大学の近くです。三階です。"],"Esercizio 10: usa をください, i contatori e 何時/どこ.","free"],
 ["tx",3,"Scrivi in hiragana: Ibaraki",["いばらき"],"","kana"],["tx",3,"Scrivi in hiragana: Sapporo",["さっぽろ"],"","kana"],["tx",3,"Scrivi in hiragana: Wakinosawa",["わきのさわ"],"","kana"],["tx",3,"Scrivi in hiragana: Yuzawa",["ゆざわ"],"","kana"],["tx",3,"Scrivi in hiragana: Yonezawa",["よねざわ"],"","kana"],["tx",3,"Scrivi in hiragana: Tsuruga",["つるが"],"","kana"],["tx",3,"Scrivi in hiragana: Urawa",["うらわ"],"","kana"],["tx",3,"Scrivi in hiragana: Futaba",["ふたば"],"","kana"],["tx",3,"Scrivi in hiragana: Fuchū",["ふちゅう"],"","kana"],["tx",3,"Scrivi in hiragana: Fukagawa",["ふかがわ"],"","kana"],
 ["tx",3,"Scrivi in katakana: Tom",["トム"],"","kana"],["tx",3,"Scrivi in katakana: Mark",["マーク"],"","kana"],["tx",3,"Scrivi in katakana: Juliette",["ジュリエット"],"","kana"],["tx",3,"Scrivi in katakana: Walter",["ウォルター","ワルター","ワルテル"],"","kana"],["tx",3,"Scrivi in katakana: Robin",["ロビン"],"","kana"],["tx",3,"Scrivi in katakana: Gabriel",["ガブリエル"],"","kana"],["tx",3,"Scrivi in katakana: James",["ジェームズ","ジェイムズ"],"","kana"],["tx",3,"Scrivi in katakana: Peter",["ピーター"],"","kana"],["tx",3,"Scrivi in katakana: Mary",["メアリー","メアリ","メリー"],"","kana"],
 ["tx",3,"Scrivi in katakana: Venezia",["ヴェネツィア","ベネツィア","ベネチア"],"","kana"],["tx",3,"Scrivi in katakana: Cesena",["チェゼーナ","チェゼナ","チェセナ"],"","kana"],["tx",3,"Scrivi in katakana: Vasto",["ヴァスト","バスト"],"","kana"],["tx",3,"Scrivi in katakana: Viterbo",["ヴィテルボ","ビテルボ"],"","kana"],["tx",3,"Scrivi in katakana: Terracina",["テッラチーナ","テラチーナ"],"","kana"],["tx",3,"Scrivi in katakana: Trieste",["トリエステ"],"","kana"],["tx",3,"Scrivi in katakana: Perugia",["ペルージャ"],"","kana"],["tx",3,"Scrivi in katakana: Firenze",["フィレンツェ"],"","kana"],["tx",3,"Scrivi in katakana: Fidenza",["フィデンツァ"],"","kana"],["tx",3,"Scrivi in katakana: Pistoia",["ピストイア"],"","kana"],
@@ -620,60 +761,60 @@ const EX_BOOK=[
 ];
 EX_BOOK.forEach(x=>{x._group=x.pop();EX.push(x)});
 // ===== ESERCIZI DEL LIBRO · UNITÀ 4 =====
-const RD4="私のアパートは大学と駅の間にあります。不動産屋さんはルカさんの家の横にあります。午前10時から午後2時までです。それから、午後3時から午後6時15分までです。今日は金曜日です。その不動産屋にはルカさんの友達がいます。ルカさんの友達は金曜日の16時から18時まで不動産屋さんにいます。\n大学の近くにいいアパートがふたつあります。このアパートは同じビルの中にあります。ひとつは1階にあります。もうひとつは4階にあります。アパートはみかさんのアパートと大学のあいだにあります。4階のアパートにはいすがあります。ソファーもあります。\n";
+const RD4="私のアパートは大学と駅の間にあります。不動産屋さんはルカさんの家の横にあります。午前10時から午後2時までです。それから、午後3時から午後6時15分までです。今日は金曜日です。その不動産屋にはルカさんの友だちがいます。ルカさんの友だちは金曜日の16時から18時まで不動産屋さんにいます。\n大学の近くにいいアパートがふたつあります。このアパートは同じビルの中にあります。ひとつは1階にあります。もうひとつは4階にあります。アパートはみかさんのアパートと大学のあいだにあります。4階のアパートにはいすがあります。ソファーもあります。\n";
 const EX_BOOK4=[
-["write",4,"例：ローマ大学はどこにありますか。→ テルミニ駅の近くにあります。\nあなたの家はどこにありますか。",["私の家は駅の近くにあります。"],"Esercizio 1: rispondi con luogo + の + 近く・前… + にあります.","free"],
-["write",4,"例：大学の横には何がありますか。→ 大きな市場があります。\nあなたの家の横に何がありますか。",["私の家の横にスーパーがあります。"],"Esercizio 2.","free"],
-["tx",4,"例：駅　近く　不動産屋 → 駅の近くに不動産屋があります。\nルカさんの家　近く　映画館",["ルカさんの家の近くに映画館があります"],"Esercizio 3: luogo + の + posizione + に + cosa + が + あります.","transform"],
-["tx",4,"例：駅　近く　不動産屋 → 駅の近くに不動産屋があります。\n大学　前　病院",["大学の前に病院があります"],"","transform"],
-["tx",4,"例：駅　近く　不動産屋 → 駅の近くに不動産屋があります。\n郵便局　左　銀行",["郵便局の左に銀行があります"],"","transform"],
-["tx",4,"例：駅　近く　不動産屋 → 駅の近くに不動産屋があります。\n映画館　中　カフェ",["映画館の中にカフェがあります"],"","transform"],
-["tx",4,"例：駅　近く　不動産屋 → 駅の近くに不動産屋があります。\nつくえ　上　日本語の教科書",["つくえの上に日本語の教科書があります"],"","transform"],
-["tx",4,"例：教室　学生 → 教室に学生がいます。\n家　父と母",["家に父と母がいます"],"Esercizio 4: per le persone si usa います.","transform"],
-["tx",4,"例：教室　学生 → 教室に学生がいます。\n事務局　田中さん",["事務局に田中さんがいます"],"","transform"],
-["tx",4,"例：教室　学生 → 教室に学生がいます。\n食堂　学生",["食堂に学生がいます"],"","transform"],
-["tx",4,"例：教室　学生 → 教室に学生がいます。\n銀行　外　ガードマン",["銀行の外にガードマンがいます"],"","transform"],
-["tx",4,"例：教室　学生 → 教室に学生がいます。\n車　中　女の人",["車の中に女の人がいます"],"","transform"],
-["tx",4,"例：駅・近く　不動産屋（はい）→ 駅の近くに不動産屋がありますか。はい、あります。\n大学　近く　日本料理のレストラン（はい）",["大学の近くに日本料理のレストランがありますか。はい、あります"],"Esercizio 5.","transform"],
-["tx",4,"例：駅・近く　不動産屋（はい）→ 駅の近くに不動産屋がありますか。はい、あります。\n大学　中　食堂（いいえ）",["大学の中に食堂がありますか。いいえ、ありません"],"Negativo di あります: ありません.","transform"],
-["tx",4,"例：駅・近く　不動産屋（はい）→ 駅の近くに不動産屋がありますか。はい、あります。\nルカさんの家　近く　スーパー（いいえ）",["ルカさんの家の近くにスーパーがありますか。いいえ、ありません"],"","transform"],
-["tx",4,"例：駅・近く　不動産屋（はい）→ 駅の近くに不動産屋がありますか。はい、あります。\n教室　中　学生（はい）",["教室の中に学生がいますか。はい、います"],"Per le persone: います.","transform"],
-["tx",4,"例：駅・近く　不動産屋（はい）→ 駅の近くに不動産屋がありますか。はい、あります。\n図書館　山田先生（いいえ）",["図書館に山田先生がいますか。いいえ、いません"],"Negativo di います: いません.","transform"],
-["tx",4,"例：不動産屋　大学　前 → 不動産屋はどこにありますか。大学の前にあります。\n郵便局　家　前",["郵便局はどこにありますか。家の前にあります"],"Esercizio 6.","transform"],
-["tx",4,"例：不動産屋　大学　前 → 不動産屋はどこにありますか。大学の前にあります。\n大学の食堂　図書館　近く",["大学の食堂はどこにありますか。図書館の近くにあります"],"","transform"],
-["tx",4,"例：不動産屋　大学　前 → 不動産屋はどこにありますか。大学の前にあります。\n森さんの家　大学　近く",["森さんの家はどこにありますか。大学の近くにあります"],"","transform"],
-["tx",4,"例：不動産屋　大学　前 → 不動産屋はどこにありますか。大学の前にあります。\n銀行　大学　中",["銀行はどこにありますか。大学の中にあります"],"","transform"],
-["tx",4,"例：不動産屋　大学　前 → 不動産屋はどこにありますか。大学の前にあります。\nスーパー　キアラさんの家　下",["スーパーはどこにありますか。キアラさんの家の下にあります"],"","transform"],
-["tx",4,"例：不動産屋　大学　前 → 不動産屋はどこにありますか。大学の前にあります。\nレストラン　映画館　上",["レストランはどこにありますか。映画館の上にあります"],"","transform"],
-["tx",4,"例：大学の中　図書館　教室 → 大学の中に何がありますか。図書館や教室があります。\n大学　近く　病院　本屋",["大学の近くに何がありますか。病院や本屋があります"],"Esercizio 7: や per un elenco non completo.","transform"],
-["tx",4,"例：大学の中　図書館　教室 → 大学の中に何がありますか。図書館や教室があります。\n駅　中　レストラン　本屋　薬局",["駅の中に何がありますか。レストランや本屋や薬局があります"],"","transform"],
-["tx",4,"例：大学の中　図書館　教室 → 大学の中に何がありますか。図書館や教室があります。\nボルゲーゼ公園　中　美術館　喫茶店",["ボルゲーゼ公園の中に何がありますか。美術館や喫茶店があります"],"","transform"],
-["tx",4,"例：大学の中　図書館　教室 → 大学の中に何がありますか。図書館や教室があります。\nつくえ　上　コンピューター　本",["つくえの上に何がありますか。コンピューターや本があります"],"","transform"],
-["tx",4,"例：大学の中　図書館　教室 → 大学の中に何がありますか。図書館や教室があります。\n大学の前の喫茶店　学生　先生",["大学の前の喫茶店に誰がいますか。学生や先生がいます","大学の前の喫茶店にだれがいますか。学生や先生がいます"],"Per le persone: 誰がいますか.","transform"],
-["tx",4,"例：大学の中　図書館　教室 → 大学の中に何がありますか。図書館や教室があります。\n町の図書館　子ども　学生",["町の図書館に誰がいますか。子どもや学生がいます","町の図書館にだれがいますか。子どもや学生がいます"],"","transform"],
-["tx",4,"例：スーパー（10:00-20:00）→ スーパーは何時から何時までですか。午前10時から午後8時までです。\n銀行（8:00-14:00）",["銀行は何時から何時までですか。午前8時から午後2時までです"],"Esercizio 8: から… まで.","transform"],
-["tx",4,"例：スーパー（10:00-20:00）→ スーパーは何時から何時までですか。午前10時から午後8時までです。\n不動産屋（10:00-19:00）",["不動産屋は何時から何時までですか。午前10時から午後7時までです"],"","transform"],
-["tx",4,"例：スーパー（10:00-20:00）→ スーパーは何時から何時までですか。午前10時から午後8時までです。\n大学の事務室（9:00-13:00）",["大学の事務室は何時から何時までですか。午前9時から午後1時までです"],"","transform"],
-["tx",4,"例：スーパー（10:00-20:00）→ スーパーは何時から何時までですか。午前10時から午後8時までです。\n郵便局（8:30-18:00）",["郵便局は何時から何時までですか。午前8時半から午後6時までです"],"","transform"],
-["tx",4,"例：イタリア語の授業は何曜日の何時からですか。（15時半）→ 金曜日の15時半（午後3時半）です。\nコンサートは何曜日の何時からですか。（火曜日、21時）",["火曜日の21時です","火曜日の午後9時です"],"Esercizio 9.","transform"],
-["tx",4,"例：イタリア語の授業は何曜日の何時からですか。（15時半）→ 金曜日の15時半（午後3時半）です。\nイタリア史の授業は何曜日の何時からですか。（水曜日、16時半）",["水曜日の16時半です","水曜日の午後4時半です"],"","transform"],
-["tx",4,"例：イタリア語の授業は何曜日の何時からですか。（15時半）→ 金曜日の15時半（午後3時半）です。\nサッカーの練習は何曜日の何時からですか。（木曜日と土曜日、17時半）",["木曜日と土曜日の17時半です","木曜日と土曜日の午後5時半です"],"","transform"],
-["tx",4,"例：イタリア語の授業は何曜日の何時からですか。（15時半）→ 金曜日の15時半（午後3時半）です。\nピアノの練習は何曜日の何時からですか。（日曜日、11時）",["日曜日の11時です","日曜日の午前11時です"],"","transform"],
-["tx",4,"例：昼休み　2 → 昼休みが2時間あります。\n昼休み　1",["昼休みが1時間あります","昼休みが一時間あります"],"Esercizio 10: durata con 時間.","transform"],
-["tx",4,"例：昼休み　2 → 昼休みが2時間あります。\n文学の授業　2",["文学の授業が2時間あります","文学の授業が二時間あります"],"","transform"],
-["tx",4,"例：昼休み　2 → 昼休みが2時間あります。\n日本語の授業　7",["日本語の授業が7時間あります","日本語の授業が七時間あります"],"","transform"],
-["tx",4,"例：昼休み　2 → 昼休みが2時間あります。\n試験　4",["試験が4時間あります","試験が四時間あります"],"","transform"],
-["tx",4,"例：昼休み　2 → 昼休みが2時間あります。\n会議　3",["会議が3時間あります","会議が三時間あります"],"","transform"],
-["tx",4,"例：教室　つくえ　5 → 教室につくえが五つあります。\n教室　いす　8",["教室にいすが八つあります"],"Esercizio 11: contatore つ.","transform"],
-["tx",4,"例：教室　つくえ　5 → 教室につくえが五つあります。\nテーブルの上　コップ　5",["テーブルの上にコップが五つあります"],"","transform"],
-["tx",4,"例：教室　つくえ　5 → 教室につくえが五つあります。\n部屋　時計　2",["部屋に時計が二つあります"],"","transform"],
-["tx",4,"例：教室　つくえ　5 → 教室につくえが五つあります。\n家　トイレ　3",["家にトイレが三つあります"],"","transform"],
-["tx",4,"例：教室　つくえ　5 → 教室につくえが五つあります。\n駅の中　店　4",["駅の中に店が四つあります"],"","transform"],
-["tx",4,"例：教室　つくえ　5 → 教室につくえがいくつありますか。五つあります。\n部屋　いす　2",["部屋にいすがいくつありますか。二つあります"],"Esercizio 12: いくつ = quanti?","transform"],
-["tx",4,"例：教室　つくえ　5 → 教室につくえがいくつありますか。五つあります。\n家　部屋　4",["家に部屋がいくつありますか。四つあります"],"","transform"],
-["tx",4,"例：教室　つくえ　5 → 教室につくえがいくつありますか。五つあります。\nテーブルの上　りんご　6",["テーブルの上にりんごがいくつありますか。六つあります"],"","transform"],
-["tx",4,"例：教室　つくえ　5 → 教室につくえがいくつありますか。五つあります。\n箱の中　おもちゃ　3",["箱の中におもちゃがいくつありますか。三つあります"],"","transform"],
-["tx",4,"例：教室　つくえ　5 → 教室につくえがいくつありますか。五つあります。\n袋の中　消しゴム　8",["袋の中に消しゴムがいくつありますか。八つあります"],"","transform"],
+["write",4,"れい：ローマ大学はどこにありますか。→ テルミニ駅の近くにあります。\nあなたの家はどこにありますか。",["私の家は駅の近くにあります。"],"Esercizio 1: rispondi con luogo + の + 近く・前… + にあります.","free"],
+["write",4,"れい：大学の横には何がありますか。→ 大きな市場があります。\nあなたの家の横に何がありますか。",["私の家の横にスーパーがあります。"],"Esercizio 2.","free"],
+["tx",4,"れい：駅　近く　不動産屋 → 駅の近くに不動産屋があります。\nルカさんの家　近く　映画館",["ルカさんの家の近くに映画館があります"],"Esercizio 3: luogo + の + posizione + に + cosa + が + あります.","transform"],
+["tx",4,"れい：駅　近く　不動産屋 → 駅の近くに不動産屋があります。\n大学　前　病院",["大学の前に病院があります"],"","transform"],
+["tx",4,"れい：駅　近く　不動産屋 → 駅の近くに不動産屋があります。\n郵便局　左　銀行",["郵便局の左に銀行があります"],"","transform"],
+["tx",4,"れい：駅　近く　不動産屋 → 駅の近くに不動産屋があります。\n映画館　中　カフェ",["映画館の中にカフェがあります"],"","transform"],
+["tx",4,"れい：駅　近く　不動産屋 → 駅の近くに不動産屋があります。\nつくえ　上　日本語の教科書",["つくえの上に日本語の教科書があります"],"","transform"],
+["tx",4,"れい：教室　学生 → 教室に学生がいます。\n家　父と母",["家に父と母がいます"],"Esercizio 4: per le persone si usa います.","transform"],
+["tx",4,"れい：教室　学生 → 教室に学生がいます。\n事務局　田中さん",["事務局に田中さんがいます"],"","transform"],
+["tx",4,"れい：教室　学生 → 教室に学生がいます。\n食堂　学生",["食堂に学生がいます"],"","transform"],
+["tx",4,"れい：教室　学生 → 教室に学生がいます。\n銀行　外　ガードマン",["銀行の外にガードマンがいます"],"","transform"],
+["tx",4,"れい：教室　学生 → 教室に学生がいます。\n車　中　女の人",["車の中に女の人がいます"],"","transform"],
+["tx",4,"れい：駅・近く　不動産屋（はい）→ 駅の近くに不動産屋がありますか。はい、あります。\n大学　近く　日本料理のレストラン（はい）",["大学の近くに日本料理のレストランがありますか。はい、あります"],"Esercizio 5.","transform"],
+["tx",4,"れい：駅・近く　不動産屋（はい）→ 駅の近くに不動産屋がありますか。はい、あります。\n大学　中　食堂（いいえ）",["大学の中に食堂がありますか。いいえ、ありません"],"Negativo di あります: ありません.","transform"],
+["tx",4,"れい：駅・近く　不動産屋（はい）→ 駅の近くに不動産屋がありますか。はい、あります。\nルカさんの家　近く　スーパー（いいえ）",["ルカさんの家の近くにスーパーがありますか。いいえ、ありません"],"","transform"],
+["tx",4,"れい：駅・近く　不動産屋（はい）→ 駅の近くに不動産屋がありますか。はい、あります。\n教室　中　学生（はい）",["教室の中に学生がいますか。はい、います"],"Per le persone: います.","transform"],
+["tx",4,"れい：駅・近く　不動産屋（はい）→ 駅の近くに不動産屋がありますか。はい、あります。\n図書館　山田先生（いいえ）",["図書館に山田先生がいますか。いいえ、いません"],"Negativo di います: いません.","transform"],
+["tx",4,"れい：不動産屋　大学　前 → 不動産屋はどこにありますか。大学の前にあります。\n郵便局　家　前",["郵便局はどこにありますか。家の前にあります"],"Esercizio 6.","transform"],
+["tx",4,"れい：不動産屋　大学　前 → 不動産屋はどこにありますか。大学の前にあります。\n大学の食堂　図書館　近く",["大学の食堂はどこにありますか。図書館の近くにあります"],"","transform"],
+["tx",4,"れい：不動産屋　大学　前 → 不動産屋はどこにありますか。大学の前にあります。\n森さんの家　大学　近く",["森さんの家はどこにありますか。大学の近くにあります"],"","transform"],
+["tx",4,"れい：不動産屋　大学　前 → 不動産屋はどこにありますか。大学の前にあります。\n銀行　大学　中",["銀行はどこにありますか。大学の中にあります"],"","transform"],
+["tx",4,"れい：不動産屋　大学　前 → 不動産屋はどこにありますか。大学の前にあります。\nスーパー　キアラさんの家　下",["スーパーはどこにありますか。キアラさんの家の下にあります"],"","transform"],
+["tx",4,"れい：不動産屋　大学　前 → 不動産屋はどこにありますか。大学の前にあります。\nレストラン　映画館　上",["レストランはどこにありますか。映画館の上にあります"],"","transform"],
+["tx",4,"れい：大学の中　図書館　教室 → 大学の中に何がありますか。図書館や教室があります。\n大学　近く　病院　本屋",["大学の近くに何がありますか。病院や本屋があります"],"Esercizio 7: や per un elenco non completo.","transform"],
+["tx",4,"れい：大学の中　図書館　教室 → 大学の中に何がありますか。図書館や教室があります。\n駅　中　レストラン　本屋　薬局",["駅の中に何がありますか。レストランや本屋や薬局があります"],"","transform"],
+["tx",4,"れい：大学の中　図書館　教室 → 大学の中に何がありますか。図書館や教室があります。\nボルゲーゼ公園　中　美術館　喫茶店",["ボルゲーゼ公園の中に何がありますか。美術館や喫茶店があります"],"","transform"],
+["tx",4,"れい：大学の中　図書館　教室 → 大学の中に何がありますか。図書館や教室があります。\nつくえ　上　コンピューター　本",["つくえの上に何がありますか。コンピューターや本があります"],"","transform"],
+["tx",4,"れい：大学の中　図書館　教室 → 大学の中に何がありますか。図書館や教室があります。\n大学の前の喫茶店　学生　先生",["大学の前の喫茶店に誰がいますか。学生や先生がいます","大学の前の喫茶店にだれがいますか。学生や先生がいます"],"Per le persone: 誰がいますか.","transform"],
+["tx",4,"れい：大学の中　図書館　教室 → 大学の中に何がありますか。図書館や教室があります。\n町の図書館　子ども　学生",["町の図書館に誰がいますか。子どもや学生がいます","町の図書館にだれがいますか。子どもや学生がいます"],"","transform"],
+["tx",4,"れい：スーパー（10:00-20:00）→ スーパーは何時から何時までですか。午前10時から午後8時までです。\n銀行（8:00-14:00）",["銀行は何時から何時までですか。午前8時から午後2時までです"],"Esercizio 8: から… まで.","transform"],
+["tx",4,"れい：スーパー（10:00-20:00）→ スーパーは何時から何時までですか。午前10時から午後8時までです。\n不動産屋（10:00-19:00）",["不動産屋は何時から何時までですか。午前10時から午後7時までです"],"","transform"],
+["tx",4,"れい：スーパー（10:00-20:00）→ スーパーは何時から何時までですか。午前10時から午後8時までです。\n大学の事務室（9:00-13:00）",["大学の事務室は何時から何時までですか。午前9時から午後1時までです"],"","transform"],
+["tx",4,"れい：スーパー（10:00-20:00）→ スーパーは何時から何時までですか。午前10時から午後8時までです。\n郵便局（8:30-18:00）",["郵便局は何時から何時までですか。午前8時半から午後6時までです"],"","transform"],
+["tx",4,"れい：イタリア語の授業は何曜日の何時からですか。（15時半）→ 金曜日の15時半（午後3時半）です。\nコンサートは何曜日の何時からですか。（火曜日、21時）",["火曜日の21時です","火曜日の午後9時です"],"Esercizio 9.","transform"],
+["tx",4,"れい：イタリア語の授業は何曜日の何時からですか。（15時半）→ 金曜日の15時半（午後3時半）です。\nイタリア史の授業は何曜日の何時からですか。（水曜日、16時半）",["水曜日の16時半です","水曜日の午後4時半です"],"","transform"],
+["tx",4,"れい：イタリア語の授業は何曜日の何時からですか。（15時半）→ 金曜日の15時半（午後3時半）です。\nサッカーの練習は何曜日の何時からですか。（木曜日と土曜日、17時半）",["木曜日と土曜日の17時半です","木曜日と土曜日の午後5時半です"],"","transform"],
+["tx",4,"れい：イタリア語の授業は何曜日の何時からですか。（15時半）→ 金曜日の15時半（午後3時半）です。\nピアノの練習は何曜日の何時からですか。（日曜日、11時）",["日曜日の11時です","日曜日の午前11時です"],"","transform"],
+["tx",4,"れい：昼休み　2 → 昼休みが2時間あります。\n昼休み　1",["昼休みが1時間あります","昼休みが一時間あります"],"Esercizio 10: durata con 時間.","transform"],
+["tx",4,"れい：昼休み　2 → 昼休みが2時間あります。\n文学の授業　2",["文学の授業が2時間あります","文学の授業が二時間あります"],"","transform"],
+["tx",4,"れい：昼休み　2 → 昼休みが2時間あります。\n日本語の授業　7",["日本語の授業が7時間あります","日本語の授業が七時間あります"],"","transform"],
+["tx",4,"れい：昼休み　2 → 昼休みが2時間あります。\n試験　4",["試験が4時間あります","試験が四時間あります"],"","transform"],
+["tx",4,"れい：昼休み　2 → 昼休みが2時間あります。\n会議　3",["会議が3時間あります","会議が三時間あります"],"","transform"],
+["tx",4,"れい：教室　つくえ　5 → 教室につくえが五つあります。\n教室　いす　8",["教室にいすが八つあります"],"Esercizio 11: contatore つ.","transform"],
+["tx",4,"れい：教室　つくえ　5 → 教室につくえが五つあります。\nテーブルの上　コップ　5",["テーブルの上にコップが五つあります"],"","transform"],
+["tx",4,"れい：教室　つくえ　5 → 教室につくえが五つあります。\n部屋　時計　2",["部屋に時計が二つあります"],"","transform"],
+["tx",4,"れい：教室　つくえ　5 → 教室につくえが五つあります。\n家　トイレ　3",["家にトイレが三つあります"],"","transform"],
+["tx",4,"れい：教室　つくえ　5 → 教室につくえが五つあります。\n駅の中　店　4",["駅の中に店が四つあります"],"","transform"],
+["tx",4,"れい：教室　つくえ　5 → 教室につくえがいくつありますか。五つあります。\n部屋　いす　2",["部屋にいすがいくつありますか。二つあります"],"Esercizio 12: いくつ = quanti?","transform"],
+["tx",4,"れい：教室　つくえ　5 → 教室につくえがいくつありますか。五つあります。\n家　部屋　4",["家に部屋がいくつありますか。四つあります"],"","transform"],
+["tx",4,"れい：教室　つくえ　5 → 教室につくえがいくつありますか。五つあります。\nテーブルの上　りんご　6",["テーブルの上にりんごがいくつありますか。六つあります"],"","transform"],
+["tx",4,"れい：教室　つくえ　5 → 教室につくえがいくつありますか。五つあります。\n箱の中　おもちゃ　3",["箱の中におもちゃがいくつありますか。三つあります"],"","transform"],
+["tx",4,"れい：教室　つくえ　5 → 教室につくえがいくつありますか。五つあります。\n袋の中　消しゴム　8",["袋の中に消しゴムがいくつありますか。八つあります"],"","transform"],
 ["mc",4,"Scegli il numero giusto.\n部屋にいすが（　）あります。（2）",["二つ","二本","二枚","二冊"],0,"Per oggetti generici: つ.","choice"],
 ["fill",4,"二階（　）は（　）トイレ（　）二つ（　）あります。",["に・x・が・x"],"Esercizio 13: に indica il luogo, が il soggetto; dopo は e dopo il numero non serve nulla.","particle"],
 ["fill",4,"私（　）家（　）そば（　）バスてい（　）二つ（　）あります。",["の・の・に・が・x"],"","particle"],
@@ -692,9 +833,9 @@ const EX_BOOK4=[
 ["mc",4,RD4+"不動産屋さんは何時から何時までですか。",["午前10時から午後2時までと午後3時から午後6時15分までです","午前10時から午後6時までです","午後3時から午後6時までです","16時から18時までです"],0,"","reading"],
 ["mc",4,RD4+"ルカさんの友だちは何時から何時までいますか。",["16時から18時までいます","10時から14時までいます","15時から18時15分までいます","一日中います"],0,"","reading"],
 ["mc",4,RD4+"いいアパートはどこにありますか。",["みかさんのアパートと大学のあいだにあります","駅の近くにあります","ルカさんの家の横にあります","大学の中にあります"],0,"","reading"],
-["mc",4,"Vero o falso?\n"+RD4+"「4階のアパートにはいすとソファーがあります。」",["正しい","正しくない"],0,"","truefalse"],
-["mc",4,"Vero o falso?\n"+RD4+"「今日は月曜日です。」",["正しい","正しくない"],1,"今日は金曜日です。","truefalse"],
-["write",4,"山田先生のオフィスアワーについて友だちに教えてください。何曜日、何時から何時まで、何時間、研究室はどこにあるか。",["山田先生のオフィスアワーは火曜日です。午後2時から午後4時までです。2時間です。研究室は大学の三階にあります。"],"Esercizio 16: usa 何曜日, から・まで, 時間, にあります.","free"],
+["mc",4,"Vero o falso?\n"+RD4+"「4階のアパートにはいすとソファーがあります。」",["ただしい","ただしくない"],0,"","truefalse"],
+["mc",4,"Vero o falso?\n"+RD4+"「今日は月曜日です。」",["ただしい","ただしくない"],1,"今日は金曜日です。","truefalse"],
+["write",4,"山田先生のオフィスアワーについて友だちに教えてください。何曜日、何時から何時まで、何時間、けんきゅうしつはどこにあるか。",["山田先生のオフィスアワーは火曜日です。午後2時から午後4時までです。2時間です。けんきゅうしつは大学の三階にあります。"],"Esercizio 16: usa 何曜日, から・まで, 時間, にあります.","free"],
 ["tx",4,"Scrivi in katakana: ristorante",["レストラン"],"Esercizio 18.","kana"],["tx",4,"Scrivi in katakana: computer",["コンピューター","コンピュータ"],"","kana"],["tx",4,"Scrivi in katakana: penna a sfera",["ボールペン"],"","kana"],["tx",4,"Scrivi in katakana: macchina fotografica",["カメラ"],"","kana"],["tx",4,"Scrivi in katakana: moto",["バイク"],"","kana"],["tx",4,"Scrivi in katakana: calcio",["サッカー"],"","kana"],["tx",4,"Scrivi in katakana: penna",["ペン"],"","kana"],["tx",4,"Scrivi in katakana: euro",["ユーロ"],"","kana"],["tx",4,"Scrivi in katakana: bus",["バス"],"","kana"],["tx",4,"Scrivi in katakana: quaderno",["ノート"],"","kana"],
 ["tx",4,"Scrivi in hiragana o katakana (scegli tu quale): Marocco",["モロッコ"],"Esercizio 19: i nomi stranieri vanno in katakana.","kana"],["tx",4,"Scrivi in hiragana o katakana (scegli tu quale): Sendai",["せんだい"],"I nomi giapponesi si scrivono in hiragana.","kana"],["tx",4,"Scrivi in hiragana o katakana (scegli tu quale): Nara",["なら"],"","kana"],["tx",4,"Scrivi in hiragana o katakana (scegli tu quale): Parigi",["パリ"],"","kana"],["tx",4,"Scrivi in hiragana o katakana (scegli tu quale): Londra",["ロンドン"],"","kana"],["tx",4,"Scrivi in hiragana o katakana (scegli tu quale): Germania",["ドイツ"],"In giapponese la Germania è ドイツ.","kana"],["tx",4,"Scrivi in hiragana o katakana (scegli tu quale): Hiroshima",["ひろしま"],"","kana"],["tx",4,"Scrivi in hiragana o katakana (scegli tu quale): Canada",["カナダ"],"","kana"],["tx",4,"Scrivi in hiragana o katakana (scegli tu quale): Messico",["メキシコ"],"","kana"],["tx",4,"Scrivi in hiragana o katakana (scegli tu quale): Nagasaki",["ながさき"],"","kana"],
 ["tx",4,"Scrivi in katakana: robot",["ロボット"],"Esercizio 20.","kana"],["tx",4,"Scrivi in katakana: animale domestico (pet)",["ペット"],"","kana"],["tx",4,"Scrivi in katakana: burro (butter)",["バター"],"","kana"],["tx",4,"Scrivi in katakana: caffè (coffee)",["コーヒー"],"","kana"],["tx",4,"Scrivi in katakana: messaggio",["メッセージ"],"","kana"],["tx",4,"Scrivi in katakana: staff",["スタッフ"],"","kana"],["tx",4,"Scrivi in katakana: tasca (pocket)",["ポケット"],"","kana"],["tx",4,"Scrivi in katakana: copia",["コピー"],"","kana"],["tx",4,"Scrivi in katakana: notizie (news)",["ニュース"],"","kana"],["tx",4,"Scrivi in katakana: spettacolo (show)",["ショー"],"","kana"],
@@ -715,7 +856,7 @@ const EX_BOOK4=[
 ["tx",4,"Scrivi il kanji mancante:\nレストランと私の家の［　］に不動産屋があります。（あいだ）",["間"],"","kanji"],
 ["tx",4,"Scrivi il kanji mancante:\n26［　］から休みですか。（にち）",["日"],"","kanji"],
 ["tx",4,"Scrivi il kanji mancante:\nお［　］は何時からですか。（みせ）",["店"],"","kanji"],
-["tx",4,"Scrivi il kanji mancante:\n千春さんはローマに［　］きますか。（い）",["行"],"","kanji"],
+["tx",4,"Scrivi il kanji mancante:\nちはるさんはローマに［　］きますか。（い）",["行"],"","kanji"],
 ["tx",4,"Scrivi il kanji mancante:\n13時に家で［　］べます。（た）",["食"],"","kanji"]
 ];
 EX_BOOK4.forEach(x=>{x._group=x.pop();EX.push(x)});
@@ -728,10 +869,10 @@ function exMatches(x,id){const level=exLevelChoice(id);return sel(x[1])&&exGroup
 function exFiltered(){const selected=exSelected();return EX.map((x,i)=>i).filter(i=>selected.includes(exGroup(EX[i]))&&exMatches(EX[i],exGroup(EX[i])))}
 function exSetLevel(id,value){S.exLevels=S.exLevels||{};S.exLevels[id]=value;save();exSetup()}
 function japaneseClean(value){return String(value||"").replace(/[A-Za-zÀ-ÖØ-öø-ÿ]+(?:[’'’-][A-Za-zÀ-ÖØ-öø-ÿ]+)*/g,"").replace(/[“”"「」『』]/g,"").replace(/[：:]+$/g,"").replace(/\s+/g," ").trim()}
-const JP_OPTION_MAP={"sì":"はい","si":"はい","no":"いいえ","sì, esatto":"ええ、そうです。","studente":"学生","studentessa":"学生","insegnante":"先生","professore":"先生","professoressa":"先生","italiano":"イタリア人","italiana":"イタリア人","lingua italiana":"イタリア語","di Elena":"エレナさんの","di Mori":"モリさんの","di Luca":"ルカさんの","20 maggio":"五月二十日","1 gennaio":"一月一日","21 anni":"二十一歳","20 anni":"二十歳","19 anni":"十九歳","18 anni":"十八歳","22 anni":"二十二歳","marzo":"三月","aprile":"四月","maggio":"五月","settembre":"九月","inglese":"イギリス人","cinese":"中国人","giapponese":"日本人"};
+const JP_OPTION_MAP={"sì":"はい","si":"はい","no":"いいえ","sì, esatto":"ええ、そうです。","studente":"学生","studentessa":"学生","insegnante":"先生","professore":"先生","professoressa":"先生","italiano":"イタリア人","italiana":"イタリア人","lingua italiana":"イタリア語","di Elena":"エレナさんの","di Mori":"モリさんの","di Luca":"ルカさんの","20 maggio":"五月二十日","1 gennaio":"一月一日","21 anni":"二十一才","20 anni":"二十才","19 anni":"十九才","18 anni":"十八才","22 anni":"二十二才","marzo":"三月","aprile":"四月","maggio":"五月","settembre":"九月","inglese":"イギリス人","cinese":"中国人","giapponese":"日本人"};
 function jpOption(value){const v=String(value||"").trim();if(/[ぁ-ヿ㐀-䶿一-鿿]/.test(v))return japaneseClean(v);if(/^\d+$/.test(v))return v;if(JP_OPTION_MAP[v.toLowerCase()])return JP_OPTION_MAP[v.toLowerCase()];for(const c of V)if(String(c[2]||"").toLowerCase()===v.toLowerCase())return c[0];for(const c of KR)if(String(c[2]||"").toLowerCase()===v.toLowerCase())return c[0];for(const c of K)if(String(c[3]||"").toLowerCase()===v.toLowerCase())return c[0];return null}
 function exInstruction(group){return ({choice:"Scegli la risposta corretta.",particle:"Inserisci le particelle mancanti. Scrivi X se in uno spazio non serve alcuna particella.",complete:"Completa la frase.",order:"Riordina le parole per formare la frase.",transform:"Trasforma la frase.",truefalse:"Indica se l’affermazione è corretta.",odd:"Scegli l’elemento estraneo.",comprehension:"Leggi il dialogo e rispondi.",reading:"Leggi il testo e rispondi.",listen:"Ascolta il dialogo e rispondi.",kana:"Scrivi la lettura in hiragana.",kanji:"Scrivi la parola in kanji.",free:"Rispondi in giapponese.",fill:"Completa gli spazi vuoti."})[group]||"Rispondi alla domanda."}
-function japanesePrompt(x){const group=exGroup(x),raw=String(x[2]||""),explicitItalian=/^(Come si dice|Traduci:|Scrivi il kanji|Scrivi in kanji|Scrivi in hiragana|Scrivi in katakana|Scrivi la lettura|Scegli la lettura|Riordina le sillabe)/i.test(raw.trim()),lines=raw.split(/\n|\\n/),body=lines.filter(line=>/[ぁ-ヿ㐀-䶿一-鿿]/.test(line)).map(japaneseClean).filter(line=>line&&!/(選んでください|入れてください|完成してください|並べてください|書き換えてください|読んで答えてください|聞いて.*ください|書いてください|答えてください|文を書いてください|正しい順番に)/.test(line));const prompt=explicitItalian?raw.trim():exInstruction(group);if(explicitItalian)return prompt;/* la consegna italiana contiene già le righe in giapponese: non ripeterle */return [prompt,...body].filter(Boolean).join("\n")}
+function japanesePrompt(x){const group=exGroup(x),raw=String(x[2]||""),explicitItalian=/^(Come si dice|Traduci:|Scrivi il kanji|Scrivi in kanji|Scrivi in hiragana|Scrivi in katakana|Scrivi la lettura|Scegli la lettura|Riordina le sillabe)/i.test(raw.trim()),lines=raw.split(/\n|\\n/),body=lines.filter(line=>/[ぁ-ヿ㐀-䶿一-鿿]/.test(line)).map(japaneseClean).filter(line=>line&&!/(選んでください|入れてください|完成してください|並べてください|書き換えてください|読んで答えてください|聞いて.*ください|書いてください|答えてください|文を書いてください|正しい順番に|にしてください|^案内$)/.test(line));const prompt=explicitItalian?raw.trim():exInstruction(group);if(explicitItalian)return prompt;/* la consegna italiana contiene già le righe in giapponese: non ripeterle */return [prompt,...body].filter(Boolean).join("\n")}
 function exerciseJPReady(x){if(x._generated)return true;const group=exGroup(x),hasJP=/[ぁ-ヿ㐀-䶿一-鿿]/.test(String(x[2]||""));if(!hasJP&&group!=="order"&&group!=="odd"&&!(["kana","kanji"].includes(group)&&x[0]==="tx"))return false;if(["mc","listen"].includes(x[0])){const opts=x[0]==="listen"?x[4]:x[3];if(!opts.every(o=>jpOption(o)!==null))return false}if(["tx","fill","write"].includes(x[0])&&(!Array.isArray(x[3])||!x[3].length||!/[ぁ-ヿ㐀-䶿一-鿿]/.test(String(x[3][0]))))return false;if(x[0]==="listen"&&!/[ぁ-ヿ㐀-䶿一-鿿]/.test(String(x[3])))return false;return true}
 function exSelected(){return Array.isArray(S.exTypes)?S.exTypes:EX_GROUPS.map(g=>g[0])}
 function exStart(){exSetup()}
@@ -739,7 +880,7 @@ function exStart(){exSetup()}
 function exStats(id){const units=exUnits().prim,seen=S.exSeen||{},book=[...new Map(EX.filter(x=>!x._generated&&units.includes(x[1])&&exGroup(x)===id&&exerciseJPReady(x)).map(x=>[exerciseIdentity(x),x])).values()];let gen=false;for(const u of units){try{if(generateExercise(id,u,1)){gen=true;break}}catch(e){}}return{n:book.length,fresh:book.filter(x=>!seen[exerciseIdentity(x)]).length,gen}}
 function exLen(){const v=S.exLen;return v==="all"||[10,20,30].includes(v)?v:10}
 function exSetLen(v){S.exLen=v;save();exSetup()}
-function exSetup(){const selected=exSelected(),len=exLen();let freshSel=0;const choices=EX_GROUPS.map(([id,label])=>{const s=exStats(id),usable=s.n>0||s.gen;if(selected.includes(id))freshSel+=s.fresh;return `<label class="btn ex-type"><input type="checkbox" ${selected.includes(id)?"checked":""} ${usable?"":"disabled"} onchange="exToggle('${id}')"><span>${label}</span><small style="white-space:normal;text-align:right" title="${s.n} esercizi fissi, ${s.fresh} non ancora fatti${s.gen?"; quando finiscono se ne generano altri":""}">${s.n} · ${s.fresh} ${s.fresh===1?"nuovo":"nuovi"}${s.gen?" +":""}</small></label>`}).join("");const lens=[[10,"10"],[20,"20"],[30,"30"],["all","Tutti i nuovi del libro"]].map(([v,l])=>`<button class="btn ${len===v?"on":""}" onclick="exSetLen(${typeof v==="string"?"'all'":v})">${l}</button>`).join("");el(`<div class="ex-head"><div><div class="ex-title">Scegli gli esercizi</div><div class="ex-sub">Gli esercizi seguono le unità selezionate e si adattano ai tuoi progressi.</div></div></div><div class="g"><b>Tipi di esercizio</b><div class="mu" style="font-size:13px;margin-top:4px">Numero = esercizi fissi (dal libro) per le unità selezionate · “nuovi” = non ancora fatti · “+” = quando finiscono se ne generano altri a caso.</div><div class="ex-type-grid">${choices}</div><div class="row"><button class="btn" onclick="exSelectAll(true)">Seleziona tutti</button><button class="btn" onclick="exSelectAll(false)">Deseleziona tutti</button></div></div><div class="g"><b>Lunghezza della sessione</b><div class="row" style="flex-wrap:wrap;margin-top:8px">${lens}</div>${len==="all"?`<div class="mu" style="font-size:13px">Solo esercizi del libro non ancora fatti, di ogni livello: ${freshSel} nei tipi selezionati.</div>`:""}</div><button class="btn ok" style="width:100%;padding:14px" onclick="exRun()">Inizia · ${len==="all"?freshSel+" esercizi":len+" esercizi"}</button>`)}
+function exSetup(){const selected=exSelected(),len=exLen();let freshSel=0;const choices=EX_GROUPS.map(([id,label])=>{const s=exStats(id),usable=s.n>0||s.gen;if(selected.includes(id))freshSel+=s.fresh;return `<label class="btn ex-type"><input type="checkbox" ${selected.includes(id)?"checked":""} ${usable?"":"disabled"} onchange="exToggle('${id}')"><span>${label}</span><small style="white-space:normal;text-align:right" title="${s.n} esercizi fissi, ${s.fresh} non ancora fatti${s.gen?"; quando finiscono se ne generano altri":""}">${s.n} · ${s.fresh} ${s.fresh===1?"nuovo":"nuovi"}${s.gen?" +":""}</small></label>`}).join("");const lens=[[10,"10"],[20,"20"],[30,"30"],["all","Tutti i nuovi del libro"]].map(([v,l])=>`<button class="btn ${len===v?"on":""}" onclick="exSetLen(${typeof v==="string"?"'all'":v})">${l}</button>`).join("");el(`<div class="ex-head"><div><div class="ex-title">Scegli gli esercizi</div><div class="ex-sub">Gli esercizi seguono le unità selezionate e si adattano ai tuoi progressi.</div></div></div><div class="g"><b>Tipi di esercizio</b><div class="mu" style="font-size:13px;margin-top:4px">Numero = esercizi fissi (dal libro) per le unità selezionate · “nuovi” = non ancora fatti · “+” = quando finiscono se ne generano altri a caso.</div><div class="ex-type-grid">${choices}</div><div class="row"><button class="btn" onclick="exSelectAll(true)">Seleziona tutti</button><button class="btn" onclick="exSelectAll(false)">Deseleziona tutti</button></div></div><div class="g"><b>Lunghezza della sessione</b><div class="row" style="flex-wrap:wrap;margin-top:8px">${lens}</div>${len==="all"?`<div class="mu" style="font-size:13px">Solo esercizi del libro non ancora fatti, di ogni livello: ${freshSel} nei tipi selezionati.</div>`:""}</div><button class="btn ok ex-start" style="width:100%;padding:14px" onclick="exRun()">Inizia&nbsp;·&nbsp;${len==="all"?freshSel+" esercizi":len+" esercizi"}</button>`)}
 function exToggle(id){let selected=exSelected().slice();selected=selected.includes(id)?selected.filter(x=>x!=id):selected.concat(id);S.exTypes=selected;save();exSetup()}
 function exSelectAll(on){S.exTypes=on?EX_GROUPS.map(g=>g[0]):[];save();exSetup()}
 function shuffleArray(a){return a.map(x=>[Math.random(),x]).sort((x,y)=>x[0]-y[0]).map(x=>x[1])}
@@ -747,7 +888,7 @@ function exerciseIdentity(x){return x._id||[exGroup(x),x[1],x[2],JSON.stringify(
 function recordExerciseSkill(x,ok){S.exSkill=S.exSkill||{};const g=exGroup(x);S.exSkill[g]=ok?Math.min(12,(S.exSkill[g]||0)+1):0;save()}
 
 function generateUnit3Exercise(group,unit,level){
- const pick=a=>a[Math.floor(Math.random()*a.length)], names=["田中さん","山田さん","森さん","チンさん","ルカさん","ミラさん","リナさん"],A=pick(names),B=pick(names.filter(n=>n!==A)),places=[["レストラン","resutoran"],["本屋さん","honya-san"],["銀行","ginkō"],["郵便局","yūbinkyoku"],["映画館","eigakan"],["トイレ","toire"]],place=pick(places),floors=[["一階","いっかい"],["二階","にかい"],["三階","さんがい"],["四階","よんかい"],["六階","ろっかい"]],floor=pick(floors),objs=[["本","ほん","冊"],["ノート","のーと","冊"],["切手","きって","枚"],["皿","さら","枚"],["ビール","びーる","本"],["傘","かさ","本"]],obj=pick(objs),times=["九時半","二時半","四時","六時"],time=pick(times),price=pick(["十","二十","三十"]);
+ const pick=a=>a[Math.floor(Math.random()*a.length)], names=["田中さん","山田さん","森さん","チンさん","ルカさん","ミラさん","リナさん"],A=pick(names),B=pick(names.filter(n=>n!==A)),places=[["レストラン","resutoran"],["本屋さん","honya-san"],["銀行","ginkō"],["郵便局","yūbinkyoku"],["映画館","eigakan"],["トイレ","toire"]],place=pick(places),floors=[["一階","いっかい"],["二階","にかい"],["三階","さんがい"],["四階","よんかい"],["六階","ろっかい"]],floor=pick(floors),objs=[["本","ほん","冊"],["ノート","のーと","冊"],["切手","きって","枚"],["皿","さら","枚"],["ビール","びーる","本"],["かさ","かさ","本"]],obj=pick(objs),times=["九時半","二時半","四時","六時"],time=pick(times),price=pick(["十","二十","三十"]);
  let x;const make=(type,prompt,answers,correct=0,extra={})=>{if(type==="mc")x=["mc",unit,prompt,answers,correct,""];else if(type==="listen")x=["listen",unit,prompt,extra.audio,answers,correct,""];else if(type==="ord")x=["ord",unit,prompt,answers,""];else if(type==="write")x=["write",unit,prompt,answers,""];else x=[type,unit,prompt,answers,""];x._group=group;x._difficulty=level;x._generated=1;x._id=[group,unit,prompt,JSON.stringify(answers)].join("|");return x};
  switch(group){
  case "choice":{let opts,correct=0,prompt;if(level===1){opts=["ここ","そこ","あそこ","どこ"];prompt="レストランは（　）ですか。";correct=3}else if(level===2){opts=["一階","二階","三階","四階"];prompt="A：レストランは何階ですか。\nB：二階です。";correct=1}else{opts=["一冊","二冊","三冊","四冊"];prompt="A：本は何冊ですか。\nB：三冊です。";correct=2}make("mc",prompt,opts,correct);break}
@@ -755,12 +896,12 @@ function generateUnit3Exercise(group,unit,level){
  case "complete":{let q=pick([["いくら","このランチは（　）ですか。\n二十ユーロです。"],["何階","レストランは（　）ですか。\n二階です。"],["何時","今、（　）ですか。\n九時半です。"],["何本","やきとりは（　）ですか。\n五本です。"],["どこ","本屋さんは（　）ですか。\n大学の近くです。"]]);let opts=[q[0],"どこ","何枚","何冊"];make("mc",q[1],opts,opts.indexOf(q[0]));break}
  case "order":{let words=level===1?[place[0],"は","どこ","です","か"]:level===2?["この","本","は","二","冊","です"]:["本","を","二冊","と","ノート","を","三冊","ください"];make("ord","Riordina le parole per formare la frase.",words);break}
  case "transform":{let prompt,ans;if(level===1){prompt="Domanda: trasforma la frase.\nレストランはここです。";ans=["レストランはどこですか"]}else if(level===2){prompt="Chiedi il prezzo.\nこのランチは二十ユーロです。";ans=["このランチはいくらですか"]}else{prompt="Rispondi usando 二時半.\n今、何時ですか。";ans=["今、二時半です","今、二時半です。"]}make("tx",prompt,ans);break}
- case "truefalse":{let truth=Math.random()<.5,claim=truth?floor[0]:"四階",p="案内：\n"+place[0]+"は"+floor[0]+"です。\n「"+place[0]+"は"+claim+"です。」";make("mc",p,["正しい","正しくない"],truth?0:1);break}
+ case "truefalse":{let truth=Math.random()<.5,claim=truth?floor[0]:"四階",p="案内：\n"+place[0]+"は"+floor[0]+"です。\n「"+place[0]+"は"+claim+"です。」";make("mc",p,["ただしい","ただしくない"],truth?0:1);break}
  case "odd":{let sets=pick([["一冊","二冊","三冊","二枚"],["銀行","郵便局","映画館","二階"],["本","ノート","ガイドブック","ビール"]]),odd=sets[3],opts=shuffleArray(sets);make("mc","仲間ではないものを選んでください。",opts,opts.indexOf(odd));break}
  case "comprehension":{let p="会話を読んで答えてください。\nA："+place[0]+"はどこですか。\nB：あのビルの"+floor[0]+"です。\nA：今、何時ですか。\nB："+time+"です。",opts=[floor[0],"一階","四階","六階"].filter((x,i,a)=>a.indexOf(x)===i);while(opts.length<4)opts.push(["二階","三階","五階","七階"].find(x=>!opts.includes(x)));make("mc",p,opts,0);break}
  case "reading":{let p="案内を読んで答えてください。\n"+place[0]+"は大学の近くです。ビルの"+floor[0]+"にあります。ランチは"+price+"ユーロです。\n"+place[0]+"は何階ですか。",opts=[floor[0]+"です。",...["一階","二階","三階","四階","六階"].filter(f=>f!==floor[0]).slice(0,3).map(f=>f+"です。")];make("mc",p,opts,0);break}
  case "listen":{let opts=[floor[0],...["一階","二階","三階","四階","六階"].filter(f=>f!==floor[0]).slice(0,3)],correct=0;make("listen","会話を聞いて、場所を選んでください。",opts,correct,{audio:"A："+place[0]+"はどこですか。\nB：ビルの"+floor[0]+"です。"});break}
- case "kana":{let src=pick([["近く","ちかく"],["午前","ごぜん"],["午後","ごご"],["毎日","まいにち"],["名前","なまえ"],["外国人","がいこくじん"]]);make("tx","ひらがなで書いてください。\n"+src[0],[src[1]]);break}
+ case "kana":{let src=pick([["近く","ちかく"],["毎日","まいにち"],["名前","なまえ"],["外国人","がいこくじん"]]);make("tx","ひらがなで書いてください。\n"+src[0],[src[1]]);break}
  case "kanji":{let src=pick([["みぎ","右"],["ひだり","左"],["かわ","川"],["いぬ","犬"],["まえ","前"],["うしろ","後ろ"],["まいにち","毎日"],["ちかく","近く"]]);make("tx","漢字で書いてください。\n"+src[0],[src[1]]);break}
  case "free":{let model="この近くの"+place[0]+"は"+floor[0]+"です。ランチは二十ユーロです。";make("write","日本語で、場所・階・値段を含む案内を書いてください。",[model]);break}
  default:return null
@@ -769,10 +910,10 @@ function generateUnit3Exercise(group,unit,level){
 }
 // Esercizi generati: vertono SOLO sulle regole nuove dell'unità (le precedenti sono date per scontate)
 function genRule(group,unit,level){
- const pk=a=>a[Math.floor(Math.random()*a.length)],sh=a=>shuffleArray(a.slice()),A=pk(["田中さん","山田さん","森さん","チンさん","ルカさん","ミラさん","リナさん","さとうさん"]),yn=["正しい","正しくない"],
+ const pk=a=>a[Math.floor(Math.random()*a.length)],sh=a=>shuffleArray(a.slice()),A=pk(["田中さん","山田さん","森さん","チンさん","ルカさん","ミラさん","リナさん","さとうさん"]),yn=["ただしい","ただしくない"],
  mk=(type,prompt,answers,correct)=>{const x=type==="mc"?["mc",unit,prompt,answers,correct||0,""]:[type,unit,prompt,answers,""];x._group=group;x._difficulty=level;x._generated=1;x._id=[group,unit,prompt,JSON.stringify(answers)].join("|");return x};
  if(unit===3){
-  const PL=["レストラン","本屋さん","銀行","郵便局","映画館","トイレ","大学"],FL=["一階","二階","三階","四階","五階","六階"],OB=[["本","冊"],["ノート","冊"],["切手","枚"],["皿","枚"],["ビール","本"],["傘","本"],["やきとり","本"]],NU=["二","三","四","五"],PR=["十","二十","三十","五十"],TM=["九時半","二時半","四時","六時","十時半"],CQ={"冊":"何冊","枚":"何枚","本":"何本"},CT=["冊","枚","本"],
+  const PL=["レストラン","本屋さん","銀行","郵便局","映画館","トイレ","大学"],FL=["一階","二階","三階","四階","五階","六階"],OB=[["本","冊"],["ノート","冊"],["切手","枚"],["皿","枚"],["ビール","本"],["かさ","本"],["やきとり","本"]],NU=["二","三","四","五"],PR=["十","二十","三十","五十"],TM=["九時半","二時半","四時","六時","十時半"],CQ={"冊":"何冊","枚":"何枚","本":"何本"},CT=["冊","枚","本"],
    pl=pk(PL),fl=pk(FL),o=pk(OB),o2=pk(OB.filter(z=>z[1]!==o[1])),n=pk(NU),n2=pk(NU),pr=pk(PR),tm=pk(TM),nn=pk(["レストラン","やきとり","ビール"]);
   switch(group){
   case "choice":{const t=Math.floor(Math.random()*4);
@@ -792,28 +933,30 @@ function genRule(group,unit,level){
   const DT=["五月二十日","三月三日","六月二十四日","九月九日","一月一日","七月二日","十二月十五日"],AG=["十九","二十","二十一","二十二"],dt=pk(DT),ag=pk(AG),B=pk(["田中さん","山田さん","森さん","チンさん","ルカさん","ミラさん"].filter(z=>z!==A));
   switch(group){
   case "particle":{const P=[[`助詞を入れてください。\nこの本（　）${A}（　）です。\nこれ（　）誰（　）本ですか。\n${A}（　）誕生日（　）${dt}です。`,"は・の・は・の・の・は"],[`助詞を入れてください。\nそれ（　）${A}（　）本ですか。\nいいえ、${B}（　）です。\n${A}（　）電話番号（　）何番ですか。`,"は・の・の・の・は"]],p=pk(P);return mk("fill",p[0],[p[1]])}
-  case "order":{const W=[["これ","は","誰","の","本","です","か"],[A,"の","誕生日","は",dt,"です"],["その","本","は",A,"の","です","か"],["あの","人","は","何歳","です","か"],["あれ","は","美術館","です","か"]];return mk("ord","言葉を正しい順番に並べてください。",pk(W))}
-  case "transform":{const T=[[`Chiedi di chi è con 誰の.\nこれは${A}の本です。`,[`これは誰の本ですか`,`これはだれの本ですか`]],[`Ometti il nome già noto.\nこの本は${A}の本です。`,[`この本は${A}のです`]],[`Ometti il nome già noto.\nこれは${A}の辞書です。→ この辞書は…`,[`この辞書は${A}のです`]],[`Chiedi la data con いつ.\n${A}の誕生日は${dt}です。`,[`${A}の誕生日はいつですか`]],[`Chiedi l’età con 何歳.\n${A}は${ag}歳です。`,[`${A}は何歳ですか`]],[`Chiedi il numero con 何番.\n電話番号は三三三です。`,[`電話番号は何番ですか`]],[`Domanda con あれ.\nあれは美術館です。`,[`あれは美術館ですか`]]],t=pk(T);return mk("tx",t[0],t[1])}
-  case "truefalse":{const t=Math.random()<.5?0:1,tr=Math.random()<.5;const od=pk(DT.filter(z=>z!==dt)),oa=pk(AG.filter(z=>z!==ag));const c=t===0?`${A}の誕生日は${tr?dt:od}です。`:`${A}は${tr?ag:oa}歳です。`;return mk("mc",`Vero o falso?\n${A}：誕生日は${dt}です。${ag}歳です。\n「${c}」`,yn,tr?0:1)}
+  case "order":{const W=[["これ","は","誰","の","本","です","か"],[A,"の","誕生日","は",dt,"です"],["その","本","は",A,"の","です","か"],["あの","人","は","何才","です","か"],["あれ","は","美術館","です","か"]];return mk("ord","言葉を正しい順番に並べてください。",pk(W))}
+  case "transform":{const T=[[`Chiedi di chi è con 誰の.\nこれは${A}の本です。`,[`これは誰の本ですか`,`これはだれの本ですか`]],[`Ometti il nome già noto.\nこの本は${A}の本です。`,[`この本は${A}のです`]],[`Ometti il nome già noto.\nこれは${A}の辞書です。→ この辞書は…`,[`この辞書は${A}のです`]],[`Chiedi la data con いつ.\n${A}の誕生日は${dt}です。`,[`${A}の誕生日はいつですか`]],[`Chiedi l’età con 何才.\n${A}は${ag}才です。`,[`${A}は何才ですか`]],[`Chiedi il numero con 何番.\n電話番号は三三三です。`,[`電話番号は何番ですか`]],[`Domanda con あれ.\nあれは美術館です。`,[`あれは美術館ですか`]]],t=pk(T);return mk("tx",t[0],t[1])}
+  case "truefalse":{const t=Math.random()<.5?0:1,tr=Math.random()<.5;const od=pk(DT.filter(z=>z!==dt)),oa=pk(AG.filter(z=>z!==ag));const c=t===0?`${A}の誕生日は${tr?dt:od}です。`:`${A}は${tr?ag:oa}才です。`;return mk("mc",`Vero o falso?\n${A}：誕生日は${dt}です。${ag}才です。\n「${c}」`,yn,tr?0:1)}
   default:return null}
  }
  return null}
-function generateExercise(group,unit,level){if(unit>=4)return null;/* dall'Unità 4 solo esercizi del libro: i generatori sono pensati per le unità 1-3 */if(unit===2||unit===3){const r=genRule(group,unit,level);if(r)return r}if(unit===3)return generateUnit3Exercise(group,unit,level);const pick=a=>a[Math.floor(Math.random()*a.length)],A=pick(["田中さん","山田さん","森さん","チンさん","ミラさん","マリアさん","ルカさん","ハンさん","さとうさん","リナさん"]),B=pick(["スズキさん","マイクさん","森さん","ミラさん","チンさん","ルカさん","田中さん"].filter(n=>n!==A)),country=pick(["イタリア","日本","中国","イギリス","スペイン"]),language=pick(["イタリア語","日本語","中国語","スペイン語"]),h1=pick(["おんがく","サッカー","えいが","りょうり"]),h2=pick(["おんがく","サッカー","えいが","りょうり"].filter(v=>v!==h1)),dates=[["一月一日","いちがつついたち","1"],["五月二十日","ごがつはつか","20"],["三月三日","さんがつみっか","3"],["六月二十四日","ろくがつにじゅうよっか","24"],["七月二日","しちがつふつか","2"],["九月九日","くがつここのか","9"]],date=pick(dates),nameRomaji={"田中さん":"Tanaka-san","山田さん":"Yamada-san","森さん":"Mori-san","チンさん":"Chin-san","ミラさん":"Mira-san","マリアさん":"Maria-san","ルカさん":"Ruka-san","ハンさん":"Han-san","さとうさん":"Satō-san","スズキさん":"Suzuki-san","マイクさん":"Maiku-san","リナさん":"Rina-san"};let x;
+function generateExercise(group,unit,level){if(unit>=4)return null;
+ // Unità 1: niente date, numeri, 誕生日 o dimostrativi (arrivano nell'Unità 2) e niente kanji non ancora studiati
+ if(unit===1){if(["choice","complete","odd","comprehension","reading","listen"].includes(group))return null;if(group==="order"||group==="transform")level=Math.min(level,group==="order"?1:2)}/* dall'Unità 4 solo esercizi del libro: i generatori sono pensati per le unità 1-3 */if(unit===2||unit===3){const r=genRule(group,unit,level);if(r)return r}if(unit===3)return generateUnit3Exercise(group,unit,level);const pick=a=>a[Math.floor(Math.random()*a.length)],A=pick(["田中さん","山田さん","森さん","チンさん","ミラさん","マリアさん","ルカさん","ハンさん","さとうさん","リナさん"]),B=pick(["スズキさん","マイクさん","森さん","ミラさん","チンさん","ルカさん","田中さん"].filter(n=>n!==A)),country=pick(["イタリア","日本","中国","イギリス","スペイン"]),language=pick(["イタリア語","日本語","中国語","スペイン語"]),h1=pick(["おんがく","サッカー","えいが","りょうり"]),h2=pick(["おんがく","サッカー","えいが","りょうり"].filter(v=>v!==h1)),dates=[["一月一日","いちがつついたち","1"],["五月二十日","ごがつはつか","20"],["三月三日","さんがつみっか","3"],["六月二十四日","ろくがつにじゅうよっか","24"],["七月二日","しちがつふつか","2"],["九月九日","くがつここのか","9"]],date=pick(dates),nameRomaji={"田中さん":"Tanaka-san","山田さん":"Yamada-san","森さん":"Mori-san","チンさん":"Chin-san","ミラさん":"Mira-san","マリアさん":"Maria-san","ルカさん":"Ruka-san","ハンさん":"Han-san","さとうさん":"Satō-san","スズキさん":"Suzuki-san","マイクさん":"Maiku-san","リナさん":"Rina-san"};let x;
 const make=(type,prompt,answers,extra={})=>{if(type==="mc")x=["mc",unit,prompt,answers,extra.correct||0,""];else if(type==="listen")x=["listen",unit,prompt,extra.audio,answers,extra.correct||0,""];else if(type==="ord")x=["ord",unit,prompt,answers,""];else if(type==="write")x=["write",unit,prompt,answers,""];else x=[type,unit,prompt,answers,""];x._group=group;x._difficulty=level;x._generated=1;x._id=[group,unit,prompt,JSON.stringify(answers)].join("|");return x};
 switch(group){
 case "choice":{const ok=`${B}のです。`;make("mc","会話を読んで、正しい返事を選んでください。\\nA：これは誰の本ですか。\\nB：",[ok,`${B}です。`,`${B}は本です。`,`誰の本ですか。`]);break}
-case "particle":{let prompt,ans;const withX=Math.random()<.5;if(withX){if(unit===2&&level>=2){prompt=`助詞を入れて会話を完成してください。\n私は（　）${A}です。\n${A}（　）${language}（　）学生です。\n${A}（　）誕生日は${date[0]}です。\n${B}（　）${A}（　）友だちです。`;ans=["X・は・の・の・は・の"]}else if(level===1){prompt=`助詞を入れて会話を完成してください。\n私は（　）${A}です。\n${A}（　）${country}人です。\n${B}（　）${A}（　）友だちです。`;ans=["X・は・は・の"]}else if(level===2){prompt=`助詞を入れて文を完成してください。\n私は（　）${A}です。${A}（　）${language}（　）学生です。${B}（　）${A}（　）友だちです。`;ans=["X・は・の・は・の"]}else{prompt=`助詞を入れて文を完成してください。\n私は（　）${A}です。${A}（　）${country}人です。${A}（　）しゅみは${h1}（　）${h2}です。${B}（　）大学（　）学生です。`;ans=["X・は・の・と・は・の"]}}else if(level===1){prompt=`助詞を入れて会話を完成してください。\n${A}（　）${country}人です。\n${B}（　）${A}（　）友だちです。`;ans=["は・は・の"]}else if(level===2){prompt=`助詞を入れて文を完成してください。\n${A}（　）${language}（　）学生です。${B}（　）${A}（　）友だちです。`;ans=["は・の・は・の"]}else if(unit===2){prompt=`会話を完成する助詞をすべて入れてください。\n${A}（　）${language}（　）学生です。${B}（　）${A}（　）友だちです。${A}（　）誕生日はいつですか。`;ans=["は・の・は・の・の"]}else{prompt=`助詞を入れて文を完成してください。\n${A}（　）${country}人です。${A}（　）しゅみは${h1}（　）${h2}です。${B}（　）大学（　）学生です。`;ans=["は・の・と・は・の"]}make("fill",prompt,ans);break}
+case "particle":{let prompt,ans;const withX=Math.random()<.5;if(withX){if(unit===2&&level>=2){prompt=`助詞を入れて会話を完成してください。\n私は（　）${A}です。\n${A}（　）${language}（　）学生です。\n${A}（　）誕生日は${date[0]}です。\n${B}（　）${A}（　）ともだちです。`;ans=["X・は・の・の・は・の"]}else if(level===1){prompt=`助詞を入れて会話を完成してください。\n私は（　）${A}です。\n${A}（　）${country}人です。\n${B}（　）${A}（　）ともだちです。`;ans=["X・は・は・の"]}else if(level===2){prompt=`助詞を入れて文を完成してください。\n私は（　）${A}です。${A}（　）${language}（　）学生です。${B}（　）${A}（　）ともだちです。`;ans=["X・は・の・は・の"]}else{prompt=`助詞を入れて文を完成してください。\n私は（　）${A}です。${A}（　）${country}人です。${A}（　）しゅみは${h1}（　）${h2}です。${B}（　）大学（　）学生です。`;ans=["X・は・の・と・は・の"]}}else if(level===1){prompt=`助詞を入れて会話を完成してください。\n${A}（　）${country}人です。\n${B}（　）${A}（　）ともだちです。`;ans=["は・は・の"]}else if(level===2){prompt=`助詞を入れて文を完成してください。\n${A}（　）${language}（　）学生です。${B}（　）${A}（　）ともだちです。`;ans=["は・の・は・の"]}else if(unit===2){prompt=`会話を完成する助詞をすべて入れてください。\n${A}（　）${language}（　）学生です。${B}（　）${A}（　）ともだちです。${A}（　）誕生日はいつですか。`;ans=["は・の・は・の・の"]}else{prompt=`助詞を入れて文を完成してください。\n${A}（　）${country}人です。${A}（　）しゅみは${h1}（　）${h2}です。${B}（　）大学（　）学生です。`;ans=["は・の・と・は・の"]}make("fill",prompt,ans);break}
 case "complete":{const q=pick([["いつ","誕生日は（　）ですか。","五月二十日です。"],["だれの","これは（　）本ですか。","山田さんのです。"],["何番","電話番号は（　）ですか。","三三三です。"],["何日","今日は（　）ですか。","三日です。"]]);if(level===3){const p=`会話を完成してください。\n${A}：誕生日は（　）ですか。\n${B}：${date[0]}です。\n${A}：電話番号は（　）ですか。\n${B}：三三三です。`;make("mc",p,["いつ・何番","だれの・何日","何日・いつ","何番・だれの"],{correct:0})}else{const p=`会話を完成してください。\n${A}：${q[1]}\n${B}：${q[2]}`,options=["いつ","だれの","何日","何番"];make("mc",p,options,{correct:options.indexOf(q[0])})}break}
-case "order":{let words;if(level===1)words=[A,"は",language,"の","学生","です"];else if(level===2)words=["この","本","は",A,"の","です"];else if(unit===2)words=[A,"の","誕生日","は",date[0],"です。",A,"は","二十歳","です。"];else words=[A,"は",country,"人","です。","しゅみ","は",h1,"と",h2,"です"];make("ord","言葉を正しい順番に並べて文を完成してください。",words);break}
+case "order":{let words;if(level===1)words=[A,"は",language,"の","学生","です"];else if(level===2)words=["この","本","は",A,"の","です"];else if(unit===2)words=[A,"の","誕生日","は",date[0],"です。",A,"は","二十才","です。"];else words=[A,"は",country,"人","です。","しゅみ","は",h1,"と",h2,"です"];make("ord","言葉を正しい順番に並べて文を完成してください。",words);break}
 case "transform":{const prompt=level===1?`質問文にしてください。\\n${A}は学生です。`:level===2?`否定文にしてください。\\n${A}は${language}の学生です。`:`質問文にしてください。\\nこの本は${A}の本です。`;const ans=level===1?[`${A}は学生ですか`]:level===2?[`${A}は${language}の学生ではありません`,`${A}は${language}の学生じゃありません`]:[`この本は${A}の本ですか`];make("tx",prompt,ans);break}
-case "truefalse":{const isTrue=Math.random()<.5,other=pick(["日本","中国","イタリア","スペイン"].filter(v=>v!==country)),claim=`${A}は${isTrue?country:other}人です。`,p=`会話を読んで、文が正しいか選んでください。\nA：${A}は何人ですか。\nB：${country}人です。\n「${claim}」`;make("mc",p,["正しい","正しくない"],{correct:isTrue?0:1});break}
+case "truefalse":{const isTrue=Math.random()<.5,other=pick(["日本","中国","イタリア","スペイン"].filter(v=>v!==country)),claim=`${A}は${isTrue?country:other}人です。`,p=`会話を読んで、文が正しいか選んでください。\nA：${A}は何人ですか。\nB：${country}人です。\n「${claim}」`;make("mc",p,["ただしい","ただしくない"],{correct:isTrue?0:1});break}
 case "odd":{const set=pick([["本","ガイドブック","辞書"],["学生","先生","会社員"],["一月","三月","七月"],["おんがく","サッカー","りょうり"]]),odd=pick(["誕生日","六月","友だち","電話番号","美術館","今日"]),options=shuffleArray([...set,odd]),p=`仲間ではないものを選んでください。\n${A}のカード`;make("mc",p,options,{correct:options.indexOf(odd)});break}
-case "comprehension":{const p=`会話を読んで答えてください。\\nA：${A}の誕生日はいつですか。\\nB：${date[0]}です。\\nA：何歳ですか。\\nB：二十歳です。`;make("mc",p,["二十歳です。","十九歳です。","三十歳です。","誕生日です。"]);break}
-case "reading":{const p=`文を読んで答えてください。\\n${A}は${date[0]}生まれです。今、二十一歳です。しゅみは${h1}と${h2}です。`;make("mc",p,["二十一歳です。","二十歳です。","十九歳です。","二十二歳です。"]);break}
+case "comprehension":{const p=`会話を読んで答えてください。\\nA：${A}の誕生日はいつですか。\\nB：${date[0]}です。\\nA：何才ですか。\\nB：二十才です。`;make("mc",p,["二十才です。","十九才です。","三十才です。","誕生日です。"]);break}
+case "reading":{const p=`文を読んで答えてください。\\n${A}は${date[0]}生まれです。今、二十一才です。しゅみは${h1}と${h2}です。`;make("mc",p,["二十一才です。","二十才です。","十九才です。","二十二才です。"]);break}
 case "listen":{const audio=`A：${A}の誕生日はいつですか。\\nB：${date[0]}です。`;make("listen","会話を聞いて、誕生日を選んでください。",dates.map(d=>d[0]),{audio,correct:dates.findIndex(d=>d[0]===date[0])});break}
 case "kana":{const nameKana={"田中さん":"たなかさん","山田さん":"やまださん","森さん":"もりさん","チンさん":"ちんさん","ミラさん":"みらさん","マリアさん":"まりあさん","ルカさん":"るかさん","ハンさん":"はんさん","さとうさん":"さとうさん","リナさん":"りなさん"},src=unit===1?(()=>{const cKana={"イタリア":"いたりあ","日本":"にほん","中国":"ちゅうごく","イギリス":"いぎりす","スペイン":"すぺいん"},hKana={"おんがく":"おんがく","サッカー":"さっかー","えいが":"えいが","りょうり":"りょうり"};return [`私は${A}です。${country}人です。しゅみは${h1}です。`,`わたしは${nameKana[A]}です。${cKana[country]}じんです。しゅみは${hKana[h1]}です。`]})():pick([[`${A}の誕生日は${date[0]}です。`,`${nameKana[A]}のたんじょうびは${date[1]}です。`],["今日は六月です。","きょうはろくがつです"],["これは誰の本ですか。","これはだれのほんですか"],["電話番号は何番ですか。","でんわばんごうはなんばんですか"]]);make("tx",`ひらがなで書いてください。\n${src[0]}`,[src[1]]);break}
 case "kanji":{const src=unit===1?pick([["にほんご","日本語"],["がくせい","学生"],["だいがく","大学"],["せんせい","先生"]]):pick([["たんじょうび","誕生日"],["びじゅつかん","美術館"],["きょう","今日"],["でんわばんごう","電話番号"],["こんげつ","今月"],["なんにち","何日"]]);make("tx",`${A}の学習カード：漢字で書いてください。\n${src[0]}`,[src[1]]);break}
-case "free":{const model=unit===1?`${A}です。${country}人です。しゅみは${h1}です。`:`私は${A}です。誕生日は${date[0]}です。二十歳です。しゅみは${h1}と${h2}です。`;make("write","日本語で自己紹介を書いてください。名前、国籍、趣味を入れてください。",[model]);break}
+case "free":{const model=unit===1?`${A}です。${country}人です。しゅみは${h1}です。`:`私は${A}です。誕生日は${date[0]}です。二十才です。しゅみは${h1}と${h2}です。`;make("write","日本語で自己紹介を書いてください。名前、国籍、趣味を入れてください。",[model]);break}
 default:return null}
 return x}
 function exUnits(){const all=[...new Set(AV())].sort((a,b)=>a-b),every=S.un===null||S.un===undefined,prim=every?all.slice():S.un.filter(u=>all.includes(u)),mx=Math.max(0,...prim);return{prim,rev:[]}}
@@ -843,25 +986,27 @@ function ex(){
  else if(ty=="write")b=`<textarea id="in" class="ex-answer" rows="3" placeholder="Scrivi in giapponese"></textarea><button class="btn on" style="width:100%;margin-top:8px" onclick="exWrite()">Confronta con l’esempio</button>`;
  else if(ty=="fill")b=`<button class="btn ok" style="width:100%;margin-top:8px" onclick="exFillSubmit()">Controlla la risposta</button>`;
  else {b=`<input id="in" class="ex-answer" placeholder="Scrivi in giapponese" onkeydown="if(event.key=='Enter')exTx()"><button class="btn ok" style="width:100%;margin-top:8px" onclick="exTx()">Controlla la risposta</button>`}
- el(top+`<div class="g"><div class="ex-head"><span class="tag">${(EX_GROUPS.find(g=>g[0]===exGroup(x))||["",exTypes[ty]])[1]}</span><span class="ex-sub ex-count">${ei+1} / ${eq.length} · ✓ ${eok} · ✗ ${emiss.length}</span></div><div class="bar"><i style="width:${Math.round(ei/eq.length*100)}%"></i></div><div class="ex-prompt" style="white-space:pre-line">${ty==="fill"?fillPromptHtml(x):japanesePrompt(x)}</div><div id="bd">${b}</div><div id="fb"></div></div>`);
+ el(top+`<div class="g"><div class="ex-head"><span class="tag">${(EX_GROUPS.find(g=>g[0]===exGroup(x))||["",exTypes[ty]])[1]}</span><span class="ex-sub ex-count">${ei+1} / ${eq.length} · ✓ ${eok} · ✗ ${emiss.length}</span></div><div class="bar"><i style="width:${Math.round(ei/eq.length*100)}%"></i></div><div class="ex-prompt" style="white-space:pre-line">${promptHtml(ty==="fill"?fillPromptHtml(x):japanesePrompt(x))}</div><div id="bd">${b}</div><div id="fb"></div></div>`);
  if(ty=="ord")tiles()
 }
+// prima riga = consegna (piccola, in grigio); il resto = testo dell'esercizio
+function promptHtml(s){const k=s.indexOf("\n");return k<0?s:`<div class="ex-instr">${s.slice(0,k)}</div>${s.slice(k+1)}`}
 function tiles(){const x=EX[eq[ei]];$("pk").innerHTML=pk.map(i=>`<button class="btn" style="margin:3px" onclick="pk=pk.filter(z=>z!=${i});tiles()">${x[3][i]}</button>`).join("")||"<span class='mu'>Tocca le parole nell’ordine giusto</span>";$("pl").innerHTML=sh.filter(i=>!pk.includes(i)).map(i=>`<button class="btn" style="margin:4px" onclick="pk.push(${i});tiles()">${x[3][i]}</button>`).join("")}
-const EX_ROMA={"中国語":"chūgokugo","ミラさんはイタリア語の学生です":"Mira-san wa Itaria-go no gakusei desu","山田さんのしゅみは何ですか":"Yamada-san no shumi wa nan desu ka","モリさんのしゅみは何ですか":"Mori-san no shumi wa nan desu ka","しつれいですがスペインの方ですか":"Shitsurei desu ga, Supein no kata desu ka","ハンさんはかんこく人ではありません":"Han-san wa Kankoku-jin dewa arimasen","山田さんのしゅみはりょうりです":"Yamada-san no shumi wa ryōri desu","マルコさんはスペイン語の学生です":"Maruko-san wa Supein-go no gakusei desu","私はイタリア人ですモリさんは日本の方です":"Watashi wa Itaria-jin desu. Mori-san wa Nihon no kata desu","私はマリアです誕生日は五月二十日です二十一歳ですしゅみは読書です":"Watashi wa Maria desu. Tanjōbi wa gogatsu hatsuka desu. Nijūissai desu. Shumi wa dokusho desu","田中さんのです":"Tanaka-san no desu","は・の・は・の・の":"wa · no · wa · no · no","はのはのの":"wa no wa no no","だれの・の・いつ・ふつか":"dare no · no · itsu · futsuka","だれののいつふつか":"dare no no itsu futsuka","田中さんは大学の学生ですか":"Tanaka-san wa daigaku no gakusei desu ka","ルカさんは何歳ですか":"Ruka-san wa nansai desu ka","正しい":"tadashii","誕生日":"tanjōbi","六月二十四日":"rokugatsu nijūyokka","二十歳です。":"hatachi desu","三月三日":"sangatsu mikka","三月三日です。":"sangatsu mikka desu","たんじょうびはごがつはつかです":"tanjōbi wa gogatsu hatsuka desu","日本語":"nihongo","私はマリアです。誕生日は五月二十日です。二十一歳です。趣味は音楽です。":"Watashi wa Maria desu. Tanjōbi wa gogatsu hatsuka desu. Nijūissai desu. Shumi wa ongaku desu.","この本は森さんのです":"Kono hon wa Mori-san no desu","この建物は美術館です":"Kono tatemono wa bijutsukan desu","これはエレナさんの本です":"Kore wa Erena-san no hon desu","これは森さんの本です":"Kore wa Mori-san no hon desu","これはモリさんの本です":"Kore wa Mori-san no hon desu","これはエレナさんの本ですか":"Kore wa Erena-san no hon desu ka","これは誰の本ですか":"Kore wa dare no hon desu ka","あの本は誰のですか":"Ano hon wa dare no desu ka","それはエレナさんのです":"Sore wa Erena-san no desu","エレナさんのです":"Erena-san no desu","エレナさんの本です":"Erena-san no hon desu","私の誕生日は五月二十日です":"Watashi no tanjōbi wa gogatsu hatsuka desu","私のたんじょうびは五月二十日です":"Watashi no tanjōbi wa gogatsu hatsuka desu","誕生日はいつですか":"Tanjōbi wa itsu desu ka","いつ":"itsu","がつ":"gatsu","はつか":"hatsuka","さい":"sai","なんばん":"nanban","何番":"nanban","なんにち":"nannichi","の":"no","とうきょう":"tōkyō","きょうと":"kyōto","イタリア":"Itaria","キアラ":"Kiara","店":"mise","何":"nani / nan","山":"yama","六":"roku","にほんご":"nihongo","ついたち":"tsuitachi","私はマリアです。誕生日は五月二十日です。二十一歳です。しゅみは読書です。":"Watashi wa Maria desu. Tanjōbi wa gogatsu hatsuka desu. Nijūissai desu. Shumi wa dokusho desu.","これは誰の本ですか。エレナさんのです。誕生日はいつですか。":"Kore wa dare no hon desu ka. Erena-san no desu. Tanjōbi wa itsu desu ka."};
+const EX_ROMA={"中国語":"chūgokugo","ミラさんはイタリア語の学生です":"Mira-san wa Itaria-go no gakusei desu","山田さんのしゅみは何ですか":"Yamada-san no shumi wa nan desu ka","モリさんのしゅみは何ですか":"Mori-san no shumi wa nan desu ka","しつれいですがスペインの方ですか":"Shitsurei desu ga, Supein no kata desu ka","ハンさんはかんこく人ではありません":"Han-san wa Kankoku-jin dewa arimasen","山田さんのしゅみはりょうりです":"Yamada-san no shumi wa ryōri desu","マルコさんはスペイン語の学生です":"Maruko-san wa Supein-go no gakusei desu","私はイタリア人ですモリさんは日本の方です":"Watashi wa Itaria-jin desu. Mori-san wa Nihon no kata desu","私はマリアです誕生日は五月二十日です二十一才ですしゅみは読書です":"Watashi wa Maria desu. Tanjōbi wa gogatsu hatsuka desu. Nijūissai desu. Shumi wa dokusho desu","田中さんのです":"Tanaka-san no desu","は・の・は・の・の":"wa · no · wa · no · no","はのはのの":"wa no wa no no","だれの・の・いつ・ふつか":"dare no · no · itsu · futsuka","だれののいつふつか":"dare no no itsu futsuka","田中さんは大学の学生ですか":"Tanaka-san wa daigaku no gakusei desu ka","ルカさんは何才ですか":"Ruka-san wa nansai desu ka","ただしい":"tadashii","誕生日":"tanjōbi","六月二十四日":"rokugatsu nijūyokka","二十才です。":"hatachi desu","三月三日":"sangatsu mikka","三月三日です。":"sangatsu mikka desu","たんじょうびはごがつはつかです":"tanjōbi wa gogatsu hatsuka desu","日本語":"nihongo","私はマリアです。誕生日は五月二十日です。二十一才です。趣味は音楽です。":"Watashi wa Maria desu. Tanjōbi wa gogatsu hatsuka desu. Nijūissai desu. Shumi wa ongaku desu.","この本は森さんのです":"Kono hon wa Mori-san no desu","この建物は美術館です":"Kono tatemono wa bijutsukan desu","これはエレナさんの本です":"Kore wa Erena-san no hon desu","これは森さんの本です":"Kore wa Mori-san no hon desu","これはモリさんの本です":"Kore wa Mori-san no hon desu","これはエレナさんの本ですか":"Kore wa Erena-san no hon desu ka","これは誰の本ですか":"Kore wa dare no hon desu ka","あの本は誰のですか":"Ano hon wa dare no desu ka","それはエレナさんのです":"Sore wa Erena-san no desu","エレナさんのです":"Erena-san no desu","エレナさんの本です":"Erena-san no hon desu","私の誕生日は五月二十日です":"Watashi no tanjōbi wa gogatsu hatsuka desu","私のたんじょうびは五月二十日です":"Watashi no tanjōbi wa gogatsu hatsuka desu","誕生日はいつですか":"Tanjōbi wa itsu desu ka","いつ":"itsu","がつ":"gatsu","はつか":"hatsuka","さい":"sai","なんばん":"nanban","何番":"nanban","なんにち":"nannichi","の":"no","とうきょう":"tōkyō","きょうと":"kyōto","イタリア":"Itaria","キアラ":"Kiara","店":"mise","何":"nani / nan","山":"yama","六":"roku","にほんご":"nihongo","ついたち":"tsuitachi","私はマリアです。誕生日は五月二十日です。二十一才です。しゅみは読書です。":"Watashi wa Maria desu. Tanjōbi wa gogatsu hatsuka desu. Nijūissai desu. Shumi wa dokusho desu.","これは誰の本ですか。エレナさんのです。誕生日はいつですか。":"Kore wa dare no hon desu ka. Erena-san no desu. Tanjōbi wa itsu desu ka."};
 function kanaToRomaji(value){const basic={あ:"a",い:"i",う:"u",え:"e",お:"o",か:"ka",き:"ki",く:"ku",け:"ke",こ:"ko",さ:"sa",し:"shi",す:"su",せ:"se",そ:"so",た:"ta",ち:"chi",つ:"tsu",て:"te",と:"to",な:"na",に:"ni",ぬ:"nu",ね:"ne",の:"no",は:"ha",ひ:"hi",ふ:"fu",へ:"he",ほ:"ho",ま:"ma",み:"mi",む:"mu",め:"me",も:"mo",や:"ya",ゆ:"yu",よ:"yo",ら:"ra",り:"ri",る:"ru",れ:"re",ろ:"ro",わ:"wa",を:"o",ん:"n",が:"ga",ぎ:"gi",ぐ:"gu",げ:"ge",ご:"go",ざ:"za",じ:"ji",ず:"zu",ぜ:"ze",ぞ:"zo",だ:"da",ぢ:"ji",づ:"zu",で:"de",ど:"do",ば:"ba",び:"bi",ぶ:"bu",べ:"be",ぼ:"bo",ぱ:"pa",ぴ:"pi",ぷ:"pu",ぺ:"pe",ぽ:"po",ぁ:"a",ぃ:"i",ぅ:"u",ぇ:"e",ぉ:"o",ゃ:"ya",ゅ:"yu",ょ:"yo"};let a=Array.from(value,(c)=>{const n=c.codePointAt(0);return n>=0x30a1&&n<=0x30f6?String.fromCodePoint(n-0x60):c}),out="",gem=false,last="";for(let i=0;i<a.length;i++){let c=a[i];if(c==="・"){out+=" · ";continue}if(c==="っ"){gem=true;continue}if(c==="ー"){const v=last.match(/[aeiou]$/);if(v)out+=v[0];continue}if(i+1<a.length&&["き","し","ち","に","ひ","み","り","ぎ","じ","び","ぴ"].includes(c)&&["ゃ","ゅ","ょ"].includes(a[i+1])){const base=basic[c].replace(/i$/,"");const y={ゃ:"a",ゅ:"u",ょ:"o"}[a[i+1]];let syl=({き:"ky",し:"sh",ち:"ch",に:"ny",ひ:"hy",み:"my",り:"ry",ぎ:"gy",じ:"j",び:"by",ぴ:"py"}[c])+y;out+=(gem?syl[0]:"")+syl;last=syl;gem=false;i++;continue}let syll=basic[c]||c;if(gem&&/^[a-z]/i.test(syll))out+=syll[0]==="c"?"t":syll[0];out+=syll;last=syll;gem=false}return out}
 function exRoma(value){const raw=String(value||"").normalize("NFKC"),key=nz(raw).replace(/[。．.]/g,"");if(EX_ROMA[key])return EX_ROMA[key];if(key==="は")return "wa";if(key==="へ")return "e";let reading=raw.replace(/おはようございます/g,"ohayō gozaimasu").replace(/おはよう/g,"ohayō").replace(/[。．.、，,！!？?「」『』]/g," ");reading=reading.replace(/([ぁ-ヿ㐀-䶿一-鿿])は(?=[ぁ-ヿ㐀-䶿一-鿿])/g,"$1 わ ").replace(/([ぁ-ヿ㐀-䶿一-鿿])へ(?=[ぁ-ヿ㐀-䶿一-鿿])/g,"$1 え ").replace(/(^|[・･])\s*は(?=([・･]|$))/g,"$1わ").replace(/(^|[・･])\s*へ(?=([・･]|$))/g,"$1え").replace(/ですか/g,"です か");const words=Object.entries(KANA_EQ).map(([a,b])=>[a,b]);for(const [jp,rd] of [["田中さん","Tanaka-san"],["山田さん","Yamada-san"],["森さん","Mori-san"],["チンさん","Chin-san"],["ミラさん","Mira-san"],["マリアさん","Maria-san"],["ルカさん","Ruka-san"],["ハンさん","Han-san"],["さとうさん","Satō-san"],["スズキさん","Suzuki-san"],["リナさん","Rina-san"],["マイクさん","Maiku-san"],["田中","Tanaka"],["山田","Yamada"],["森","Mori"],["チン","Chin"],["ミラ","Mira"],["マリア","Maria"],["ルカ","Ruka"],["ハン","Han"],["さとう","Satō"],["スズキ","Suzuki"],["リナ","Rina"],["マイク","Maiku"]])words.push([jp,rd]);for(const row of V){if(row[0]&&row[1]&&/[a-zāēīōū]/i.test(row[1]))words.push([row[0],row[1]])}for(const row of KR){const m=String(row[1]||"").match(/·\s*([a-zāēīōū-]+)/i);if(m)words.push([row[0],m[1]])}for(const [jp,rd] of words.sort((a,b)=>b[0].length-a[0].length))reading=reading.replaceAll(jp,rd+" ");if(/[㐀-䶿一-鿿]/.test(reading))return "";return kanaToRomaji(reading).replace(/\s+/g," ").trim()}
 function fin(ok,right){const x=EX[eq[ei]],answer=String(right||x[3]?.[0]||"").replace(/[。．.]+$/,""),isJapanese=/[ぁ-ヿ㐀-䶿一-鿿]/.test(answer),roma=exRoma(answer);if(ok)eok++;else emiss.push(eq[ei]);recordExerciseSkill(x,ok);document.querySelectorAll("#bd button,#bd input,#bd textarea,.ex-inline-blank").forEach(o=>o.disabled=true);$("fb").innerHTML=`<div class="g ex-feedback" style="border-color:var(${ok?"--ok":"--ko"})"><b>${ok?"Corretto!":"Da rivedere"}</b>${isJapanese?`<div class="jp-answer">${answer}</div>`:""}${roma?`<details class="answer-romaji"><summary>Mostra il romanji</summary><div>${roma}</div></details>`:""}</div><button class="btn on" style="width:100%" onclick="ei++;ex()">${ei+1>=eq.length?"Vedi i risultati":"Prossimo esercizio →"}</button>`}
 function exMc(b){const x=EX[eq[ei]],ok=b.dataset.r=="1",opts=x[0]=="listen"?x[4]:x[3],right=x[0]=="listen"?x[5]:x[4];document.querySelectorAll("#bd .opt").forEach(o=>{if(o.dataset.r=="1")o.classList.add("ok")});if(!ok)b.classList.add("ko");fin(ok,jpOption(opts[right])||"")}
 function exListen(){if(!window.speechSynthesis||!window.SpeechSynthesisUtterance){alert("Impossibile riprodurre l’audio. Mostra il testo per rispondere.");return}const x=EX[eq[ei]];speechSynthesis.cancel();const u=new SpeechSynthesisUtterance(x[3]);u.lang="ja-JP";u.rate=.82;speechSynthesis.speak(u)}
 function exOrd(){const x=EX[eq[ei]],r=x[3].join("");fin(pk.map(i=>x[3][i]).join("")==r,r+"。")}
-const KANA_EQ={"一つ":"ひとつ","二つ":"ふたつ","三つ":"みっつ","四つ":"よっつ","五つ":"いつつ","六つ":"むっつ","七つ":"ななつ","八つ":"やっつ","九つ":"ここのつ","何才":"なんさい","才":"さい","失礼":"しつれい","韓国":"かんこく","料理":"りょうり","読書":"どくしょ","辞書":"じしょ","駅":"えき","子供":"こども","子ども":"こども","田中":"たなか","山田":"やまだ","二十一歳":"にじゅういっさい","二十歳":"はたち","五月二十日":"ごがつはつか","一月一日":"いちがつついたち","四月十五日":"しがつじゅうごにち","七月二日":"しちがつふつか","三月三日":"さんがつみっか","三月":"さんがつ","二月":"にがつ","四月":"しがつ","五月":"ごがつ","六月二十四日":"ろくがつにじゅうよっか","三月三日":"さんがつみっか","一日":"ついたち","二日":"ふつか","三日":"みっか","四日":"よっか","五日":"いつか","六日":"むいか","七日":"なのか","八日":"ようか","九日":"ここのか","十日":"とおか","五月":"ごがつ","一月":"いちがつ","六月":"ろくがつ","七月":"しちがつ","九月":"くがつ","東京":"とうきょう","京都":"きょうと","日本語":"にほんご","日本人":"にほんじん","日本":"にほん","中国人":"ちゅうごくじん","中国":"ちゅうごく","学生":"がくせい","大学":"だいがく","先生":"せんせい","会社員":"かいしゃいん","名前":"なまえ","専門":"せんもん","仕事":"しごと","趣味":"しゅみ","誕生日":"たんじょうび","建物":"たてもの","美術館":"びじゅつかん","劇場":"げきじょう","喫茶店":"きっさてん","電話番号":"でんわばんごう","番号":"ばんごう","今月":"こんげつ","今日":"きょう","何月":"なんがつ","何日":"なんにち","何歳":"なんさい","何番":"なんばん","誰":"だれ","誰の":"だれの","本":"ほん","私":"わたし","森":"もり","月":"つき","日":"ひ","歳":"さい","一":"いち","二":"に","三":"さん","四":"よん","五":"ご","六":"ろく","七":"なな","八":"はち","九":"きゅう","十":"じゅう","火":"ひ","水":"みず","木":"き","近":"ちか","近く":"ちかく","円":"えん","犬":"いぬ","体":"からだ","前":"まえ","後":"あと","後ろ":"うしろ","右":"みぎ","左":"ひだり","外":"そと","毎":"まい","川":"かわ","火曜日":"かようび","水曜日":"すいようび","木曜日":"もくようび","十円":"じゅうえん","子犬":"こいぬ","午前":"ごぜん","午後":"ごご","名前":"なまえ","左右":"さゆう","外国":"がいこく","外国人":"がいこくじん","毎日":"まいにち","毎月":"まいつき","毎年":"まいとし","どこ":"どこ","近く":"ちかく","一階":"いっかい","二階":"にかい","三階":"さんがい","四階":"よんかい","六階":"ろっかい","何階":"なんがい","何人":"なんにん","何時":"なんじ","二時半":"にじはん","九時半":"くじはん","何本":"なんぼん","何冊":"なんさつ","冊":"さつ","枚":"まい","本":"ほん","ください":"ください","いくら":"いくら","おいしい":"おいしい","レストラン":"れすとらん","ビル":"びる","本屋さん":"ほんやさん","銀行":"ぎんこう","郵便局":"ゆうびんきょく","映画館":"えいがかん","ランチ":"らんち","やきとり":"やきとり","すきやき":"すきやき","さしみ":"さしみ","飲み物":"のみもの","野菜":"やさい","肉":"にく","果物":"くだもの","切手":"きって","はがき":"はがき","時計":"とけい","傘":"かさ","ノート":"のーと","皿":"さら","魚":"さかな","天ぷら":"てんぷら","いらっしゃいませ":"いらっしゃいませ","おすすめ":"おすすめ","近く":"ちかく"};
+const KANA_EQ={"一つ":"ひとつ","二つ":"ふたつ","三つ":"みっつ","四つ":"よっつ","五つ":"いつつ","六つ":"むっつ","七つ":"ななつ","八つ":"やっつ","九つ":"ここのつ","何才":"なんさい","才":"さい","失礼":"しつれい","韓国":"かんこく","料理":"りょうり","読書":"どくしょ","辞書":"じしょ","駅":"えき","子供":"こども","子ども":"こども","田中":"たなか","山田":"やまだ","二十一才":"にじゅういっさい","二十才":"はたち","五月二十日":"ごがつはつか","一月一日":"いちがつついたち","四月十五日":"しがつじゅうごにち","七月二日":"しちがつふつか","三月三日":"さんがつみっか","三月":"さんがつ","二月":"にがつ","四月":"しがつ","五月":"ごがつ","六月二十四日":"ろくがつにじゅうよっか","三月三日":"さんがつみっか","一日":"ついたち","二日":"ふつか","三日":"みっか","四日":"よっか","五日":"いつか","六日":"むいか","七日":"なのか","八日":"ようか","九日":"ここのか","十日":"とおか","五月":"ごがつ","一月":"いちがつ","六月":"ろくがつ","七月":"しちがつ","九月":"くがつ","東京":"とうきょう","京都":"きょうと","日本語":"にほんご","日本人":"にほんじん","日本":"にほん","中国人":"ちゅうごくじん","中国":"ちゅうごく","学生":"がくせい","大学":"だいがく","先生":"せんせい","会社員":"かいしゃいん","名前":"なまえ","専門":"せんもん","仕事":"しごと","趣味":"しゅみ","誕生日":"たんじょうび","建物":"たてもの","美術館":"びじゅつかん","劇場":"げきじょう","喫茶店":"きっさてん","電話番号":"でんわばんごう","番号":"ばんごう","今月":"こんげつ","今日":"きょう","何月":"なんがつ","何日":"なんにち","何才":"なんさい","何番":"なんばん","誰":"だれ","誰の":"だれの","本":"ほん","私":"わたし","森":"もり","月":"つき","日":"ひ","才":"さい","一":"いち","二":"に","三":"さん","四":"よん","五":"ご","六":"ろく","七":"なな","八":"はち","九":"きゅう","十":"じゅう","火":"ひ","水":"みず","木":"き","近":"ちか","近く":"ちかく","円":"えん","犬":"いぬ","体":"からだ","前":"まえ","後":"あと","後ろ":"うしろ","右":"みぎ","左":"ひだり","外":"そと","毎":"まい","川":"かわ","火曜日":"かようび","水曜日":"すいようび","木曜日":"もくようび","十円":"じゅうえん","子犬":"こいぬ","午前":"ごぜん","午後":"ごご","名前":"なまえ","左右":"さゆう","外国":"がいこく","外国人":"がいこくじん","毎日":"まいにち","毎月":"まいつき","毎年":"まいとし","どこ":"どこ","近く":"ちかく","一階":"いっかい","二階":"にかい","三階":"さんがい","四階":"よんかい","六階":"ろっかい","何階":"なんがい","何人":"なんにん","何時":"なんじ","二時半":"にじはん","九時半":"くじはん","何本":"なんぼん","何冊":"なんさつ","冊":"さつ","枚":"まい","本":"ほん","ください":"ください","いくら":"いくら","おいしい":"おいしい","レストラン":"れすとらん","ビル":"びる","本屋さん":"ほんやさん","銀行":"ぎんこう","郵便局":"ゆうびんきょく","映画館":"えいがかん","ランチ":"らんち","やきとり":"やきとり","すきやき":"すきやき","さしみ":"さしみ","飲み物":"のみもの","野菜":"やさい","肉":"にく","果物":"くだもの","切手":"きって","はがき":"はがき","時計":"とけい","傘":"かさ","ノート":"のーと","皿":"さら","魚":"さかな","天ぷら":"てんぷら","いらっしゃいませ":"いらっしゃいませ","おすすめ":"おすすめ","近く":"ちかく"};
 function kanaEquivalent(value){let v=nz(String(value||"")).normalize("NFKC").replace(/[。．.、，,！!？?]/g,"");v=Array.from(v,c=>{const n=c.codePointAt(0);return n>=0x30a1&&n<=0x30f6?String.fromCodePoint(n-0x60):c}).join("");for(const [k,r] of Object.entries(KANA_EQ).sort((a,b)=>b[0].length-a[0].length))v=v.replaceAll(k,r);return v}
 function exAnswerMatch(given,expected){return nz(String(given||""))==nz(String(expected||""))||kanaEquivalent(given)==kanaEquivalent(expected)}
 function fillPromptHtml(x){let i=0;return japanesePrompt(x).replace(/[（(][　 ]*[）)]/g,()=>`（<input class="ex-inline-blank" aria-label="Particella ${++i}" maxlength="8" autocomplete="off" onkeydown="if(event.key==='Enter')exFillSubmit()">）`)}
 function exFillSubmit(){const x=EX[eq[ei]],fields=[...document.querySelectorAll(".ex-prompt .ex-inline-blank")],vals=fields.map(f=>f.value.trim()),given=vals.join(""),answers=x[3].map(a=>String(a).replace(/[・･,，\s　]/g,"")),ok=vals.length>0&&answers.some(a=>nz(a).toLowerCase()==nz(given).toLowerCase());fin(ok,x[3][0]+"。") }
 function exTx(){const x=EX[eq[ei]],v=$("in").value;fin(x[3].some(a=>exAnswerMatch(a,v)),x[3][0]+"。")}
 function exWrite(){const x=EX[eq[ei]],v=$("in").value.trim();if(!v){$("fb").innerHTML=`<div class="g">Scrivi prima una risposta.</div>`;return}document.querySelectorAll("#bd textarea,#bd button").forEach(o=>o.disabled=true);const answer=x[3][0],roma=exRoma(answer),romanHtml=roma?'<details class="answer-romaji"><summary>Mostra il romanji</summary><div>'+roma+'</div></details>':'';$("fb").innerHTML=`<div class="g ex-feedback"><b>Confronta la tua risposta</b><br><span class="mu">La tua risposta</span><br>${v.replace(/</g,"&lt;").replace(/>/g,"&gt;")}<hr><span class="mu">Risposta esempio</span><div class="jp-answer">${answer}</div>${romanHtml}</div><div class="row"><button class="btn ok" onclick="fin(true,EX[eq[ei]][3][0])">La risposta va bene</button><button class="btn ko" onclick="fin(false,EX[eq[ei]][3][0])">Devo riprovare</button></div>`}
-nav();side();go("vo");
+nav();side();go("ho");
 </script></body></html>
 
 
