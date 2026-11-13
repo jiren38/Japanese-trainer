@@ -135,6 +135,36 @@ a{color:var(--ac)}
 .day-scheme{margin:12px 0;padding:14px;background:var(--bg2);border:1px solid var(--bd);border-radius:12px}.day-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(100px,1fr));gap:7px;margin:9px 0}.day-cell{display:flex;flex-direction:column;gap:2px;padding:9px;background:var(--card);border:1px solid var(--bd);border-radius:9px}.day-cell b{font:700 17px/1.3 var(--ui),var(--jp)}.day-cell span{font-size:16px;font-weight:600}.day-cell small{color:var(--mu)}.day-scheme p{margin:8px 0 0;line-height:1.5}
 .counter-key{display:flex;flex-wrap:wrap;align-items:center;gap:7px 16px;margin:9px 0 12px;color:var(--mu);font-size:12px}.counter-key-mark{display:inline-flex;align-items:center;gap:6px}.counter-key-swatch{display:inline-block;width:12px;height:12px;border:1px solid var(--ac);border-radius:3px;background:var(--ac-soft)}.day-cell.counter-changed{border-color:var(--ac);background:var(--ac-soft)}.counter-change-label{display:block;margin-top:4px;color:var(--ac);font-size:10px;font-style:normal;font-weight:700;line-height:1.2}
 @media(hover:none){.kbd-hint{display:none!important}}
+/* ===== Kanji scrittura (modello dell'app) ===== */
+.btn.tool{padding:8px 12px;font-size:14px;border-radius:10px}.btn.tool.on{border-color:var(--ac);color:var(--ac);background:var(--ac-soft)}.btn:disabled{opacity:.5;cursor:default}
+.kstats{display:grid;grid-template-columns:repeat(3,1fr);gap:10px;margin-bottom:12px}.kstats div{background:var(--card);border:1px solid var(--bd);border-radius:12px;padding:12px;text-align:center;box-shadow:var(--shadow)}.kstats b{display:block;font-size:24px}.kstats span{font-size:12px;color:var(--mu)}
+.kfilters .chip{cursor:pointer}.klegend{display:flex;flex-wrap:wrap;gap:8px 14px;align-items:center;font-size:13px;color:var(--mu);margin:4px 0}.klegend span{display:inline-flex;gap:6px;align-items:center}
+.kdot{display:inline-block;width:9px;height:9px;border-radius:50%;background:var(--bd);border:1px solid var(--mu)}.kdot.studied{background:var(--ac2);border-color:var(--ac2)}.kdot.written{background:var(--ok);border-color:var(--ok)}
+.kgrid{display:grid;grid-template-columns:repeat(auto-fill,minmax(92px,1fr));gap:8px}
+.kitem{position:relative}.kopen{width:100%;display:flex;flex-direction:column;align-items:center;gap:2px;padding:12px 6px 10px;background:var(--card);border:1px solid var(--bd);border-radius:12px;cursor:pointer;color:var(--tx);box-shadow:var(--shadow)}.kopen:hover{border-color:var(--ac)}.kitem.sel .kopen{border-color:var(--ac);background:var(--ac-soft)}
+.kopen .kk{font:500 36px/1.15 var(--jps)}.kopen .km{font-size:12px;color:var(--mu);max-width:100%;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}.kopen .kdot{position:absolute;top:8px;left:8px}
+.ksel{position:absolute;top:5px;right:5px;width:24px;height:24px;border-radius:7px;border:1px solid var(--bd);background:var(--bg2);color:#fff;font-weight:700;cursor:pointer;padding:0}.kitem.sel .ksel{background:var(--ac);border-color:var(--ac)}
+.kselbar{position:sticky;bottom:12px;z-index:6;display:none;flex-wrap:wrap;gap:10px;align-items:center;margin-top:14px;padding:10px 12px;background:var(--card);border:1px solid var(--ac);border-radius:14px;box-shadow:0 8px 24px rgba(0,0,0,.18)}.kselbar.show{display:flex}.kselbar .btn.ok{margin-left:auto}
+.kd-top{display:flex;gap:8px;align-items:center;margin-bottom:10px}.kd-top .spacer{flex:1}
+.kd-head{display:flex;gap:18px;align-items:center}.kgenko{flex:none;width:112px;height:112px;border:2px solid var(--ac);border-radius:6px;display:grid;place-items:center;background:linear-gradient(var(--bd),var(--bd)) center/1px 100% no-repeat,linear-gradient(var(--bd),var(--bd)) center/100% 1px no-repeat,var(--card)}.kgenko span{font:500 76px/1 var(--jps)}
+.kmean{font-size:22px;font-weight:700;margin-bottom:4px}.kd-read{font-size:15px;margin-bottom:4px}.kd-read b{font-family:var(--jp);font-weight:600}.kd-stat{display:flex;flex-wrap:wrap;gap:8px;align-items:center;margin-top:8px}
+.kpill{font-size:12px;font-weight:700;padding:3px 10px;border-radius:999px;background:var(--bg2);color:var(--mu)}.kpill.studied{background:var(--ac2-soft);color:var(--ac2)}.kpill.written{background:var(--ok-soft);color:var(--ok)}
+.kd-tabs{margin-bottom:12px;display:flex;width:100%}.kd-tabs .btn{flex:1}.kd-body .seg{margin-bottom:6px}
+.kread td{font-family:var(--jp)}.kd-all{margin-top:14px;text-align:center}.kd-all b{display:block;text-align:left;margin-bottom:8px}
+.ksvg,.kpad{display:block;width:100%;max-width:330px;margin:0 auto;aspect-ratio:1;background:var(--card);border-radius:10px}.ksvg.big{max-width:360px}
+.kguide rect{fill:none;stroke:var(--bd);stroke-width:1}.kguide line{stroke:var(--bd);stroke-width:.6;stroke-dasharray:2 2}
+.kink,.kinks path,.kdone path,.kdrawn path,.klive{fill:none;stroke:var(--tx);stroke-width:3.4;stroke-linecap:round;stroke-linejoin:round}
+.kinks path.cur{stroke:var(--ac)}.kghost path,.kgh path{fill:none;stroke:var(--bd);stroke-width:3.4;stroke-linecap:round;stroke-linejoin:round}
+.kmarks path{fill:none;stroke:var(--ko);stroke-width:4;stroke-linecap:round;stroke-linejoin:round}
+.khint{fill:none;stroke:var(--ac2);stroke-width:3.4;stroke-linecap:round;stroke-dasharray:4 3}.khstart{fill:var(--ko)}.kpen{fill:var(--ac)}
+.knum{font:700 7px var(--ui);fill:var(--ac)}
+.kpad{touch-action:none;cursor:crosshair;border:1px solid var(--bd)}.kshake{animation:kshake .3s}@keyframes kshake{25%{transform:translateX(-5px)}75%{transform:translateX(5px)}}
+.kanim-bar,.kpad-bar,.kdraw-tools{display:flex;flex-wrap:wrap;gap:8px;align-items:center;justify-content:center;margin-top:10px}
+.kab{width:42px;height:42px;border-radius:50%;border:1px solid var(--bd);background:var(--card);color:var(--tx);font-size:16px;cursor:pointer}.kab.main{background:var(--ac);border-color:var(--ac);color:#fff}
+.kanim-count{min-width:110px;text-align:center;font-size:14px;color:var(--mu)}.kanim-speed{padding:7px 8px;border-radius:9px;border:1px solid var(--bd);background:var(--card);color:var(--tx);font:500 14px var(--ui)}
+.kpad-msg{flex-basis:100%;text-align:center;font-weight:600}.kpad-msg.good{color:var(--ok)}
+.kfp-res{margin:10px 0}.kfp-msg{padding:10px 12px;border-radius:10px;background:var(--bg2);border:1px solid var(--bd);line-height:1.45}.kfp-msg.good{background:var(--ok-soft);border-color:var(--ok)}.kfp-msg.bad{background:var(--ko-soft);border-color:var(--ko)}
+@media(max-width:720px){.kd-head{gap:12px}.kgenko{width:88px;height:88px}.kgenko span{font-size:60px}.kselbar{bottom:calc(80px + env(safe-area-inset-bottom,0px))}.kselbar .btn.ok{flex:1 1 100%}.kstats b{font-size:20px}}
 /* ===== Telefono ===== */
 @media(max-width:720px){
  .app{padding:0 14px calc(92px + env(safe-area-inset-bottom,0px))}
@@ -327,7 +357,7 @@ let cur="ho",q=[],qi=0,flip=false,kanjiDrawing=null,kanjiDrawActive=false;
 if(S.th)document.documentElement.dataset.theme=S.th;
 function nav(){ $("nav").innerHTML=tabs.map(t=>`<button class="tab ${t[0]==cur?"on":""}" ${t[0]==cur?'aria-current="page"':""} onclick="mode='s';go('${t[0]}')"><i aria-hidden="true">${t[2]}</i><span class="long">${t[1]}</span><span class="short">${t[3]}</span></button>`).join("")}
 function th(){const d=matchMedia("(prefers-color-scheme: dark)").matches;const n=(document.documentElement.dataset.theme||(d?"dark":"light"))=="dark"?"light":"dark";document.documentElement.dataset.theme=S.th=n;save()}
-function go(t){cur=t;flip=false;qi=0;favOnly=false;nav();window.scrollTo(0,0);({ho:home,vo:()=>deck("v"),ka:()=>deck("k"),kr:()=>deck("r"),qz:quiz,es:exStart,gr:gram,pr:prog})[t]()}
+function go(t){cur=t;flip=false;qi=0;favOnly=false;nav();window.scrollTo(0,0);({ho:home,vo:()=>deck("v"),ka:()=>{if(ANIM)ANIM.pause();KV.detail=null;KPS=null;kanjiView()},kr:()=>deck("r"),qz:quiz,es:exStart,gr:gram,pr:prog})[t]()}
 // coda di ripasso: le carte con box più basso escono prima
 function favAct(t){S.fav=S.fav||{};return act(t).filter(i=>S.fav[key(t,i)])}
 function toggleFav(t,i){S.fav=S.fav||{};const k=key(t,i);if(S.fav[k])delete S.fav[k];else S.fav[k]=1;save();deck(t)}
@@ -357,8 +387,140 @@ function deck(t){
  if(t==="k"&&rev&&!flip)initKanjiPad()
 }
 // Tastiera per le carte: Spazio/Invio = gira · 1 o ← = Non lo so · 2 o → = Lo so
-document.addEventListener("keydown",e=>{const t={vo:"v",ka:"k",kr:"r"}[cur];if(!t||mode!=="s"||/INPUT|TEXTAREA|SELECT|BUTTON|^A$/.test(e.target.tagName)||e.ctrlKey||e.metaKey||e.altKey)return;if(!q.length||qi>=q.length)return;
+document.addEventListener("keydown",e=>{const t={vo:"v",kr:"r"}[cur];if(!t||mode!=="s"||/INPUT|TEXTAREA|SELECT|BUTTON|^A$/.test(e.target.tagName)||e.ctrlKey||e.metaKey||e.altKey)return;if(!q.length||qi>=q.length)return;
  if(e.key===" "||e.key==="Enter"){e.preventDefault();flip=!flip;deck(t)}else if(flip&&(e.key==="1"||e.key==="ArrowLeft")){e.preventDefault();ans(t,q[qi],0)}else if(flip&&(e.key==="2"||e.key==="ArrowRight")){e.preventDefault();ans(t,q[qi],1)}});
+/* =========================================================
+   KANJI SCRITTURA — stesso metodo dell'app "Giapponese Passo Passo":
+   elenco · scheda · ordine dei tratti animato · scrittura guidata e libera con verifica · esercizio
+   Tratti: KanjiVG (coordinate 0-109), campionati in punti per il confronto.
+   ========================================================= */
+let KV={detail:null,tab:"scheda",wmode:"guided",status:"all",q:"",sel:new Set(),showReading:true,scroll:0},ANIM=null,KPS=null;
+const KB=109,KGRID=`<g class="kguide"><rect x="1" y="1" width="107" height="107" rx="3"/><line x1="54.5" y1="4" x2="54.5" y2="105"/><line x1="4" y1="54.5" x2="105" y2="54.5"/></g>`;
+const KJC={};let KSAMPLER=null;
+function kIdx(k){return K.findIndex(c=>c[0]===k)}
+function kj(k){if(KJC[k])return KJC[k];const i=kIdx(k),d=KANJI_STROKES[k]||[];if(!KSAMPLER){KSAMPLER=document.createElementNS("http://www.w3.org/2000/svg","svg");KSAMPLER.setAttribute("style","position:absolute;width:0;height:0;overflow:hidden");document.body.appendChild(KSAMPLER)}
+ const st=d.map(p=>{const el=document.createElementNS("http://www.w3.org/2000/svg","path");el.setAttribute("d",p);KSAMPLER.appendChild(el);const L=el.getTotalLength()||1,n=Math.max(6,Math.min(40,Math.round(L/2.5)));const pts=[];for(let j=0;j<n;j++){const q=el.getPointAtLength(L*j/(n-1));pts.push([q.x,q.y])}el.remove();return pts});
+ return KJC[k]={k,d,st,i,m:i>=0?K[i][3]:"",on:i>=0?K[i][1]:"",kun:i>=0?K[i][2]:"",u:i>=0?K[i][6]:0,ex:i>=0?K[i][5]:""}}
+function kStat(k){const s=(S.kw||{})[k]||{};if(s.ok>0)return "written";if(s.seen>0||bx("k:"+k+"|"+(kj(k).u))>0)return "studied";return "new"}
+const KSTAT={new:"Da studiare",studied:"Studiato",written:"Scritto correttamente"};
+function kRec(k){S.kw=S.kw||{};return S.kw[k]||(S.kw[k]={seen:0,tries:0,ok:0})}
+function kSeen(k){const s=kRec(k);if(!s.seen){s.seen=1;save()}}
+function kNum(st){const placed=[];return st.map((s,i)=>{let x=Math.max(4,Math.min(100,s[0][0]-7)),y=Math.max(9,s[0][1]-1);while(placed.some(([a,b])=>Math.hypot(a-x,b-y)<8)){x+=8;if(x>100){x=s[0][0]-7;y+=9}}placed.push([x,y]);return `<text class="knum" x="${x.toFixed(1)}" y="${y.toFixed(1)}">${i+1}</text>`})}
+function kStaticSVG(k){const J=kj(k);return `<svg class="ksvg" viewBox="0 0 ${KB} ${KB}" role="img" aria-label="Ordine dei tratti di ${k}">${KGRID}${J.d.map(p=>`<path class="kink" d="${p}"/>`).join("")}${kNum(J.st).join("")}</svg>`}
+// ---- animazione dei tratti con controlli ----
+class KAnim{constructor(host,k){const J=kj(k);this.st=J.st;this.speed=1;host.innerHTML=`<div class="kanim"><svg class="ksvg big" viewBox="0 0 ${KB} ${KB}" role="img" aria-label="Animazione dei tratti di ${k}">${KGRID}<g class="kghost">${J.d.map(p=>`<path d="${p}"/>`).join("")}</g><g class="kinks">${J.d.map(p=>`<path d="${p}"/>`).join("")}</g><g class="knums"></g><circle class="kpen" r="2.8" cx="-10" cy="-10"/></svg>
+ <div class="kanim-bar"><button class="kab" data-a="prev" aria-label="Tratto precedente">⏮</button><button class="kab main" data-a="play" aria-label="Riproduci">▶</button><button class="kab" data-a="next" aria-label="Tratto successivo">⏭</button><button class="kab" data-a="replay" aria-label="Ripeti dall'inizio">↻</button><span class="kanim-count" aria-live="polite"></span><select class="kanim-speed" aria-label="Velocità"><option value="0.6">Lenta</option><option value="1" selected>Normale</option><option value="1.6">Veloce</option></select></div></div>`;
+ this.paths=[...host.querySelectorAll(".kinks path")];this.pen=host.querySelector(".kpen");this.nums=host.querySelector(".knums");this.count=host.querySelector(".kanim-count");this.pb=host.querySelector('[data-a="play"]');
+ this.lens=this.paths.map(p=>p.getTotalLength()||1);this.paths.forEach((p,i)=>p.style.strokeDasharray=this.lens[i]);this.numsAll=kNum(this.st);this.i=0;this.t=0;this.playing=false;
+ host.querySelector(".kanim-bar").addEventListener("click",e=>{const b=e.target.closest("[data-a]");if(b)this[b.dataset.a]()});host.querySelector(".kanim-speed").onchange=e=>this.speed=+e.target.value;this.draw()}
+ draw(){this.paths.forEach((p,i)=>{const f=i<this.i?1:i===this.i?this.t:0;p.style.strokeDashoffset=this.lens[i]*(1-f);p.classList.toggle("cur",i===this.i&&this.t>0&&this.t<1)});
+  this.nums.innerHTML=this.numsAll.slice(0,Math.min(this.st.length,this.i+(this.t>0?1:0))).join("");
+  if(this.i<this.paths.length&&this.t>0&&this.t<1){const p=this.paths[this.i].getPointAtLength(this.lens[this.i]*this.t);this.pen.setAttribute("cx",p.x);this.pen.setAttribute("cy",p.y)}else this.pen.setAttribute("cx",-10);
+  this.count.textContent=this.i>=this.st.length?`Completato: ${this.st.length} tratti`:`Tratto ${this.i+1} di ${this.st.length}`;this.pb.textContent=this.playing?"⏸":"▶";this.pb.setAttribute("aria-label",this.playing?"Pausa":"Riproduci")}
+ loop(ts){if(!this.playing)return;if(this.last==null)this.last=ts;const dt=Math.min(50,ts-this.last);this.last=ts;if(this.pauseLeft>0)this.pauseLeft-=dt;else{const dur=(260+this.lens[this.i]*8)/this.speed;this.t+=dt/dur;if(this.t>=1){this.t=0;this.i++;this.pauseLeft=280/this.speed;if(this.i>=this.st.length){this.playing=false;this.draw();return}}}this.draw();this.raf=requestAnimationFrame(t=>this.loop(t))}
+ play(){if(this.playing){this.pause();return}if(this.i>=this.st.length){this.i=0;this.t=0}if(matchMedia("(prefers-reduced-motion: reduce)").matches){this.i=this.st.length;this.t=0;this.draw();return}this.playing=true;this.last=null;this.pauseLeft=0;this.draw();this.raf=requestAnimationFrame(t=>this.loop(t))}
+ pause(){this.playing=false;cancelAnimationFrame(this.raf);if(this.count)this.draw()}
+ replay(){this.pause();this.i=0;this.t=0;this.play()}
+ next(){this.pause();if(this.t>0){this.t=0;this.i++}else if(this.i<this.st.length)this.i++;this.draw()}
+ prev(){this.pause();if(this.t>0)this.t=0;else if(this.i>0)this.i--;this.draw()}}
+// ---- lavagna libera ----
+class KPad{constructor(host){this.strokes=[];this.cur=null;host.innerHTML=`<svg class="kpad" viewBox="0 0 ${KB} ${KB}" aria-label="Griglia di scrittura: disegna con il dito o con il mouse">${KGRID}<g class="kghost"></g><g class="kdrawn"></g><g class="kmarks"></g><g class="khintg"></g><path class="klive" d=""/></svg>`;
+ this.svg=host.querySelector("svg");this.g=this.svg.querySelector(".kdrawn");this.live=this.svg.querySelector(".klive");this.hint=this.svg.querySelector(".khintg");this.ghost=this.svg.querySelector(".kghost");this.marks=this.svg.querySelector(".kmarks");
+ const pt=e=>{const r=this.svg.getBoundingClientRect();return [(e.clientX-r.left)/r.width*KB,(e.clientY-r.top)/r.height*KB]};
+ this.svg.addEventListener("pointerdown",e=>{if(this.locked)return;e.preventDefault();this.svg.setPointerCapture(e.pointerId);this.cur=[pt(e)];this.marks.innerHTML=""});
+ this.svg.addEventListener("pointermove",e=>{if(!this.cur)return;e.preventDefault();const p=pt(e),q=this.cur[this.cur.length-1];if(Math.hypot(p[0]-q[0],p[1]-q[1])>0.9){this.cur.push(p);this.live.setAttribute("d","M"+this.cur.map(p=>p[0].toFixed(1)+" "+p[1].toFixed(1)).join(" L"))}});
+ const up=()=>{if(!this.cur)return;let s=this.cur;this.cur=null;this.live.setAttribute("d","");if(s.length===1)s=[s[0],[s[0][0]+0.7,s[0][1]+0.7]];this.strokes.push(s);this.render()};
+ this.svg.addEventListener("pointerup",up);this.svg.addEventListener("pointercancel",up)}
+ render(){this.g.innerHTML=this.strokes.map(s=>`<path d="M${s.map(p=>p[0].toFixed(1)+" "+p[1].toFixed(1)).join(" L")}"/>`).join("")}
+ undo(){this.strokes.pop();this.marks.innerHTML="";this.render()}
+ clear(){this.strokes=[];this.marks.innerHTML="";this.render()}
+ showGhost(k,on){this.ghost.innerHTML=on?kj(k).d.map(p=>`<path d="${p}"/>`).join(""):""}
+ markStrokes(ix){this.marks.innerHTML=ix.map(i=>this.strokes[i]?`<path d="M${this.strokes[i].map(p=>p[0].toFixed(1)+" "+p[1].toFixed(1)).join(" L")}"/>`:"").join("")}}
+// ---- riconoscimento: forma, numero, ordine e direzione dei tratti (confronto con tutti i kanji studiati) ----
+const KRecog={N:16,
+ resample(s){const n=this.N;if(s.length<2)return Array(n).fill(s[0]);const L=[0];for(let i=1;i<s.length;i++)L.push(L[i-1]+Math.hypot(s[i][0]-s[i-1][0],s[i][1]-s[i-1][1]));const tot=L[L.length-1]||1e-6,out=[];let j=1;for(let k=0;k<n;k++){const d=tot*k/(n-1);while(j<s.length-1&&L[j]<d)j++;const a=s[j-1],b=s[j],seg=(L[j]-L[j-1])||1e-6,t=Math.max(0,Math.min(1,(d-L[j-1])/seg));out.push([a[0]+(b[0]-a[0])*t,a[1]+(b[1]-a[1])*t])}return out},
+ normalize(strokes){const all=strokes.flat(),xs=all.map(p=>p[0]),ys=all.map(p=>p[1]),x0=Math.min(...xs),x1=Math.max(...xs),y0=Math.min(...ys),y1=Math.max(...ys),sc=Math.max(x1-x0,y1-y0)||1,cx=(x0+x1)/2,cy=(y0+y1)/2;return{strokes:strokes.map(s=>this.resample(s).map(p=>[(p[0]-cx)/sc,(p[1]-cy)/sc])),box:{w:x1-x0,h:y1-y0}}},
+ d(a,b){let t=0;for(let i=0;i<a.length;i++)t+=Math.hypot(a[i][0]-b[i][0],a[i][1]-b[i][1]);return t/a.length},
+ assign(C){const n=C.length,full=(1<<n)-1,dp=new Float64Array(1<<n).fill(Infinity),ch=new Int8Array(1<<n).fill(-1);dp[0]=0;for(let m=0;m<full;m++){if(dp[m]===Infinity)continue;let i=0,x=m;while(x){i+=x&1;x>>=1}for(let j=0;j<n;j++)if(!(m&(1<<j))){const v=dp[m]+C[i][j];if(v<dp[m|(1<<j)]){dp[m|(1<<j)]=v;ch[m|(1<<j)]=j}}}const perm=[];let m=full;for(let i=n-1;i>=0;i--){const j=ch[m];perm[i]=j;m&=~(1<<j)}return{cost:dp[full]/n,perm}},
+ compare(user,k){const ref=kj(k).st;if(ref.length!==user.length||user.length>18)return null;const U=this.normalize(user).strokes,R=this.normalize(ref).strokes;const C=U.map(u=>R.map(r=>Math.min(this.d(u,r),this.d(u,[...r].reverse()))));const a=this.assign(C);return{k,cost:a.cost,perm:a.perm,C,U,R}},
+ check(user,target){const ref=kj(target).st;if(!user.length)return{status:"empty",msg:"Disegna il kanji nella griglia."};const n=user.length,m=ref.length;
+  const res=K.map(c=>this.compare(user,c[0])).filter(Boolean).sort((a,b)=>a.cost-b.cost),best=res[0];
+  if(n!==m){const other=best&&best.cost<0.11?best.k:null;return{status:"count",msg:other?`Sembra il kanji ${other} (${kj(other).m}), non quello richiesto.`:`Hai fatto ${n} ${n===1?"tratto":"tratti"}: questo kanji ne ha ${m}.`}}
+  const T=res.find(r=>r.k===target),ang=v=>Math.atan2(v[1],v[0]),N=this.N;
+  const bad=T.perm.map((j,i)=>{if(T.C[i][j]>0.26)return i;const u=T.U[i],r=T.R[j],ru=[u[N-1][0]-u[0][0],u[N-1][1]-u[0][1]],rr=[r[N-1][0]-r[0][0],r[N-1][1]-r[0][1]];if(Math.hypot(...rr)>0.2){let da=Math.abs(ang(ru)-ang(rr));da=Math.min(da,2*Math.PI-da);da=Math.min(da,Math.abs(Math.PI-da));if(da>0.45)return i}return -1}).filter(i=>i>=0);
+  const ub=this.normalize(user).box,rb=this.normalize(ref).box,aspect=Math.abs(Math.log(((ub.h+12)/(ub.w+12))/((rb.h+12)/(rb.w+12))));
+  if(best.k!==target&&best.cost<T.cost*0.8&&best.cost<0.12)return{status:"other",msg:`Questo sembra il kanji ${best.k} (${kj(best.k).m}), non quello richiesto.`,bad};
+  if(T.cost>0.14||bad.length||aspect>1.1)return{status:"shape",msg:bad.length?`La forma non corrisponde: controlla ${bad.length===1?"il tratto evidenziato":"i tratti evidenziati"}.`:"La forma non corrisponde abbastanza al kanji richiesto. Guarda l’animazione e riprova.",bad};
+  const order=T.perm.findIndex((j,i)=>j!==i);
+  const dirBad=T.perm.map((j,i)=>{const f=this.d(T.U[i],T.R[j]),r=this.d(T.U[i],[...T.R[j]].reverse()),len=Math.hypot(T.R[j][0][0]-T.R[j][N-1][0],T.R[j][0][1]-T.R[j][N-1][1]);return(len>0.12&&r+0.04<f)?i:-1}).filter(i=>i>=0);
+  if(order>=0)return{status:"order",msg:`La forma è giusta, ma l’ordine dei tratti no: il tuo tratto ${order+1} dovrebbe essere il numero ${T.perm[order]+1}.`,bad:[order]};
+  if(dirBad.length)return{status:"direction",msg:`La forma è giusta, ma il tratto ${dirBad[0]+1} va scritto nella direzione opposta.`,bad:dirBad};
+  return{status:"ok",msg:"Forma, ordine e direzione dei tratti giusti."}}};
+// in modalità rigorosa (predefinita) anche ordine e direzione devono essere giusti
+const kStrict=()=>S.kStrict!==false;
+const kOK=r=>r.status==="ok"||(!kStrict()&&(r.status==="order"||r.status==="direction"));
+// ---- scrittura guidata (tratto per tratto sulla traccia) ----
+function kGuided(host,k,onDone){const J=kj(k),st=J.st;let idx=0,errors=0,pts=[],ghostOn=true;
+ host.innerHTML=`<div class="kpad-wrap"><svg class="kpad" viewBox="0 0 ${KB} ${KB}" aria-label="Scrivi ${k} un tratto alla volta">${KGRID}<g class="kgh">${J.d.map(p=>`<path d="${p}"/>`).join("")}</g><g class="kdone"></g><g class="khintg"></g><path class="klive" d=""/></svg></div>
+ <div class="kpad-bar"><span class="kpad-msg" aria-live="polite">Tratto 1 di ${st.length}</span><button class="btn tool kg-ghost">Nascondi la traccia</button><button class="btn tool kg-reset">Ricomincia</button></div>`;
+ const svg=host.querySelector(".kpad"),live=host.querySelector(".klive"),done=host.querySelector(".kdone"),hint=host.querySelector(".khintg"),msg=host.querySelector(".kpad-msg"),gh=host.querySelector(".kgh");
+ const toPt=e=>{const r=svg.getBoundingClientRect();return [(e.clientX-r.left)/r.width*KB,(e.clientY-r.top)/r.height*KB]},dist=(a,b)=>Math.hypot(a[0]-b[0],a[1]-b[1]);
+ const showHint=()=>{const s=st[idx];hint.innerHTML=`<path class="khint" d="${J.d[idx]}"/><circle class="khstart" cx="${s[0][0]}" cy="${s[0][1]}" r="3.8"/>`;setTimeout(()=>hint.innerHTML="",1600)};
+ svg.addEventListener("pointerdown",e=>{if(idx>=st.length)return;e.preventDefault();svg.setPointerCapture(e.pointerId);pts=[toPt(e)];live.setAttribute("d","M"+pts[0].join(" "))});
+ svg.addEventListener("pointermove",e=>{if(!pts.length)return;e.preventDefault();const p=toPt(e);if(dist(p,pts[pts.length-1])>1){pts.push(p);live.setAttribute("d","M"+pts.map(p=>p.join(" ")).join(" L"))}});
+ const end=()=>{if(!pts.length)return;const u=pts;pts=[];live.setAttribute("d","");const s=st[idx],len=u.reduce((a,p,i)=>i?a+dist(p,u[i-1]):0,0),refLen=s.reduce((a,p,i)=>i?a+dist(p,s[i-1]):0,0);if(len<3&&refLen>9)return;
+  const ru=KRecog.resample(u),rs=KRecog.resample(s),shape=KRecog.d(ru,rs)/KB,rev=KRecog.d(ru,[...rs].reverse())/KB;
+  if(shape<0.17){done.insertAdjacentHTML("beforeend",`<path d="${J.d[idx]}"/>`);idx++;if(idx>=st.length){msg.textContent=errors?`Fatto! Errori: ${errors}`:"Perfetto!";msg.classList.add("good");onDone&&onDone(errors)}else msg.textContent=`Tratto ${idx+1} di ${st.length}`}
+  else{errors++;msg.textContent=rev<0.17?"Direzione sbagliata: parti dal pallino rosso.":`Non è il tratto ${idx+1}. Guarda il suggerimento.`;showHint();svg.classList.add("kshake");setTimeout(()=>svg.classList.remove("kshake"),350)}};
+ svg.addEventListener("pointerup",end);svg.addEventListener("pointercancel",end);
+ host.querySelector(".kg-reset").onclick=()=>{idx=0;errors=0;done.innerHTML="";msg.textContent=`Tratto 1 di ${st.length}`;msg.classList.remove("good")};
+ host.querySelector(".kg-ghost").onclick=e=>{ghostOn=!ghostOn;gh.style.display=ghostOn?"":"none";e.target.textContent=ghostOn?"Nascondi la traccia":"Mostra la traccia"}}
+// ---- scrittura libera con verifica (usata nella scheda e nell'esercizio) ----
+function kFree(host,k,{onResult,ghostBtn=true}={}){
+ host.innerHTML=`<div class="kpad-wrap"><div class="kpadhost"></div></div><div class="kdraw-tools"><button class="btn tool" data-f="undo">↶ Annulla tratto</button><button class="btn tool" data-f="clear">✕ Cancella</button>${ghostBtn?`<button class="btn tool" data-f="ghost">💡 Traccia</button>`:""}</div><div class="kfp-res" aria-live="polite"></div><button class="btn ok kfp-check" style="width:100%">Controlla</button>`;
+ const pad=new KPad(host.querySelector(".kpadhost")),res=host.querySelector(".kfp-res");let ghost=false;
+ host.querySelector('[data-f="undo"]').onclick=()=>pad.undo();host.querySelector('[data-f="clear"]').onclick=()=>{pad.clear();res.innerHTML=""};
+ const g=host.querySelector('[data-f="ghost"]');if(g)g.onclick=()=>{ghost=!ghost;pad.showGhost(k,ghost);g.classList.toggle("on",ghost)};
+ host.querySelector(".kfp-check").onclick=()=>{const r=KRecog.check(pad.strokes,k);if(r.status==="empty"){res.innerHTML=`<div class="kfp-msg">${r.msg}</div>`;return}const ok=kOK(r);if(!ok&&r.bad)pad.markStrokes(r.bad);
+  res.innerHTML=`<div class="kfp-msg ${ok?"good":"bad"}"><b>${ok?"Corretto!":"Non ancora"}</b> ${r.status==="ok"?r.msg:ok?"Attenzione: "+r.msg:r.msg}</div>`;onResult&&onResult(ok,r,pad)};
+ return pad}
+// ---- elenco dei kanji ----
+function kList(){const q=KV.q.trim().toLowerCase(),qh=toHira(q);return K.filter(c=>sel(c[6])&&!S.rm[key("k",K.indexOf(c))]).filter(c=>{const st=kStat(c[0]);if(KV.status==="todo"&&st!=="new")return false;if(KV.status==="studied"&&st!=="studied")return false;if(KV.status==="written"&&st!=="written")return false;if(q){const r=toHira(c[1]+"、"+c[2]).replace(/・/g,"");if(!(c[0]===q||c[3].toLowerCase().includes(q)||(qh&&r.includes(qh))))return false}return true})}
+function kanjiView(){if(KPS)return kPractice();if(KV.detail)return kDetail();
+ const all=K.filter(c=>sel(c[6])),list=kList(),cnt=s=>all.filter(c=>kStat(c[0])===s).length;
+ let h=`<div class="ex-head"><div><div class="ex-title">Kanji scrittura</div><div class="ex-sub">Apri un kanji per studiarne i tratti, guardare l’animazione e provare a scriverlo; poi mettiti alla prova con l’esercizio.</div></div></div>
+ <div class="kstats"><div><b>${all.length}</b><span>kanji</span></div><div><b>${cnt("studied")+cnt("written")}</b><span>studiati</span></div><div><b>${cnt("written")}</b><span>scritti correttamente</span></div></div>
+ <div class="g kfilters"><input id="kq" class="ex-answer" type="search" placeholder="Cerca (es. 人, persona, ひと)" value="${KV.q.replace(/"/g,"&quot;")}" aria-label="Cerca un kanji">
+ <div class="row" style="flex-wrap:wrap;margin-top:10px">${[["all","Tutti"],["todo","Da studiare"],["studied","Studiati"],["written","Scritti correttamente"]].map(([v,n])=>`<button class="chip ${KV.status===v?"on":""}" onclick="KV.status='${v}';kanjiView()">${n}</button>`).join("")}</div></div>
+ <div class="klegend"><span><i class="kdot new"></i>da studiare</span><span><i class="kdot studied"></i>studiato</span><span><i class="kdot written"></i>scritto correttamente</span><button class="btn tool" style="margin-left:auto" onclick="kList().forEach(c=>KV.sel.add(c[0]));kanjiView()">Seleziona tutti i visibili</button></div>`;
+ if(!list.length)h+=`<div class="g mu">Nessun kanji corrisponde ai filtri.</div>`;
+ const byU={};list.forEach(c=>(byU[c[6]]=byU[c[6]]||[]).push(c));
+ Object.entries(byU).forEach(([u,cs])=>{h+=`<div class="gr-unit">Unità ${u}</div><div class="kgrid">`+cs.map(c=>{const k=c[0],st=kStat(k),s=KV.sel.has(k);return `<div class="kitem ${st} ${s?"sel":""}"><button class="kopen" onclick="kOpen('${k}')" aria-label="${k}: ${c[3]}, ${KSTAT[st]}"><span class="kk">${k}</span><span class="km">${c[3]}</span><i class="kdot ${st}"></i></button><button class="ksel" aria-pressed="${s}" aria-label="Seleziona ${k} per l’esercizio" onclick="KV.sel.has('${k}')?KV.sel.delete('${k}'):KV.sel.add('${k}');kanjiView()">${s?"✓":""}</button></div>`}).join("")+`</div>`});
+ h+=`<div class="kselbar ${KV.sel.size?"show":""}"><span><b>${KV.sel.size}</b> selezionati</span><button class="btn tool" onclick="KV.sel.clear();kanjiView()">Deseleziona</button><label class="mu" style="display:flex;gap:6px;align-items:center"><input type="checkbox" ${KV.showReading?"checked":""} onchange="KV.showReading=this.checked"> mostra la lettura</label><button class="btn ok" ${KV.sel.size?"":"disabled"} onclick="kStartPractice([...KV.sel])">Inizia esercizio</button></div>`;
+ const y=window.scrollY;el(h);window.scrollTo(0,y);
+ const q=$("kq");q.oninput=()=>{KV.q=q.value;const pos=q.selectionStart;kanjiView();const nq=$("kq");nq.focus();nq.setSelectionRange(pos,pos)}}
+function kOpen(k){KV.scroll=window.scrollY;KV.detail=k;kSeen(k);kDetail();window.scrollTo(0,0)}
+// ---- scheda del kanji: Scheda · Ordine dei tratti · Scrivi ----
+function kDetail(){if(ANIM)ANIM.pause();const k=KV.detail,J=kj(k),s=kRec(k),st=kStat(k),avail=kList().map(c=>c[0]),ix=avail.indexOf(k);
+ let h=`<div class="kd-top"><button class="btn tool" onclick="KV.detail=null;kanjiView();window.scrollTo(0,KV.scroll||0)">← Tutti i kanji</button><span class="spacer"></span>${ix>0?`<button class="icon-btn" aria-label="Kanji precedente" onclick="kOpen('${avail[ix-1]}')">‹</button>`:""}${ix>=0&&ix<avail.length-1?`<button class="icon-btn" aria-label="Kanji successivo" onclick="kOpen('${avail[ix+1]}')">›</button>`:""}</div>
+ <div class="g kd-head"><div class="kgenko"><span>${k}</span></div><div><div class="kmean">${J.m}</div><div class="kd-read">On · 音 <b>${J.on}</b> &nbsp; Kun · 訓 <b>${J.kun}</b></div><div class="mu">Unità ${J.u} · ${J.st.length} tratti</div><div class="kd-stat"><span class="kpill ${st}">${KSTAT[st]}</span>${s.tries?`<span class="mu">Scritto correttamente ${s.ok} volte su ${s.tries}</span>`:""}</div></div></div>
+ <div class="seg kd-tabs" role="tablist">${[["scheda","Scheda"],["anim","Ordine dei tratti"],["scrivi","Scrivi"]].map(([v,n])=>`<button class="btn ${KV.tab===v?"on":""}" role="tab" aria-selected="${KV.tab===v}" onclick="KV.tab='${v}';kDetail()">${n}</button>`).join("")}</div><div class="g kd-body">`;
+ if(KV.tab==="scheda")h+=`<table class="unit-table kread"><tr><th>Significato</th><td>${J.m}</td></tr><tr><th>On’yomi 音読み</th><td>${J.on}</td></tr><tr><th>Kun’yomi 訓読み</th><td>${J.kun}</td></tr><tr><th>Numero di tratti</th><td>${J.st.length}</td></tr><tr><th>Esempi</th><td>${J.ex}</td></tr></table><div class="kd-all"><b>Tutti i tratti</b>${kStaticSVG(k)}</div>`;
+ else if(KV.tab==="anim")h+=`<p class="mu">Guarda come si scrive, tratto dopo tratto. Puoi mettere in pausa, andare avanti o indietro di un tratto e cambiare la velocità.</p><div id="kanim-host"></div>`;
+ else h+=`<div class="seg" role="group" aria-label="Modalità di scrittura"><button class="btn ${KV.wmode!=="free"?"on":""}" onclick="KV.wmode='guided';kDetail()">Guidata</button><button class="btn ${KV.wmode==="free"?"on":""}" onclick="KV.wmode='free';kDetail()">Libera con verifica</button></div>
+ <p class="mu">${KV.wmode==="free"?"Scrivi tutto il kanji da solo, poi premi Controlla: il sito verifica forma, numero, ordine e direzione dei tratti.":"Ripassa la traccia un tratto alla volta: se sbagli ordine o direzione, il sito ti mostra il tratto giusto."}</p><div id="kwrite-host"></div>
+ <label class="mu" style="display:flex;gap:6px;align-items:center;margin-top:10px"><input type="checkbox" ${kStrict()?"checked":""} onchange="S.kStrict=this.checked;save()"> Ordine e direzione dei tratti obbligatori</label>`;
+ h+=`</div><button class="btn ok" style="width:100%;margin-top:4px" onclick="kStartPractice(['${k}'])">Esercitati a scriverlo</button>`;el(h);
+ if(KV.tab==="anim"){ANIM=new KAnim($("kanim-host"),k);ANIM.play()}
+ if(KV.tab==="scrivi"){const host=$("kwrite-host");if(KV.wmode==="free")kFree(host,k,{onResult:ok=>{const r=kRec(k);r.tries++;if(ok)r.ok++;save()}});else kGuided(host,k,()=>kSeen(k))}}
+// ---- esercizio: scrivi da solo i kanji scelti partendo dal significato ----
+function kStartPractice(ks){ks=ks.filter(k=>KANJI_STROKES[k]);if(!ks.length)return;if(ANIM)ANIM.pause();KPS={items:shuffleArray(ks),i:0,ok:0,miss:[],tried:false,done:false};window.scrollTo(0,0);kPractice()}
+function kPractice(){const P=KPS;if(P.i>=P.items.length){const pct=Math.round(P.ok/P.items.length*100);el(`<div class="ex-head"><div class="ex-title">Scrittura dei kanji</div></div><div class="card" style="cursor:default;min-height:200px"><div class="big">${pct>=85?"🎉":"🌱"}</div><div class="mid">${P.ok}/${P.items.length} · ${pct}%</div><div class="mu">${P.miss.length?"Ripassa i kanji sbagliati: "+P.miss.join(" "):"Tutti scritti correttamente al primo tentativo!"}</div></div><div class="row" style="flex-wrap:wrap">${P.miss.length?`<button class="btn ok" onclick="kStartPractice(KPS.miss)">Ripeti gli errori (${P.miss.length})</button>`:""}<button class="btn" onclick="kStartPractice(KPS.items)">Ricomincia</button><button class="btn" onclick="KPS=null;kanjiView()">Torna ai kanji</button></div>`);return}
+ const k=P.items[P.i],J=kj(k);P.tried=false;P.done=false;
+ el(`<div class="ex-head"><div><div class="ex-title">Scrittura dei kanji</div><div class="ex-sub">${P.i+1} / ${P.items.length} · ✓ ${P.ok} · ✗ ${P.miss.length}</div></div><button class="btn" onclick="if(confirm('Vuoi interrompere l’esercizio?')){KPS=null;kanjiView()}">← Kanji</button></div><div class="bar"><i style="width:${Math.round(P.i/P.items.length*100)}%"></i></div>
+ <div class="g"><div class="ex-prompt" style="padding:6px 0"><div class="ex-instr">Scrivi il kanji</div>“${J.m}”${KV.showReading?`<div class="mu" style="font-size:15px">On ${J.on} · Kun ${J.kun}</div>`:""}</div><div id="kp-host"></div><div class="row" id="kp-next" style="display:none"><button class="btn" onclick="kShowSolution()">Mostra la soluzione</button><button class="btn on" onclick="KPS.i++;kPractice()">Prossimo →</button></div><div id="kp-sol"></div></div>`);
+ kFree($("kp-host"),k,{ghostBtn:false,onResult:ok=>{const r=kRec(k);r.seen=1;r.tries++;if(ok)r.ok++;const bk="k:"+k+"|"+J.u;if(!P.tried){P.tried=true;if(ok){P.ok++;S.box[bk]=Math.min(5,bx(bk)+1)}else{P.miss.push(k);S.box[bk]=0}}save();$("kp-next").style.display="flex"}})}
+function kShowSolution(){const k=KPS.items[KPS.i];if(!KPS.tried){KPS.tried=true;KPS.miss.push(k);S.box["k:"+k+"|"+kj(k).u]=0;save()}$("kp-next").style.display="flex";const h=$("kp-sol");h.innerHTML=`<div style="margin-top:12px"></div>`;ANIM=new KAnim(h.firstChild,k);ANIM.play()}
 function initKanjiPad(){const canvas=$("kanji-pad");if(!canvas)return;const rect=canvas.getBoundingClientRect(),dpr=window.devicePixelRatio||1;canvas.width=Math.max(1,Math.round(rect.width*dpr));canvas.height=Math.max(1,Math.round(rect.height*dpr));const ctx=canvas.getContext("2d");ctx.scale(dpr,dpr);ctx.lineWidth=4;ctx.lineCap="round";ctx.lineJoin="round";ctx.strokeStyle=getComputedStyle(document.documentElement).getPropertyValue("--tx").trim()||"#222";if(kanjiDrawing){const img=new Image();img.onload=()=>ctx.drawImage(img,0,0,rect.width,rect.height);img.src=kanjiDrawing}}
 function startKanjiDraw(e){e.stopPropagation();const canvas=e.currentTarget,ctx=canvas.getContext("2d"),r=canvas.getBoundingClientRect();canvas.setPointerCapture(e.pointerId);kanjiDrawActive=true;ctx.beginPath();ctx.moveTo(e.clientX-r.left,e.clientY-r.top)}
 function moveKanjiDraw(e){if(!kanjiDrawActive)return;e.stopPropagation();const canvas=e.currentTarget,ctx=canvas.getContext("2d"),r=canvas.getBoundingClientRect();ctx.lineTo(e.clientX-r.left,e.clientY-r.top);ctx.stroke()}
