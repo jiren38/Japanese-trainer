@@ -214,7 +214,7 @@ a{color:var(--ac)}
 .dash-units{display:grid;grid-template-columns:repeat(6,1fr);gap:8px;margin-top:8px}.dash-u{display:grid;gap:3px;justify-items:center;border:1px solid var(--bd);border-radius:10px;padding:6px 4px;background:var(--card);cursor:pointer;color:inherit;font:inherit}.dash-u span{font-weight:700}.dash-u .mini-bar{width:100%}.dash-u small{font-size:11px;color:var(--mu)}
 .dash-trend{display:flex;gap:6px;align-items:flex-end;height:110px;margin-top:10px}.dash-trend>div{flex:1;display:flex;flex-direction:column;justify-content:flex-end;align-items:center;height:100%;gap:3px}.dash-trend i{display:block;width:100%;max-width:26px;background:var(--ac2);border-radius:5px 5px 0 0}.dash-trend small{font-size:10px;color:var(--mu)}
 @media(max-width:640px){.dash-units{grid-template-columns:repeat(4,1fr)}.dl-line{grid-template-columns:1fr}.xp-row>span:first-child{min-width:0;width:100%}.dash-next{flex-direction:column;align-items:flex-start}}
-</style>
+.sync-steps{line-height:1.7;padding-left:20px}.sync-steps li{margin:6px 0}#sync-btn.on{color:var(--ok)}#sync-btn{margin-left:auto;margin-right:8px}</style>
 </head><body><div class="app">
 <header class="top"><div class="brand"><div class="logo" aria-hidden="true">語</div><div><div class="brand-title">Impariamo il giapponese</div><div class="brand-sub" id="brand-sub">Volume 1 · studio personale</div></div></div><button class="icon-btn" onclick="th()" title="Tema chiaro / scuro" aria-label="Cambia tema">◐</button></header>
 <nav id="nav" class="tabs" aria-label="Sezioni"></nav>
@@ -476,7 +476,7 @@ K.forEach(c=>{c[6]=c[6]||1});[V,KR].forEach(a=>a.forEach(c=>{c[3]=c[3]||1}));// 
 // ===== STATO (localStorage con try/catch) =====
 let S={box:{},th:null,rm:{},fav:{},un:null};
 try{S=Object.assign(S,JSON.parse(localStorage.getItem("giap")||"{}"))}catch(e){}
-const save=()=>{try{localStorage.setItem("giap",JSON.stringify(S))}catch(e){}};
+const save=()=>{try{localStorage.setItem("giap",JSON.stringify(S))}catch(e){}if(window.onSaveHook)window.onSaveHook()};
 const $=id=>document.getElementById(id), el=(h)=>{$("v").innerHTML=h};
 // chiave dei progressi = tipo + parola + unità (non la posizione): aggiungere, togliere o spostare voci non sposta i progressi
 const key=(t,i)=>{const c=D()[t][i];return t+":"+c[0]+"|"+uOf(t,i)}, bx=k=>S.box[k]||0;
@@ -3008,6 +3008,53 @@ home=function(){const pc=(a,b)=>b?Math.round(a/b*100):0,units=[...new Set(AV())]
  <div class="g"><b>Andamento (ultimi 14 giorni di studio)</b>${days.length?`<div class="dash-trend">${days.map(([d,q])=>{const p=pc(q.ok,q.ok+q.ko);return `<div title="${d}: ${q.ok}/${q.ok+q.ko} corrette"><i style="height:${Math.max(4,p)}%"></i><small>${d.slice(8)}</small></div>`}).join("")}</div><div class="mu" style="font-size:12px">Altezza = percentuale di risposte corrette in quel giorno.</div>`:`<div class="mu" style="margin-top:6px">Ancora nessun dato: fai qualche esercizio.</div>`}</div>
  <div class="g"><b>Simulazioni d’esame</b>${exams.length?`<div class="dash-trend">${exams.map(h=>`<div title="${new Date(h.d).toLocaleDateString("it-IT")}: ${h.pct}%"><i style="height:${Math.max(4,h.pct)}%"></i><small>${h.pct}%</small></div>`).join("")}</div>`:`<div class="mu" style="margin-top:6px">Nessuna simulazione svolta.</div>`}<button class="btn" style="margin-top:8px" onclick="go('si')">Fai una simulazione →</button></div>
  </div>`)};
+
+// @@MOD_SYNC@@
+// ===== SINCRONIZZAZIONE TRA DISPOSITIVI (GitHub Gist privato dell'utente) =====
+// Il token resta SOLO in questo browser (chiave separata "giap_sync"), non viene mai salvato nel Gist.
+const SYNC={busy:false,msg:"",timer:null};
+const syncCfg=()=>{try{return JSON.parse(localStorage.getItem("giap_sync")||"{}")}catch(e){return {}}};
+const syncSave=c=>{try{localStorage.setItem("giap_sync",JSON.stringify(c))}catch(e){}};
+const GIST_DESC="Japanese-trainer · progressi di studio",GIST_FILE="progressi.json";
+async function gh(path,opt={}){const c=syncCfg();const r=await fetch("https://api.github.com"+path,Object.assign({},opt,{headers:Object.assign({"Accept":"application/vnd.github+json","Authorization":"Bearer "+c.token,"X-GitHub-Api-Version":"2022-11-28"},opt.body?{"Content-Type":"application/json"}:{})}));if(!r.ok){const t=await r.text();throw new Error(r.status===401?"Token non valido o scaduto.":r.status===403||r.status===404?"Il token non ha il permesso “gist” (oppure il Gist non esiste più).":"Errore GitHub "+r.status+": "+t.slice(0,120))}return r.status===204?null:r.json()}
+// unione dei progressi di due dispositivi: per ogni voce si tiene il dato più avanzato
+function mergeState(a,b){const o=Object.assign({},a);const mx=(x,y)=>Math.max(x||0,y||0);
+ o.box=Object.assign({},b.box||{});Object.entries(a.box||{}).forEach(([k,v])=>{o.box[k]=mx(v,o.box[k])});
+ o.exSeen=Object.assign({},b.exSeen||{},a.exSeen||{});o.fav=Object.assign({},b.fav||{},a.fav||{});o.rm=Object.assign({},b.rm||{},a.rm||{});
+ const byLast=(x,y)=>{const r=Object.assign({},y||{});Object.entries(x||{}).forEach(([k,v])=>{const w=r[k];if(!w||((v.last||0)>(w.last||0))||(!v.last&&!w.last&&(v.ok||0)+(v.ko||0)>(w.ok||0)+(w.ko||0)))r[k]=v});return r};
+ o.exLog=byLast(a.exLog,b.exLog);o.ruleLog=byLast(a.ruleLog,b.ruleLog);
+ o.partLog=Object.assign({},b.partLog||{});Object.entries(a.partLog||{}).forEach(([k,v])=>{const w=o.partLog[k];if(!w||v.ok+v.ko>w.ok+w.ko)o.partLog[k]=v});
+ o.kw=Object.assign({},b.kw||{});Object.entries(a.kw||{}).forEach(([k,v])=>{const w=o.kw[k]||{};o.kw[k]={seen:mx(v.seen,w.seen),tries:mx(v.tries,w.tries),ok:mx(v.ok,w.ok)}});
+ o.days=Object.assign({},b.days||{});Object.entries(a.days||{}).forEach(([k,v])=>{const w=o.days[k];if(!w||v.ok+v.ko>w.ok+w.ko)o.days[k]=v});
+ const ex=new Map();[...(b.exams||[]),...(a.exams||[])].forEach(e=>ex.set(e.d,e));o.exams=[...ex.values()].sort((x,y)=>x.d-y.d).slice(-50);
+ o.exSkill=Object.assign({},b.exSkill||{});Object.entries(a.exSkill||{}).forEach(([k,v])=>{o.exSkill[k]=mx(v,o.exSkill[k])});
+ o.lastAct=((a.lastAct||{}).t||0)>=((b.lastAct||{}).t||0)?a.lastAct:b.lastAct;o.overrides=mx(a.overrides,b.overrides);
+ return o}
+async function syncNow(silent){const c=syncCfg();if(!c.token||SYNC.busy)return;SYNC.busy=true;SYNC.msg="Sincronizzazione in corso…";if(!silent&&cur==="sy")syncView();
+ try{if(!c.gist){const list=await gh("/gists?per_page=100");const g=list.find(x=>x.description===GIST_DESC&&x.files&&x.files[GIST_FILE]);if(g)c.gist=g.id;else{const n=await gh("/gists",{method:"POST",body:JSON.stringify({description:GIST_DESC,public:false,files:{[GIST_FILE]:{content:JSON.stringify(S)}}})});c.gist=n.id}syncSave(c)}
+  const g=await gh("/gists/"+c.gist);const f=g.files&&g.files[GIST_FILE];let remote={};if(f){let txt=f.content;if(f.truncated)txt=await (await fetch(f.raw_url)).text();try{remote=JSON.parse(txt||"{}")}catch(e){remote={}}}
+  const merged=mergeState(S,remote);Object.keys(merged).forEach(k=>{S[k]=merged[k]});save();
+  await gh("/gists/"+c.gist,{method:"PATCH",body:JSON.stringify({files:{[GIST_FILE]:{content:JSON.stringify(S)}}})});
+  c.last=Date.now();syncSave(c);SYNC.msg="Sincronizzato alle "+new Date().toLocaleTimeString("it-IT",{hour:"2-digit",minute:"2-digit"})+".";
+  if(!silent&&cur!=="sy")go(cur)}catch(e){SYNC.msg="⚠ "+e.message}finally{SYNC.busy=false;syncBadge();if(cur==="sy")syncView()}}
+function syncBadge(){const b=document.getElementById("sync-btn");if(!b)return;const c=syncCfg();b.textContent=c.token?(SYNC.busy?"⟳":"☁"):"☁";b.title=c.token?"Sincronizzazione attiva · "+(SYNC.msg||""):"Sincronizza i progressi tra dispositivi";b.classList.toggle("on",!!c.token)}
+// dopo ogni salvataggio, invio automatico dopo 20 secondi di pausa
+window.onSaveHook=function(){if(SYNC.busy)return;const c=syncCfg();if(!c.token)return;clearTimeout(SYNC.timer);SYNC.timer=setTimeout(()=>syncNow(true),20000)};
+document.addEventListener("visibilitychange",()=>{if(document.visibilityState==="hidden"&&syncCfg().token&&SYNC.timer){clearTimeout(SYNC.timer);syncNow(true)}});
+function syncConnect(){const t=document.getElementById("sync-token").value.trim();if(!/^(ghp_|github_pat_|gho_)/.test(t)){SYNC.msg="⚠ Il token deve iniziare con ghp_ o github_pat_.";syncView();return}const c=syncCfg();c.token=t;delete c.gist;syncSave(c);syncNow()}
+function syncDisconnect(){if(!confirm("Scollegare questo dispositivo? I progressi restano salvati qui e nel Gist; il token viene cancellato da questo browser."))return;try{localStorage.removeItem("giap_sync")}catch(e){}SYNC.msg="Dispositivo scollegato.";syncBadge();syncView()}
+function syncExport(){const blob=new Blob([JSON.stringify(S)],{type:"application/json"}),a=document.createElement("a");a.href=URL.createObjectURL(blob);a.download="progressi-giapponese-"+today()+".json";a.click();setTimeout(()=>URL.revokeObjectURL(a.href),2000)}
+function syncImport(inp){const f=inp.files&&inp.files[0];if(!f)return;f.text().then(t=>{try{const r=JSON.parse(t);const m=mergeState(S,r);Object.keys(m).forEach(k=>{S[k]=m[k]});save();SYNC.msg="File importato e unito ai progressi di questo dispositivo.";syncView()}catch(e){SYNC.msg="⚠ File non valido.";syncView()}})}
+function syncView(){const c=syncCfg();
+ el(`<div class="ex-head"><div><div class="ex-title">Sincronizzazione tra dispositivi</div><div class="ex-sub">I progressi vengono salvati in un Gist <b>privato</b> del tuo account GitHub e uniti tra PC, tablet e telefono</div></div></div>
+ ${SYNC.msg?`<div class="g">${esc(SYNC.msg)}</div>`:""}
+ ${c.token?`<div class="g"><b>Questo dispositivo è collegato</b><div class="mu" style="margin:6px 0">${c.gist?`Gist: <a href="https://gist.github.com/${esc(c.gist)}" target="_blank" rel="noopener">${esc(c.gist.slice(0,10))}…</a> · `:""}${c.last?"ultima sincronizzazione "+new Date(c.last).toLocaleString("it-IT"):"mai sincronizzato"}. La sincronizzazione parte da sola all’apertura del sito, 20 secondi dopo ogni attività e quando chiudi la pagina.</div><div class="row"><button class="btn ok" onclick="syncNow()" ${SYNC.busy?"disabled":""}>Sincronizza ora</button><button class="btn" onclick="syncDisconnect()">Scollega questo dispositivo</button></div></div>`:
+ `<div class="g"><b>Collega questo dispositivo (una volta sola per dispositivo)</b><ol class="sync-steps"><li>Su GitHub apri <a href="https://github.com/settings/tokens/new?scopes=gist&description=Japanese-trainer" target="_blank" rel="noopener">Impostazioni → Token (classic)</a>: il permesso <b>gist</b> è già selezionato. Scegli una scadenza e premi <i>Generate token</i>.</li><li>Copia il token (inizia con <code>ghp_</code>) e incollalo qui sotto. Il token resta solo in questo browser e consente unicamente di leggere e scrivere i tuoi Gist.</li><li>Ripeti sugli altri dispositivi con lo stesso token (o con un altro token dello stesso account): troveranno automaticamente lo stesso Gist.</li></ol><input id="sync-token" class="ex-answer" type="password" autocomplete="off" placeholder="Incolla qui il token (ghp_…)"><button class="btn ok" style="width:100%;margin-top:8px" onclick="syncConnect()">Collega e sincronizza</button></div>`}
+ <div class="g"><b>Copia di sicurezza su file</b><div class="mu" style="margin:6px 0">In alternativa (o in aggiunta) puoi salvare i progressi in un file e importarlo su un altro dispositivo: i dati vengono uniti, non sovrascritti.</div><div class="row"><button class="btn" onclick="syncExport()">Scarica i progressi (.json)</button><label class="btn">Importa da file<input type="file" accept="application/json,.json" hidden onchange="syncImport(this)"></label></div></div>`)}
+(function(){const h=document.querySelector("header.top");if(h&&!document.getElementById("sync-btn")){const b=document.createElement("button");b.id="sync-btn";b.className="icon-btn";b.setAttribute("aria-label","Sincronizzazione");b.onclick=()=>go("sy");const t=h.querySelector(".icon-btn");h.insertBefore(b,t)}syncBadge()})();
+NAV_PARENT.sy="ho";
+const _goSync=go;go=function(t){if(t==="sy"){cur="sy";nav();subBar();window.scrollTo(0,0);syncView();return}_goSync(t)};
+if(syncCfg().token)setTimeout(()=>syncNow(true),1500);
 
 // @@MOD_END@@
 nav();side();go("ho");
