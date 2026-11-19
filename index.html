@@ -2986,7 +2986,7 @@ function explainHtml(x,ok,given,right,extra){
  rulesForExercise(x).forEach(r=>rules.push([r,""]));
  const seen=new Set();rules=rules.filter(([r])=>!seen.has(r.key)&&seen.add(r.key)).slice(0,3);
  const kinfo=(grp==="kanji"||grp==="kana")?kanjiInfo(right):"";
- return `<div class="xp">${!ok&&given?`<div class="xp-row"><span>La tua risposta</span><b class="jp">${esc(given)}</b></div>`:""}<div class="xp-row"><span>${ok?"Risposta":"Risposta corretta"}</span><b class="jp">${esc(right)}</b></div>${accepted.length?`<div class="xp-row"><span>Accettate anche</span><span class="jp">${accepted.map(esc).join(" · ")}</span></div>`:""}${diag}${bookNote?`<div class="xp-note">${bookNote}</div>`:""}${kinfo}${rules.length?`<div class="xp-sub">${ok?"Perché è corretta":"La regola da applicare"}</div>${rules.map(([r,w])=>ruleCard(r,w)).join("")}`:""}</div>`}
+ return `<div class="xp">${!ok&&given?`<div class="xp-row xp-own-row"><span>La tua risposta</span><b class="jp">${esc(given)}</b></div>`:""}<div class="xp-row"><span>${ok?"Risposta":"Risposta corretta"}</span><b class="jp">${esc(right)}</b></div>${accepted.length?`<div class="xp-row"><span>Accettate anche</span><span class="jp">${accepted.map(esc).join(" · ")}</span></div>`:""}${diag}${bookNote?`<div class="xp-note">${bookNote}</div>`:""}${kinfo}${rules.length?`<div class="xp-sub">${ok?"Perché è corretta":"La regola da applicare"}</div>${rules.map(([r,w])=>ruleCard(r,w)).join("")}`:""}</div>`}
 // ===== registro dei risultati =====
 const SRS_DAYS=[0,1,3,7,14,30];
 function today(){const d=new Date();return d.getFullYear()+"-"+String(d.getMonth()+1).padStart(2,"0")+"-"+String(d.getDate()).padStart(2,"0")}
@@ -3002,7 +3002,7 @@ function weakRules(){const L=S.ruleLog||{};return Object.entries(L).map(([k,r])=
 function weakParts(){const L=S.partLog||{};return Object.entries(L).map(([p,r])=>({p,r,acc:r.ok/(r.ok+r.ko)})).filter(o=>o.r.ko>0).sort((a,b)=>a.acc-b.acc)}
 function exercisesForRule(key,max){const out=[];EX.forEach((x,i)=>{if(x._generated||["write","listen"].includes(x[0])||!exerciseJPReady(x))return;if(rulesForExercise(x).some(r=>r.key===key))out.push(i)});return shuffleArray(out).slice(0,max||10)}
 function exercisesForParticle(p,max){const out=[];EX.forEach((x,i)=>{if(x._generated||x[0]!=="fill"||!exerciseJPReady(x))return;if(x[3].some(a=>String(a).split(/[・･]/).map(s=>s.trim()).includes(p)))out.push(i)});Object.entries(PART_BANK).forEach(([u,arr])=>arr.forEach(e=>{if(e[1].split("・").includes(p)&&out.length<60){const x=["fill",+u,e[0]+"\n“"+e[2]+"”",[e[1]],"Particelle studiate fino all’Unità "+u+"."];x._group="particle";x._generated=1;x._id=["particle",u,x[2]].join("|");EX.push(x);out.push(EX.length-1)}}));return shuffleArray(out).slice(0,max||12)}
-function runList(list,title){if(!list.length)return;EXAM.on=false;cur="es";nav();eq=list.slice();ei=0;emiss=[];eok=0;EXRUN_TITLE=title||"";ex()}
+function runList(list,title){if(!list.length)return;EXAM.on=false;cur="es";nav();if(typeof subBar==="function")subBar();eq=list.slice();ei=0;emiss=[];eok=0;EXRUN_TITLE=title||"";ex()}
 let EXRUN_TITLE="";
 // ===== RIPASSO =====
 function review(){const U=S.un||null,due=dueExercises(U),wr=weakRules().slice(0,8),wp=weakParts().slice(0,8),pc=(a,b)=>b?Math.round(a/b*100):0;
@@ -3034,7 +3034,7 @@ function examBuild(){const c=EXAM.cfg,all=[...new Set(AV())].sort((a,b)=>a-b),un
  while(items.length<n){const rest=book.filter(i=>!used.has(exerciseIdentity(EX[i])));if(!rest.length)break;const i=rest[Math.floor(Math.random()*rest.length)];used.add(exerciseIdentity(EX[i]));items.push(i)}
  // difficoltà crescente: dalle unità iniziali e dagli esercizi brevi verso quelli più complessi, con un po' di mescolanza
  return items.slice(0,n).map(i=>[i,EX[i][1]*10+exerciseComplexity(EX[i])/20+Math.random()*25]).sort((a,b)=>a[1]-b[1]).map(a=>a[0])}
-function examStart(){clearInterval(EXAM.timer);EXAM.items=examBuild();if(!EXAM.items.length){alert("Non ci sono domande disponibili per le unità scelte.");return}EXAM.on=true;EXAM.done=false;EXAM.res=[];EXAM.start=Date.now();EXAM.limit=EXAM.cfg.timed?Math.round(EXAM.items.length*1.5)*60000:0;eq=EXAM.items.slice();ei=0;emiss=[];eok=0;cur="si";nav();if(EXAM.limit)EXAM.timer=setInterval(examTick,1000);ex()}
+function examStart(){clearInterval(EXAM.timer);EXAM.items=examBuild();if(!EXAM.items.length){alert("Non ci sono domande disponibili per le unità scelte.");return}EXAM.on=true;EXAM.done=false;EXAM.res=[];EXAM.start=Date.now();EXAM.limit=EXAM.cfg.timed?Math.round(EXAM.items.length*1.5)*60000:0;eq=EXAM.items.slice();ei=0;emiss=[];eok=0;cur="si";nav();if(typeof subBar==="function")subBar();if(EXAM.limit)EXAM.timer=setInterval(examTick,1000);ex()}
 function examTick(){if(!EXAM.on||EXAM.done){clearInterval(EXAM.timer);return}const left=EXAM.limit-(Date.now()-EXAM.start),e=document.getElementById("exam-timer");if(e){const m=Math.max(0,Math.floor(left/60000)),s=Math.max(0,Math.floor(left/1000)%60);e.textContent=m+":"+String(s).padStart(2,"0");e.classList.toggle("warn",left<120000)}if(left<=0){clearInterval(EXAM.timer);examEnd(true)}}
 function examStop(){if(confirm("Vuoi terminare la prova adesso? Le domande non risposte saranno contate come sbagliate."))examEnd(false)}
 function examEnd(timeout){clearInterval(EXAM.timer);EXAM.done=true;const dur=Date.now()-EXAM.start,answered=new Set(EXAM.res.map(r=>r.i));EXAM.items.forEach(i=>{if(!answered.has(i))EXAM.res.push({i,ok:false,given:"",right:String(EX[i][0]==="mc"?(EX[i]._it?EX[i][3][EX[i][4]]:jpOption(EX[i][3][EX[i][4]])):EX[i][0]==="ord"?EX[i][3].join(""):EX[i][3][0]),skip:true})});
@@ -3159,6 +3159,35 @@ function syncView(){const c=syncCfg();
 NAV_PARENT.sy="ho";
 const _goSync=go;go=function(t){if(t==="sy"){cur="sy";nav();subBar();window.scrollTo(0,0);syncView();return}_goSync(t)};
 if(syncCfg().token)setTimeout(()=>syncNow(true),1500);
+
+// @@MOD_KANJIFY@@
+// ===== PAROLE IN KANJI NEGLI ESERCIZI =====
+// Le parole di Kanji lettura (KR) studiate fino all'unità selezionata più alta vengono mostrate in kanji anche negli
+// esercizi scritti in hiragana (かいしゃいん → 会社員). Le soluzioni restano valide sia in kanji sia in kana.
+// Non si toccano gli esercizi che chiedono di leggere o scrivere i kanji, né la risposta scritta dallo studente.
+const KJ_MAP=(()=>{const by={};KR.forEach(c=>{const w=String(c[0]),r=String(c[1]).split("·")[0].trim();if(!/^[一-鿿々]+[ぁ-ゖ]*$/.test(w)||!/^[ぁ-ゖ]+$/.test(r)||r.length<3||!/[一-鿿]/.test(w))return;(by[r]=by[r]||[]).push({w,u:c[3]})});
+ const kr=Object.entries(by).filter(([r,a])=>new Set(a.map(o=>o.w)).size===1).map(([r,a])=>({r,w:a[0].w,u:Math.min(...a.map(o=>o.u))}));
+ // le parole del vocabolario in hiragana (ところで, いっしょうけんめい…) restano come sono: si proteggono prima delle parole più corte
+ const v=V.map(c=>String(c[0])).filter(w=>/^[ぁ-ゖ]{3,}$/.test(w)&&!kr.some(o=>o.r===w)).map(w=>({r:w,w,u:0,keep:1}));
+ return [...kr,...v].sort((a,b)=>b.r.length-a.r.length||(b.keep||0)-(a.keep||0))})();
+function kjMaxUnit(){const all=[...new Set(AV())];if(EXAM.on&&EXAM.cfg.scope!=="sel")return Math.max(...all);return S.un&&S.un.length?Math.max(...S.un):Math.max(...all)}
+const KJ_SKIP=/Scrivi in kanji|Scrivi il kanji|Scrivi i kanji|Scrivi la lettura|Scegli la lettura|lettura .*in hiragana|in hiragana|in katakana|okurigana|Riordina le sillabe|Trova l’intruso|Qual è la lettura|Qual è la scrittura|Quale kanji|漢字で書いて|ひらがなで書いて/;
+function kjAllowed(x){if(!x)return false;const g=exGroup(x);if(g==="kanji"||g==="kana")return false;return !KJ_SKIP.test(String(x[2]||""))}
+// una parola si converte solo se inizia lì: dopo l'inizio della riga, punteggiatura, katakana, numeri o una particella
+const KJ_BOUND="はがをにでともへやかねよの";
+function kanjify(s,maxU){if(!s||!/[ぁ-ゖ]/.test(s))return s;const keep=[],A="",B="";let t=String(s);
+ for(const e of KJ_MAP){if(e.u>maxU||!t.includes(e.r))continue;t=t.replace(new RegExp(e.r,"g"),(m,off,str)=>{const prev=str[off-1]||"";
+  if(/[一-鿿々]/.test(prev)||prev===B)return m;                       // parte in kana di un'altra parola (飲みます non diventa 飲見ます)
+  if(/[ぁ-ゖ]/.test(prev)&&!KJ_BOUND.includes(prev))return m;          // dentro un'altra parola (べんきょう non diventa べん今日)
+  if((prev==="て"||prev==="で")&&/^[見行来]/.test(e.w))return m;      // ～てみます・～ていきます: ausiliari in hiragana
+  keep.push(e.w);return A+(keep.length-1)+B})}
+ return t.replace(new RegExp(A+"(\\d+)"+B,"g"),(m,i)=>keep[+i])}
+// applica la conversione ai nodi di testo (non a input, risposte dello studente ed evidenziazioni del confronto)
+function kjDom(root,maxU){if(!root)return;const w=document.createTreeWalker(root,NodeFilter.SHOW_TEXT,{acceptNode:n=>n.parentElement&&n.parentElement.closest(".xp-hl,textarea,input,script,style,.ex-tr")?NodeFilter.FILTER_REJECT:NodeFilter.FILTER_ACCEPT});const ns=[];while(w.nextNode())ns.push(w.currentNode);ns.forEach(n=>{const v=kanjify(n.nodeValue,maxU);if(v!==n.nodeValue)n.nodeValue=v})}
+function kjExercise(){const x=EX[eq[ei]];if(!kjAllowed(x))return;const u=Math.max(kjMaxUnit(),x[1]);document.querySelectorAll(".ex-prompt,#bd .opt,#pk,#pl,#fb .xp-row:not(.xp-own-row) .jp,#fb .jp-answer").forEach(el=>kjDom(el,u))}
+const _exKJ=ex;ex=function(){_exKJ();try{kjExercise()}catch(e){}};
+const _tilesKJ=tiles;tiles=function(){_tilesKJ();try{kjExercise()}catch(e){}};
+const _finKJ=fin;fin=function(ok,right){_finKJ(ok,right);try{if(!(EXAM.on&&!EXAM.done))kjExercise()}catch(e){}};
 
 // @@MOD_END@@
 nav();side();go("ho");
