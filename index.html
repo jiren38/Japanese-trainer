@@ -2387,7 +2387,7 @@ function exStart(){exSetup()}
 function exStats(id){const units=exUnits().prim,seen=S.exSeen||{},book=[...new Map(EX.filter(x=>!x._generated&&exInUnits(id,x[1],units)&&exGroup(x)===id&&exerciseJPReady(x)).map(x=>[exerciseIdentity(x),x])).values()];let gen=false;for(const u of units){try{if(generateExercise(id,u,1)){gen=true;break}}catch(e){}}return{n:book.length,fresh:book.filter(x=>!seen[exerciseIdentity(x)]).length,gen}}
 function exLen(){const v=S.exLen;return v==="all"||[10,20,30].includes(v)?v:10}
 function exSetLen(v){S.exLen=v;save();exSetup()}
-function exSetup(){const selected=exSelected(),len=exLen();let freshSel=0;const choices=EX_GROUPS.map(([id,label])=>{const s=exStats(id),usable=s.n>0||s.gen;if(selected.includes(id))freshSel+=s.fresh;return `<label class="btn ex-type"><input type="checkbox" ${selected.includes(id)?"checked":""} ${usable?"":"disabled"} onchange="exToggle('${id}')"><span>${label}</span><small style="white-space:normal;text-align:right" title="${s.n} esercizi fissi, ${s.fresh} non ancora fatti${s.gen?"; quando finiscono se ne generano altri":""}">${s.n} · ${s.fresh} ${s.fresh===1?"nuovo":"nuovi"}${s.gen?" +":""}</small></label>`}).join("");const lens=[[10,"10"],[20,"20"],[30,"30"],["all","Tutti i nuovi del libro"]].map(([v,l])=>`<button class="btn ${len===v?"on":""}" onclick="exSetLen(${typeof v==="string"?"'all'":v})">${l}</button>`).join("");el(`<div class="ex-head"><div><div class="ex-title">Scegli gli esercizi</div><div class="ex-sub">Gli esercizi seguono le unità selezionate e si adattano ai tuoi progressi.</div></div></div><div class="g"><b>Tipi di esercizio</b><div class="mu" style="font-size:13px;margin-top:4px">Numero = esercizi fissi (dal libro) per le unità selezionate · “nuovi” = non ancora fatti · “+” = quando finiscono se ne generano altri a caso.</div><div class="ex-type-grid">${choices}</div><div class="row"><button class="btn" onclick="exSelectAll(true)">Seleziona tutti</button><button class="btn" onclick="exSelectAll(false)">Deseleziona tutti</button></div></div><div class="g"><b>Lunghezza della sessione</b><div class="row" style="flex-wrap:wrap;margin-top:8px">${lens}</div>${len==="all"?`<div class="mu" style="font-size:13px">Solo esercizi del libro non ancora fatti, di ogni livello: ${freshSel} nei tipi selezionati.</div>`:""}</div><button class="btn ok ex-start" style="width:100%;padding:14px" onclick="exRun()">Inizia&nbsp;·&nbsp;${len==="all"?freshSel+" esercizi":len+" esercizi"}</button>`)}
+function exSetup(){const selected=exSelected(),len=exLen();let freshSel=0;const choices=EX_GROUPS.map(([id,label])=>{const s=exStats(id),usable=s.n>0||s.gen;if(selected.includes(id))freshSel+=s.fresh;return `<label class="btn ex-type"><input type="checkbox" ${selected.includes(id)?"checked":""} ${usable?"":"disabled"} onchange="exToggle('${id}')"><span>${label}</span><small style="white-space:normal;text-align:right" title="${s.n} esercizi fissi, ${s.fresh} non ancora fatti${s.gen?"; quando finiscono se ne generano altri":""}">${typeof SB_FMT==="function"?SB_FMT(+s.n):s.n} · ${typeof SB_FMT==="function"?SB_FMT(+s.fresh):s.fresh} ${s.fresh===1?"nuovo":"nuovi"}${s.gen?" +":""}</small></label>`}).join("");const lens=[[10,"10"],[20,"20"],[30,"30"],["all","Tutti i nuovi del libro"]].map(([v,l])=>`<button class="btn ${len===v?"on":""}" onclick="exSetLen(${typeof v==="string"?"'all'":v})">${l}</button>`).join("");el(`<div class="ex-head"><div><div class="ex-title">Scegli gli esercizi</div><div class="ex-sub">Gli esercizi seguono le unità selezionate e si adattano ai tuoi progressi.</div></div></div><div class="g"><b>Tipi di esercizio</b><div class="mu" style="font-size:13px;margin-top:4px">Numero = esercizi diversi disponibili (per particelle e riordino anche quelli generati, sempre sull’unità più alta selezionata) · “nuovi” = non ancora fatti · “+” = se ne generano altri a caso.</div><div class="ex-type-grid">${choices}</div><div class="row"><button class="btn" onclick="exSelectAll(true)">Seleziona tutti</button><button class="btn" onclick="exSelectAll(false)">Deseleziona tutti</button></div></div><div class="g"><b>Lunghezza della sessione</b><div class="row" style="flex-wrap:wrap;margin-top:8px">${lens}</div>${len==="all"?`<div class="mu" style="font-size:13px">Solo esercizi del libro non ancora fatti, di ogni livello: ${freshSel} nei tipi selezionati.</div>`:""}</div><button class="btn ok ex-start" style="width:100%;padding:14px" onclick="exRun()">Inizia&nbsp;·&nbsp;${len==="all"?freshSel+" esercizi":len+" esercizi"}</button>`)}
 function exToggle(id){let selected=exSelected().slice();selected=selected.includes(id)?selected.filter(x=>x!=id):selected.concat(id);S.exTypes=selected;save();exSetup()}
 function exSelectAll(on){S.exTypes=on?EX_GROUPS.map(g=>g[0]):[];save();exSetup()}
 function shuffleArray(a){return a.map(x=>[Math.random(),x]).sort((x,y)=>x[0]-y[0]).map(x=>x[1])}
@@ -3417,7 +3417,7 @@ const SB={
  ["私 _は / お菓子 _が/を / 食べたい です","Voglio mangiare un dolce."],
  ["{P1} _と {P2} _と {P3} _の 中 _で / 誰 _が / 一番 / 忙しい です _か","Tra {P1}, {P2} e {P3}, chi è il più impegnato?"],
  ["夜 / 日記 _を / 書いて、 / 寝ます","La sera scrivo il diario e vado a dormire."],
- ["京都 _で / 歌舞伎 _を / 見たい です","A Kyōto voglio vedere il kabuki."]],
+ ["京都 _で / 歌舞伎 _を/が / 見たい です","A Kyōto voglio vedere il kabuki."]],
 9:[["私 _は / 新しい 携帯電話 _が / ほしい です","Voglio un cellulare nuovo."],
  ["ここ _に / 名前 _を / 書いてください","Scriva il nome qui, per favore."],
  ["晩ごはん _を / 食べてから、 / 宿題 _を / します","Dopo cena faccio i compiti."],
@@ -3515,7 +3515,7 @@ const SB={
 ]};
 // particelle che si possono usare come alternative sbagliate, per unità
 const SB_PARTS=[["は",1],["の",1],["も",1],["と",1],["を",3],["に",4],["が",4],["や",4],["から",4],["まで",4],["へ",5],["で",5],["より",7]];
-const SB_NEAR={"は":["が","も"],"が":["は","を"],"も":["は"],"に":["へ"],"へ":["に"],"と":["や"],"や":["と"],"を":["が"]};
+const SB_NEAR={"は":["が","も"],"が":["は","を"],"も":["は"],"に":["へ","まで"],"へ":["に","まで"],"と":["や"],"や":["と"],"を":["が"]};
 ["ので","とか","ほど"].forEach(p=>PARTICLES.add(p));
 function sbPick(a){return a[Math.floor(Math.random()*a.length)]}
 // riempie una frase modello con valori casuali (tutti diversi tra loro)
@@ -3523,8 +3523,8 @@ function sbFill(tpl,unit){const vals={},used=new Set(),slotRe=/\{([A-Z]+)(\d?)(?
  const need=new Set();for(const m of tpl[0].matchAll(slotRe))need.add(m[1]+m[2]);
  for(const key of need){const pool=key.replace(/\d$/,""),cand=(SBP[pool]||[]).filter(v=>(v.u||1)<=unit&&!used.has(v.jp));if(!cand.length)return null;const v=sbPick(cand);vals[key]=v;used.add(v.jp)}
  // LC dipende da XS: il testo italiano contiene {XS.il}
- const sub=(s,lang)=>{let out=s;for(let k=0;k<3;k++)out=out.replace(/\{([A-Z]+\d?)(?:\.([a-z]+)|:([^}/]*)\/([^}]*))?\}/g,(m,key,f,mf,ff)=>{const v=vals[key]||vals[key.replace(/\d$/,"")];if(!v)return m;if(mf!==undefined)return v.g==="f"?ff:mf;if(lang==="jp")return f?String(v[f]||""):v.jp;return String(f?(v[f]||""):(v.it!==undefined?v.it:v.jp))});return out};
- let it=sub(tpl[1],"it");it=it.charAt(0).toUpperCase()+it.slice(1);return{jp:sub(tpl[0],"jp"),it}}
+ const sub=(s,lang)=>{let out=s;for(let k=0;k<3;k++)out=out.replace(/\{([A-Z]+\d?)(?:\.([a-z0-9]+)|:([^}/]*)\/([^}]*))?\}/g,(m,key,f,mf,ff)=>{const v=vals[key]||vals[key.replace(/\d$/,"")];if(!v)return m;if(mf!==undefined)return v.g==="f"?ff:mf;if(lang==="jp")return f?String(v[f]||""):v.jp;return String(f?(v[f]||""):(v.it!==undefined?v.it:v.jp))});return out};
+ let it=sub(tpl[1],"it").replace(/§([^/§]*)\/([^§]*)§/g,(m,x,y)=>vals.P1&&vals.P1.g==="f"?y:x);it=it.charAt(0).toUpperCase()+it.slice(1);return{jp:sub(tpl[0],"jp"),it}}
 // analizza la frase: proposizioni → blocchi → parole
 function sbParse(jp){const clauses=[[]];jp.split(" / ").forEach(ph=>{const toks=ph.trim().split(/\s+/).filter(Boolean).map(t=>{if(t[0]==="_"){let body=t.slice(1),suf="";const m=body.match(/[、。]+$/);if(m){suf=m[0];body=body.slice(0,-suf.length)}const alts=body.split("/");return{p:true,alts,suf,text:alts[0]+suf}}return{p:false,text:t}});clauses[clauses.length-1].push(toks);if(/、$/.test(toks[toks.length-1].text))clauses.push([])});return clauses.filter(c=>c.length)}
 function sbPerms(a){if(a.length<=1)return[a];const out=[];a.forEach((x,i)=>sbPerms(a.filter((_,j)=>j!==i)).forEach(p=>out.push([x,...p])));return out}
@@ -3564,6 +3564,124 @@ exInUnits=function(group,u,units){return units.includes(u)};
 const _exRunSB=exRun;exRun=function(){SB_BATCH=new Set();_exRunSB();try{save()}catch(e){}};
 const _exStatsSB=exStats;exStats=function(id){SB_PROBE=true;try{return _exStatsSB(id)}finally{SB_PROBE=false}};
 
+// @@MOD_SB2@@
+// ===== AZIONI CONIUGABILI: moltiplicano le frasi dalla Unità 5 in poi =====
+// o = complemento con particella, m = radice in -ます, te/ta/d/n = forme in て, た, dizionario, ない
+SBP.V=[
+ {u:5,o:"映画 _を",m:"見",te:"見て",ta:"見た",d:"見る",n:"見ない",inf:"guardare un film",it3:"guarda un film",it1:"guardo un film",we:"guardiamo un film",pp:"guardato un film",ger:"guardando un film"},
+ {u:5,o:"テレビ _を",m:"見",te:"見て",ta:"見た",d:"見る",n:"見ない",inf:"guardare la TV",it3:"guarda la TV",it1:"guardo la TV",we:"guardiamo la TV",pp:"guardato la TV",ger:"guardando la TV"},
+ {u:5,o:"本 _を",m:"読み",te:"読んで",ta:"読んだ",d:"読む",n:"読まない",inf:"leggere un libro",it3:"legge un libro",it1:"leggo un libro",we:"leggiamo un libro",pp:"letto un libro",ger:"leggendo un libro"},
+ {u:5,o:"新聞 _を",m:"読み",te:"読んで",ta:"読んだ",d:"読む",n:"読まない",inf:"leggere il giornale",it3:"legge il giornale",it1:"leggo il giornale",we:"leggiamo il giornale",pp:"letto il giornale",ger:"leggendo il giornale"},
+ {u:5,o:"音楽 _を",m:"聞き",te:"聞いて",ta:"聞いた",d:"聞く",n:"聞かない",inf:"ascoltare musica",it3:"ascolta musica",it1:"ascolto musica",we:"ascoltiamo musica",pp:"ascoltato musica",ger:"ascoltando musica"},
+ {u:5,o:"コーヒー _を",m:"飲み",te:"飲んで",ta:"飲んだ",d:"飲む",n:"飲まない",inf:"bere un caffè",it3:"beve un caffè",it1:"bevo un caffè",we:"beviamo un caffè",pp:"bevuto un caffè",ger:"bevendo un caffè"},
+ {u:5,o:"ワイン _を",m:"飲み",te:"飲んで",ta:"飲んだ",d:"飲む",n:"飲まない",inf:"bere del vino",it3:"beve del vino",it1:"bevo del vino",we:"beviamo del vino",pp:"bevuto del vino",ger:"bevendo del vino"},
+ {u:5,o:"すし _を",m:"食べ",te:"食べて",ta:"食べた",d:"食べる",n:"食べない",inf:"mangiare il sushi",it3:"mangia il sushi",it1:"mangio il sushi",we:"mangiamo il sushi",pp:"mangiato il sushi",ger:"mangiando il sushi"},
+ {u:5,o:"パスタ _を",m:"食べ",te:"食べて",ta:"食べた",d:"食べる",n:"食べない",inf:"mangiare la pasta",it3:"mangia la pasta",it1:"mangio la pasta",we:"mangiamo la pasta",pp:"mangiato la pasta",ger:"mangiando la pasta"},
+ {u:5,o:"日本語 _の 勉強 _を",m:"し",te:"して",ta:"した",d:"する",n:"しない",inf:"studiare giapponese",it3:"studia giapponese",it1:"studio giapponese",we:"studiamo giapponese",pp:"studiato giapponese",ger:"studiando giapponese"},
+ {u:5,o:"テニス _を",m:"し",te:"して",ta:"した",d:"する",n:"しない",inf:"giocare a tennis",it3:"gioca a tennis",it1:"gioco a tennis",we:"giochiamo a tennis",pp:"giocato a tennis",ger:"giocando a tennis"},
+ {u:5,o:"さんぽ _を",m:"し",te:"して",ta:"した",d:"する",n:"しない",inf:"fare una passeggiata",it3:"fa una passeggiata",it1:"faccio una passeggiata",we:"facciamo una passeggiata",pp:"fatto una passeggiata",ger:"facendo una passeggiata"},
+ {u:6,o:"服 _を",m:"買い",te:"買って",ta:"買った",d:"買う",n:"買わない",inf:"comprare dei vestiti",it3:"compra dei vestiti",it1:"compro dei vestiti",we:"compriamo dei vestiti",pp:"comprato dei vestiti",ger:"comprando dei vestiti"},
+ {u:6,o:"友だち _に",m:"会い",te:"会って",ta:"会った",d:"会う",n:"会わない",inf:"incontrare gli amici",it3:"incontra gli amici",it1:"incontro gli amici",we:"incontriamo gli amici",pp:"incontrato gli amici",ger:"incontrando gli amici"},
+ {u:7,o:"手紙 _を",m:"書き",te:"書いて",ta:"書いた",d:"書く",n:"書かない",inf:"scrivere una lettera",it3:"scrive una lettera",it1:"scrivo una lettera",we:"scriviamo una lettera",pp:"scritto una lettera",ger:"scrivendo una lettera"},
+ {u:8,o:"宿題 _を",m:"し",te:"して",ta:"した",d:"する",n:"しない",inf:"fare i compiti",it3:"fa i compiti",it1:"faccio i compiti",we:"facciamo i compiti",pp:"fatto i compiti",ger:"facendo i compiti"},
+ {u:8,o:"日記 _を",m:"書き",te:"書いて",ta:"書いた",d:"書く",n:"書かない",inf:"scrivere il diario",it3:"scrive il diario",it1:"scrivo il diario",we:"scriviamo il diario",pp:"scritto il diario",ger:"scrivendo il diario"},
+ {u:8,o:"シャワー _を",m:"浴び",te:"浴びて",ta:"浴びた",d:"浴びる",n:"浴びない",inf:"fare la doccia",it3:"fa la doccia",it1:"faccio la doccia",we:"facciamo la doccia",pp:"fatto la doccia",ger:"facendo la doccia"},
+ {u:9,o:"写真 _を",m:"選び",te:"選んで",ta:"選んだ",d:"選ぶ",n:"選ばない",inf:"scegliere le foto",it3:"sceglie le foto",it1:"scelgo le foto",we:"scegliamo le foto",pp:"scelto le foto",ger:"scegliendo le foto"},
+ {u:10,o:"料理 _を",m:"作り",te:"作って",ta:"作った",d:"作る",n:"作らない",inf:"cucinare",it3:"cucina",it1:"cucino",we:"cuciniamo",pp:"cucinato",ger:"cucinando"}
+].map(v=>Object.assign(v,{jp:v.o+" "+v.m+"ます",ot:v.o.replace("_を","_を/が")}));
+// T e TM con un orario: anche "alle …" per le azioni
+const SB_V={
+5:[["{P1} _は / {TM} / {V1.o} / {V1.m}ます","{TM} {P1} {V1.it3}."],
+ ["私 _は / 毎晩 / {V1.o} / {V1.m}ます","Ogni sera {V1.it1}."],
+ ["{P1} _は / 毎朝 / {V1.o} / {V1.m}ます","Ogni mattina {P1} {V1.it3}."],
+ ["{P1} _は / {T} _に / {V1.o} / {V1.m}ます","{P1} {V1.it3} {T.alle}."],
+ ["いっしょに / {V1.o} / {V1.m}ませんか","Perché non {V1.we} insieme?"],
+ ["{TM} / いっしょに / {V1.o} / {V1.m}ましょう","{TM} {V1.we} insieme!"],
+ ["{P1} _も / {TM} / {V1.o} / {V1.m}ます _か","Anche {P1} {V1.it3} {TM}?"],
+ ["{P1} _は / {TM} / {V1.o} / {V1.m}ません","{TM} {P1} non {V1.it3}."],
+ ["{P1} _は / {TM} / {CI} _へ/に / 行きます _から、 / {V1.o} / {V1.m}ません","{TM} {P1} va a {CI}, quindi non {V1.it3}."],
+ ["{P1} _と {P2} _は / {TM} / {CI} _へ/に / {TR} _で / 行きます","{TM} {P1} e {P2} vanno a {CI} {TR}."],
+ ["{P1} _は / {T} _に / {TR} _で / 大学 _へ/に / 来ます","{P1} viene all’università {TR} {T.alle}."]],
+6:[["{TP} / {P1} _と / {V1.o} / {V1.m}ました","{TP} ho {V1.pp} con {P1}."],
+ ["{P1} _は / {TP} / {PL} _で / {V1.o} / {V1.m}ました","{TP} {P1} ha {V1.pp} {PL.in}."],
+ ["もう / {V1.o} / {V1.m}ました _か","Hai già {V1.pp}?"],
+ ["{P1} _は / {TP} / {V1.o} / {V1.m}ませんでした","{TP} {P1} non ha {V1.pp}."],
+ ["{TP} / {P1} _と {P2} _と / {PL} _で / {V1.o} / {V1.m}ました","{TP} ho {V1.pp} {PL.in} con {P1} e {P2}."],
+ ["{TP} / {PL} _へ/に / 行きました _が、 / {V1.o} / {V1.m}ませんでした","{TP} sono andato {PL.in}, ma non ho {V1.pp}."],
+ ["{P1} _は / {TP} / 一人で / {V1.o} / {V1.m}ました","{TP} {P1} ha {V1.pp} da sol{P1:o/a}."],
+ ["{TP} / {PL} _で / {P1} _に / 会いました","{TP} ho incontrato {P1} {PL.in}."]],
+7:[["{P1} _は / {P2} _より / {AD} です","{P1} è più {AD.it} di {P2}."],
+ ["{P1} _は / {P2} _と 同じくらい / {AD} です","{P1} è {AD.it} quanto {P2}."],
+ ["{P1} _は / {P2} _ほど / {AD.neg}","{P1} non è {AD.it} come {P2}."],
+ ["{CI1} _は / {CI2} _より / {ADC} です","{CI1} è più {ADC.it} di {CI2}."],
+ ["{CI1} _は / {CI2} _ほど / {ADC.neg}","{CI1} non è {ADC.it} come {CI2}."],
+ ["{P1} _は / {FD} _が / 好き です","A {P1} piace {FD}."],
+ ["{TP} / {P1} _に / 手紙 _を / 書きました","{TP} ho scritto una lettera a {P1}."]],
+8:[["{P1} _は / {TM} / {V1.ot} / {V1.m}たい です","{TM} {P1} vuole {V1.inf}."],
+ ["{V1.o} / {V1.te}、 / {V2.o} / {V2.m}ます","Prima {V1.it1}, poi {V2.it1}."],
+ ["{TP} / {V1.o} / {V1.te}、 / {V2.o} / {V2.m}ました","{TP} ho {V1.pp} e poi ho {V2.pp}."],
+ ["{P1} _は / 毎朝 / {V1.o} / {V1.te}、 / 大学 _へ/に / 行きます","Ogni mattina {P1} {V1.it3} e poi va all’università."],
+ ["どうして / {V1.ot} / {V1.m}たい です _か","Perché vuoi {V1.inf}?"],
+ ["{PL} _へ/に / 行って、 / {V1.o} / {V1.m}ました","Sono andato {PL.in} e ho {V1.pp}."],
+ ["{P1} _と {P2} _と / どちら _が / {AD} です _か","Chi è più {AD.it}, {P1} o {P2}?"],
+ ["{P2} _の 方 _が / {AD} です","{P2} è più {AD.it}."],
+ ["{P1} _は / {CI} _へ/に / {NUM}回 / 行きました","{P1} è andat{P1:o/a} a {CI} {NUM} volte."]],
+9:[["{P1} _は / 今 / {V1.o} / {V1.te}います","{P1} adesso sta {V1.ger}."],
+ ["{V1.o} / {V1.te}から、 / {V2.o} / {V2.m}ます","Dopo aver {V1.pp}, {V2.it1}."],
+ ["ここ _で / {V1.o} / {V1.te}も いいですか","Posso {V1.inf} qui?"],
+ ["{P1} _は / {PL} _で / {V1.o} / {V1.te}います","{P1} sta {V1.ger} {PL.in}."],
+ ["{TM} / {V1.o} / {V1.te}みます","{TM} provo a {V1.inf}."],
+ ["{P1} _は / もう / {V1.o} / {V1.te}しまいました","{P1} ha già finito di {V1.inf}."],
+ ["{P1} _は / {CI} _に / 住んでいます _が、 / {PL} _で / 働いています","{P1} abita a {CI}, ma lavora {PL.in}."]],
+10:[["{P1} _は / {V1.o} / {V1.ta} こと _が あります","{P1} ha già {V1.pp} (è un’esperienza che ha fatto)."],
+ ["週末 _は / {V1.o} / {V1.ta}り、 / {V2.o} / {V2.ta}り します","Nel fine settimana {V1.it1}, {V2.it1} e cose così."],
+ ["{TM} _は / {V1.o} / {V1.ta} 方 _が いい です","{TM} faresti bene a {V1.inf}."],
+ ["{P1} _は / {CI} _へ/に / 行った こと _が ありません","{P1} non è mai stat{P1:o/a} a {CI}."],
+ ["{TP} / {PL} _で / {V1.o} / {V1.ta}り、 / {V2.o} / {V2.ta}り しました","{TP} {PL.in} ho {V1.pp}, ho {V2.pp} e cose così."]],
+11:[["ここ _で / {V1.o} / {V1.n}でください","Non {V1.inf} qui, per favore."],
+ ["{TM} _は / {V1.o} / {V1.n} 方 _が いい です","{TM} è meglio non {V1.inf}."],
+ ["{TM} _は / {V1.o} / {V1.nk}くても いいです","{TM} non è necessario {V1.inf}."],
+ ["{PL} _で _は / {V1.o} / {V1.n}でください","{PL.in} non {V1.inf}, per favore."],
+ ["{TM} _は / 試験 です _ので、 / {V1.o} / {V1.m}ません","{TM} c’è l’esame, quindi non {V1.it1}."]],
+12:[["{P1} _は / {PL} _へ/に / {V1.o} / {V1.m} _に 行きます","{P1} va {PL.in} a {V1.inf}."],
+ ["{V1.o} / {V1.d} 前 _に / {V2.o} / {V2.m}ます","Prima di {V1.inf}, {V2.it1}."],
+ ["{V1.o} / {V1.ta} 後 _で / {V2.o} / {V2.m}ました","Dopo aver {V1.pp}, ho {V2.pp}."],
+ ["{PL} _で / {V1.o} / {V1.d} こと _が できます","{PL.in} si può {V1.inf}."],
+ ["{P1} _は / {TM} / {CI} _へ/に / {V1.o} / {V1.m} _に 行きます","{TM} {P1} va a {CI} a {V1.inf}."],
+ ["{P1} _は / {AD.adv} なりました","{P1} è diventat{P1:o/a} {AD.it}."]]
+};
+SBP.V.forEach(v=>{v.nk=v.n.slice(0,-1)});
+// aggettivi per le persone (Unità 7): it = forma italiana neutra, neg = negativo giapponese, adv = forma con なります
+SBP.AD=[{u:7,jp:"忙しい",it:"impegnat§o/a§",neg:"忙しくありません",adv:"忙しく"},{u:7,jp:"まじめ",it:"seri§o/a§",neg:"まじめ では ありません",adv:"まじめ _に"},{u:7,jp:"元気",it:"in forma",neg:"元気 では ありません",adv:"元気 _に"},{u:7,jp:"親切",it:"gentile",neg:"親切 では ありません",adv:"親切 _に"},{u:7,jp:"早い",it:"veloce",neg:"早くありません",adv:"早く"}];
+SBP.ADC=[{u:7,jp:"大きい",it:"grande",neg:"大きくありません"},{u:7,jp:"にぎやか",it:"vivace",neg:"にぎやか では ありません"},{u:7,jp:"静か",it:"tranquilla",neg:"静か では ありません"},{u:7,jp:"暑い",it:"calda",neg:"暑くありません"},{u:7,jp:"寒い",it:"fredda",neg:"寒くありません"},{u:7,jp:"便利",it:"comoda",neg:"便利 では ありません"}];
+Object.entries(SB_V).forEach(([u,a])=>SB[u].push(...a));
+// ===== QUANTI ESERCIZI DIVERSI SI POSSONO GENERARE =====
+function sbCombos1(tpl,unit){const keys=new Set();for(const m of tpl[0].matchAll(/\{([A-Z]+\d?)(?:\.[a-z]+)?\}/g))keys.add(m[1]);const byPool={};keys.forEach(k=>{const p=k.replace(/\d$/,"");byPool[p]=(byPool[p]||0)+1});let n=1;for(const [p,c] of Object.entries(byPool)){const sz=(SBP[p]||[]).filter(v=>(v.u||1)<=unit).length;for(let i=0;i<c;i++)n*=Math.max(0,sz-i)}return n}
+function sbSingles(unit){return (SB[unit]||[]).reduce((s,t)=>s+sbCombos1(t,unit),0)}
+function sbPartSingles(unit){return (SB[unit]||[]).reduce((s,t)=>{const k=(t[0].match(/(^| )_/g)||[]).length;return s+(k?sbCombos1(t,unit)*(1+k):0)},0)}
+function sbLowerUnits(unit){const base=Array.isArray(S.un)&&S.un.length?S.un:AV();return [...new Set(base)].filter(u=>u<unit&&SB[u])}
+function sbCount(group,units){let n=0;units.forEach(u=>{const low=sbLowerUnits(u),lowS=low.reduce((s,v)=>s+sbSingles(v),0);if(group==="order")n+=sbSingles(u)+(Array.isArray(S.un)?sbSingles(u)*lowS:0);else n+=sbPartSingles(u)});return n}
+// ===== GENERATORE (sostituisce quello precedente) =====
+sbGenerate=function(group,unit,level){if(!SB[unit])return null;const low=sbLowerUnits(unit),multi=Array.isArray(S.un)&&low.length>0;
+ const one=(u,minTok,needPart)=>{for(let k=0;k<8;k++){const o=sbChoose(u,minTok);if(!o)return null;const f=sbFill(o.t,u);if(!f)continue;const cl=sbParse(f.jp),parts=cl.flat(2).filter(t=>t.p);if(needPart&&!parts.length)continue;if(!needPart&&cl.flat(2).length<4)continue;return{o,f,cl,parts}}return null};
+ if(group==="order"){const two=multi?Math.random()<0.3:(level>=3&&Math.random()<0.15);const a=one(unit,level>=2?6:5,false);if(!a)return null;
+  if(two){const b=one(sbPick(multi?low:[unit]),4,false);if(b){const tA=a.cl.flat(2).map(t=>t.text),tB=b.cl.flat(2).map(t=>t.text);tA[tA.length-1]+="。";const altsA=sbOrders(a.cl).map(s=>s+"。"),altsB=sbOrders(b.cl),alts=[];altsA.forEach(x=>altsB.forEach(y=>alts.length<400&&alts.push(x+y)));
+   return sbMake("ord",unit,"order","言葉を正しい順番に並べて、二つの文を作ってください。\n“"+a.f.it+"”\n“"+b.f.it+"”",[...tA,...tB],level,{_alts:alts,_tpl:a.o.id+","+b.o.id})}}
+  return sbMake("ord",unit,"order","言葉を正しい順番に並べてください。\n“"+a.f.it+"”",a.cl.flat(2).map(t=>t.text),level,{_alts:sbOrders(a.cl),_tpl:a.o.id})}
+ if(group!=="particle")return null;
+ const r=Math.random(),mode=r<0.25?"mc":r<(multi?0.55:level>=2?0.6:0.75)?"one":"two";
+ const a=one(unit,0,true);if(!a)return null;
+ if(mode==="mc"){const bi=Math.floor(Math.random()*a.parts.length),tp=a.parts[bi],near=new Set(tp.alts.flatMap(p=>SB_NEAR[p]||[]).concat(tp.alts));
+  const pool=SB_PARTS.filter(([p,u])=>u<=unit&&!near.has(p)).map(([p])=>p),opts=shuffleArray([tp.alts[0],...shuffleArray(pool).slice(0,3)]);if(opts.length<3)return null;
+  const line=sbLine(a.cl,bi);sbTr(line,a.f.it);return sbMake("mc",unit,"particle","正しい助詞を選んでください。\n"+line+"\n“"+a.f.it+"”",opts,level,{correct:opts.indexOf(tp.alts[0]),_instr:"Scegli la particella corretta.",_tpl:a.o.id})}
+ let items=[a];if(mode==="two"){const u2=multi&&Math.random()<0.6?sbPick(low):unit,b=one(u2,0,true);if(b)items.push(b)}
+ const lines=items.map(it=>{const l=sbLine(it.cl,undefined);sbTr(l,it.f.it);return l}),answers=sbCombos(items.flatMap(it=>it.parts));
+ return sbMake("fill",unit,"particle","助詞を入れてください。\n"+lines.join("\n")+"\n"+items.map(it=>"“"+it.f.it+"”").join("\n"),answers,level,{_instr:"Inserisci le particelle mancanti.",_tpl:items.map(i=>i.o.id).join(",")})};
+// istruzione italiana per il riordino di due frasi
+const _jpSB2=japanesePrompt;japanesePrompt=function(x){if(x&&x._sb&&x[0]==="ord"&&/二つの文/.test(String(x[2]))){const L=String(x[2]).split("\n").slice(1).map(l=>`<span class="ex-hint">${l}</span>`);return ["Riordina le parole e forma le due frasi (la prima finisce con 。).",...L].join("\n")}return _jpSB2(x)};
+// contatore: per particelle e riordino si contano anche le frasi generate (tutte diverse)
+const _exStatsSB2=exStats;exStats=function(id){const s=_exStatsSB2(id);if(id!=="particle"&&id!=="order")return s;const units=exUnits().prim,gen=sbCount(id,units),seen=Object.keys(S.exSeen||{}).filter(k=>k.startsWith("sb|"+id+"|")&&units.includes(+k.split("|")[2])).length;return Object.assign({},s,{n:s.n+gen,fresh:Math.max(0,s.fresh+gen-seen),gen:true})};
+const SB_FMT=n=>n>=100000?"100.000+":n.toLocaleString("it-IT");
 // spiegazione: per le particelle della banca di frasi si mostrano le regole delle particelle della soluzione
 const _rfeSB=rulesForExercise;rulesForExercise=function(x){if(x&&x._sb&&exGroup(x)==="particle"){const ps=x[0]==="mc"?[x[3][x[4]]]:[...new Set(String(x[3][0]).split("・"))],out=[];ps.forEach(p=>{try{(rulesForParticle(p,x[1],x[2])||[]).slice(0,1).forEach(r=>out.push(r))}catch(e){}});return out.slice(0,3)}return _rfeSB(x)};
 // @@MOD_END@@
