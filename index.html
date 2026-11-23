@@ -2977,7 +2977,7 @@ function grOpen(i){if(EXAM.on&&!EXAM.done)return;G_OPEN[G[i][0]+"|"+G[i][1]]=tru
 function kanjiInfo(s){const ks=[...new Set([...String(s)].filter(c=>/[一-鿿]/.test(c)))].map(c=>K.find(k=>k[0]===c)).filter(Boolean).slice(0,4);return ks.length?`<div class="xp-kanji">${ks.map(k=>`<div><span class="jp" style="font-size:24px">${k[0]}</span><div><b>${esc(k[3])}</b><div class="mu" style="font-size:13px">on: ${esc(k[1])} · kun: ${esc(k[2])} · ${k[4]} tratti · Unità ${k[6]}</div></div></div>`).join("")}</div>`:""}
 // pannello di spiegazione dopo la risposta
 function explainHtml(x,ok,given,right,extra){
- const grp=exGroup(x),accepted=(x[0]==="tx"||x[0]==="fill")?x[3].slice(1).filter(a=>a!==x[3][0]).slice(0,3):[],note=String(x[4]||""),bookNote=note&&!/^Esercizio\s*\d+/.test(note)?note:"";
+ const grp=exGroup(x),accepted=(x[0]==="tx"||x[0]==="fill")?x[3].slice(1).filter(a=>a!==x[3][0]).slice(0,3):[],note=String((x[0]==="mc"?x[5]:x[0]==="listen"?x[6]:x[4])||""),bookNote=note&&!/^Esercizio\s*\d+/.test(note)?note:"";
  let diag="",rules=[];
  if(!ok){if(x[0]==="fill"&&extra&&extra.fill){const bad=extra.fill;diag=`<div class="xp-diag"><b>Errore di particella</b>${bad.map(b=>`<div>Spazio ${b.i+1}: hai scritto <b>${esc(b.v||"(vuoto)")}</b>, serviva <b>${b.p.toLowerCase()==="x"?"nessuna particella":esc(b.p)}</b></div>`).join("")}</div>`;bad.forEach(b=>{const rs=rulesForParticle(b.p,x[1],x[2]);rs.slice(0,2).forEach((r,k)=>rules.push([r,k===0?`Particella ${b.p}${rs.length>1?` · ${rs.length} usi studiati: questo è il più vicino alla frase`:""}`:`Altro uso di ${b.p}`]))})}
   else if(x[0]==="tx"&&given!=null){const best=x[3].map(a=>[a,diagnose(x,given,a)]).sort((p,q)=>(q[1].kind==="particella")-(p[1].kind==="particella"))[0][1];diag=`<div class="xp-diag">${best.msg}${best.hl?`<div class="xp-hl jp">${best.hl}</div><div class="mu" style="font-size:12px">In rosso barrato ciò che manca, in verde ciò che hai aggiunto (confronto sulla lettura).</div>`:""}</div>`;if(best.rule)rules.push([best.rule,"Costruzione mancante"]);(best.parts||[]).forEach(p=>rulesForParticle(p,x[1],x[2]+" "+x[3][0]).slice(0,1).forEach(r=>rules.push([r,`Particella ${p}`])))}
@@ -3176,7 +3176,7 @@ function kjAllowed(x){if(!x)return false;const g=exGroup(x);if(g==="kanji"||g===
 // una parola si converte solo se inizia lì: dopo l'inizio della riga, punteggiatura, katakana, numeri o una particella
 const KJ_BOUND="はがをにでともへやかねよの";
 function kanjify(s,maxU){if(!s||!/[ぁ-ゖ]/.test(s))return s;const keep=[],A="",B="";let t=String(s);
- for(const e of KJ_MAP){if(e.u>maxU||!t.includes(e.r))continue;t=t.replace(new RegExp(e.r,"g"),(m,off,str)=>{const prev=str[off-1]||"";
+ for(const e of KJ_MAP){if(e.u>maxU||!t.includes(e.r))continue;t=t.replace(new RegExp(e.r,"g"),(m,off,str)=>{const prev=str[off-1]||"";if(e.keep){keep.push(e.w);return A+(keep.length-1)+B}
   if(/[一-鿿々]/.test(prev)||prev===B)return m;                       // parte in kana di un'altra parola (飲みます non diventa 飲見ます)
   if(/[ぁ-ゖ]/.test(prev)&&!KJ_BOUND.includes(prev))return m;          // dentro un'altra parola (べんきょう non diventa べん今日)
   if((prev==="て"||prev==="で")&&/^[見行来]/.test(e.w))return m;      // ～てみます・～ていきます: ausiliari in hiragana
@@ -3189,6 +3189,383 @@ const _exKJ=ex;ex=function(){_exKJ();try{kjExercise()}catch(e){}};
 const _tilesKJ=tiles;tiles=function(){_tilesKJ();try{kjExercise()}catch(e){}};
 const _finKJ=fin;fin=function(ok,right){_finKJ(ok,right);try{if(!(EXAM.on&&!EXAM.done))kjExercise()}catch(e){}};
 
+// @@MOD_SB@@
+// ===== BANCA DI FRASI PER PARTICELLE E ORDINE DELLE PAROLE =====
+// Ogni frase è scritta con il lessico e la grammatica della sua unità (e di quelle precedenti).
+// Sintassi: " / " separa i blocchi che si possono spostare (l'ultimo blocco di ogni proposizione resta in fondo),
+// "_" segna una particella (con "/" le alternative accettate: _に/へ), {X} è un elemento variabile.
+// In italiano: {X} = traduzione, {X.campo} = un campo, {X:maschile/femminile} = accordo con X.
+const SBP={
+ P:[{jp:"森さん",it:"Mori",g:"m"},{jp:"ミラさん",it:"Mira",g:"f"},{jp:"ケンさん",it:"Ken",g:"m"},{jp:"チンさん",it:"Chin",g:"m"},{jp:"ルカさん",it:"Luca",g:"m"},{jp:"アンナさん",it:"Anna",g:"f"},{jp:"マリアさん",it:"Maria",g:"f"},{jp:"トムさん",it:"Tom",g:"m"},{jp:"キムさん",it:"Kim",g:"f"}],
+ C:[{jp:"日本",it:"giapponese",pl:"giapponesi"},{jp:"中国",it:"cinese",pl:"cinesi"},{jp:"フランス",it:"francese",pl:"francesi"},{jp:"イギリス",it:"inglese",pl:"inglesi"},{jp:"ポルトガル",it:"portoghese",pl:"portoghesi"}],
+ L:[{jp:"日本語",it:"giapponese"},{jp:"中国語",it:"cinese"},{jp:"イタリア語",it:"italiano"},{jp:"フランス語",it:"francese"},{jp:"スペイン語",it:"spagnolo"}],
+ H:[{jp:"映画",it:"il cinema"},{jp:"音楽",it:"la musica"},{jp:"読書",it:"la lettura"},{jp:"料理",it:"la cucina"},{jp:"写真",it:"la fotografia"},{jp:"まんが",it:"i manga"},{jp:"サッカー",it:"il calcio"},{jp:"テニス",it:"il tennis"}],
+ S:[{jp:"歴史",it:"storia"},{jp:"日本語",it:"lingua giapponese"},{jp:"中国語",it:"lingua cinese"},{jp:"写真",it:"fotografia"}],
+ O:[{jp:"本",it:"libro",g:"m"},{jp:"辞書",it:"dizionario",g:"m"},{jp:"雑誌",it:"rivista",g:"f"},{jp:"教科書",it:"libro di testo",g:"m"},{jp:"かばん",it:"borsa",g:"f"},{jp:"えんぴつ",it:"matita",g:"f"},{jp:"携帯電話",it:"cellulare",g:"m"},{jp:"車",it:"macchina",g:"f"}],
+ D:[{jp:"一月一日",it:"1° gennaio"},{jp:"三月三日",it:"3 marzo"},{jp:"四月十日",it:"10 aprile"},{jp:"五月二十日",it:"20 maggio"},{jp:"六月二十四日",it:"24 giugno"},{jp:"七月二日",it:"2 luglio"},{jp:"九月九日",it:"9 settembre"},{jp:"十二月八日",it:"8 dicembre"}],
+ N:[{jp:"十八",it:"diciotto"},{jp:"十九",it:"diciannove"},{jp:"二十",it:"venti"},{jp:"二十一",it:"ventuno"},{jp:"二十二",it:"ventidue"}],
+ PL:[{jp:"本屋さん",it:"la libreria",in:"in libreria",a:"alla libreria"},{jp:"銀行",it:"la banca",in:"in banca",a:"alla banca"},{jp:"郵便局",it:"l’ufficio postale",in:"all’ufficio postale",a:"all’ufficio postale"},{jp:"映画館",it:"il cinema",in:"al cinema",a:"al cinema"},{jp:"喫茶店",it:"la caffetteria",in:"in caffetteria",a:"alla caffetteria"},{jp:"図書館",it:"la biblioteca",in:"in biblioteca",a:"alla biblioteca"},{jp:"駅",it:"la stazione",in:"alla stazione",a:"alla stazione"},{jp:"すし屋",it:"il ristorante di sushi",in:"al ristorante di sushi",a:"al ristorante di sushi"},
+  {jp:"病院",it:"l’ospedale",in:"in ospedale",a:"all’ospedale",u:4},{jp:"公園",it:"il parco",in:"al parco",a:"al parco",u:4},{jp:"市場",it:"il mercato",in:"al mercato",a:"al mercato",u:4},{jp:"食堂",it:"la mensa",in:"in mensa",a:"alla mensa",u:4},{jp:"薬局",it:"la farmacia",in:"in farmacia",a:"alla farmacia",u:4}],
+ FL:[{jp:"二階",it:"al secondo piano"},{jp:"三階",it:"al terzo piano"},{jp:"四階",it:"al quarto piano"},{jp:"五階",it:"al quinto piano"},{jp:"六階",it:"al sesto piano"}],
+ CN:[{jp:"切手",c:"枚",it:"francobolli"},{jp:"はがき",c:"枚",it:"cartoline"},{jp:"皿",c:"枚",it:"piatti"},{jp:"本",c:"冊",it:"libri"},{jp:"ノート",c:"冊",it:"quaderni"},{jp:"かさ",c:"本",it:"ombrelli"},{jp:"えんぴつ",c:"本",it:"matite"},{jp:"ビール",c:"本",it:"bottiglie di birra"}],
+ NUM:[{jp:"二",it:"due"},{jp:"三",it:"tre"},{jp:"四",it:"quattro"},{jp:"五",it:"cinque"}],
+ T:[{jp:"九時",it:"le nove",alle:"alle nove"},{jp:"十時半",it:"le dieci e mezza",alle:"alle dieci e mezza"},{jp:"二時",it:"le due",alle:"alle due"},{jp:"三時半",it:"le tre e mezza",alle:"alle tre e mezza"},{jp:"六時",it:"le sei",alle:"alle sei"},{jp:"七時",it:"le sette",alle:"alle sette"},{jp:"八時",it:"le otto",alle:"alle otto"}],
+ PR:[{jp:"時計",it:"orologio",g:"m"},{jp:"かさ",it:"ombrello",g:"m"},{jp:"かばん",it:"borsa",g:"f"},{jp:"服",it:"vestito",g:"m"},{jp:"辞書",it:"dizionario",g:"m"}],
+ FD:[{jp:"すし",it:"il sushi",n:"sushi",g:"m"},{jp:"てんぷら",it:"la tempura",n:"tempura",g:"f"},{jp:"さしみ",it:"il sashimi",n:"sashimi",g:"m"},{jp:"すきやき",it:"il sukiyaki",n:"sukiyaki",g:"m"},{jp:"魚",it:"il pesce",n:"pesce",g:"m"},{jp:"肉",it:"la carne",n:"carne",g:"f"},{jp:"パスタ",it:"la pasta",n:"pasta",g:"f"},{jp:"ピザ",it:"la pizza",n:"pizza",g:"f"}],
+ DR:[{jp:"コーヒー",it:"il caffè"},{jp:"ビール",it:"la birra"},{jp:"ワイン",it:"il vino"},{jp:"水",it:"l’acqua"},{jp:"ジュース",it:"il succo di frutta"}],
+ CI:[{jp:"京都",it:"Kyōto"},{jp:"大阪",it:"Ōsaka"},{jp:"ローマ",it:"Roma"},{jp:"ミラノ",it:"Milano"},{jp:"ナポリ",it:"Napoli"},{jp:"トリノ",it:"Torino"},{jp:"東京",it:"Tōkyō",u:7},{jp:"奈良",it:"Nara",u:10},{jp:"広島",it:"Hiroshima",u:10}],
+ TR:[{jp:"電車",it:"in treno"},{jp:"バス",it:"in autobus"},{jp:"地下鉄",it:"in metropolitana"},{jp:"車",it:"in macchina"},{jp:"飛行機",it:"in aereo"},{jp:"新幹線",it:"con lo shinkansen"},{jp:"タクシー",it:"in taxi"},{jp:"自転車",it:"in bicicletta",u:12}],
+ TM:[{jp:"明日",it:"domani"},{jp:"今晩",it:"stasera"},{jp:"来週",it:"la settimana prossima"},{jp:"週末",it:"nel fine settimana"},{jp:"日曜日",it:"domenica"}],
+ TP:[{jp:"きのう",it:"ieri"},{jp:"先週",it:"la settimana scorsa"},{jp:"週末",it:"lo scorso fine settimana"},{jp:"日曜日",it:"domenica"}],
+ OB:[{jp:"本",it:"un libro"},{jp:"辞書",it:"un dizionario"},{jp:"ノート",it:"un quaderno"},{jp:"時計",it:"un orologio"},{jp:"りんご",it:"una mela"},{jp:"携帯電話",it:"un cellulare"},{jp:"えんぴつ",it:"una matita"}],
+ XS:[{jp:"つくえ",il:"la scrivania",a:"alla scrivania"},{jp:"いす",il:"la sedia",a:"alla sedia"},{jp:"テーブル",il:"il tavolo",a:"al tavolo"}],
+ XC:[{jp:"箱",it:"nella scatola"},{jp:"かばん",it:"nella borsa"},{jp:"袋",it:"nella busta"}],
+ LC:[{jp:"上",it:"sopra {XS.il}"},{jp:"下",it:"sotto {XS.il}"},{jp:"横",it:"di fianco {XS.a}"},{jp:"前",it:"davanti {XS.a}"},{jp:"そば",it:"accanto {XS.a}"}],
+ BUY:[{jp:"服",it:"dei vestiti"},{jp:"本",it:"un libro"},{jp:"かばん",it:"una borsa"},{jp:"時計",it:"un orologio"},{jp:"くつ",it:"delle scarpe"},{jp:"きもの",it:"un kimono"}]
+};
+const SB={
+1:[["{P1} _は / {C}人 です","{P1} è {C}."],
+ ["{P1} _は / {C}人 です _か","{P1} è {C}?"],
+ ["{P1} _は / {L} _の 学生 です","{P1} è {P1:uno studente/una studentessa} di {L}."],
+ ["{P1} _も / 学生 です","Anche {P1} è {P1:uno studente/una studentessa}."],
+ ["{P1} _は / 会社員 では ありません","{P1} non è {P1:un impiegato/un’impiegata}."],
+ ["{P1} _は / {C}人 では ありません","{P1} non è {C}."],
+ ["私 _の 趣味 _は / {H1} _と {H2} です","I miei hobby sono {H1} e {H2}."],
+ ["{P1} _の 趣味 _は / 何 です _か","Qual è l’hobby di {P1}?"],
+ ["{P1} _と {P2} _は / 大学 _の 学生 です","{P1} e {P2} sono studenti universitari."],
+ ["{P1} _は / {C} _の 方 です _か","{P1} è {C}? (forma cortese)"],
+ ["失礼ですが、 / {P1} _は / {C}人 です _か","Mi scusi, {P1} è {C}?"],
+ ["{P1} _の 専門 _は / {S} です","La specializzazione di {P1} è {S}."],
+ ["{P1} _は / 日本語 _の 先生 です","{P1} è insegnante di giapponese."],
+ ["私 _も / {C}人 です","Anch’io sono {C}."],
+ ["{P1} _も / {P2} _も / {C}人 です","Sia {P1} sia {P2} sono {C.pl}."],
+ ["{P1} _の 仕事 _は / 何 です _か","Che lavoro fa {P1}?"],
+ ["{P1} _の 趣味 _も / {H1} です","Anche l’hobby di {P1} è {H1}."],
+ ["{P1} _は / 大学 _の 先生 です _か","{P1} insegna all’università?"],
+ ["{P1} _の 専門 _は / 何 です _か","Qual è la specializzazione di {P1}?"],
+ ["私 _は / {L} _の 学生 では ありません","Non sono uno studente di {L}."]],
+2:[["これ _は / {P1} _の {O} です","{O:Questo/Questa} è {O:il/la} {O} di {P1}."],
+ ["それ _は / 誰 _の {O} です _か","Di chi è {O:codesto/codesta} {O}?"],
+ ["この {O} _は / {P1} _の です","{O:Questo/Questa} {O} è di {P1}."],
+ ["その {O} _は / {P1} _の です _か","{O:Codesto/Codesta} {O} è di {P1}?"],
+ ["いいえ、 / {P2} _の です","No, è di {P2}."],
+ ["あの 人 _は / 誰 です _か","Chi è quella persona?"],
+ ["あれ _は / 美術館 です _か","Quello laggiù è un museo?"],
+ ["あの 建物 _は / 図書館 です","Quell’edificio è la biblioteca."],
+ ["{P1} _の 誕生日 _は / {D} です","Il compleanno di {P1} è il {D}."],
+ ["{P1} _の 誕生日 _は / いつ です _か","Quand’è il compleanno di {P1}?"],
+ ["{P1} _は / {N}才 です","{P1} ha {N} anni."],
+ ["{P1} _は / 何才 です _か","Quanti anni ha {P1}?"],
+ ["{P1} _の 携帯電話 _の 番号 _は / 何番 です _か","Qual è il numero di cellulare di {P1}?"],
+ ["これ _は / 何 _の 本 です _か","Di che cosa parla questo libro?"],
+ ["これ _は / {L} _の 辞書 です","Questo è un dizionario di {L}."],
+ ["{P1} _は / {P2} _の 友だち です","{P1} è {P1:un amico/un’amica} di {P2}."],
+ ["この 雑誌 _も / {P1} _の です","Anche questa rivista è di {P1}."],
+ ["{P1} _の お母さん _は / 先生 です","La mamma di {P1} è insegnante."],
+ ["今日 _は / {D} です","Oggi è il {D}."],
+ ["{P1} _の 妹さん _は / {N}才 です _か","La sorella minore di {P1} ha {N} anni?"],
+ ["あれ _も / {P1} _の 車 です _か","Anche quella è la macchina di {P1}?"],
+ ["{P1} _の お兄さん _は / 大学 _の 先生 です","Il fratello maggiore di {P1} insegna all’università."],
+ ["これ _は / 日本文学 _の 教科書 です","Questo è il libro di testo di letteratura giapponese."],
+ ["その かばん _は / 誰 _の です _か","Di chi è codesta borsa?"]],
+3:[["{PL} _は / どこ です _か","Dov’è {PL}?"],
+ ["{PL} _は / あそこ です","{PL} è laggiù."],
+ ["{PL} _は / {FL} です","{PL} è {FL}."],
+ ["{PL} _は / 何階 です _か","A che piano è {PL}?"],
+ ["{PL} _は / 大学 _の 近く です","{PL} è vicino all’università."],
+ ["この {PR} _は / いくら です _か","Quanto costa {PR:questo/questa} {PR}?"],
+ ["{CN} _を / {NUM}{CN.c} ください","Mi dia {NUM} {CN}, per favore."],
+ ["{CN1} _を {NUM1}{CN1.c} _と / {CN2} _を / {NUM2}{CN2.c} ください","Mi dia {NUM1} {CN1} e {NUM2} {CN2}, per favore."],
+ ["今 / 何時 です _か","Che ore sono adesso?"],
+ ["今 / {T} です","Adesso sono {T}."],
+ ["この {FD.jp} _は / おいしい です _ね","{FD:Questo/Questa} {FD.n} è buon{FD:o/a}, vero?"],
+ ["{PL} _は / ここ です _よ","{PL} è qui, sa."],
+ ["{PL} _は / この ビル _の {FL} です","{PL} è {FL} di questo palazzo."],
+ ["{PL} _は / あの ビル _の {FL} です _よ","{PL} è {FL} di quel palazzo, sa."],
+ ["ええと、 / {PL} _は / {FL} です","Dunque… {PL} è {FL}."],
+ ["私 _は / {FD} です","Io prendo {FD}."],
+ ["{CN} _は / 全部で / {NUM}{CN.c} です","In tutto sono {NUM} ({CN})."],
+ ["そこ _は / 郵便局 です _か","Lì (vicino a te) c’è l’ufficio postale?"],
+ ["この ランチ _は / 二十ユーロ です _よ","Questo pranzo costa venti euro, sa."],
+ ["くつ うりば _は / {FL} です","Il reparto scarpe è {FL}."],
+ ["{FD} _を / ください","Mi dia {FD}, per favore."],
+ ["あそこ _は / 銀行 です _ね","Quella laggiù è la banca, vero?"],
+ ["その {PR} _は / いくら です _か","Quanto costa {PR:codesto/codesta} {PR}?"]],
+4:[["{PL} _は / どこ _に あります _か","Dov’è {PL}?"],
+ ["{XS} _の {LC} _に / {OB} _が / あります","{LC} c’è {OB}."],
+ ["{XC} _の 中 _に / 何か / あります _か","C’è qualcosa {XC}?"],
+ ["{XC} _の 中 _に / 本 _や ノート _が / あります","{XC} ci sono libri, quaderni e altro."],
+ ["{P1} _は / 今 / どこ _に / います _か","Dove si trova {P1} adesso?"],
+ ["{P1} _は / {PL} _に / います","{P1} è {PL.in}."],
+ ["部屋 _に / 誰か / います _か","C’è qualcuno nella stanza?"],
+ ["授業 _は / 九時 _から 十二時 _まで です","La lezione è dalle nove alle dodici."],
+ ["昼休み _は / 一時 _から 二時 _まで です","La pausa pranzo è dall’una alle due."],
+ ["銀行 _は / 何時 _から 何時 _まで です _か","Che orario fa la banca?"],
+ ["{PL} _の 前 _に / 公園 _が / あります","Davanti {PL.a} c’è un parco."],
+ ["駅 _と 郵便局 _の 間 _に / 銀行 _が / あります","Tra la stazione e l’ufficio postale c’è una banca."],
+ ["教室 _に / 学生 _が / おおぜい / います","In aula ci sono molti studenti."],
+ ["りんご _が / {NUM}つ / あります","Ci sono {NUM} mele."],
+ ["月曜日 _から 金曜日 _まで / 授業 _が / あります","Da lunedì a venerdì ci sono lezioni."],
+ ["日曜日 _は / 休み です","La domenica è giorno di riposo."],
+ ["父 _と 母 _は / 家 _に / います","Mio padre e mia madre sono a casa."],
+ ["いす _の 下 _に / 犬 _が / います","Sotto la sedia c’è un cane."],
+ ["この 近く _に / 薬局 _が/は / あります _か","C’è una farmacia qui vicino?"],
+ ["事務局 _は / {FL} _に あります","La segreteria è {FL}."],
+ ["家 _の 近く _に / 市場 _や 公園 _が / あります","Vicino a casa ci sono un mercato, un parco e altro."],
+ ["会議 _は / 何曜日 です _か","Che giorno è la riunione?"],
+ ["{PL} _の 横 _に / 何 _が / あります _か","Che cosa c’è di fianco {PL.a}?"],
+ ["駅 _から 大学 _まで / 二十分 です","Dalla stazione all’università sono venti minuti."]],
+5:[["{P1} _は / 毎朝 / {DR} _を / 飲みます","{P1} beve {DR} ogni mattina."],
+ ["私 _は / {TM} / {CI} _へ/に / 行きます","{TM} vado a {CI}."],
+ ["{P1} _は / {TR} _で / 大学 _へ/に / 来ます","{P1} viene all’università {TR}."],
+ ["いっしょに / 映画 _を / 見ませんか","Perché non guardiamo un film insieme?"],
+ ["いっしょに / 昼ごはん _を / 食べましょう","Pranziamo insieme!"],
+ ["私 _は / {FD} _に します","Io prendo {FD}."],
+ ["{CI1} _から / {CI2} _まで / {TR} _で / 二時間 かかります","Da {CI1} a {CI2} ci vogliono due ore {TR}."],
+ ["{P1} _は / {T} _に / 家 _へ/に / 帰ります","{P1} torna a casa {T.alle}."],
+ ["週末 _は / どこ _へ/に _も 行きません","Nel fine settimana non vado da nessuna parte."],
+ ["今晩 _は / 何 _も 食べません","Stasera non mangio niente."],
+ ["明日 / 試験 _が あります _から、 / 今晩 _は / 出かけません","Domani c’è un esame, quindi stasera non esco."],
+ ["{P1} _は / 毎日 / 新聞 _を / 読みます","{P1} legge il giornale ogni giorno."],
+ ["私 _は / 夏休み _に / {CI} _へ/に / 旅行します","Nelle vacanze estive faccio un viaggio a {CI}."],
+ ["誰 _が / 来ます _か","Chi viene?"],
+ ["{P1} _が / 来ます _よ","Arriva {P1}!"],
+ ["どちら _に します _か","Quale scegli?"],
+ ["毎晩 / 音楽 _を / 聞きます","Ogni sera ascolto musica."],
+ ["朝ごはん _に / 何 _を / 食べます _か","Che cosa mangi a colazione?"],
+ ["来週 / いっしょに / {CI} _へ/に / 行きませんか","Perché la settimana prossima non andiamo a {CI} insieme?"],
+ ["家 _から / 大学 _まで / どのくらい かかります _か","Quanto ci vuole da casa all’università?"],
+ ["{TR} _で / 三十分 かかります","{TR} ci vogliono trenta minuti."],
+ ["私 _も / {TM} / 行きます","Anch’io vado {TM}."],
+ ["{P1} _は / {TM} / {P2} _の うち _へ/に / 行きます","{TM} {P1} va a casa di {P2}."],
+ ["{P1} _は / 毎日 / 九時 _に / 大学 _へ/に / 来ます","{P1} viene all’università ogni giorno alle nove."],
+ ["{TM} / 何 _を / します _か","Che cosa fai {TM}?"],
+ ["コーヒー _を / 飲みましょう _か","Beviamo un caffè?"]],
+6:[["{TP} / {P1} _と / 映画 _を / 見ました","{TP} ho visto un film con {P1}."],
+ ["先週 / 京都 _で / きもの _を / 買いました","La settimana scorsa ho comprato un kimono a Kyōto."],
+ ["{P1} _は / 図書館 _で / 本 _を / 読みました","{P1} ha letto un libro in biblioteca."],
+ ["きのう _は / 雨 でした","Ieri pioveva."],
+ ["{TP} _は / 晴れ でした","{TP} era sereno."],
+ ["{P1} _は / 一人で / 温泉 _へ/に / 行きました","{P1} è andat{P1:o/a} alle terme da sol{P1:o/a}."],
+ ["学生 _が / 三人 / 来ました","Sono venuti tre studenti."],
+ ["駅 _で / {P1} _に / 会いました","Ho incontrato {P1} alla stazione."],
+ ["あの 方 _は / どなた です _か","Chi è quella persona? (forma cortese)"],
+ ["映画祭 _に / 行きました _が、 / {P1} _は / 来ませんでした","Sono andato al festival del cinema, ma {P1} non è venut{P1:o/a}."],
+ ["もう / 昼ごはん _を / 食べました _か","Hai già pranzato?"],
+ ["デパート _で / 服 _とか かばん _とか _を / 買いました","Al grande magazzino ho comprato vestiti, borse e cose così."],
+ ["午前中 _は / 雪 でした _が、 / 午後 _は / 晴れ でした","In mattinata nevicava, ma nel pomeriggio era sereno."],
+ ["みんなで / 喫茶店 _に / 入りました","Siamo entrati tutti insieme in caffetteria."],
+ ["{P1} _と {P2} _は / 公園 _で / さんぽ _を しました","{P1} e {P2} hanno fatto una passeggiata al parco."],
+ ["{TP} / どこ _で / 晩ごはん _を / 食べました _か","{TP} dove hai cenato?"],
+ ["私 _は / 何 _も 買いませんでした","Non ho comprato niente."],
+ ["先週 _の 日曜日 _は / 雨 では ありませんでした","Domenica scorsa non pioveva."],
+ ["男の人 _が / 二人 / 部屋 _に / 入りました","Due uomini sono entrati nella stanza."],
+ ["{P1} _は / 初めて / 日本 _へ/に / 来ました","{P1} è venut{P1:o/a} in Giappone per la prima volta."],
+ ["{TP} / {PL} _で / {P1} _と {P2} _に / 会いました","{TP} ho incontrato {P1} e {P2} {PL.in}."],
+ ["{P1} _は / {TP} / デパート _で / {BUY} _を / 買いました","{TP} {P1} ha comprato {BUY} al grande magazzino."],
+ ["私 _は / 一人で / 晩ごはん _を / 食べました","Ho cenato da solo."],
+ ["{P1} _は / まだ / 来ません","{P1} non arriva ancora."],
+ ["{TP} / 友だち _と / 海 _へ/に / 行きました _が、 / 天気 _は / くもり でした","{TP} sono andato al mare con gli amici, ma il tempo era nuvoloso."]],
+7:[["日本 _の 夏 _は / イタリア _の 夏 _より / 暑い です","L’estate giapponese è più calda di quella italiana."],
+ ["{P1} _は / {P2} _より / 忙しい です","{P1} è più impegnat{P1:o/a} di {P2}."],
+ ["この 本 _は / あの 本 _と 同じくらい / おもしろい です","Questo libro è interessante quanto quello."],
+ ["イタリア _で / 一番 / 有名な 料理 _は / 何 です _か","Qual è il piatto più famoso d’Italia?"],
+ ["クラス _の 中 _で / {P1} _が / 一番 / まじめ です","In classe {P1} è {P1:il più serio/la più seria}."],
+ ["京都 _は / 東京 _ほど / 大きくありません","Kyōto non è grande come Tōkyō."],
+ ["この 店 _は / 安くて / おいしい です","Questo locale è economico e buono."],
+ ["{P1} _は / 親切で / まじめ です","{P1} è gentile e seri{P1:o/a}."],
+ ["私 _は / {FD} _が / 大好き です","Adoro {FD}."],
+ ["{P1} _は / どんな 料理 _が / 好き です _か","Che tipo di cucina piace a {P1}?"],
+ ["この {PR} _は / 高い です _ね","{PR:Questo/Questa} {PR} è car{PR:o/a}, eh?"],
+ ["東京 _は / にぎやかな 町 です","Tōkyō è una città vivace."],
+ ["{P1} _の 部屋 _は / 静か です","La stanza di {P1} è silenziosa."],
+ ["きのう _は / とても / 寒かった です","Ieri faceva molto freddo."],
+ ["試験 _は / あまり / むずかしくありませんでした","L’esame non era molto difficile."],
+ ["母 _に / 手紙 _を / 書きました","Ho scritto una lettera a mia madre."],
+ ["{P1} _に / 写真 _を / 送ります","Mando delle foto a {P1}."],
+ ["安い の _を / ください","Mi dia quello economico, per favore."],
+ ["神戸 _は / 京都 _ほど / 暑くありませんでした","Kōbe non era calda come Kyōto."],
+ ["イタリア _の ワイン _は / 安くて / おいしい です","Il vino italiano è economico e buono."],
+ ["僕 _は / スポーツ _が / 好き です","A me piace lo sport."],
+ ["この 町 _は / 便利 です _が、 / ちょっと / 高い です","Questa città è comoda, ma un po’ cara."],
+ ["{CI} _は / 観光客 _が / 多い です","A {CI} ci sono molti turisti."],
+ ["{P1} _の 家族 _は / とても / 元気 です","La famiglia di {P1} sta molto bene."],
+ ["日本料理 _は / イタリア料理 _と 同じくらい / 好き です","La cucina giapponese mi piace quanto quella italiana."],
+ ["この 小説 _は / あまり / おもしろくありません","Questo romanzo non è molto interessante."],
+ ["私 _の 家族 _で / 父 _が / 一番 / 早い です","Nella mia famiglia mio padre è il più veloce."]],
+8:[["{FD1} _と {FD2} _と / どちら _が / 好き です _か","Ti piace di più {FD1} o {FD2}?"],
+ ["{FD2} _の 方 _が / 好き です","Mi piace di più {FD2}."],
+ ["日本料理 _の 中 _で / 何 _が / 一番 / 好き です _か","Tra i piatti giapponesi, quale ti piace di più?"],
+ ["私 _は / 日本 _へ/に / 行きたい です","Voglio andare in Giappone."],
+ ["{P1} _は / 新しい 車 _が/を / 買いたい です","{P1} vuole comprare una macchina nuova."],
+ ["明日 / 大学 _で / 学会 _が / あります","Domani all’università c’è un convegno."],
+ ["毎朝 / 七時 _に / 起きて、 / シャワー _を / 浴びます","Ogni mattina mi sveglio alle sette e faccio la doccia."],
+ ["駅 _で / {P1} _に / 会って、 / 喫茶店 _に / 入りました","Ho incontrato {P1} alla stazione e siamo entrati in un bar."],
+ ["熱 _が / あって、 / 大学 _へ/に / 行きませんでした","Avevo la febbre e non sono andato all’università."],
+ ["電車 _に / 乗って、 / {CI} _へ/に / 行きました","Ho preso il treno e sono andato a {CI}."],
+ ["どうして / {CI} _へ/に / 行きたい です _か","Perché vuoi andare a {CI}?"],
+ ["{P1} _は / 日本 _へ/に / 二回 / 行きました","{P1} è andat{P1:o/a} in Giappone due volte."],
+ ["宿題 _を / して、 / テレビ _を / 見ました","Ho fatto i compiti e ho guardato la TV."],
+ ["{P1} _は / 病院 _で / 働きます","{P1} lavora in ospedale."],
+ ["ローマ _と ミラノ _と / どちら _が / 大きい です _か","Tra Roma e Milano, quale è più grande?"],
+ ["ローマ _の 方 _が / 大きい です","Roma è più grande."],
+ ["辞書 _で / 意味 _を / 調べます","Cerco il significato sul dizionario."],
+ ["先生 _が / {P1} _に / 日本語 _を / 教えます","Il professore insegna il giapponese a {P1}."],
+ ["九時 _に / 授業 _が / 始まります","La lezione comincia alle nove."],
+ ["駅 _まで / 歩いて、 / 電車 _に / 乗ります","Cammino fino alla stazione e prendo il treno."],
+ ["{P1} _に / 電話 _を / かけました","Ho telefonato a {P1}."],
+ ["私 _は / お菓子 _が/を / 食べたい です","Voglio mangiare un dolce."],
+ ["{P1} _と {P2} _と {P3} _の 中 _で / 誰 _が / 一番 / 忙しい です _か","Tra {P1}, {P2} e {P3}, chi è il più impegnato?"],
+ ["夜 / 日記 _を / 書いて、 / 寝ます","La sera scrivo il diario e vado a dormire."],
+ ["京都 _で / 歌舞伎 _を / 見たい です","A Kyōto voglio vedere il kabuki."]],
+9:[["私 _は / 新しい 携帯電話 _が / ほしい です","Voglio un cellulare nuovo."],
+ ["ここ _に / 名前 _を / 書いてください","Scriva il nome qui, per favore."],
+ ["晩ごはん _を / 食べてから、 / 宿題 _を / します","Dopo cena faccio i compiti."],
+ ["この 辞書 _を / 使っても いいですか","Posso usare questo dizionario?"],
+ ["{P1} _は / 今 / 図書館 _で / 勉強しています","{P1} adesso sta studiando in biblioteca."],
+ ["{P1} _は / {CI} _に / 住んでいます","{P1} abita a {CI}."],
+ ["{P1} _は / 旅行会社 _で / 働いています","{P1} lavora in un’agenzia di viaggi."],
+ ["日本語 _で / 話してください","Parli in giapponese, per favore."],
+ ["この お菓子 _を / 食べてみます","Provo a mangiare questo dolce."],
+ ["{P1} _は / 電車 _の 中 _で / 寝てしまいました","{P1} si è addormentat{P1:o/a} in treno."],
+ ["{P1} _は / もう / 家 _に / 帰ってしまいました","{P1} è già tornat{P1:o/a} a casa."],
+ ["質問 _を / しても いいですか","Posso fare una domanda?"],
+ ["コンピューター _で / 論文 _を / 書いています","Sto scrivendo la tesi al computer."],
+ ["かわいい かばん _が / ほしい です","Voglio una borsa carina."],
+ ["シャワー _を / 浴びてから、 / 寝ます","Dopo la doccia vado a dormire."],
+ ["部屋 _に / 入っても いいですか","Posso entrare nella stanza?"],
+ ["{P1} _は / 今 / 論文 _の 準備 _を / しています","{P1} adesso sta preparando la tesi."],
+ ["一人で / {CI} _へ/に / 行ってみます","Provo ad andare a {CI} da solo."],
+ ["{P1} _は / 風邪 _を / ひいてしまいました","{P1} si è pres{P1:o/a} l’influenza."],
+ ["説明 _を / よく / 聞いてください","Ascoltate bene la spiegazione."],
+ ["{P1} _は / 毎日 / {TR} _で / 大学 _へ/に / 来ています","{P1} viene all’università ogni giorno {TR}."],
+ ["駅 _まで / 歩いて / 行きます","Vado a piedi fino alla stazione."],
+ ["ここ _で / 写真 _を / 見ても いいですか","Posso guardare le foto qui?"],
+ ["問題 _が / ありましたから、 / 先生 _に / 聞いてみました","C’era un problema, quindi ho provato a chiedere al professore."],
+ ["{P1} _は / もう / 結婚しています","{P1} è già sposat{P1:o/a}."]],
+10:[["{P1} _は / 日本 _へ/に / 行った こと _が あります","{P1} è stat{P1:o/a} in Giappone."],
+ ["{P1} _は / 歌舞伎 _を / 見た こと _が ありません","{P1} non ha mai visto il kabuki."],
+ ["薬 _を / 飲んだ 方 _が いい です","Faresti meglio a prendere una medicina."],
+ ["今日 _は / 早く / 寝た 方 _が いい です _よ","Oggi faresti bene ad andare a letto presto."],
+ ["週末 _は / 映画 _を / 見たり、 / 本 _を / 読んだり します","Nel fine settimana guardo film, leggo libri e cose così."],
+ ["{P1} _は / 先生 _に / なりたい です","{P1} vuole diventare insegnante."],
+ ["私 _は / 研究者 _に / なりたい です","Voglio diventare ricercatore."],
+ ["{P1} _は / 二十才 _に / なりました","{P1} ha compiuto vent’anni."],
+ ["奈良 _は / お寺 _で / 有名 です","Nara è famosa per i templi."],
+ ["広島 _に / 一度 / 行った 方 _が いい です _よ","Faresti bene ad andare a Hiroshima almeno una volta."],
+ ["日光 _に / 泊まった こと _が あります _か","Hai mai pernottato a Nikkō?"],
+ ["{P1} _は / 夏目漱石 _の 小説 _を / 読んだ こと _が あります","{P1} ha letto un romanzo di Natsume Sōseki."],
+ ["日曜日 _は / そうじ _を / したり、 / 料理 _を / 作ったり します","La domenica faccio le pulizie, cucino e cose così."],
+ ["{CI} _は / 何 _で / 有名 です _か","Per che cosa è famosa {CI}?"],
+ ["もう 一度 / 先生 _に / 聞いた 方 _が いい です","Faresti meglio a chiedere ancora una volta al professore."],
+ ["{P1} _は / 医者 _に / なりたい です","{P1} vuole diventare medico."],
+ ["京都 _で / お寺 _を / 見たり、 / 買い物 _を / したり しました","A Kyōto ho visitato templi, fatto compere e cose così."],
+ ["長野 _へ/に / 何度も / 行った こと _が あります","Sono stato a Nagano molte volte."],
+ ["英語 _で / 手紙 _を / 書いた こと _が あります _か","Hai mai scritto una lettera in inglese?"],
+ ["お腹 _が / 痛い です _から、 / 病院 _へ/に / 行った 方 _が いい です","Hai mal di pancia, quindi faresti bene ad andare in ospedale."],
+ ["{P1} _は / 高校 _の 先生 _に / なりました","{P1} è diventat{P1:o/a} insegnante di liceo."],
+ ["ホテル _に / 泊まったり、 / 温泉 _に / 入ったり しました","Ho pernottato in albergo, fatto il bagno alle terme e cose così."]],
+11:[["ここ _で / たばこ _を / 吸わないでください","Non fumate qui, per favore."],
+ ["試験中 _は / となり _の 人 _と / 話さないでください","Durante l’esame non parlate con il vicino."],
+ ["体 _に / 悪い です _から、 / たばこ _を / 吸わない 方 _が いい です","Fa male alla salute, quindi è meglio non fumare."],
+ ["{P1} _は / 日本語 _が / できます","{P1} sa il giapponese."],
+ ["この 図書館 _で / コピー _が / できます","In questa biblioteca si possono fare fotocopie."],
+ ["雨 です _ので、 / 今日 _は / 出かけません","Siccome piove, oggi non esco."],
+ ["明日 _は / 休み です _から、 / 大学 _へ/に / 行かなくても いいです","Domani è festa, quindi non serve andare all’università."],
+ ["この レストラン _は / 予約 _を / しなくても いいです","In questo ristorante non serve prenotare."],
+ ["試験中 _は / 教科書 _を / 見ないでください","Durante l’esame non guardate il libro di testo."],
+ ["{P1} _は / 料理 _が / 上手 です","{P1} è brav{P1:o/a} a cucinare."],
+ ["夜 _は / コーヒー _を / 飲まない 方 _が いい です _よ","Di sera è meglio non bere caffè."],
+ ["オンライン _で / 予約 _が / できます","Si può prenotare online."],
+ ["授業中 _に / 携帯電話 _を / 使わないでください","Durante la lezione non usate il cellulare."],
+ ["筆記試験 _は / 十二時 _に / 終わります","L’esame scritto finisce alle dodici."],
+ ["今日 _は / 宿題 _を / しなくても いいです","Oggi non è necessario fare i compiti."],
+ ["口頭試験 _は / 来週 _まで / 続きます","Gli esami orali continuano fino alla settimana prossima."],
+ ["お弁当 _を / 買わなくても いいです _よ","Non serve comprare il pranzo al sacco."],
+ ["学生 _が / 多い です _ので、 / 試験 _は / 三日 / 続きます","Ci sono molti studenti, quindi gli esami durano tre giorni."],
+ ["あまり / 心配しないでください","Non preoccuparti troppo."],
+ ["{P1} _は / 新しい 部屋 _を / 探しています","{P1} sta cercando una stanza nuova."],
+ ["名前 _を / 間違わないでください","Non sbagliate il nome, per favore."],
+ ["図書館 _は / 日曜日 _も / 利用 _が / できます","La biblioteca si può usare anche la domenica."],
+ ["{P1} _は / 英語 _が / あまり / 上手 では ありません","{P1} non è molto brav{P1:o/a} in inglese."]],
+12:[["{P1} _は / 車 _を / 運転する こと _が できます","{P1} sa guidare la macchina."],
+ ["この 店 _で _は / カード _で / 払う こと _が できます","In questo negozio si può pagare con la carta."],
+ ["寝る 前 _に / シャワー _を / 浴びます","Prima di dormire faccio la doccia."],
+ ["授業 _の 前 _に / 図書館 _へ/に / 行きます","Prima della lezione vado in biblioteca."],
+ ["図書館 _へ/に / 本 _を / 借り _に 行きます","Vado in biblioteca a prendere in prestito un libro."],
+ ["デパート _へ/に / くつ _を / 買い _に 行きます","Vado al grande magazzino a comprare delle scarpe."],
+ ["{P1} _は / 日本語 _が / 上手 _に / なりました","{P1} è diventat{P1:o/a} brav{P1:o/a} in giapponese."],
+ ["この 町 _は / 静か _に / なりました","Questa città è diventata tranquilla."],
+ ["授業 _の 後 _で / 友だち _と / 喫茶店 _へ/に / 行きます","Dopo la lezione vado in caffetteria con gli amici."],
+ ["試験 _の 後 _で / みんなで / 食事 _を / しました","Dopo l’esame abbiamo mangiato tutti insieme."],
+ ["最近 / 寒く なりました _ね","Ultimamente si è fatto freddo, vero?"],
+ ["{P1} _は / 自転車 _で / 大学 _に / 通っています","{P1} va all’università in bicicletta."],
+ ["日本文化会館 _で / 日本 _の 映画 _を / 見る こと _が できます","All’Istituto Giapponese di Cultura si possono vedere film giapponesi."],
+ ["{P1} _は / 英語 _を / 話す こと _が できます","{P1} sa parlare inglese."],
+ ["映画 _の 前 _に / 監督 _の インタビュー _が / ありました","Prima del film c’è stata l’intervista al regista."],
+ ["部屋 _が / きれい _に / なりました","La stanza è diventata pulita."],
+ ["毎週 / 日本語 _を / 勉強し _に 行きます","Ogni settimana vado a studiare giapponese."],
+ ["日本 _の 若い 人 _の 間 _で / 人気 _が / あります","È popolare tra i giovani giapponesi."],
+ ["{P1} _は / 病気 _に / なりました","{P1} si è ammalat{P1:o/a}."],
+ ["ご飯 _を / 食べる 前 _に / 薬 _を / 飲んでください","Prenda la medicina prima di mangiare."],
+ ["{CI} _へ/に / 友だち _に / 会い _に 行きます","Vado a {CI} a trovare un amico."],
+ ["この 部屋 _は / 前 _より / 便利 _に / なりました","Questa stanza è diventata più comoda di prima."],
+ ["展覧会 _を / 見た 後 _で / 食事 _を / しました","Dopo aver visto la mostra abbiamo mangiato."],
+ ["{P1} _は / 自転車 _に / 乗る こと _が できません","{P1} non sa andare in bicicletta."]
+]};
+// particelle che si possono usare come alternative sbagliate, per unità
+const SB_PARTS=[["は",1],["の",1],["も",1],["と",1],["を",3],["に",4],["が",4],["や",4],["から",4],["まで",4],["へ",5],["で",5],["より",7]];
+const SB_NEAR={"は":["が","も"],"が":["は","を"],"も":["は"],"に":["へ"],"へ":["に"],"と":["や"],"や":["と"],"を":["が"]};
+["ので","とか","ほど"].forEach(p=>PARTICLES.add(p));
+function sbPick(a){return a[Math.floor(Math.random()*a.length)]}
+// riempie una frase modello con valori casuali (tutti diversi tra loro)
+function sbFill(tpl,unit){const vals={},used=new Set(),slotRe=/\{([A-Z]+)(\d?)(?:\.([a-z]+))?\}/g;
+ const need=new Set();for(const m of tpl[0].matchAll(slotRe))need.add(m[1]+m[2]);
+ for(const key of need){const pool=key.replace(/\d$/,""),cand=(SBP[pool]||[]).filter(v=>(v.u||1)<=unit&&!used.has(v.jp));if(!cand.length)return null;const v=sbPick(cand);vals[key]=v;used.add(v.jp)}
+ // LC dipende da XS: il testo italiano contiene {XS.il}
+ const sub=(s,lang)=>{let out=s;for(let k=0;k<3;k++)out=out.replace(/\{([A-Z]+\d?)(?:\.([a-z]+)|:([^}/]*)\/([^}]*))?\}/g,(m,key,f,mf,ff)=>{const v=vals[key]||vals[key.replace(/\d$/,"")];if(!v)return m;if(mf!==undefined)return v.g==="f"?ff:mf;if(lang==="jp")return f?String(v[f]||""):v.jp;return String(f?(v[f]||""):(v.it!==undefined?v.it:v.jp))});return out};
+ let it=sub(tpl[1],"it");it=it.charAt(0).toUpperCase()+it.slice(1);return{jp:sub(tpl[0],"jp"),it}}
+// analizza la frase: proposizioni → blocchi → parole
+function sbParse(jp){const clauses=[[]];jp.split(" / ").forEach(ph=>{const toks=ph.trim().split(/\s+/).filter(Boolean).map(t=>{if(t[0]==="_"){let body=t.slice(1),suf="";const m=body.match(/[、。]+$/);if(m){suf=m[0];body=body.slice(0,-suf.length)}const alts=body.split("/");return{p:true,alts,suf,text:alts[0]+suf}}return{p:false,text:t}});clauses[clauses.length-1].push(toks);if(/、$/.test(toks[toks.length-1].text))clauses.push([])});return clauses.filter(c=>c.length)}
+function sbPerms(a){if(a.length<=1)return[a];const out=[];a.forEach((x,i)=>sbPerms(a.filter((_,j)=>j!==i)).forEach(p=>out.push([x,...p])));return out}
+function sbOrders(clauses){let res=[""];for(const c of clauses){const mov=c.slice(0,-1),last=c[c.length-1],ps=mov.length<=4?sbPerms(mov):[mov],strs=ps.map(p=>[...p,last].flat().map(t=>t.text).join(""));const next=[];res.forEach(r=>strs.forEach(s=>next.push(r+s)));res=[...new Set(next)].slice(0,200)}return res}
+function sbLine(clauses,blankIdx){let i=-1;return clauses.flat(2).map(t=>{if(!t.p)return t.text;i++;return blankIdx===undefined||blankIdx===i?"（　）"+t.suf:t.text}).join("")+"。"}
+function sbCombos(parts){let res=[[]];parts.forEach(p=>{const n=[];res.forEach(r=>p.alts.forEach(a=>n.push([...r,a])));res=n.slice(0,64)});return res.map(r=>r.join("・"))}
+let SB_BATCH=new Set(),SB_PROBE=false;
+function sbChoose(unit,minTok){const list=(SB[unit]||[]).map((t,i)=>({t,id:unit+":"+i}));if(!list.length)return null;S.sbRecent=S.sbRecent||[];
+ const ok=o=>!SB_BATCH.has(o.id)&&!S.sbRecent.includes(o.id)&&(!minTok||sbParse(o.t[0]).flat(2).length>=minTok);
+ let c=list.filter(ok);if(!c.length)c=list.filter(o=>!SB_BATCH.has(o.id));if(!c.length)c=list;const o=sbPick(c);if(SB_PROBE)return o;SB_BATCH.add(o.id);S.sbRecent=[o.id,...S.sbRecent.filter(z=>z!==o.id)].slice(0,Math.min(60,Math.floor(list.length*0.7)+20));return o}
+function sbMake(type,unit,group,prompt,answers,level,extra){const x=type==="mc"?["mc",unit,prompt,answers,extra.correct,""]:[type,unit,prompt,answers,""];x._group=group;x._difficulty=level;x._generated=1;x._sb=1;Object.assign(x,extra||{});x._id=["sb",group,unit,prompt,JSON.stringify(answers)].join("|");return x}
+function sbTr(line,it){try{const k=trKey(line);if(!EX_TR[k])EX_TR[k]=it}catch(e){}}
+// genera un esercizio sull'unità indicata (le frasi usano anche tutto ciò che è stato studiato prima)
+function sbGenerate(group,unit,level){if(!SB[unit])return null;
+ if(group==="order"){for(let k=0;k<6;k++){const o=sbChoose(unit,level>=2?6:5);if(!o)return null;const f=sbFill(o.t,unit);if(!f)continue;const cl=sbParse(f.jp),toks=cl.flat(2).map(t=>t.text);if(toks.length<4)continue;const alts=sbOrders(cl);
+  return sbMake("ord",unit,"order","言葉を正しい順番に並べてください。\n“"+f.it+"”",toks,level,{_alts:alts,_tpl:o.id})}return null}
+ if(group!=="particle")return null;
+ const r=Math.random(),mode=r<0.25?"mc":r<(level>=2?0.6:0.75)?"one":"two";
+ const one=u=>{for(let k=0;k<6;k++){const o=sbChoose(u);if(!o)return null;const f=sbFill(o.t,u);if(!f)continue;const cl=sbParse(f.jp),parts=cl.flat(2).filter(t=>t.p);if(!parts.length)continue;return{o,f,cl,parts}}return null};
+ const a=one(unit);if(!a)return null;
+ if(mode==="mc"){const bi=Math.floor(Math.random()*a.parts.length),tp=a.parts[bi],near=new Set(tp.alts.flatMap(p=>SB_NEAR[p]||[]).concat(tp.alts));
+  const pool=SB_PARTS.filter(([p,u])=>u<=unit&&!near.has(p)).map(([p])=>p),opts=shuffleArray([tp.alts[0],...shuffleArray(pool).slice(0,3)]);if(opts.length<3)return null;
+  const line=sbLine(a.cl,bi);sbTr(line,a.f.it);return sbMake("mc",unit,"particle","正しい助詞を選んでください。\n"+line+"\n“"+a.f.it+"”",opts,level,{correct:opts.indexOf(tp.alts[0]),_instr:"Scegli la particella corretta.",_tpl:a.o.id})}
+ let items=[a];if(mode==="two"){const lower=[...new Set(AV())].filter(u=>u<=unit&&SB[u]),u2=Math.random()<0.5?unit:sbPick(lower),b=one(u2);if(b)items.push(b)}
+ const lines=items.map(it=>{const l=sbLine(it.cl,undefined);sbTr(l,it.f.it);return l}),answers=sbCombos(items.flatMap(it=>it.parts));
+ return sbMake("fill",unit,"particle","助詞を入れてください。\n"+lines.join("\n")+"\n"+items.map(it=>"“"+it.f.it+"”").join("\n"),answers,level,{_instr:"Inserisci le particelle mancanti.",_tpl:items.map(i=>i.o.id).join(",")})}
+// le particelle e l'ordine delle parole usano soprattutto la banca di frasi; resta qualche esercizio dei vecchi generatori
+const _genSB=generateExercise;generateExercise=function(group,unit,level){if(group==="particle"||group==="order"){const useOld=Math.random()<(group==="particle"?0.15:0.1);if(!useOld){const x=sbGenerate(group,unit,level);if(x)return x}const y=_genSB(group,unit,level);if(y)return y;return sbGenerate(group,unit,level)}return _genSB(group,unit,level)};
+// istruzione in italiano per gli esercizi della banca di frasi (scelta multipla o spazi da riempire)
+const _jpSB=japanesePrompt;japanesePrompt=function(x){if(x&&x._sb&&x._instr){const L=String(x[2]).split("\n").slice(1),jp=L.filter(l=>!/^“.*”$/.test(l)),hints=L.filter(l=>/^“.*”$/.test(l)).map(l=>`<span class="ex-hint">${l}</span>`);return [x._instr,...jp,...hints].join("\n")}return _jpSB(x)};
+// ordine delle parole: si accetta anche un ordine diverso dei blocchi, se in giapponese è corretto
+exOrd=function(){const x=EX[eq[ei]],r=x[3].join(""),g=pk.map(i=>x[3][i]).join("");EXG={given:pk.map(i=>x[3][i]).join(" ")};fin(g===r||(Array.isArray(x._alts)&&x._alts.includes(g)),r+"。")};
+// Con più unità selezionate gli esercizi si basano sull'unità più alta: le sue frasi usano già tutto ciò che è stato studiato prima.
+// Con "tutto il libro" restano tutte le unità.
+exUnits=function(){const all=[...new Set(AV())].sort((a,b)=>a-b),every=S.un===null||S.un===undefined;if(every)return{prim:all.slice(),rev:[]};const sel=S.un.filter(u=>all.includes(u)),mx=Math.max(0,...sel);return{prim:mx?[mx]:[],rev:[]}};
+exInUnits=function(group,u,units){return units.includes(u)};
+const _exRunSB=exRun;exRun=function(){SB_BATCH=new Set();_exRunSB();try{save()}catch(e){}};
+const _exStatsSB=exStats;exStats=function(id){SB_PROBE=true;try{return _exStatsSB(id)}finally{SB_PROBE=false}};
+
+// spiegazione: per le particelle della banca di frasi si mostrano le regole delle particelle della soluzione
+const _rfeSB=rulesForExercise;rulesForExercise=function(x){if(x&&x._sb&&exGroup(x)==="particle"){const ps=x[0]==="mc"?[x[3][x[4]]]:[...new Set(String(x[3][0]).split("・"))],out=[];ps.forEach(p=>{try{(rulesForParticle(p,x[1],x[2])||[]).slice(0,1).forEach(r=>out.push(r))}catch(e){}});return out.slice(0,3)}return _rfeSB(x)};
 // @@MOD_END@@
 nav();side();go("ho");
 </script></body></html>
