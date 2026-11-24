@@ -219,6 +219,8 @@ a{color:var(--ac)}
 .tr-cats{display:grid;grid-template-columns:repeat(auto-fill,minmax(250px,1fr));gap:10px;margin:12px 0}
 .tr-cat{display:flex;gap:12px;align-items:flex-start;text-align:left;cursor:pointer;font:inherit;color:inherit;margin:0;width:100%;border:2px solid var(--bd)}.tr-cat:hover{border-color:var(--ac)}.tr-cat.on{border-color:var(--ac);box-shadow:0 0 0 3px color-mix(in srgb,var(--ac) 18%,transparent)}
 .tr-ic{font-size:26px;line-height:1;min-width:40px;height:40px;display:grid;place-items:center;border-radius:10px;background:var(--bg2);color:var(--ac)}.tr-cat.on .tr-ic{background:var(--ac);color:#fff}
+.tr-cat{position:relative;padding-right:40px}.tr-check{position:absolute;top:10px;right:10px;width:24px;height:24px;border-radius:6px;border:2px solid var(--bd);display:grid;place-items:center;font-weight:800;font-size:15px;color:#fff;background:var(--card)}.tr-cat.on .tr-check{background:var(--ac);border-color:var(--ac)}
+.tr-catbar{display:flex;flex-wrap:wrap;gap:6px 12px;align-items:center;margin-top:12px}.tr-catbar .mu{font-size:13px;flex:1;min-width:200px}
 .tr-ct{display:grid;gap:4px}.tr-ct .mu{font-size:13px;line-height:1.4}.tr-cs{font-size:12px;color:var(--ac2);font-weight:600}
 .tr-cfg{display:grid;gap:10px;border-left:4px solid var(--ac)}.tr-row{display:grid;grid-template-columns:170px 1fr;gap:10px;align-items:start}.tr-row>span{color:var(--mu);font-size:14px;padding-top:8px}.tr-row .row{margin:0;flex-wrap:wrap;gap:6px}
 .tr-num{display:inline-flex;align-items:center;gap:6px;font-size:14px;color:var(--mu)}.tr-num input{width:64px;font:inherit;padding:6px;border-radius:8px;border:1px solid var(--bd);background:var(--card);color:inherit}
@@ -4339,7 +4341,7 @@ const TR_CATS=[
 const TR_CATN=Object.fromEntries(TR_CATS.map(c=>[c[0],c[1]]));
 const TR_HASMODE={part:1,comp:1,form:1,voc:1,kan:1,trij:0,trji:0,ord:0,free:0,mix:1};
 let TR={on:false};
-function trCfg(){const d={cat:"part",n:10,diff:"mix",mode:"mix",cont:false};S.trCfg={...d,...(S.trCfg||{})};return S.trCfg}
+function trCfg(){const old=S.trCfg||{},d={n:10,diff:"mix",mode:"mix",cont:false},c={...d,...old};if(!Array.isArray(old.cats))c.cats=old.cat&&TR_CATN[old.cat]?[old.cat]:["part"];delete c.cat;S.trCfg=c;return c}
 function trUnits(){const all=[...new Set(AV())].sort((a,b)=>a-b),focus=S.un&&S.un.length?S.un.filter(u=>all.includes(u)).sort((a,b)=>a-b):all.slice();return {focus,maxU:Math.max(...focus),all}}
 const TR_LVL={easy:1,mid:2,hard:3};
 let TR_SEQ=0;
@@ -4501,10 +4503,15 @@ function trGenOne(cat,U,cfg,o){switch(cat){case"part":return trGenPart(U,cfg,o);
  case"trji":{for(let k=0;k<6;k++){const s=trGen({...U,lvl:TR_LVL[cfg.diff]||0,need:s=>!s.dlg,avoid:TR_AVOID});if(!s)continue;const x=trMkTrJI(s,U);if(x){TR_AVOID.add(s.jp);return x}}return null}
  case"voc":return trGenVoc(U,cfg);case"kan":return trGenKan(U,cfg);case"free":return trGenFree(U)}return null}
 // composizione della sessione
-function trBuild(cfg,n,o){o=o||{};const U=trUnits(),cat=cfg.cat,out=[];
- const cats=cat==="mix"?null:[cat];const pickCat=()=>o.rule?trPick(["ord","trij","part"]):cats?cat:trPick(["part","part","ord","ord","comp","form","trij","trji","voc","kan"]);
- const book={};const bookFor=c=>book[c]||(book[c]=trBookItems(c==="mix"?"mix":c,U,cfg));
- for(let k=0;k<n*3&&out.length<n;k++){const c=pickCat();let x=null;
+// categorie scelte (anche più di una): le domande si distribuiscono a turno tra le categorie, in ordine casuale
+function trCatsOf(cfg){const c=Array.isArray(cfg.cats)&&cfg.cats.length?cfg.cats:[cfg.cat||"part"];return c.filter(x=>TR_CATN[x])}
+TR_BOOK.mixb=TR_BOOK.mix;TR_BOOKSHARE.mixb=1;
+function trBuild(cfg,n,o){o=o||{};const U=trUnits(),cats=trCatsOf(cfg),out=[],catOf={};out.catOf=catOf;
+ let turn=[];const MIXP=["part","part","ord","ord","comp","form","trij","trji","voc","kan","mixb"];
+ const pickCat=()=>{if(o.rule)return trPick(["ord","trij","part"]);if(!turn.length)turn=trShuf(cats);const c=turn.pop();return c==="mix"?trPick(MIXP):c};
+ const book={};const bookFor=c=>book[c]||(book[c]=trBookItems(c,U,cfg));
+ const _push=out.push.bind(out);let curC="part";out.push=i=>{catOf[i]=curC==="mixb"?"mix":curC;return _push(i)};
+ for(let k=0;k<n*3&&out.length<n;k++){const c=pickCat();curC=c;let x=null;
   const useBook=!o.focusP&&!o.rule&&Math.random()<TR_BOOKSHARE[c];
   if(useBook){if(c==="part"&&Math.random()<.35){const b=trBankItem(U);if(b){EX.push(b);out.push(EX.length-1);continue}}const L=bookFor(c);const i=L.find(i=>!out.includes(i));if(i!=null){out.push(i);continue}}
   // banca di frasi modello (modulo @@MOD_SB@@): stessa regola delle unità e degli kanji
@@ -4514,14 +4521,16 @@ function trBuild(cfg,n,o){o=o||{};const U=trUnits(),cat=cfg.cat,out=[];
   if(o.rule||o.focusP)continue;
   const L=bookFor(c),i=L.find(i=>!out.includes(i));if(i!=null)out.push(i)}
  // sessione mirata su una regola: se le frasi generate non bastano, si completano con gli esercizi del libro su quella regola
- if(o.rule&&out.length<n){const i=TR_GI[o.rule];if(i!=null)exercisesForRule(G[i][0]+"|"+G[i][1],n-out.length).forEach(j=>{if(!out.includes(j))out.push(j)})}
- return out}
+ if(o.rule&&out.length<n){curC="mix";const i=TR_GI[o.rule];if(i!=null)exercisesForRule(G[i][0]+"|"+G[i][1],n-out.length).forEach(j=>{if(!out.includes(j))out.push(j)})}
+ delete out.push;return out}
 
 // ===== SCHERMATA ESERCIZI: categorie, unità, impostazioni, risultati =====
 function trSetUnits(list){const n=new Set(AV()).size;S.un=list&&list.length&&list.length<n?[...new Set(list)].sort((a,b)=>a-b):null;save();side();trHome()}
 function trToggleU(u){const all=[...new Set(AV())].sort((a,b)=>a-b);let c=S.un?S.un.slice():all.slice();if(!S.un)c=[u];else c=c.includes(u)?c.filter(x=>x!==u):c.concat(u);trSetUnits(c)}
 function trUpTo(n){trSetUnits([...new Set(AV())].filter(u=>u<=+n))}
-function trSet(k,v){const c=trCfg();c[k]=v;save();trHome();if(k==="cat"){const p=document.getElementById("tr-cfg");if(p&&p.getBoundingClientRect().top>innerHeight*.75)p.scrollIntoView({behavior:"smooth",block:"start"})}}
+function trSet(k,v){const c=trCfg();c[k]=v;save();const y=scrollY;trHome();window.scrollTo(0,y)}
+function trToggleCat(id){const c=trCfg();c.cats=c.cats.includes(id)?c.cats.filter(x=>x!==id):TR_CATS.map(t=>t[0]).filter(x=>x===id||c.cats.includes(x));save();const y=scrollY;trHome();window.scrollTo(0,y)}
+function trAllCats(on){const c=trCfg();c.cats=on?TR_CATS.map(t=>t[0]):[];save();const y=scrollY;trHome();window.scrollTo(0,y)}
 const trPct=(a,b)=>b?Math.round(a/b*100):0;
 function trStats(){const t=S.trSt||(S.trSt={cat:{},unit:{},sess:[],day:{}});t.cat=t.cat||{};t.unit=t.unit||{};t.sess=t.sess||[];t.day=t.day||{};return t}
 function trHome(){TR.on=false;EXRUN_TITLE="";const cfg=trCfg(),U=trUnits(),all=U.all,last=Math.max(...all),cur=S.un?S.un.slice().sort((a,b)=>a-b):null,st=trStats();
@@ -4529,23 +4538,27 @@ function trHome(){TR.on=false;EXRUN_TITLE="";const cfg=trCfg(),U=trUnits(),all=U
  const presets=[["Solo unità 1",[1]],["Unità 1–3",rng(3)],["Unità 1–5",rng(5)],[`Tutte (1–${last})`,null]];
  const contiguous=cur&&cur[0]===1&&cur.every((u,i)=>u===i+1);
  const desc=cur?(contiguous?`unità 1–${U.maxU}`:`unità ${cur.join(", ")}`):`tutte le unità (1–${last})`;
- const cats=TR_CATS.map(([id,l,ic,d])=>{const r=st.cat[id]||{ok:0,ko:0},n=r.ok+r.ko;return `<button class="g tr-cat ${cfg.cat===id?"on":""}" onclick="trSet('cat','${id}')" aria-pressed="${cfg.cat===id}"><span class="tr-ic jp" aria-hidden="true">${ic}</span><span class="tr-ct"><b>${l}</b><span class="mu">${d}</span>${n?`<span class="tr-cs">${n} fatti · ${trPct(r.ok,n)}% corretti</span>`:""}</span></button>`}).join("");
+ const sel=cfg.cats,has=id=>sel.includes(id);
+ const cats=TR_CATS.map(([id,l,ic,d])=>{const r=st.cat[id]||{ok:0,ko:0},n=r.ok+r.ko;return `<button class="g tr-cat ${has(id)?"on":""}" onclick="trToggleCat('${id}')" role="checkbox" aria-checked="${has(id)}"><span class="tr-ic jp" aria-hidden="true">${ic}</span><span class="tr-ct"><b>${l}</b><span class="mu">${d}</span>${n?`<span class="tr-cs">${n} fatti · ${trPct(r.ok,n)}% corretti</span>`:""}</span><span class="tr-check" aria-hidden="true">${has(id)?"✓":""}</span></button>`}).join("");
+ const selNames=sel.map(id=>TR_CATN[id]),selTxt=!sel.length?"Nessuna categoria scelta":sel.length===1?selNames[0]:sel.length===TR_CATS.length?"Tutte le categorie":`${sel.length} categorie: ${selNames.join(", ")}`;
  const nOpts=[5,10,20,30].map(n=>`<button class="btn ${cfg.n===n?"on":""}" onclick="trSet('n',${n})">${n}</button>`).join("")+`<label class="tr-num">Altro <input type="number" min="1" max="100" value="${[5,10,20,30].includes(cfg.n)?"":cfg.n}" placeholder="—" onchange="const v=Math.max(1,Math.min(100,parseInt(this.value)||10));trSet('n',v)"></label>`;
  const dOpts=[["easy","Facile"],["mid","Intermedia"],["hard","Difficile"],["mix","Mista"]].map(([v,l])=>`<button class="btn ${cfg.diff===v?"on":""}" onclick="trSet('diff','${v}')">${l}</button>`).join("");
  const mOpts=[["mc","Scelta multipla"],["auto","Risposta autonoma"],["mix","Entrambe"]].map(([v,l])=>`<button class="btn ${cfg.mode===v?"on":""}" onclick="trSet('mode','${v}')">${l}</button>`).join("");
- const contOK=cfg.cat==="part"||cfg.cat==="ord";
- const modeHelp={part:"Scelta multipla: tastiera con le particelle studiate e domande “particelle simili”. Risposta autonoma: scrivi tu ogni particella.",comp:"Scegli tra le forme proposte oppure scrivila tu.",form:"Scegli la forma giusta oppure scrivila tu.",voc:"Scegli tra quattro parole oppure scrivi la parola in giapponese.",kan:"Scegli la lettura o il kanji oppure scrivili tu.",mix:"Vale per i tipi di esercizio che lo prevedono."}[cfg.cat]||"";
+ const contOK=sel.length>0;
+ const MH={part:"Particelle: in scelta multipla compare la tastiera con le particelle studiate e le domande “particelle simili”; in risposta autonoma scrivi tu ogni particella.",comp:"Completa: scegli tra le forme proposte oppure scrivila tu.",form:"Forme: scegli la forma giusta oppure scrivila tu.",voc:"Vocabolario: scegli tra quattro parole oppure scrivi la parola.",kan:"Kanji: scegli la lettura o il kanji oppure scrivili tu.",mix:"Misti: vale per i tipi di esercizio che lo prevedono."};
+ const modeHelp=sel.filter(id=>MH[id]).map(id=>MH[id]).join(" ");const anyMode=sel.some(id=>TR_HASMODE[id]);
  el(`<div class="ex-head"><div><div class="ex-title">Esercizi</div><div class="ex-sub">Scegli le unità e il tipo di allenamento. Le frasi usano tutto ciò che hai studiato fino all’ultima unità scelta, mai niente delle unità successive.</div></div></div>
  <section class="g tr-units"><b>Unità da includere</b><div class="row tr-pre">${presets.map(([l,v])=>`<button class="btn ${same(cur,v)?"on":""}" onclick='trSetUnits(${JSON.stringify(v)})'>${l}</button>`).join("")}<label class="tr-upto">Dalla 1 fino alla <select onchange="trUpTo(this.value)" aria-label="Fino all’unità">${all.map(u=>`<option value="${u}" ${contiguous&&U.maxU===u?"selected":""}>${u}</option>`).join("")}${contiguous?"":`<option selected disabled>—</option>`}</select></label></div>
  <div class="tr-chips-u"><span class="mu">Personalizza:</span>${all.map(u=>`<button class="chip ${!cur||cur.includes(u)?"on":""}" aria-pressed="${!cur||cur.includes(u)}" onclick="trToggleU(${u})">${u}</button>`).join("")}</div>
  <div class="tr-prog">Programma: <b>${desc}</b>. Grammatica, particelle, vocaboli e kanji di ${cur&&!contiguous?`tutte le unità fino alla ${U.maxU} (con le domande concentrate sulle unità scelte)`:`tutte le unità fino alla ${U.maxU}`}; le unità più recenti hanno più spazio.</div></section>
+ <div class="tr-catbar"><b>Tipi di esercizio</b><span class="mu">Puoi sceglierne quanti vuoi: le domande si alternano tra le categorie selezionate.</span><span class="row" style="margin:0"><button class="btn tool" onclick="trAllCats(true)">Seleziona tutte</button><button class="btn tool" onclick="trAllCats(false)">Deseleziona</button></span></div>
  <div class="tr-cats">${cats}</div>
- <section class="g tr-cfg" id="tr-cfg"><b>${TR_CATN[cfg.cat]}</b>
+ <section class="g tr-cfg" id="tr-cfg"><b>${esc(selTxt)}</b>
  <div class="tr-row"><span>Numero di domande</span><div class="row">${nOpts}</div></div>
  <div class="tr-row"><span>Difficoltà</span><div class="row">${dOpts}</div></div>
- ${TR_HASMODE[cfg.cat]?`<div class="tr-row"><span>Risposte</span><div><div class="row">${mOpts}</div><div class="mu tr-help">${modeHelp}</div></div></div>`:""}
+ ${anyMode?`<div class="tr-row"><span>Risposte</span><div><div class="row">${mOpts}</div><div class="mu tr-help">${modeHelp}</div></div></div>`:""}
  ${contOK?`<div class="tr-row"><span>Allenamento continuo</span><div><label class="tr-sw"><input type="checkbox" ${cfg.cont?"checked":""} onchange="trSet('cont',this.checked)"> Prosegui con nuove domande senza tornare al menu</label></div></div>`:""}
- <button class="btn ok tr-go" onclick="trStart()">Inizia · ${TR_CATN[cfg.cat]} · ${cfg.cont&&contOK?"continuo":cfg.n+" domande"}</button></section>
+ <button class="btn ok tr-go" onclick="trStart()" ${sel.length?"":"disabled"}>${sel.length?`Inizia · ${sel.length===1?selNames[0]:sel.length+" categorie"} · ${cfg.cont?"allenamento continuo":cfg.n+" domande"}`:"Scegli almeno una categoria"}</button></section>
  ${trResultsHtml()}`)}
 // ---------- risultati e progressi ----------
 function trResultsHtml(){const st=trStats(),cats=TR_CATS.map(([id,l])=>[id,l,st.cat[id]||{ok:0,ko:0}]).filter(c=>c[2].ok+c[2].ko),tot=cats.reduce((a,c)=>a+c[2].ok+c[2].ko,0),ok=cats.reduce((a,c)=>a+c[2].ok,0);
@@ -4557,21 +4570,21 @@ function trResultsHtml(){const st=trStats(),cats=TR_CATS.map(([id,l])=>[id,l,st.
  return `<section class="g tr-res"><b>I tuoi risultati</b>
  <div class="tr-kpi"><div><span class="big">${tot}</span><span class="mu">esercizi svolti</span></div><div><span class="big">${trPct(ok,tot)}%</span><span class="mu">risposte corrette</span></div><div><span class="big">${st.sess.length}</span><span class="mu">sessioni</span></div></div>
  <div class="tr-cols"><div><div class="xp-sub">Per categoria</div>${cats.map(([id,l,r])=>bar(l,r)).join("")}</div><div><div class="xp-sub">Per unità</div>${units.map(([u,r])=>bar("Unità "+u,r)).join("")||'<div class="mu">—</div>'}</div></div>
- ${sess.length>1?`<div class="xp-sub">Andamento delle ultime sessioni</div><div class="dash-trend">${sess.map(s=>`<div title="${esc(TR_CATN[s.cat]||"")} · ${s.ok}/${s.n}"><i style="height:${Math.max(4,trPct(s.ok,s.n))}%"></i><small>${trPct(s.ok,s.n)}%</small></div>`).join("")}</div>`:""}
+ ${sess.length>1?`<div class="xp-sub">Andamento delle ultime sessioni</div><div class="dash-trend">${sess.map(s=>`<div title="${esc([].concat(s.cat||[]).map(c=>TR_CATN[c]||"").filter(Boolean).join(", "))} · ${s.ok}/${s.n}"><i style="height:${Math.max(4,trPct(s.ok,s.n))}%"></i><small>${trPct(s.ok,s.n)}%</small></div>`).join("")}</div>`:""}
  <div class="tr-cols"><div><div class="xp-sub">Particelle con più errori</div>${wp.length?wp.map(o=>bar(`<span class="jp">${esc(o.p)}</span>`,o.r,`<button class="btn tool" onclick="trTarget({focusP:'${o.p}'})">Allenati</button>`)).join(""):'<div class="mu">Nessuna particella critica per ora.</div>'}</div>
  <div><div class="xp-sub">Strutture da ripassare</div>${wr.length?wr.map(o=>{const t=o.k.split("|").slice(1).join("|"),i=TR_GI[t];return `<div class="tr-bar tr-rule"><span>${esc(t)} <span class="mu">· U${o.k.split("|")[0]}</span></span><span class="mu">${trPct(o.r.ok,o.r.ok+o.r.ko)}%</span><span class="row" style="margin:0">${i!=null?`<button class="btn tool" onclick="grOpen(${i})">Regola</button>`:""}<button class="btn tool" onclick='trTarget({rule:${JSON.stringify(t)}})'>Allenati</button></span></div>`}).join(""):'<div class="mu">Nessuna regola critica per ora.</div>'}</div></div></section>`}
 // sessione mirata (da particella o regola debole)
 function trTarget(o){trStart({...o,cat:o.focusP?"part":"mix"})}
 
 // ---------- avvio e svolgimento ----------
-function trStart(o){o=o||{};const cfg={...trCfg(),...(o.cat?{cat:o.cat}:{})},n=cfg.cont&&(cfg.cat==="part"||cfg.cat==="ord")?10:cfg.n;
+function trStart(o){o=o||{};const cfg={...trCfg(),...(o.cat?{cats:[o.cat]}:{})},cats=trCatsOf(cfg);if(!cats.length){trHome();return}const n=cfg.cont?10:cfg.n;
  const list=trBuild(cfg,n,o);if(!list.length){el(`<div class="g">Non ci sono esercizi per questa combinazione di unità e difficoltà. Prova un’altra difficoltà o aggiungi unità.</div><button class="btn" onclick="trHome()">← Indietro</button>`);return}
- TR={on:true,cfg,o,cat:cfg.cat,cont:cfg.cont&&(cfg.cat==="part"||cfg.cat==="ord"),ok:0,n:0,start:Date.now()};
+ TR={on:true,cfg,o,cats,cat:cats.length===1?cats[0]:"multi",catOf:{...(list.catOf||{})},cont:!!cfg.cont,ok:0,n:0,start:Date.now()};
  EXAM.on=false;cur="es";nav();if(typeof subBar==="function")subBar();
- const U=trUnits();EXRUN_TITLE=`${o.rule?"Allenamento mirato · "+o.rule:o.focusP?"Allenamento mirato · particella "+o.focusP:TR_CATN[cfg.cat]} · Unità${U.focus.length>1&&U.focus.every((u,i)=>u===U.focus[0]+i)?U.focus[0]+"–"+U.maxU:U.focus.join(", ")}`;
+ const U=trUnits();EXRUN_TITLE=`${o.rule?"Allenamento mirato · "+o.rule:o.focusP?"Allenamento mirato · particella "+o.focusP:cats.length===1?TR_CATN[cats[0]]:cats.length===TR_CATS.length?"Tutte le categorie":cats.length+" categorie"} · Unità ${U.focus.length>1&&U.focus.every((u,i)=>u===U.focus[0]+i)?U.focus[0]+"–"+U.maxU:U.focus.join(", ")}`;
  eq=list;ei=0;emiss=[];eok=0;ex()}
-function trMore(){const add=trBuild(TR.cfg,10,TR.o);eq.push(...add)}
-function trEnd(){if(!TR.on||TR.ended)return;const st=trStats(),done=ei;if(done>0){st.sess.push({t:Date.now(),cat:TR.cat,n:Math.min(done,eq.length),ok:eok});if(st.sess.length>80)st.sess.splice(0,st.sess.length-80);save()}TR.ended=true}
+function trMore(){const add=trBuild(TR.cfg,10,TR.o);Object.assign(TR.catOf,add.catOf||{});eq.push(...add)}
+function trEnd(){if(!TR.on||TR.ended)return;const st=trStats(),done=ei;if(done>0){st.sess.push({t:Date.now(),cat:TR.cats||TR.cat,n:Math.min(done,eq.length),ok:eok});if(st.sess.length>80)st.sess.splice(0,st.sess.length-80);save()}TR.ended=true}
 function trSummary(){trEnd();const n=Math.min(ei,eq.length),pct=trPct(eok,n),byRule={};
  emiss.forEach(i=>{const x=EX[i];(x._rules||rulesForExercise(x).map(r=>G[r.i][1])).slice(0,1).forEach(r=>{byRule[r]=(byRule[r]||0)+1})});
  const weak=Object.entries(byRule).sort((a,b)=>b[1]-a[1]).slice(0,4);
@@ -4638,7 +4651,7 @@ const _ordTR=exOrd;exOrd=function(){const x=EX[eq[ei]];if(x&&x._tr&&x._alts){con
 const _explTR=explainHtml;explainHtml=function(x,ok,given,right,extra){return x&&x._tr?trExplain(x,ok,given,right,extra):_explTR(x,ok,given,right,extra)};
 const _rfeTR=rulesForExercise;rulesForExercise=function(x){if(x&&x._rules)return x._rules.map(trRuleObj).filter(Boolean).map(r=>G_TOK[r.i]).filter(Boolean).slice(0,3);return _rfeTR(x)};
 const _logTR=logResult;logResult=function(x,ok,extra){const id=exerciseIdentity(x),had=S.exLog&&S.exLog[id];_logTR(x,ok,extra);if(x._tr&&!had&&S.exLog){delete S.exLog[id]}
- if(TR.on&&!EXAM.on){const st=trStats(),c=TR.cat==="mix"?(x._cat||trCatOf(x)):TR.cat,u=x[1];const a=st.cat[c]||(st.cat[c]={ok:0,ko:0});ok?a.ok++:a.ko++;const b=st.unit[u]||(st.unit[u]={ok:0,ko:0});ok?b.ok++:b.ko++;save()}};
+ if(TR.on&&!EXAM.on){const st=trStats(),c=(TR.catOf&&TR.catOf[eq[ei]])||x._cat||(TR.cats&&TR.cats.length===1?TR.cats[0]:trCatOf(x)),u=x[1];const a=st.cat[c]||(st.cat[c]={ok:0,ko:0});ok?a.ok++:a.ko++;const b=st.unit[u]||(st.unit[u]={ok:0,ko:0});ok?b.ok++:b.ko++;save()}};
 function trCatOf(x){for(const [c] of TR_CATS)if(c!=="mix"&&TR_BOOK[c](x))return c;return "mix"}
 const _finTR=fin;fin=function(ok,right){const x=EX[eq[ei]];_finTR(ok,right);if(!TR.on||EXAM.on)return;
  if(TR.cont&&ei+1>=eq.length){try{trMore()}catch(e){}}
