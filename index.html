@@ -222,12 +222,12 @@ a{color:var(--ac)}
 .tr-cat{position:relative;padding-right:40px}.tr-check{position:absolute;top:10px;right:10px;width:24px;height:24px;border-radius:6px;border:2px solid var(--bd);display:grid;place-items:center;font-weight:800;font-size:15px;color:#fff;background:var(--card)}.tr-cat.on .tr-check{background:var(--ac);border-color:var(--ac)}
 .tr-catbar{display:flex;flex-wrap:wrap;gap:6px 12px;align-items:center;margin-top:12px}.tr-catbar .mu{font-size:13px;flex:1;min-width:200px}
 .tr-ct{display:grid;gap:4px}.tr-ct .mu{font-size:13px;line-height:1.4}.tr-cs{font-size:12px;color:var(--ac2);font-weight:600}
-.tr-cfg{display:grid;gap:10px;border-left:4px solid var(--ac)}.tr-row{display:grid;grid-template-columns:170px 1fr;gap:10px;align-items:start}.tr-row>span{color:var(--mu);font-size:14px;padding-top:8px}.tr-row .row{margin:0;flex-wrap:wrap;gap:6px}
+.tr-cfg{display:grid;gap:10px;border-left:4px solid var(--ac)}.trc-row{display:grid;grid-template-columns:170px 1fr;gap:10px;align-items:start}.trc-row>span{color:var(--mu);font-size:14px;padding-top:8px}.trc-row .row{margin:0;flex-wrap:wrap;gap:6px}
 .tr-num{display:inline-flex;align-items:center;gap:6px;font-size:14px;color:var(--mu)}.tr-num input{width:64px;font:inherit;padding:6px;border-radius:8px;border:1px solid var(--bd);background:var(--card);color:inherit}
 .tr-help{font-size:12px;margin-top:4px}.tr-sw{display:flex;gap:8px;align-items:center;padding-top:6px;cursor:pointer}.tr-go{width:100%;padding:14px;font-size:16px}
 .tr-res{display:grid;gap:8px;margin-top:12px}.tr-res>*,.tr-cols>*,.tr-cfg>*,.tr-units>*{min-width:0}.tr-res .dash-trend{gap:3px}.tr-res .dash-trend>div{min-width:0}.tr-res .dash-trend small{font-size:9px;overflow:hidden;max-width:100%}.tr-kpi{display:flex;gap:24px;flex-wrap:wrap}.tr-kpi>div{display:grid}.tr-kpi .big{font-size:30px;font-weight:800}
 .tr-cols{display:grid;grid-template-columns:repeat(auto-fit,minmax(min(260px,100%),1fr));gap:14px}.tr-bar{display:grid;grid-template-columns:minmax(90px,150px) 1fr auto;gap:8px;align-items:center;font-size:14px;margin:4px 0}.tr-bar:has(.btn){grid-template-columns:minmax(60px,110px) 1fr auto auto}.tr-bar .mini-bar{display:block}.tr-rule{grid-template-columns:1fr auto auto!important}
-.tr-it{display:inline-block;margin-top:4px;font-size:14px;color:var(--mu)}.tr-it summary{cursor:pointer}.tr-words{display:inline-block;font-size:13px;color:var(--mu);margin-top:4px}.tr-words .jp{font-size:16px;color:var(--tx,inherit)}
+.trc-it{display:inline-block;margin-top:4px;font-size:14px;color:var(--mu)}.trc-it summary{cursor:pointer}.tr-words{display:inline-block;font-size:13px;color:var(--mu);margin-top:4px}.tr-words .jp{font-size:16px;color:var(--tx,inherit)}
 .xp-row b.tr-full{color:inherit;font-weight:500;white-space:pre-line}.xp-row b.tr-full .tr-hl{font-weight:800}
 .tr-hl{color:var(--ac);background:color-mix(in srgb,var(--ac) 14%,transparent);border-radius:4px;padding:0 2px}
 .tr-blanks{display:grid;gap:6px}.tr-blank{display:flex;gap:10px;align-items:flex-start;border-radius:10px;padding:8px 10px;background:var(--bg2);line-height:1.5}.tr-blank.bad{background:var(--ko-soft)}.tr-n{min-width:26px;height:26px;border-radius:50%;display:grid;place-items:center;font-weight:700;background:var(--card);border:1px solid var(--bd);font-family:var(--jp)}.tr-blank.good .tr-n{border-color:var(--ok);color:var(--ok)}.tr-blank.bad .tr-n{border-color:var(--ko);color:var(--ko)}
@@ -236,7 +236,7 @@ a{color:var(--ac)}
 .tr-tile{margin:0!important;font-family:var(--jp);font-size:18px;padding:8px 12px;min-height:44px}.tr-tile.sel{outline:3px solid var(--ac);background:color-mix(in srgb,var(--ac) 16%,var(--card))}.tr-empty{align-self:center}
 .tr-ordbar{display:flex;flex-wrap:wrap;gap:6px}.tr-ordbar .btn:disabled{opacity:.45}
 .tr-pchips{display:flex;flex-wrap:wrap;gap:6px;margin:6px 0 4px}.tr-pc{min-width:46px;min-height:44px;font-size:18px;margin:0!important}.ex-inline-blank.tr-cur{outline:2px solid var(--ac)}
-@media(max-width:640px){.tr-cats{grid-template-columns:1fr}.tr-row{grid-template-columns:1fr;gap:4px}.tr-row>span{padding-top:0}.tr-bar{grid-template-columns:90px 1fr auto}.tr-bar:has(.btn){grid-template-columns:70px 1fr auto}.tr-bar:has(.btn) .mu{display:none}.tr-kpi{gap:16px}.tr-kpi .big{font-size:24px}}/*@@CSS_TRAIN_END@@*/</style>
+@media(max-width:640px){.tr-cats{grid-template-columns:1fr}.trc-row{grid-template-columns:1fr;gap:4px}.trc-row>span{padding-top:0}.tr-bar{grid-template-columns:90px 1fr auto}.tr-bar:has(.btn){grid-template-columns:70px 1fr auto}.tr-bar:has(.btn) .mu{display:none}.tr-kpi{gap:16px}.tr-kpi .big{font-size:24px}}/*@@CSS_TRAIN_END@@*/</style>
 </head><body><div class="app">
 <header class="top"><div class="brand"><div class="logo" aria-hidden="true">語</div><div><div class="brand-title">Impariamo il giapponese</div><div class="brand-sub" id="brand-sub">Volume 1 · studio personale</div></div></div><button class="icon-btn" onclick="th()" title="Tema chiaro / scuro" aria-label="Cambia tema">◐</button></header>
 <nav id="nav" class="tabs" aria-label="Sezioni"></nav>
@@ -3884,7 +3884,7 @@ const ROLE={
  contr:{p:"は",u:6,g:"が e は: dove cade l’attenzione",fn:"qui は mette <b>a contrasto</b> due elementi (questo sì, quello no)"},
  also:{p:"も",u:1,g:"も (anche)",fn:"significa <b>“anche”</b> e prende il posto di は"},
  gen:{p:"の",u:1,g:"の (specificazione)",fn:"unisce due nomi: il primo <b>specifica</b> il secondo (di chi, di che cosa, di che tipo)"},
- and:{p:"と",u:1,g:"と (e)",fn:"unisce due nomi in un <b>elenco completo</b> (“e”)"},
+ and:{p:"と",u:1,g:"と (e)",fn:"unisce due nomi in un <b>elenco completo</b> (“e”); senza la traduzione va bene anche や (elenco non completo)",altU:{や:4}},
  q:{p:"か",u:1,g:"か (domanda)",fn:"in fondo alla frase la trasforma in una <b>domanda</b>"},
  ku:{p:"を",u:3,g:"Richieste: ～をください",fn:"indica la cosa che si <b>chiede</b> con ください"},
  yo:{p:"よ",u:3,g:"La particella finale よ",fn:"in fondo alla frase comunica un’<b>informazione nuova</b> a chi ascolta"},
@@ -3892,7 +3892,7 @@ const ROLE={
  exl:{p:"に",u:4,g:"あります・います: esserci",fn:"indica il <b>luogo in cui si trova</b> qualcosa o qualcuno (con あります・います)"},
  exs:{p:"が",u:4,g:"あります・います: esserci",fn:"indica <b>ciò che c’è</b> (il soggetto di あります・います)"},
  pos:{p:"の",u:4,g:"Indicare la posizione: luogo + の + 上・下・中…",fn:"collega il punto di riferimento alla parola di posizione (つくえ<b>の</b>上 = sopra la scrivania)"},
- ya:{p:"や",u:4,g:"や: elenco non completo",fn:"elenco <b>non completo</b> (“…, … e altro”)"},
+ ya:{p:"や",u:4,alt:["と"],g:"や: elenco non completo",fn:"elenco <b>non completo</b> (“…, … e altro”); senza la traduzione va bene anche と (elenco completo)"},
  from:{p:"から",u:4,g:"から・まで: da… a…",fn:"indica il <b>punto di partenza</b>, nel tempo o nello spazio (“da”)"},
  to:{p:"まで",u:4,g:"から・まで: da… a…",fn:"indica il <b>punto d’arrivo</b>, nel tempo o nello spazio (“fino a”)"},
  obj:{p:"を",u:5,g:"を: complemento oggetto",fn:"indica il <b>complemento oggetto</b>, ciò su cui ricade l’azione"},
@@ -4345,8 +4345,10 @@ function trCfg(){const old=S.trCfg||{},d={n:10,diff:"mix",mode:"mix",cont:false}
 function trUnits(){const all=[...new Set(AV())].sort((a,b)=>a-b),focus=S.un&&S.un.length?S.un.filter(u=>all.includes(u)).sort((a,b)=>a-b):all.slice();return {focus,maxU:Math.max(...focus),all}}
 const TR_LVL={easy:1,mid:2,hard:3};
 let TR_SEQ=0;
-function trX(type,u,prompt,ans,extra){const x=type==="mc"?["mc",u,prompt,ans,extra.correct||0,""]:[type,u,prompt,ans,""];Object.assign(x,{_generated:1,_tr:1,_noTr:1,_group:extra.group,_difficulty:extra.lvl||2,_id:"tr|"+extra.group+"|"+(extra.key||prompt)+"|"+(++TR_SEQ),_cat:extra.cat},extra.x||{});return x}
-const trHint=(it,hide)=>hide?`<details class="tr-it"><summary>Mostra la traduzione</summary>“${esc(it)}”</details>`:`<span class="ex-hint">“${esc(it)}”</span>`;
+function trX(type,u,prompt,ans,extra){const x=type==="mc"?["mc",u,prompt,ans,extra.correct||0,""]:[type,u,prompt,ans,""];// _noTr: niente pulsante "Traduzione e pronuncia" dove darebbe la risposta; _keepHints: l'italiano è la domanda stessa
+ Object.assign(x,{_generated:1,_tr:1,_noTr:["trji","trij","voc","kan"].includes(extra.cat)?1:0,_keepHints:["trij","voc","kan"].includes(extra.cat)?1:0,_group:extra.group,_difficulty:extra.lvl||2,_id:"tr|"+extra.group+"|"+(extra.key||prompt)+"|"+(++TR_SEQ),_cat:extra.cat},extra.x||{});return x}
+// la traduzione non resta visibile: viene tolta dal testo e mostrata solo con il pulsante "Traduzione e pronuncia"
+const trHint=it=>`<span class="ex-hint">“${esc(it)}”</span>`;
 const trMode=m=>m==="mix"?(Math.random()<.5?"mc":"auto"):m;
 
 // ===== INSERISCI PARTICELLE =====
@@ -4354,8 +4356,9 @@ function trMkPart(s,mode,o){const parts=trParts(s).filter(k=>k.s||o.zero);const 
  if(mode==="one"||mode==="sim"){let pool=real.filter(k=>k.r!=="q");if(o.focusP)pool=pool.filter(k=>k.s===o.focusP);if(mode==="sim")pool=pool.filter(k=>TR_CONF[k.r]);if(!pool.length)return null;const mx=Math.max(...pool.map(k=>ROLE[k.r].u)),best=pool.filter(k=>ROLE[k.r].u===mx);blanks=[trPick(Math.random()<.7?best:pool)]}
  else{blanks=parts.filter(k=>k.s||(o.zero&&Math.random()<.6));if(blanks.filter(k=>k.s).length<2)return null;if(o.focusP&&!blanks.some(k=>k.s===o.focusP))return null}
  const B=new Set(blanks),text=trText(s,{blank:B}),u=s.u,hide=o.lvl===3&&!s.rules.some(g=>/も \(anche\)|と \(e\)|や:|とか/.test(g));
- const exp=blanks.map(k=>({p:k.s||"x",alt:(k.alt||[]).filter(a=>a!==k.s),r:k.r}));
- if(mode==="sim"){const k=blanks[0],studied=trPartsUpTo(o.maxU),ok=[k.s,...(k.alt||[])],dis=trShuf((TR_CONF[k.r]||[]).filter(p=>studied.includes(p)&&!ok.includes(p))).slice(0,3);if(dis.length<1)return null;const opts=trShuf([k.s,...dis]);
+ const altOf=k=>[...(k.alt||[]),...Object.entries(ROLE[k.r].altU||{}).filter(([p,u])=>u<=(o.maxU||12)).map(([p])=>p)].filter(a=>a!==k.s);
+ const exp=blanks.map(k=>({p:k.s||"x",alt:altOf(k),r:k.r}));
+ if(mode==="sim"){const k=blanks[0],studied=trPartsUpTo(o.maxU),ok=[k.s,...altOf(k)],dis=trShuf((TR_CONF[k.r]||[]).filter(p=>studied.includes(p)&&!ok.includes(p))).slice(0,3);if(dis.length<1)return null;const opts=trShuf([k.s,...dis]);
   return trX("mc",u,`Scegli la particella corretta.\n${text}\n${trHint(s.it,hide)}`,opts,{correct:opts.indexOf(k.s),group:"particle",cat:"part",lvl:s.lvl,key:text,x:{_s:s,_blanks:blanks,_exp:exp,_rules:s.rules,_full:s.jp}})}
  let combos=[[]];exp.forEach(e=>{combos=combos.flatMap(c=>[e.p,...e.alt].map(a=>[...c,a]))});combos=combos.slice(0,48);
  const instr=blanks.length===1?"Inserisci la particella mancante.":`Inserisci le particelle mancanti${blanks.some(k=>!k.s)?" (scrivi x dove non serve nessuna particella)":""}.`;
@@ -4377,18 +4380,27 @@ function trFillSubmit(){const x=EX[eq[ei]],fields=[...document.querySelectorAll(
 // ===== ORDINA FRASE =====
 function trPerms(a){if(a.length<=1)return [a.slice()];const out=[];a.forEach((x,i)=>{trPerms(a.slice(0,i).concat(a.slice(i+1))).forEach(p=>out.push([x,...p]))});return out}
 const trNormOrd=t=>String(t).replace(/<[^>]+>/g,"").replace(/[、。，．,.\s　]/g,"");
-function trOrdAlts(s,cis){const per=cis.map(ci=>{const ps=s.cl[ci].ph,runs=[];let cur=[];ps.forEach((p,i)=>{if(p.f)cur.push(i);else{if(cur.length)runs.push(cur);cur=[]}});if(cur.length)runs.push(cur);
+const TR_PPLSET=new Set([...L_PPL.map(p=>p.jp),"私"]);
+// senza traduzione visibile, nel riordino non si può sapere chi fa che cosa: si accetta lo scambio di due persone,
+// di partenza e arrivo, dei due elementi a contrasto e di この/あの (le frasi restano corrette)
+function trSwapAlts(s,cis,out){const toks=[];cis.forEach(ci=>s.cl[ci].ph.forEach(p=>p.t.forEach((k,i)=>toks.push([k,p.t[i+1]]))));const pairs=[];
+ const ppl=[...new Set(toks.filter(([k])=>k.k==="w"&&TR_PPLSET.has(k.s)).map(([k])=>k.s))];for(let i=0;i<ppl.length;i++)for(let j=i+1;j<ppl.length;j++)pairs.push([ppl[i],ppl[j]]);
+ const fr=toks.find(([k,n])=>k.k==="w"&&n&&n.r==="from"),to=toks.find(([k,n])=>k.k==="w"&&n&&n.r==="to");if(fr&&to&&fr[0].s!==to[0].s)pairs.push([fr[0].s,to[0].s]);
+ const ct=toks.filter(([k,n])=>k.k==="w"&&n&&n.r==="contr").map(([k])=>k.s);if(ct.length===2&&ct[0]!==ct[1])pairs.push(ct);
+ if(toks.some(([k])=>k.s==="この")&&toks.some(([k])=>k.s==="あの"))pairs.push(["この","あの"]);
+ pairs.forEach(([a,b])=>{out=out.concat(out.filter(x=>x.includes(a)&&x.includes(b)).map(x=>x.split(a).map(p=>p.split(b).join("\u0001")).join(b).split("\u0001").join(a)))});return [...new Set(out)].slice(0,3000)}
+function trOrdAlts(s,cis,o){const per=cis.map(ci=>{const ps=s.cl[ci].ph,runs=[];let cur=[];ps.forEach((p,i)=>{if(p.f)cur.push(i);else{if(cur.length)runs.push(cur);cur=[]}});if(cur.length)runs.push(cur);
   let vs=[ps.map((p,i)=>i)];runs.forEach(run=>{if(run.length<2)return;const pm=trPerms(run).slice(0,120);vs=vs.flatMap(v=>pm.map(m=>{const n=v.slice();run.forEach((pos,k)=>{n[pos]=m[k]});return n}))});
   return vs.slice(0,240).map(v=>v.map(i=>ps[i].t.map(k=>k.s).join("")).join(""))});
  let out=[""];per.forEach(arr=>{out=out.flatMap(a=>arr.map(b=>a+b))});out=out.slice(0,800).map(trNormOrd);
  // in un elenco A と B / A や B / A とか B とか l'ordine dei due nomi è libero
  cis.forEach(ci=>s.cl[ci].ph.forEach(p=>{const t=p.t;for(let i=0;i+2<t.length;i++){if(t[i].k==="w"&&t[i+1].k==="p"&&["and","ya","toka"].includes(t[i+1].r)&&t[i+2].k==="w"){const a=t[i].s+t[i+1].s+t[i+2].s,b=t[i+2].s+t[i+1].s+t[i].s;out=out.concat(out.filter(x=>x.includes(a)).map(x=>x.replace(a,b)))}}}));
- return [...new Set(out)]}
+ out=[...new Set(out)];return o&&o.swap?trSwapAlts(s,cis,out):out}
 function trTiles(s,cis,split){const out=[];cis.forEach(ci=>s.cl[ci].ph.forEach(p=>{let cur="";p.t.forEach(k=>{if(!k.s)return;if(k.k==="c"){if(cur)cur+=k.s;else if(out.length)out[out.length-1]+=k.s;return}
   if(split){if(cur)out.push(cur);cur=k.s;return}cur+=k.s;if(k.k==="p"){out.push(cur);cur=""}});if(cur)out.push(cur)}));
  if(out.length)out[out.length-1]=out[out.length-1].replace(/。+$/,"");return out.filter(Boolean)}
 function trMkOrd(s,split,o){const cis=s.dlg?[s.cl.length-1]:s.cl.map((c,i)=>i),tiles=trTiles(s,cis,split);if(tiles.length<((o&&o.min)||3)||tiles.length>16)return null;if(new Set(tiles).size===1)return null;
- const alts=trOrdAlts(s,cis),main=trNormOrd(tiles.join(""));if(!alts.includes(main))alts.unshift(main);
+ const alts=trOrdAlts(s,cis,{swap:1}),main=trNormOrd(tiles.join(""));if(!alts.includes(main))alts.unshift(main);
  const ctx=s.dlg?s.cl.slice(0,-1).map((cl,i)=>(cl.sp?cl.sp+"：":"")+cl.ph.map(p=>p.t.map(k=>k.s).join("")).join("")).join("\n")+"\n"+(s.cl[s.cl.length-1].sp||"B")+"：…":"";
  const it=s.dlg?(s.itA||s.it.split(" — ").pop()):s.it;
  return trX("ord",s.u,`${s.dlg?"Riordina la risposta per completare il dialogo.":"Riordina le parole per formare la frase."}\n${ctx?ctx+"\n":""}<span class="ex-hint">“${esc(it)}”</span>`,tiles,{group:"order",cat:"ord",lvl:s.lvl,key:main,x:{_s:s,_alts:alts,_rules:s.rules,_full:trText({...s,cl:cis.map(i=>s.cl[i]),dlg:0})}})}
@@ -4421,8 +4433,10 @@ function trPredTok(s){const cl=s.cl[s.cl.length-1],p=cl.ph[cl.ph.length-1],vs=p.
 function trMkComp(s,U,am){const fv=s.forms[s.forms.length-1];const tok=trPredTok(s);
  if(fv&&tok&&TR_VFORMS.includes(fv.f)&&tok.s===jvF(fv.v,fv.f)){const right=tok.s,cand=TR_VFORMS.filter(f=>f!==fv.f&&trFU(f)<=U.maxU).map(f=>jvF(fv.v,f)).filter(t=>t!==right);if(cand.length<2)return null;
   const text=trText(s,{blank:new Set([tok])}),dict=fv.v.obj?fv.v.obj+"を"+fv.v.d:fv.v.d;
-  if(am==="auto")return trX("tx",s.u,`Completa la frase con la forma giusta di ${dict}.\n${text}\n<span class="ex-hint">“${esc(s.it)}”</span>`,[right],{group:"complete",cat:"comp",lvl:s.lvl,key:text,x:{_s:s,_rules:s.rules,_full:s.jp,_pred:{v:fv.v,f:fv.f}}});
-  const opts=trShuf([right,...trShuf(cand).slice(0,3)]);return trX("mc",s.u,`Completa la frase con la forma giusta.\n${text}\n<span class="ex-hint">“${esc(s.it)}”</span>`,opts,{correct:opts.indexOf(right),group:"complete",cat:"comp",lvl:s.lvl,key:text,x:{_s:s,_rules:s.rules,_full:s.jp,_pred:{v:fv.v,f:fv.f}}})}
+  // la forma richiesta è indicata nella consegna, così la frase si risolve senza traduzione
+  if(am==="auto")return trX("tx",s.u,`Completa la frase con ${dict} alla forma ${TR_FLAB[fv.f]}.\n${text}\n${trHint(s.it)}`,[right],{group:"complete",cat:"comp",lvl:s.lvl,key:text,x:{_s:s,_rules:s.rules,_full:s.jp,_pred:{v:fv.v,f:fv.f}}});
+  const wrong=trWrongForm(fv.v,fv.f).filter(w=>w!==right),pool=[...new Set([...trShuf(wrong),...trShuf(cand)])].slice(0,3);
+  const opts=trShuf([right,...pool]);return trX("mc",s.u,`Completa la frase: scegli la forma ${TR_FLAB[fv.f]} corretta.\n${text}\n${trHint(s.it)}`,opts,{correct:opts.indexOf(right),group:"complete",cat:"comp",lvl:s.lvl,key:text,x:{_s:s,_rules:s.rules,_full:s.jp,_pred:{v:fv.v,f:fv.f}}})}
  return null}
 const TR_QWORDS=[["何",1],["誰",2],["いつ",2],["どこ",3],["何時",3],["いくら",3],["どちら",8],["どのくらい",5]];
 function trMkQComp(s,U){if(!s.dlg)return null;let tok=null;s.cl[0].ph.forEach(p=>p.t.forEach(k=>{if(k.k==="w"&&TR_QWORDS.some(q=>q[0]===k.s))tok=k}));if(!tok)return null;
@@ -4434,6 +4448,12 @@ function trGenComp(U,cfg){const am=trMode(cfg.mode),lvl=TR_LVL[cfg.diff]||0;
  return null}
 // coniugazione isolata
 const TR_VLIST=()=>Object.values(VB).filter(v=>v.d!=="する"&&v.d!=="浴びる"&&!v.key);
+// coniugazioni sbagliate della STESSA forma (radice sbagliata): servono come alternative nella scelta multipla
+function trWrongForm(v,f){const right=jvF(v,f);
+ if(["pres","neg","past","pneg","inv","mas","tai"].includes(f)){const suf=right.slice(v.m.length),st=[v.na.slice(0,-2),v.d,v.te.replace(/[てで]$/,""),v.d.slice(0,-1)+"い"].filter(x=>x&&x!==v.m);return [...new Set(st.map(x=>x+suf))].filter(w=>w!==right)}
+ if(["teiru","tekuda"].includes(f))return trWrongTe(v).map(t=>right.replace(v.te,t)).filter(w=>w!==right);
+ if(f==="naide")return [v.m+"ないでください",v.d+"ないでください",v.d.slice(0,-1)+"ないでください"].filter(w=>w!==right);
+ return []}
 function trWrongTe(v){const s=v.d.slice(0,-1),w=[s+"って",s+"んで",s+"いて",v.m+"て",s+"して"].filter(t=>t!==v.te);return [...new Set(w)]}
 function trFormWhy(v,f){const g=v.g===2?"verbo del gruppo 2 (in -ru): si toglie る":v.g===3?"verbo irregolare":"verbo del gruppo 1 (in -u)";const d=v.d,last=d.slice(-1);
  if(f==="te"||f==="ta"){if(v.g===2)return `${d}: ${g} e si aggiunge ${f==="te"?"て":"た"}.`;if(v.g===3)return `${d}: ${g}, forma da imparare a memoria.`;if(d==="行く")return `行く è l’eccezione del gruppo 1: ${f==="te"?"行って":"行った"}.`;const m={う:"う・つ・る → っ",つ:"う・つ・る → っ",る:"う・つ・る → っ",む:"む・ぶ・ぬ → ん + で",ぶ:"む・ぶ・ぬ → ん + で",ぬ:"む・ぶ・ぬ → ん + で",く:"く → い",ぐ:"ぐ → い + で",す:"す → し"}[last];return `${d}: ${g}, termina in ${last}: ${m}${f==="ta"?" (con た/だ al posto di て/で)":""}.`}
@@ -4487,7 +4507,7 @@ function trGenKan(U,cfg){const am=trMode(cfg.mode),pool=trVocPool(U).filter(o=>o
 // ===== SCRITTURA AUTONOMA =====
 function trGenFree(U){for(let k=0;k<8;k++){const s0=trGen({...U,need:s=>!!s.P||(s.dlg&&s.cl.length===2),avoid:TR_AVOID});const s=s0&&(s0.dlg?s0:trQA(s0));if(!s)continue;trWithText(s);const q=s.cl[0].ph.map(p=>p.t.map(t=>t.s).join("")).join(""),a=s.cl[1].ph.map(p=>p.t.map(t=>t.s).join("")).join("");
   const itQ=s.itQ||String(s.it).split(" — ")[0].replace(/^—\s*/,"");
-  return trX("write",s.u,`Rispondi in giapponese con una frase completa.\nA：${q}\n<span class="ex-hint">“${esc(itQ)}” — rispondi come vuoi, poi confronta con il modello.</span>`,[a.replace(/。$/,"")],{group:"free",cat:"free",lvl:2,key:q,x:{_s:s,_rules:s.rules}})}return null}
+  return trX("write",s.u,`Rispondi in giapponese con una frase completa.\nA：${q}\n${trHint(itQ)}\n<span class="mu" style="font-size:13px">Rispondi come vuoi, poi confronta con il modello.</span>`,[a.replace(/。$/,"")],{group:"free",cat:"free",lvl:2,key:q,x:{_s:s,_rules:s.rules}})}return null}
 
 // ===== ARCHIVIO: esercizi del libro e della banca delle particelle =====
 const TR_BOOK={part:x=>exGroup(x)==="particle",ord:x=>exGroup(x)==="order",comp:x=>["complete","choice"].includes(exGroup(x)),form:x=>["transform","error"].includes(exGroup(x)),trij:x=>exGroup(x)==="translate"&&x[0]==="tx",trji:x=>(exGroup(x)==="translate"&&x._it)||["comprehension","reading"].includes(exGroup(x)),voc:x=>exGroup(x)==="odd",kan:x=>["kanji","kana"].includes(exGroup(x)),free:x=>exGroup(x)==="free"||x[0]==="write",mix:x=>["truefalse","comprehension","reading","choice","error","particle","order","complete","transform"].includes(exGroup(x))};
@@ -4554,10 +4574,10 @@ function trHome(){TR.on=false;EXRUN_TITLE="";const cfg=trCfg(),U=trUnits(),all=U
  <div class="tr-catbar"><b>Tipi di esercizio</b><span class="mu">Puoi sceglierne quanti vuoi: le domande si alternano tra le categorie selezionate.</span><span class="row" style="margin:0"><button class="btn tool" onclick="trAllCats(true)">Seleziona tutte</button><button class="btn tool" onclick="trAllCats(false)">Deseleziona</button></span></div>
  <div class="tr-cats">${cats}</div>
  <section class="g tr-cfg" id="tr-cfg"><b>${esc(selTxt)}</b>
- <div class="tr-row"><span>Numero di domande</span><div class="row">${nOpts}</div></div>
- <div class="tr-row"><span>Difficoltà</span><div class="row">${dOpts}</div></div>
- ${anyMode?`<div class="tr-row"><span>Risposte</span><div><div class="row">${mOpts}</div><div class="mu tr-help">${modeHelp}</div></div></div>`:""}
- ${contOK?`<div class="tr-row"><span>Allenamento continuo</span><div><label class="tr-sw"><input type="checkbox" ${cfg.cont?"checked":""} onchange="trSet('cont',this.checked)"> Prosegui con nuove domande senza tornare al menu</label></div></div>`:""}
+ <div class="trc-row"><span>Numero di domande</span><div class="row">${nOpts}</div></div>
+ <div class="trc-row"><span>Difficoltà</span><div class="row">${dOpts}</div></div>
+ ${anyMode?`<div class="trc-row"><span>Risposte</span><div><div class="row">${mOpts}</div><div class="mu tr-help">${modeHelp}</div></div></div>`:""}
+ ${contOK?`<div class="trc-row"><span>Allenamento continuo</span><div><label class="tr-sw"><input type="checkbox" ${cfg.cont?"checked":""} onchange="trSet('cont',this.checked)"> Prosegui con nuove domande senza tornare al menu</label></div></div>`:""}
  <button class="btn ok tr-go" onclick="trStart()" ${sel.length?"":"disabled"}>${sel.length?`Inizia · ${sel.length===1?selNames[0]:sel.length+" categorie"} · ${cfg.cont?"allenamento continuo":cfg.n+" domande"}`:"Scegli almeno una categoria"}</button></section>
  ${trResultsHtml()}`)}
 // ---------- risultati e progressi ----------
@@ -4657,8 +4677,31 @@ const _finTR=fin;fin=function(ok,right){const x=EX[eq[ei]];_finTR(ok,right);if(!
  if(TR.cont&&ei+1>=eq.length){try{trMore()}catch(e){}}
  const fb=$("fb");if(!fb)return;const nb=fb.querySelector("button.btn.on[onclick*='ei++']");if(nb){nb.textContent=ei+1>=eq.length?"Vedi i risultati":"Prossimo esercizio →"}
  if(TR.cont&&nb&&!fb.querySelector(".tr-stop")){nb.insertAdjacentHTML("afterend",`<button class="btn tr-stop" style="width:100%;margin-top:6px" onclick="ei++;trStop()">Termina l’allenamento</button>`)}};
-const _exTR=ex;ex=function(){if(TR.on&&!EXAM.on&&ei>=eq.length){if(TR.cont&&!TR.ended){try{trMore()}catch(e){}}if(ei>=eq.length){trSummary();return}}
- _exTR();{const y=EX[eq[ei]];if(y&&y._tr&&S.exSeen&&S.exSeen[exerciseIdentity(y)]){delete S.exSeen[exerciseIdentity(y)];save()}}
+// ---------- traduzione solo a richiesta, in TUTTI gli esercizi ----------
+// Le traduzioni italiane tra virgolette non restano nel testo: si vedono solo con il pulsante "Traduzione e pronuncia".
+// Restano visibili solo quando l'italiano è la domanda stessa (Traduci…, Come si dice…, Scrivi in kanji…).
+let TRHINTS=[];
+const TR_ASKIT=/^(Traduci|Come si dice|Scrivi in giapponese|Scrivi il kanji|Scrivi i kanji|Scrivi in kanji|Che cosa significa|Quale parola significa|Quale kanji)/i;
+function trItParts(s){if(!s)return [];if(s.itQ&&s.itA)return [s.itQ,s.itA];if(s.dlg)return String(s.it).replace(/^—\s*/,"").split(/\s+—\s+/);return [s.it]}
+function trTrPrep(x){TRHINTS=[];if(!x)return;
+ // frasi generate: traduzione di ogni riga giapponese per il pannello
+ if(x._tr&&x._s){try{const lines=exTrLines(x),parts=trItParts(x._s),dl=x._s.dlg&&lines.length>1;lines.forEach((l,i)=>{const it=dl?parts[i]:lines.length===1?(x._cat==="free"||(x[0]==="ord"&&x._s.dlg)?parts[0]:x._s.dlg?parts.join(" — "):parts[0]):null;if(it)EX_TR[trKey(l)]=it})}catch(e){}}}
+function trTrApply(x){if(!x)return;const box=document.querySelector(".ex-prompt");if(!box)return;
+ const keep=x._keepHints||(!x._tr&&TR_ASKIT.test(String(x[2]).trim()))||TR_ASKIT.test((box.querySelector(".ex-instr")||{}).textContent||"");
+ if(!keep){const hs=[...box.querySelectorAll(".ex-hint")].filter(h=>/^\s*[“"«].*[”"»]\s*$/s.test(h.textContent));TRHINTS=hs.map(h=>h.textContent.trim());hs.forEach(h=>h.remove());
+  box.querySelectorAll("details.trc-it").forEach(d=>{TRHINTS.push(d.textContent.replace(/^Mostra la traduzione/,"").trim());d.remove()});
+  // traduzioni presenti nel testo originale ma non mostrate (es. “Metti in ordine: “…”” negli esercizi del libro)
+  const seen=box.textContent;(String(x[2]).match(/“[^”]{3,}”/g)||[]).forEach(q=>{if(!seen.includes(q.slice(1,-1))&&!TRHINTS.includes(q))TRHINTS.push(q)});
+  // via le righe vuote rimaste in fondo
+  for(let n=box.lastChild;n&&n.nodeType===3&&!n.nodeValue.trim();n=box.lastChild)n.remove();if(box.lastChild&&box.lastChild.nodeType===3)box.lastChild.nodeValue=box.lastChild.nodeValue.replace(/\s+$/,"")}
+ if(x._noTr||x._it||["kanji","kana","vocab"].includes(exGroup(x)))return;
+ if(!document.querySelector(".ex-tr-btn")&&(TRHINTS.length||exTrLines(x).length))box.insertAdjacentHTML("afterend",`<button class="ex-tr-btn" aria-expanded="false" aria-controls="ex-tr" onclick="exTrToggle(this)">文A Traduzione e pronuncia</button><div id="ex-tr" class="ex-tr" hidden></div>`)}
+const _trTogTR=exTrToggle;exTrToggle=function(b){const box=$("ex-tr");if(!box)return;const first=!box.dataset.done;_trTogTR(b);if(!first||!box.dataset.done)return;
+ const txt=box.textContent,extra=TRHINTS.map(h=>h.replace(/^[“"«]\s*|\s*[”"»]$/g,"")).filter(h=>h&&!txt.includes(h));
+ if(extra.length){box.querySelectorAll(".tr-none").forEach(e=>e.remove());box.insertAdjacentHTML("beforeend",extra.map(h=>`<div class="tr-row"><div class="tr-it">${esc(h)}</div></div>`).join(""))}
+ if(!box.innerHTML.trim())box.innerHTML=`<div class="tr-none">Traduzione non disponibile per questo esercizio.</div>`};
+const _exTR=ex;ex=function(){try{trTrPrep(EX[eq[ei]])}catch(e){}if(TR.on&&!EXAM.on&&ei>=eq.length){if(TR.cont&&!TR.ended){try{trMore()}catch(e){}}if(ei>=eq.length){trSummary();return}}
+ _exTR();try{trTrApply(EX[eq[ei]])}catch(e){}{const y=EX[eq[ei]];if(y&&y._tr&&S.exSeen&&S.exSeen[exerciseIdentity(y)]){delete S.exSeen[exerciseIdentity(y)];save()}}
  if(!TR.on||EXAM.on)return;const x=EX[eq[ei]];if(!x)return;
  const head=document.querySelector(".ex-head .row");if(head&&!head.querySelector(".tr-stop2")){head.insertAdjacentHTML("afterbegin",`<button class="btn tr-stop2" onclick="trStop()">Termina</button>`);const back=head.querySelector("button[onclick*='exStart']");if(back)back.setAttribute("onclick","if(confirm('Vuoi lasciare la sessione? I risultati delle risposte date restano salvati.')){trEnd();trHome()}")}
  const cnt=document.querySelector(".ex-count");if(cnt&&TR.cont)cnt.textContent=`${ei+1} · ✓ ${eok} · ✗ ${emiss.length} · allenamento continuo`;
@@ -4668,6 +4711,8 @@ const _exTR=ex;ex=function(){if(TR.on&&!EXAM.on&&ei>=eq.length){if(TR.cont&&!TR.
 const _runListTR=runList;runList=function(list,title){TR.on=false;return _runListTR(list,title)};
 if(typeof examStart==="function"){const _esTR=examStart;examStart=function(){TR.on=false;return _esTR.apply(this,arguments)}}
 exSetup=trHome;
+// pulizia: gli esercizi generati non vanno registrati tra quelli "già visti" (i dati salvati non devono crescere senza limite)
+try{if(S.exSeen){let d=0;Object.keys(S.exSeen).forEach(k=>{if(k.startsWith("tr|")){delete S.exSeen[k];d++}});if(d)save()}}catch(e){}
 
 // @@MOD_END@@
 nav();side();go("ho");
