@@ -214,7 +214,27 @@ a{color:var(--ac)}
 .dash-units{display:grid;grid-template-columns:repeat(6,1fr);gap:8px;margin-top:8px}.dash-u{display:grid;gap:3px;justify-items:center;border:1px solid var(--bd);border-radius:10px;padding:6px 4px;background:var(--card);cursor:pointer;color:inherit;font:inherit}.dash-u span{font-weight:700}.dash-u .mini-bar{width:100%}.dash-u small{font-size:11px;color:var(--mu)}
 .dash-trend{display:flex;gap:6px;align-items:flex-end;height:110px;margin-top:10px}.dash-trend>div{flex:1;display:flex;flex-direction:column;justify-content:flex-end;align-items:center;height:100%;gap:3px}.dash-trend i{display:block;width:100%;max-width:26px;background:var(--ac2);border-radius:5px 5px 0 0}.dash-trend small{font-size:10px;color:var(--mu)}
 @media(max-width:640px){.dash-units{grid-template-columns:repeat(4,1fr)}.dl-line{grid-template-columns:1fr}.xp-row>span:first-child{min-width:0;width:100%}.dash-next{flex-direction:column;align-items:flex-start}}
-.sync-steps{line-height:1.7;padding-left:20px}.sync-steps li{margin:6px 0}#sync-btn.on{color:var(--ok)}#sync-btn{margin-left:auto;margin-right:8px}.les-rv{border-style:dashed}.ex-tr[hidden]{display:none!important}</style>
+.sync-steps{line-height:1.7;padding-left:20px}.sync-steps li{margin:6px 0}#sync-btn.on{color:var(--ok)}#sync-btn{margin-left:auto;margin-right:8px}.les-rv{border-style:dashed}.ex-tr[hidden]{display:none!important}/*@@CSS_TRAIN@@*/.tr-units{display:grid;gap:8px}.tr-pre{flex-wrap:wrap;margin:0;gap:6px;align-items:center}.tr-upto{display:inline-flex;gap:6px;align-items:center;font-size:14px;color:var(--mu)}.tr-upto select{font:inherit;padding:6px 8px;border-radius:8px;border:1px solid var(--bd);background:var(--card);color:inherit}
+.tr-chips-u{display:flex;flex-wrap:wrap;gap:6px;align-items:center}.tr-prog{font-size:13px;color:var(--mu);line-height:1.5}
+.tr-cats{display:grid;grid-template-columns:repeat(auto-fill,minmax(250px,1fr));gap:10px;margin:12px 0}
+.tr-cat{display:flex;gap:12px;align-items:flex-start;text-align:left;cursor:pointer;font:inherit;color:inherit;margin:0;width:100%;border:2px solid var(--bd)}.tr-cat:hover{border-color:var(--ac)}.tr-cat.on{border-color:var(--ac);box-shadow:0 0 0 3px color-mix(in srgb,var(--ac) 18%,transparent)}
+.tr-ic{font-size:26px;line-height:1;min-width:40px;height:40px;display:grid;place-items:center;border-radius:10px;background:var(--bg2);color:var(--ac)}.tr-cat.on .tr-ic{background:var(--ac);color:#fff}
+.tr-ct{display:grid;gap:4px}.tr-ct .mu{font-size:13px;line-height:1.4}.tr-cs{font-size:12px;color:var(--ac2);font-weight:600}
+.tr-cfg{display:grid;gap:10px;border-left:4px solid var(--ac)}.tr-row{display:grid;grid-template-columns:170px 1fr;gap:10px;align-items:start}.tr-row>span{color:var(--mu);font-size:14px;padding-top:8px}.tr-row .row{margin:0;flex-wrap:wrap;gap:6px}
+.tr-num{display:inline-flex;align-items:center;gap:6px;font-size:14px;color:var(--mu)}.tr-num input{width:64px;font:inherit;padding:6px;border-radius:8px;border:1px solid var(--bd);background:var(--card);color:inherit}
+.tr-help{font-size:12px;margin-top:4px}.tr-sw{display:flex;gap:8px;align-items:center;padding-top:6px;cursor:pointer}.tr-go{width:100%;padding:14px;font-size:16px}
+.tr-res{display:grid;gap:8px;margin-top:12px}.tr-res>*,.tr-cols>*,.tr-cfg>*,.tr-units>*{min-width:0}.tr-res .dash-trend{gap:3px}.tr-res .dash-trend>div{min-width:0}.tr-res .dash-trend small{font-size:9px;overflow:hidden;max-width:100%}.tr-kpi{display:flex;gap:24px;flex-wrap:wrap}.tr-kpi>div{display:grid}.tr-kpi .big{font-size:30px;font-weight:800}
+.tr-cols{display:grid;grid-template-columns:repeat(auto-fit,minmax(min(260px,100%),1fr));gap:14px}.tr-bar{display:grid;grid-template-columns:minmax(90px,150px) 1fr auto;gap:8px;align-items:center;font-size:14px;margin:4px 0}.tr-bar:has(.btn){grid-template-columns:minmax(60px,110px) 1fr auto auto}.tr-bar .mini-bar{display:block}.tr-rule{grid-template-columns:1fr auto auto!important}
+.tr-it{display:inline-block;margin-top:4px;font-size:14px;color:var(--mu)}.tr-it summary{cursor:pointer}.tr-words{display:inline-block;font-size:13px;color:var(--mu);margin-top:4px}.tr-words .jp{font-size:16px;color:var(--tx,inherit)}
+.xp-row b.tr-full{color:inherit;font-weight:500;white-space:pre-line}.xp-row b.tr-full .tr-hl{font-weight:800}
+.tr-hl{color:var(--ac);background:color-mix(in srgb,var(--ac) 14%,transparent);border-radius:4px;padding:0 2px}
+.tr-blanks{display:grid;gap:6px}.tr-blank{display:flex;gap:10px;align-items:flex-start;border-radius:10px;padding:8px 10px;background:var(--bg2);line-height:1.5}.tr-blank.bad{background:var(--ko-soft)}.tr-n{min-width:26px;height:26px;border-radius:50%;display:grid;place-items:center;font-weight:700;background:var(--card);border:1px solid var(--bd);font-family:var(--jp)}.tr-blank.good .tr-n{border-color:var(--ok);color:var(--ok)}.tr-blank.bad .tr-n{border-color:var(--ko);color:var(--ko)}
+.tr-struct{display:flex;flex-wrap:wrap;gap:6px;align-items:flex-end}.tr-seg{display:grid;justify-items:center;border:1px solid var(--bd);border-radius:8px;padding:4px 8px;background:var(--card)}.tr-seg .jp{font-size:17px}.tr-seg small{font-size:11px;color:var(--mu)}.tr-sep{color:var(--mu);padding:0 2px 10px}
+.tr-ord{display:grid;gap:8px}.tr-ans{min-height:58px;display:flex;flex-wrap:wrap;gap:6px;align-content:flex-start;padding:10px;border:2px dashed var(--ac);border-radius:12px;background:color-mix(in srgb,var(--ac) 6%,transparent)}.tr-pool{display:flex;flex-wrap:wrap;gap:6px;padding:4px 0}
+.tr-tile{margin:0!important;font-family:var(--jp);font-size:18px;padding:8px 12px;min-height:44px}.tr-tile.sel{outline:3px solid var(--ac);background:color-mix(in srgb,var(--ac) 16%,var(--card))}.tr-empty{align-self:center}
+.tr-ordbar{display:flex;flex-wrap:wrap;gap:6px}.tr-ordbar .btn:disabled{opacity:.45}
+.tr-pchips{display:flex;flex-wrap:wrap;gap:6px;margin:6px 0 4px}.tr-pc{min-width:46px;min-height:44px;font-size:18px;margin:0!important}.ex-inline-blank.tr-cur{outline:2px solid var(--ac)}
+@media(max-width:640px){.tr-cats{grid-template-columns:1fr}.tr-row{grid-template-columns:1fr;gap:4px}.tr-row>span{padding-top:0}.tr-bar{grid-template-columns:90px 1fr auto}.tr-bar:has(.btn){grid-template-columns:70px 1fr auto}.tr-bar:has(.btn) .mu{display:none}.tr-kpi{gap:16px}.tr-kpi .big{font-size:24px}}/*@@CSS_TRAIN_END@@*/</style>
 </head><body><div class="app">
 <header class="top"><div class="brand"><div class="logo" aria-hidden="true">語</div><div><div class="brand-title">Impariamo il giapponese</div><div class="brand-sub" id="brand-sub">Volume 1 · studio personale</div></div></div><button class="icon-btn" onclick="th()" title="Tema chiaro / scuro" aria-label="Cambia tema">◐</button></header>
 <nav id="nav" class="tabs" aria-label="Sezioni"></nav>
@@ -3188,6 +3208,956 @@ function kjExercise(){const x=EX[eq[ei]];if(!kjAllowed(x))return;const u=Math.ma
 const _exKJ=ex;ex=function(){_exKJ();try{kjExercise()}catch(e){}};
 const _tilesKJ=tiles;tiles=function(){_tilesKJ();try{kjExercise()}catch(e){}};
 const _finKJ=fin;fin=function(ok,right){_finKJ(ok,right);try{if(!(EXAM.on&&!EXAM.done))kjExercise()}catch(e){}};
+
+// @@MOD_TRAIN@@
+// ===== ESERCIZI · ALLENAMENTO PER CATEGORIE: dati del generatore di frasi =====
+// Ogni parola porta l'unità del libro in cui compare (se Kanji lettura la registra più tardi, vale l'unità più alta).
+// Regola delle unità: selezionando fino all'unità N si usa tutto ciò che è stato introdotto nelle unità 1…N, mai oltre.
+const TR_FAIL=new Error("tr-fail");
+const trPick=a=>a[Math.floor(Math.random()*a.length)];
+const trShuf=a=>shuffleArray(a.slice());
+const TR_KRU=(()=>{const m=new Map();KR.forEach(c=>{const w=String(c[0]);if(!m.has(w)||m.get(w)>c[3])m.set(w,c[3])});return m})();
+const TR_GI={};G.forEach((g,i)=>{TR_GI[g[1]]=i});
+// kanji ammessi fino all'unità u: quelli delle parole di Kanji lettura e quelli della lista dei kanji
+const TR_KJ=(()=>{const a=[];for(let u=0;u<=12;u++){const s=new Set();KR.forEach(c=>{if(c[3]<=u)[...String(c[0])].forEach(ch=>{if(/[一-鿿]/.test(ch))s.add(ch)})});K.forEach(k=>{if(k[6]<=u)s.add(k[0])});a.push(s)}return a})();
+function trKanjiOK(t,u){const s=TR_KJ[Math.max(0,Math.min(12,u))];return [...String(t)].every(ch=>!/[一-鿿]/.test(ch)||s.has(ch))}
+// unità minima per il testo giapponese: la prima in cui tutti i suoi kanji sono stati introdotti
+function trKanjiUnit(t){for(let u=1;u<=12;u++)if(trKanjiOK(t,u))return u;return 99}
+const lx=(o)=>{o.u=Math.max(o.u||1,TR_KRU.get(o.jp)||0,trKanjiUnit(o.jp));return o};
+const lxs=(rows,keys)=>rows.map(r=>{const o={};keys.forEach((k,i)=>{if(r[i]!==undefined)o[k]=r[i]});return lx(o)});
+
+// ---------- italiano ----------
+const itCap=s=>{s=String(s||"").trim();return s?s[0].toUpperCase()+s.slice(1):s};
+const itJ=(...a)=>a.flat().filter(Boolean).join(" ").replace(/\s+/g," ").replace(/ ,/g,",").trim();
+const IT_V=/^[aeiouàèéìòùh]/i,IT_S=/^(s[^aeiou]|z|gn|ps|x|y)/i;
+const itDef=(w,g)=>g==="f"?(IT_V.test(w)?"l’"+w:"la "+w):g==="fp"?"le "+w:g==="mp"?(IT_V.test(w)||IT_S.test(w)?"gli ":"i ")+w:(IT_V.test(w)?"l’"+w:IT_S.test(w)?"lo "+w:"il "+w);
+const itInd=(w,g)=>g==="f"?(IT_V.test(w)?"un’"+w:"una "+w):(IT_S.test(w)?"uno "+w:"un "+w);
+const itQuesto=(w,g)=>(g==="f"?"questa ":"questo ")+w;
+const itCodesto=(w,g)=>(g==="f"?"codesta ":"codesto ")+w;
+const itQuello=(w,g)=>g==="f"?(IT_V.test(w)?"quell’"+w:"quella "+w):(IT_V.test(w)?"quell’"+w:IT_S.test(w)?"quello "+w:"quel "+w);
+const IT_PA={di:{il:"del",lo:"dello",la:"della","l’":"dell’",i:"dei",gli:"degli",le:"delle"},a:{il:"al",lo:"allo",la:"alla","l’":"all’",i:"ai",gli:"agli",le:"alle"},da:{il:"dal",lo:"dallo",la:"dalla","l’":"dall’",i:"dai",gli:"dagli",le:"dalle"},in:{il:"nel",lo:"nello",la:"nella","l’":"nell’",i:"nei",gli:"negli",le:"nelle"},su:{il:"sul",lo:"sullo",la:"sulla","l’":"sull’",i:"sui",gli:"sugli",le:"sulle"}};
+function itPrep(p,np){np=String(np);const m=np.match(/^(il|lo|la|i|gli|le) (.*)$/)||np.match(/^(l’)(.*)$/);if(!m)return (p==="a"&&IT_V.test(np)?"ad":p)+" "+np;const pa=IT_PA[p][m[1]];return pa.endsWith("’")?pa+m[2]:pa+" "+m[2]}
+const itPlural=np=>/^(i|gli|le|dei|degli|delle) /.test(np);
+// verbi: infinito, 3ª sing., 1ª sing., 1ª plur., participio, ausiliare (a = avere, e = essere), gerundio, imperativo di cortesia, riflessivo
+const iv=(inf,p3,p1,p4,pp,aux,ger,imp,rf)=>({inf,p3,p1,p4,pp,aux,ger,imp,rf});
+const itAgr=(pp,g)=>pp.replace(/^(\S*?)o\b/,(m,a)=>a+(g==="f"?"a":g==="x"?"o/a":"o"));
+function itVerb(I,f,s){const one=!!(s&&s.p===1),g=s?s.g:"m",ess=I.aux==="e",pp=ess?itAgr(I.pp,g):I.pp,aux=I.rf?(one?"mi sono":"si è"):ess?(one?"sono":"è"):(one?"ho":"ha"),pres=one?I.p1:I.p3;
+ switch(f){case"pres":return pres;case"neg":return "non "+pres;case"past":return aux+" "+pp;case"pneg":return "non "+aux+" "+pp;
+ case"inv":return "perché non "+I.p4;case"mas":return I.p4;case"tai":return (one?"voglio ":"vuole ")+I.inf;
+ case"teiru":return I.rf?(one?"mi sto ":"si sta ")+I.ger.replace(/si$/,""):(one?"sto ":"sta ")+I.ger;
+ case"tekuda":return "per favore, "+I.imp;case"naide":return "per favore, non "+I.imp;case"tahou":return "è meglio "+I.inf;case"naihou":return "è meglio non "+I.inf;case"nakute":return "non è necessario "+I.inf;
+ case"takoto":return (I.rf?(one?"mi sono già ":"si è già "):ess?(one?"sono già ":"è già "):(one?"ho già ":"ha già "))+pp;case"takotoN":return (I.rf?(one?"non mi sono mai ":"non si è mai "):ess?(one?"non sono mai ":"non è mai "):(one?"non ho mai ":"non ha mai "))+pp;
+ case"koto":return (one?"so ":"sa ")+I.inf;case"kotoN":return (one?"non so ":"non sa ")+I.inf;case"temiru":return (one?"provo a ":"prova a ")+I.inf;case"shimau":return (one?"ho finito per ":"ha finito per ")+I.inf;
+ case"inf":return I.inf;case"ger":return I.ger;case"p4":return I.p4;default:return pres}}
+const itCop=(f,one)=>({pres:one?"sono":"è",neg:one?"non sono":"non è",past:one?"ero":"era",pneg:one?"non ero":"non era"})[f];
+const IT_MON=["gennaio","febbraio","marzo","aprile","maggio","giugno","luglio","agosto","settembre","ottobre","novembre","dicembre"];
+const IT_NUM=["zero","uno","due","tre","quattro","cinque","sei","sette","otto","nove","dieci"];
+
+// ---------- giapponese: coniugazione ----------
+function trConj(d,g){if(g===2){const s=d.slice(0,-1);return {m:s,te:s+"て",ta:s+"た",na:s+"ない"}}
+ if(g===3){if(d.endsWith("する")){const s=d.slice(0,-2);return {m:s+"し",te:s+"して",ta:s+"した",na:s+"しない"}}return {m:"来",te:"来て",ta:"来た",na:"来ない"}}
+ const last=d.slice(-1),s=d.slice(0,-1),row={う:["い","わ"],つ:["ち","た"],る:["り","ら"],む:["み","ま"],ぶ:["び","ば"],ぬ:["に","な"],く:["き","か"],ぐ:["ぎ","が"],す:["し","さ"]}[last];
+ let te;if("うつる".includes(last))te=s+"って";else if("むぶぬ".includes(last))te=s+"んで";else if(last==="く")te=d==="行く"?"行って":s+"いて";else if(last==="ぐ")te=s+"いで";else te=s+"して";
+ return {m:s+row[0],te,ta:te.replace(/て$/,"た").replace(/で$/,"だ"),na:s+row[1]+"ない"}}
+// forme verbali: unità e regola della grammatica
+const TR_FORM={pres:[5,"I verbi in -ます"],neg:[5,"I verbi in -ます"],past:[6,"I verbi al passato: ～ました・～ませんでした"],pneg:[6,"I verbi al passato: ～ました・～ませんでした"],inv:[5,"Invitare: ～ませんか"],mas:[5,"Proporre e accettare: ～ましょう"],tai:[8,"Desiderativo: ～たい（です）"],te:[8,"La forma in て: come si forma"],teiru:[9,"～ています: azione in corso o stato"],tekuda:[9,"～てください: richieste e indicazioni"],temoii:[9,"～てもいいですか: chiedere il permesso"],temiru:[9,"～てみます: provare a fare"],shimau:[9,"～てしまいます: conclusione imprevista"],ta:[10,"La forma in た: come si forma"],takoto:[10,"～たことがあります: l’esperienza"],takotoN:[10,"～たことがあります: l’esperienza"],tahou:[10,"～た方がいいです: dare un consiglio"],na:[11,"La forma in ない: come si forma"],naide:[11,"～ないでください: chiedere di non fare"],naihou:[11,"～ない方がいいです: sconsigliare"],nakute:[11,"～なくてもいいです: non è necessario"],d:[12,"La forma dizionario (F-d): come si forma"],koto:[12,"～ことができます: capacità e possibilità"],kotoN:[12,"～ことができます: capacità e possibilità"]};
+function jvF(v,f){switch(f){case"pres":return v.m+"ます";case"neg":return v.m+"ません";case"past":return v.m+"ました";case"pneg":return v.m+"ませんでした";case"inv":return v.m+"ませんか";case"mas":return v.m+"ましょう";case"tai":return v.m+"たいです";case"teiru":return v.te+"います";case"tekuda":return v.te+"ください";case"temoii":return v.te+"もいいですか";case"temiru":return v.te+"みます";case"shimau":return v.te+"しまいました";case"naide":return v.na+"でください";case"nakute":return v.na.slice(0,-1)+"くてもいいです";case"te":return v.te;case"ta":return v.ta;case"na":return v.na;case"d":return v.d;case"m":return v.m}return v.m+"ます"}
+const VB={};
+function vb(d,g,u,it,extra){VB[d]=lx({jp:d,d,g,u,...trConj(d,g),it,...(extra||{})});return VB[d]}
+// verbo composto: [oggetto]を + verbo (テニスをします, 朝ごはんを食べます…); l'italiano comprende già l'oggetto
+function vbc(key,obj,ou,base,it){const b=VB[base];const o=lx({jp:obj,u:ou});VB[key]={...b,key,obj,objU:o.u,u:Math.max(b.u,o.u,5),it};return VB[key]}
+vb("読む",1,5,iv("leggere","legge","leggo","leggiamo","letto","a","leggendo","legga"));
+vb("食べる",2,5,iv("mangiare","mangia","mangio","mangiamo","mangiato","a","mangiando","mangi"));
+vb("飲む",1,5,iv("bere","beve","bevo","beviamo","bevuto","a","bevendo","beva"));
+vb("見る",2,5,iv("guardare","guarda","guardo","guardiamo","guardato","a","guardando","guardi"));
+vb("聞く",1,5,iv("ascoltare","ascolta","ascolto","ascoltiamo","ascoltato","a","ascoltando","ascolti"));
+vb("買う",1,6,iv("comprare","compra","compro","compriamo","comprato","a","comprando","compri"));
+vb("書く",1,7,iv("scrivere","scrive","scrivo","scriviamo","scritto","a","scrivendo","scriva"));
+vb("送る",1,7,iv("spedire","spedisce","spedisco","spediamo","spedito","a","spedendo","spedisca"));
+vb("行く",1,5,iv("andare","va","vado","andiamo","andato","e","andando","vada"));
+vb("来る",3,5,iv("venire","viene","vengo","veniamo","venuto","e","venendo","venga"));
+vb("帰る",1,5,iv("tornare","torna","torno","torniamo","tornato","e","tornando","torni"));
+vb("会う",1,6,iv("incontrare","incontra","incontro","incontriamo","incontrato","a","incontrando","incontri"));
+vb("借りる",2,5,iv("prendere in prestito","prende in prestito","prendo in prestito","prendiamo in prestito","preso in prestito","a","prendendo in prestito","prenda in prestito"));
+vb("乗る",1,8,iv("prendere","prende","prendo","prendiamo","preso","a","prendendo","prenda"));
+vb("勉強する",3,9,iv("studiare","studia","studio","studiamo","studiato","a","studiando","studi"));
+vb("教える",2,8,iv("insegnare","insegna","insegno","insegniamo","insegnato","a","insegnando","insegni"));
+vb("起きる",2,8,iv("svegliarsi","si sveglia","mi sveglio","ci svegliamo","svegliato","e","svegliandosi","si svegli",1));
+vb("寝る",2,9,iv("andare a letto","va a letto","vado a letto","andiamo a letto","andato a letto","e","andando a letto","vada a letto"));
+vb("働く",1,8,iv("lavorare","lavora","lavoro","lavoriamo","lavorato","a","lavorando","lavori"));
+vb("住む",1,9,iv("abitare","abita","abito","abitiamo","abitato","a","abitando","abiti"));
+vb("着る",2,5,iv("indossare","indossa","indosso","indossiamo","indossato","a","indossando","indossi"));
+vb("入る",1,6,iv("entrare","entra","entro","entriamo","entrato","e","entrando","entri"));
+vb("歌う",1,8,iv("cantare","canta","canto","cantiamo","cantato","a","cantando","canti"));
+vb("呼ぶ",1,8,iv("chiamare","chiama","chiamo","chiamiamo","chiamato","a","chiamando","chiami"));
+vb("調べる",2,8,iv("cercare","cerca","cerco","cerchiamo","cercato","a","cercando","cerchi"));
+vb("使う",1,9,iv("usare","usa","uso","usiamo","usato","a","usando","usi"));
+vb("出かける",2,5,iv("uscire","esce","esco","usciamo","uscito","e","uscendo","esca"));
+vb("着く",1,8,iv("arrivare","arriva","arrivo","arriviamo","arrivato","e","arrivando","arrivi"));
+vb("泊まる",1,10,iv("pernottare","pernotta","pernotto","pernottiamo","pernottato","a","pernottando","pernotti"));
+vb("旅行する",3,5,iv("fare un viaggio","fa un viaggio","faccio un viaggio","facciamo un viaggio","fatto un viaggio","a","facendo un viaggio","faccia un viaggio"));
+vb("運転する",3,12,iv("guidare","guida","guido","guidiamo","guidato","a","guidando","guidi"));
+vb("探す",1,11,iv("cercare","cerca","cerco","cerchiamo","cercato","a","cercando","cerchi"));
+vb("歩く",1,8,iv("camminare","cammina","cammino","camminiamo","camminato","a","camminando","cammini"));
+vb("遊ぶ",1,8,iv("giocare","gioca","gioco","giochiamo","giocato","a","giocando","giochi"));
+vb("浴びる",2,8,iv("fare","fa","faccio","facciamo","fatto","a","facendo","faccia"));
+vb("する",3,5,iv("fare","fa","faccio","facciamo","fatto","a","facendo","faccia"));
+vbc("テニス","テニス",1,"する",iv("giocare a tennis","gioca a tennis","gioco a tennis","giochiamo a tennis","giocato a tennis","a","giocando a tennis","giochi a tennis"));
+vbc("サッカー","サッカー",1,"する",iv("giocare a calcio","gioca a calcio","gioco a calcio","giochiamo a calcio","giocato a calcio","a","giocando a calcio","giochi a calcio"));
+vbc("買いもの","買いもの",3,"する",iv("fare compere","fa compere","faccio compere","facciamo compere","fatto compere","a","facendo compere","faccia compere"));
+vbc("さんぽ","さんぽ",5,"する",iv("fare una passeggiata","fa una passeggiata","faccio una passeggiata","facciamo una passeggiata","fatto una passeggiata","a","facendo una passeggiata","faccia una passeggiata"));
+vbc("料理","料理",1,"する",iv("cucinare","cucina","cucino","cuciniamo","cucinato","a","cucinando","cucini"));
+vbc("宿題","宿題",8,"する",iv("fare i compiti","fa i compiti","faccio i compiti","facciamo i compiti","fatto i compiti","a","facendo i compiti","faccia i compiti"));
+vbc("勉強","勉強",5,"する",iv("studiare","studia","studio","studiamo","studiato","a","studiando","studi"));
+vbc("アルバイト","アルバイト",5,"する",iv("fare un lavoro part-time","fa un lavoro part-time","faccio un lavoro part-time","facciamo un lavoro part-time","fatto un lavoro part-time","a","facendo un lavoro part-time","faccia un lavoro part-time"));
+vbc("そうじ","そうじ",10,"する",iv("fare le pulizie","fa le pulizie","faccio le pulizie","facciamo le pulizie","fatto le pulizie","a","facendo le pulizie","faccia le pulizie"));
+vbc("練習","練習",4,"する",iv("fare pratica","fa pratica","faccio pratica","facciamo pratica","fatto pratica","a","facendo pratica","faccia pratica"));
+vbc("スキー","スキー",5,"する",iv("sciare","scia","scio","sciamo","sciato","a","sciando","scii"));
+vbc("シャワー","シャワー",6,"浴びる",iv("fare la doccia","fa la doccia","faccio la doccia","facciamo la doccia","fatto la doccia","a","facendo la doccia","faccia la doccia"));
+vbc("朝ごはん","朝ごはん",5,"食べる",iv("fare colazione","fa colazione","faccio colazione","facciamo colazione","fatto colazione","a","facendo colazione","faccia colazione"));
+vbc("昼ごはん","昼ごはん",5,"食べる",iv("pranzare","pranza","pranzo","pranziamo","pranzato","a","pranzando","pranzi"));
+vbc("晩ごはん","晩ごはん",5,"食べる",iv("cenare","cena","ceno","ceniamo","cenato","a","cenando","ceni"));
+vbc("薬","薬",8,"飲む",iv("prendere la medicina","prende la medicina","prendo la medicina","prendiamo la medicina","preso la medicina","a","prendendo la medicina","prenda la medicina"));
+vbc("歌","歌",2,"歌う",iv("cantare una canzone","canta una canzone","canto una canzone","cantiamo una canzone","cantato una canzone","a","cantando una canzone","canti una canzone"));
+
+// ---------- lessico ----------
+const L_PPL=lxs([["ルカさん","Luca","m",1,["イタリア人"]],["ミラさん","Mira","f",1,["イタリア人","スペイン人"]],["マリアさん","Maria","f",1,["イタリア人","スペイン人"]],["アンナさん","Anna","f",1,["フランス人","イタリア人"]],["トムさん","Tom","m",1,["アメリカ人","イギリス人"]],["ケンさん","Ken","m",1,["アメリカ人","イギリス人"]],["エレナさん","Elena","f",1,["イタリア人"]],["チンさん","Chin","m",1,["中国人"]],["森さん","Mori","m",1,["日本人"]],["山田さん","Yamada","m",1,["日本人"]],["田中さん","Tanaka","m",1,["日本人"]],["千春さん","Chiharu","f",7,["日本人"]]],["jp","it","g","u","nat"]).map(o=>({...o,p:3}));
+const L_ME=lx({jp:"私",it:"",g:"x",u:1,p:1,me:1});
+const L_NAT=lxs([["日本人","giapponese","giapponese"],["中国人","cinese","cinese"],["韓国人","coreano","coreana"],["イタリア人","italiano","italiana"],["イギリス人","inglese","inglese"],["アメリカ人","americano","americana"],["フランス人","francese","francese"],["スペイン人","spagnolo","spagnola"]],["jp","m","f"]);
+const L_LANG=lxs([["日本語","giapponese","il giapponese"],["中国語","cinese","il cinese"],["イタリア語","italiano","l’italiano"],["フランス語","francese","il francese"],["スペイン語","spagnolo","lo spagnolo"],["英語","inglese","l’inglese"]],["jp","it","def"]);
+const L_SUBJ=lxs([["歴史","la storia",1],["文学","la letteratura",2],["美術","l’arte",2],["日本文学","la letteratura giapponese",2]],["jp","def","u"]);
+const L_HOB=lxs([["音楽","la musica"],["映画","il cinema"],["読書","la lettura"],["料理","la cucina"],["サッカー","il calcio"],["テニス","il tennis"],["写真","la fotografia"],["まんが","i manga"]],["jp","it"]);
+const L_JOB=lxs([["学生","studente","studentessa",1],["先生","professore","professoressa",1],["会社員","impiegato","impiegata",1],["エンジニア","ingegnere","ingegnere",1],["留学生","studente straniero","studentessa straniera",5],["医者","medico","medico",8],["教師","insegnante","insegnante",9],["研究者","ricercatore","ricercatrice",10],["作家","scrittore","scrittrice",8],["選手","atleta","atleta",7]],["jp","m","f","u"]);
+const L_UNI=lxs([["ローマ大学","dell’Università di Roma",1],["ミラノ大学","dell’Università di Milano",1],["ナポリ大学","dell’Università di Napoli",3],["京都大学","dell’Università di Kyoto",5],["東京大学","dell’Università di Tokyo",7]],["jp","it","u"]);
+const L_DEM=lxs([["これ","questo",2],["それ","codesto",2],["あれ","quello",2]],["jp","it","u"]);
+const L_ADEM=[lx({jp:"この",u:2,f:itQuesto}),lx({jp:"その",u:2,f:itCodesto}),lx({jp:"あの",u:2,f:itQuello})];
+const L_OBJ=lxs([["本","libro","m",2],["辞書","dizionario","m",2],["雑誌","rivista","f",2],["教科書","libro di testo","m",2],["かばん","borsa","f",2],["えんぴつ","matita","f",2],["車","macchina","f",2],["携帯電話","cellulare","m",2],["カメラ","macchina fotografica","f",2],["パソコン","computer","m",2],["ボールペン","penna","f",2],["ガイドブック","guida","f",2],["かさ","ombrello","m",3],["時計","orologio","m",3],["ノート","quaderno","m",3]],["jp","n","g","u"]);
+const L_FAM=lxs([["お母さん","la madre","f",2],["お父さん","il padre","m",2],["妹さん","la sorella minore","f",2,1],["お兄さん","il fratello maggiore","m",2,1]],["jp","it","g","u","young"]);
+// luoghi: a = stato/moto a luogo, n = con articolo, i = indeterminato, b = edificio della città
+const L_PL=lxs([["大学","all’università","l’università","un’università",1,1],["図書館","in biblioteca","la biblioteca","una biblioteca",2,1],["喫茶店","al caffè","il caffè","un caffè",2,1],["美術館","al museo","il museo","un museo",2,1],["駅","alla stazione","la stazione","una stazione",2,1],["デパート","ai grandi magazzini","i grandi magazzini","dei grandi magazzini",3,1],["レストラン","al ristorante","il ristorante","un ristorante",3,1],["本屋さん","in libreria","la libreria","una libreria",3,1],["映画館","al cinema","il cinema","un cinema",3,1],["銀行","in banca","la banca","una banca",3,1],["郵便局","all’ufficio postale","l’ufficio postale","un ufficio postale",3,1],["すし屋","al ristorante di sushi","il ristorante di sushi","un ristorante di sushi",3,1],["劇場","a teatro","il teatro","un teatro",3,1],["食堂","in mensa","la mensa","una mensa",4,0],["市場","al mercato","il mercato","un mercato",4,1],["公園","al parco","il parco","un parco",4,1],["病院","in ospedale","l’ospedale","un ospedale",4,1],["薬局","in farmacia","la farmacia","una farmacia",4,1],["教室","in aula","l’aula","un’aula",4,0],["スーパー","al supermercato","il supermercato","un supermercato",4,1],["カフェ","al bar","il bar","un bar",4,1],["町","in città","la città","una città",4,0],["家","a casa","casa","una casa",4,0],["うち","a casa","casa","una casa",5,0],["ホテル","in albergo","l’albergo","un albergo",5,1],["学校","a scuola","la scuola","una scuola",6,1],["温泉","alle terme","le terme","delle terme",6,0],["ジム","in palestra","la palestra","una palestra",8,1]],["jp","a","n","i","u","b"]);
+const trPL=jp=>L_PL.find(o=>o.jp===jp);
+// città e paesi: k = F paese lontano, I città italiana, E città europea, J città giapponese
+const L_CITY=lxs([["日本","in Giappone","il Giappone",1,"F"],["中国","in Cina","la Cina",1,"F"],["イタリア","in Italia","l’Italia",1,"F"],["ローマ","a Roma","Roma",1,"I"],["ミラノ","a Milano","Milano",1,"I"],["ナポリ","a Napoli","Napoli",3,"I"],["フィレンツェ","a Firenze","Firenze",3,"I"],["ヴェネツィア","a Venezia","Venezia",3,"I"],["ロンドン","a Londra","Londra",4,"E"],["パリ","a Parigi","Parigi",4,"E"],["京都","a Kyoto","Kyoto",5,"J"],["大阪","a Osaka","Osaka",5,"J"],["東京","a Tokyo","Tokyo",7,"J"],["神戸","a Kobe","Kobe",7,"J"],["奈良","a Nara","Nara",10,"J"],["広島","a Hiroshima","Hiroshima",10,"J"]],["jp","a","n","u","k"]).map(o=>({...o,g:"f",city:1}));
+const L_MEAN=lxs([["電車","in treno",5,"LIJE","il treno","m"],["地下鉄","in metropolitana",4,"L","la metropolitana","f"],["バス","in autobus",3,"LIJ","l’autobus","m"],["飛行機","in aereo",5,"FJIE","l’aereo","m"],["新幹線","con lo shinkansen",5,"J","lo shinkansen","m"],["タクシー","in taxi",8,"L","il taxi","m"],["自転車","in bicicletta",12,"L","la bicicletta","f"],["車","in macchina",2,"LI","la macchina","f"]],["jp","it","u","k","n","g"]);
+const L_COMP=lxs([["友だち","con un amico",2],["家族","con la famiglia",7],["先生","con il professore",1],["両親","con i miei genitori",5,1],["父","con mio padre",4,1],["母","con mia madre",4,1]],["jp","it","u","self"]);
+// espressioni di tempo: p = particella (に o nessuna), t = tempi compatibili (f futuro, h abituale, x passato)
+const L_TIME=lxs([["今日","oggi",2,"","fx"],["明日","domani",5,"","f"],["今晩","stasera",5,"","f"],["来週","la settimana prossima",5,"","f"],["週末","nel fine settimana",5,"に","fhx"],["毎日","ogni giorno",5,"","h"],["毎朝","ogni mattina",5,"","h"],["毎晩","ogni sera",5,"","h"],["月曜日","lunedì",4,"に","fhx"],["火曜日","martedì",4,"に","fhx"],["水曜日","mercoledì",4,"に","fhx"],["木曜日","giovedì",4,"に","fhx"],["金曜日","venerdì",4,"に","fhx"],["日曜日","domenica",4,"に","fhx"],["夏休み","durante le vacanze estive",5,"に","fx"],["冬休み","durante le vacanze invernali",5,"に","fx"],["先週","la settimana scorsa",6,"","x"],["先週の金曜日","venerdì scorso",6,"に","x"],["来週の月曜日","lunedì prossimo",5,"に","f"],["午後","nel pomeriggio",4,"","fhx"]],["jp","it","u","p","t"]);
+const L_HOUR=lxs([["七時","alle sette","dalle sette",3],["八時","alle otto","dalle otto",3],["九時","alle nove","dalle nove",3],["十時","alle dieci","dalle dieci",3],["十一時","alle undici","dalle undici",3],["十二時","a mezzogiorno","da mezzogiorno",3],["一時","all’una","dall’una",3],["二時","alle due","dalle due",3],["三時","alle tre","dalle tre",3],["四時","alle quattro","dalle quattro",3],["五時","alle cinque","dalle cinque",3],["六時","alle sei","dalle sei",3],["八時半","alle otto e mezza","dalle otto e mezza",3],["九時半","alle nove e mezza","dalle nove e mezza",3]],["jp","it","da","u"]);
+// complementi oggetto per verbo: it = come complemento, pl = luoghi in cui si fa l'azione
+const OB=rows=>lxs(rows,["jp","it","u","pl"]).map(o=>({...o,pl:String(o.pl||"").split(" ").filter(Boolean)}));
+const L_READ=OB([["本","un libro",2,"図書館 家 うち 喫茶店 公園"],["雑誌","una rivista",2,"喫茶店 カフェ 家 うち 図書館"],["新聞","il giornale",5,"喫茶店 カフェ 家 うち"],["小説","un romanzo",7,"図書館 家 うち 公園"],["まんが","i manga",1,"家 うち"],["教科書","il libro di testo",2,"図書館 教室 家 うち"],["手紙","una lettera",7,"家 うち"]]);
+const L_FOOD=OB([["すきやき","il sukiyaki",3,"レストラン 家 うち"],["てんぷら","la tempura",3,"レストラン すし屋 家 うち 食堂"],["さしみ","il sashimi",3,"すし屋 レストラン 家 うち"],["やきとり","lo yakitori",3,"レストラン 家 うち"],["やさい","la verdura",3,"家 うち 食堂"],["くだもの","la frutta",3,"家 うち 食堂"],["魚","il pesce",3,"レストラン 家 うち 食堂"],["肉","la carne",3,"レストラン 家 うち 食堂"],["ピザ","la pizza",3,"レストラン 家 うち"],["りんご","una mela",4,"家 うち 公園"],["ステーキ","una bistecca",6,"レストラン"],["おにぎり","un onigiri",7,"公園 家 うち 大学"],["パン","il pane",8,"家 うち"],["お菓子","i dolci",8,"家 うち 喫茶店"],["スパゲッティ","gli spaghetti",8,"レストラン 家 うち 食堂"],["お弁当","il bentō",11,"公園 大学 家 うち"]]);
+const L_DRINK=OB([["コーヒー","un caffè",4,"喫茶店 カフェ 家 うち"],["ビール","una birra",3,"レストラン 家 うち"],["ワイン","il vino",3,"レストラン 家 うち"],["ジュース","un succo di frutta",7,"カフェ 喫茶店 家 うち"],["酒","il sakè",3,"レストラン 家 うち"]]);
+const L_WATCH=OB([["映画","un film",1,"映画館 家 うち"],["テレビ","la televisione",8,"家 うち"],["写真","le foto",1,"家 うち"],["絵","i dipinti",9,"美術館"],["歌舞伎","il kabuki",8,"劇場"],["オペラ","un’opera",2,"劇場"],["試合","la partita",5,"家 うち"],["ドラマ","una serie TV",2,"家 うち"]]);
+const L_LISTEN=OB([["音楽","la musica",1,"家 うち 喫茶店"],["ラジオ","la radio",8,"家 うち"],["ニュース","le notizie",4,"家 うち"],["歌","le canzoni",2,"家 うち"],["クラシック","la musica classica",5,"家 うち"]]);
+const L_BUY=OB([["本","un libro",2,"本屋さん"],["辞書","un dizionario",2,"本屋さん"],["雑誌","una rivista",2,"本屋さん 駅"],["新聞","il giornale",5,"駅"],["服","un vestito",3,"デパート"],["くつ","delle scarpe",3,"デパート"],["かさ","un ombrello",3,"デパート"],["時計","un orologio",3,"デパート"],["かばん","una borsa",2,"デパート"],["切手","dei francobolli",3,"郵便局"],["はがき","delle cartoline",3,"郵便局"],["切符","il biglietto",3,"駅"],["くだもの","la frutta",3,"市場 スーパー"],["やさい","la verdura",3,"市場 スーパー"],["魚","il pesce",3,"市場 スーパー"],["肉","la carne",3,"市場 スーパー"],["りんご","delle mele",4,"市場 スーパー"],["パン","il pane",8,"スーパー"],["お菓子","dei dolci",8,"スーパー デパート"],["プレゼント","un regalo",9,"デパート"],["薬","la medicina",8,"薬局"]]);
+const L_WRITE=OB([["手紙","una lettera",7,"家 うち 喫茶店"],["日記","il diario",8,"家 うち"],["論文","la tesi",9,"図書館 家 うち"],["レポート","una relazione",6,"図書館 家 うち"],["メール","una mail",5,"家 うち 喫茶店"],["はがき","una cartolina",3,"家 うち 喫茶店"]]);
+const L_STUDY=OB([["日本語","il giapponese",1,"図書館 大学 家 うち 教室"],["歴史","la storia",1,"図書館 大学 家 うち"],["文学","la letteratura",2,"図書館 大学 家 うち"],["美術","l’arte",2,"大学 美術館"],["英語","l’inglese",10,"大学 家 うち 学校"],["中国語","il cinese",1,"大学 家 うち"]]);
+const L_USE=OB([["辞書","il dizionario",2,"図書館 教室 家 うち"],["パソコン","il computer",2,"図書館 家 うち"],["携帯電話","il cellulare",2,""],["コンピューター","il computer",4,"図書館 家 うち"],["カメラ","la macchina fotografica",2,""]]);
+const L_BORROW=OB([["本","un libro",2,"図書館"],["辞書","un dizionario",2,"図書館"],["かさ","un ombrello",3,""],["車","la macchina",2,""],["ペン","una penna",2,""]]);
+const L_WEAR=OB([["きもの","il kimono",5,""],["コート","il cappotto",5,""],["服","un vestito",3,""]]);
+const L_CALL=OB([["タクシー","un taxi",8,""],["医者","il medico",8,""]]);
+const L_SEARCH=OB([["アパート","un appartamento",4,""],["かさ","l’ombrello",3,""],["時計","l’orologio",3,""],["プレゼント","un regalo",9,"デパート"],["辞書","il dizionario",2,""]]);
+// attività: verbo + complementi oggetto possibili, oppure verbo composto + luoghi in cui si svolge
+const ACT=[{v:"読む",o:L_READ},{v:"食べる",o:L_FOOD},{v:"飲む",o:L_DRINK},{v:"見る",o:L_WATCH},{v:"聞く",o:L_LISTEN},{v:"買う",o:L_BUY},{v:"書く",o:L_WRITE},{v:"勉強する",o:L_STUDY},{v:"使う",o:L_USE},{v:"借りる",o:L_BORROW},{v:"着る",o:L_WEAR},{v:"呼ぶ",o:L_CALL},{v:"探す",o:L_SEARCH},
+ {v:"テニス",pl:"公園 大学"},{v:"サッカー",pl:"公園 大学 学校"},{v:"買いもの",pl:"デパート 町 市場"},{v:"さんぽ",pl:"公園"},{v:"料理",pl:"家 うち"},{v:"宿題",pl:"家 うち 図書館"},{v:"勉強",pl:"図書館 大学 家 うち 教室 喫茶店"},{v:"アルバイト",pl:"レストラン カフェ 本屋さん デパート"},{v:"そうじ",pl:"家 うち"},{v:"シャワー",pl:"家 うち ジム"},{v:"朝ごはん",pl:"家 うち カフェ 喫茶店"},{v:"昼ごはん",pl:"食堂 レストラン 大学 家 うち"},{v:"晩ごはん",pl:"レストラン 家 うち"},{v:"練習",pl:"教室 大学"},{v:"スキー",pl:""},{v:"歌",pl:"家 うち"},{v:"働く",pl:"銀行 病院 大学 デパート レストラン 郵便局 本屋さん ホテル",intr:1}].map(a=>({...a,pl:typeof a.pl==="string"?a.pl.split(" ").filter(Boolean):undefined}));
+// oggetti che si possono possedere e di cui si chiede il prezzo
+const L_CNT=lxs([["本","libro","libri","冊","m"],["ノート","quaderno","quaderni","冊","m"],["雑誌","rivista","riviste","冊","f"],["切手","francobollo","francobolli","枚","m"],["はがき","cartolina","cartoline","枚","f"],["皿","piatto","piatti","枚","m"],["切符","biglietto","biglietti","枚","m"],["ビール","birra","birre","本","f"],["かさ","ombrello","ombrelli","本","m"],["えんぴつ","matita","matite","本","f"],["ボールペン","penna","penne","本","f"],["やきとり","spiedino di yakitori","spiedini di yakitori","本","m"]],["jp","sg","pl","c","g"]).map(o=>({...o,u:Math.max(o.u,3)}));
+const TR_N15=[["一",1],["二",2],["三",3],["四",4],["五",5]];
+const itCount=(n,o)=>n===1?itInd(o.sg,o.g):IT_NUM[n]+" "+o.pl;
+const L_PRICE=lxs([["本","libro","m"],["辞書","dizionario","m"],["かばん","borsa","f"],["かさ","ombrello","m"],["時計","orologio","m"],["服","vestito","m"],["カメラ","macchina fotografica","f"],["ワイン","vino","m"],["ランチ","pranzo","m"]],["jp","n","g"]).map(o=>({...o,u:Math.max(o.u,3)}));
+const L_ORDER=lxs([["すきやき","il sukiyaki"],["てんぷら","la tempura"],["ピザ","la pizza"],["ビール","una birra"],["ワイン","il vino"],["やきとり","lo yakitori"],["コーヒー","un caffè"],["ジュース","un succo di frutta"],["さしみ","il sashimi"],["スパゲッティ","gli spaghetti"]],["jp","it"]).map(o=>({...o,u:Math.max(o.u,3)}));
+// aggettivi: tipo i / na, italiano m / f
+const L_ADJ=lxs([["おいしい","i","buono","buona",3],["いい","i","buono","buona",3],["新しい","i","nuovo","nuova",6],["高い","i","caro","cara",7],["安い","i","economico","economica",7],["暑い","i","caldo","calda",7],["寒い","i","freddo","fredda",7],["忙しい","i","impegnato","impegnata",7],["早い","i","veloce","veloce",7],["おもしろい","i","interessante","interessante",7],["むずかしい","i","difficile","difficile",7],["おそい","i","lento","lenta",7],["悲しい","i","triste","triste",7],["うれしい","i","felice","felice",7],["楽しい","i","divertente","divertente",9],["かわいい","i","carino","carina",9],["若い","i","giovane","giovane",12],["涼しい","i","fresco","fresca",12],["きたない","i","sporco","sporca",12],["静か","na","tranquillo","tranquilla",7],["便利","na","comodo","comoda",7],["元気","na","in forma","in forma",7],["親切","na","gentile","gentile",7],["ひま","na","libero","libera",7],["きれい","na","bello","bella",7],["にぎやか","na","vivace","vivace",7],["まじめ","na","serio","seria",7],["有名","na","famoso","famosa",7],["特別","na","speciale","speciale",5],["大変","na","faticoso","faticosa",9],["上手","na","bravo","brava",11],["下手","na","poco bravo","poco brava",12]],["jp","t","m","f","u"]).map(o=>({...o,u:Math.max(o.u,o.jp==="おいしい"||o.jp==="いい"?3:o.u)}));
+const trADJ=jp=>L_ADJ.find(a=>a.jp===jp);
+function adjF(a,f){const i=a.t==="i",st=a.jp==="いい"?"よ":a.jp.slice(0,-1);
+ switch(f){case"pres":return a.jp+"です";case"neg":return i?st+"くないです":a.jp+"ではありません";case"past":return i?st+"かったです":a.jp+"でした";case"pneg":return i?st+"くなかったです":a.jp+"ではありませんでした";case"attr":return i?a.jp:a.jp+"な";case"te":return i?st+"くて":a.jp+"で";case"adv":return i?st+"く":a.jp+"に";case"plain":return i?a.jp:a.jp+"だ"}return a.jp}
+const adjAlt=(a,f)=>a.t==="i"?(f==="neg"?[a.jp.replace(/い$/,"")+"くありません"]:f==="pneg"?[a.jp.replace(/い$/,"")+"くありませんでした"]:[]):(f==="neg"?[a.jp+"じゃありません"]:f==="pneg"?[a.jp+"じゃありませんでした"]:[]);
+// soggetti che si possono descrivere con un aggettivo
+const L_ADJN=lxs([["本","libro","m","高い 安い 新しい おもしろい むずかしい"],["辞書","dizionario","m","高い 安い 新しい 便利"],["小説","romanzo","m","おもしろい むずかしい 有名 悲しい"],["映画","film","m","おもしろい 有名 悲しい"],["車","macchina","f","高い 安い 新しい 早い 便利 きれい"],["時計","orologio","m","高い 安い 新しい きれい"],["かばん","borsa","f","高い 安い 新しい きれい かわいい"],["レストラン","ristorante","m","高い 安い 有名 静か にぎやか"],["部屋","stanza","f","静か きれい 寒い 暑い きたない 新しい"],["町","città","f","静か にぎやか きれい 有名"],["試験","esame","m","むずかしい 大変"],["地下鉄","metropolitana","f","便利 早い"],["パソコン","computer","m","高い 安い 新しい 便利"],["食べ物","cibo","m","おいしい 高い 安い"],["仕事","lavoro","m","大変 おもしろい 楽しい"]],["jp","n","g","a"]).map(o=>({...o,a:o.a.split(" ")}));
+const TR_ANT=[["高い","安い"],["静か","にぎやか"],["早い","おそい"],["暑い","寒い"],["きれい","きたない"],["悲しい","うれしい"],["上手","下手"],["悲しい","楽しい"],["悲しい","おもしろい"]];
+const trAntonyms=(a,b)=>TR_ANT.some(p=>p.includes(a)&&p.includes(b));
+// confronti: elementi ordinati dal "più" al "meno" per l'aggettivo
+const L_CMP=[{a:"早い",r:"おそい",items:["飛行機","新幹線","電車","バス","自転車"],src:L_MEAN},{a:"高い",r:"安い",items:["飛行機","新幹線","タクシー","電車","バス"],src:L_MEAN},{a:"にぎやか",r:"静か",items:["東京","大阪","京都","奈良"],src:L_CITY},{a:"にぎやか",r:"静か",items:["ローマ","ミラノ","フィレンツェ"],src:L_CITY},{a:"むずかしい",items:["日本語","英語"],src:L_LANG},{a:"むずかしい",items:["中国語","スペイン語"],src:L_LANG},{a:"むずかしい",items:["日本語","イタリア語"],src:L_LANG}];
+const trNoun=(src,jp)=>{const o=src.find(x=>x.jp===jp);if(!o)return null;const n=o.n||o.def;return {...o,n,g:o.g||(src===L_LANG?"m":"m")}};
+
+// ---------- particelle: funzione, unità e regola della grammatica ----------
+const ROLE={
+ top:{p:"は",u:1,g:"は (tema)",fn:"indica il <b>tema</b> della frase, ciò di cui si parla"},
+ contr:{p:"は",u:6,g:"が e は: dove cade l’attenzione",fn:"qui は mette <b>a contrasto</b> due elementi (questo sì, quello no)"},
+ also:{p:"も",u:1,g:"も (anche)",fn:"significa <b>“anche”</b> e prende il posto di は"},
+ gen:{p:"の",u:1,g:"の (specificazione)",fn:"unisce due nomi: il primo <b>specifica</b> il secondo (di chi, di che cosa, di che tipo)"},
+ and:{p:"と",u:1,g:"と (e)",fn:"unisce due nomi in un <b>elenco completo</b> (“e”)"},
+ q:{p:"か",u:1,g:"か (domanda)",fn:"in fondo alla frase la trasforma in una <b>domanda</b>"},
+ ku:{p:"を",u:3,g:"Richieste: ～をください",fn:"indica la cosa che si <b>chiede</b> con ください"},
+ yo:{p:"よ",u:3,g:"La particella finale よ",fn:"in fondo alla frase comunica un’<b>informazione nuova</b> a chi ascolta"},
+ ne:{p:"ね",u:3,g:"La particella finale ね",fn:"in fondo alla frase cerca <b>conferma o condivisione</b>"},
+ exl:{p:"に",u:4,g:"あります・います: esserci",fn:"indica il <b>luogo in cui si trova</b> qualcosa o qualcuno (con あります・います)"},
+ exs:{p:"が",u:4,g:"あります・います: esserci",fn:"indica <b>ciò che c’è</b> (il soggetto di あります・います)"},
+ pos:{p:"の",u:4,g:"Indicare la posizione: luogo + の + 上・下・中…",fn:"collega il punto di riferimento alla parola di posizione (つくえ<b>の</b>上 = sopra la scrivania)"},
+ ya:{p:"や",u:4,g:"や: elenco non completo",fn:"elenco <b>non completo</b> (“…, … e altro”)"},
+ from:{p:"から",u:4,g:"から・まで: da… a…",fn:"indica il <b>punto di partenza</b>, nel tempo o nello spazio (“da”)"},
+ to:{p:"まで",u:4,g:"から・まで: da… a…",fn:"indica il <b>punto d’arrivo</b>, nel tempo o nello spazio (“fino a”)"},
+ obj:{p:"を",u:5,g:"を: complemento oggetto",fn:"indica il <b>complemento oggetto</b>, ciò su cui ricade l’azione"},
+ dest:{p:"へ",u:5,alt:["に"],g:"に e へ con i verbi di movimento",fn:"indica la <b>meta</b> di un verbo di movimento (行きます・来ます・帰ります): へ e に vanno bene tutte e due"},
+ time:{p:"に",u:5,g:"に: momento preciso",fn:"indica il <b>momento preciso</b> (ora, giorno della settimana, data) in cui avviene l’azione"},
+ time0:{p:"",u:5,alt:["は"],g:"に: momento preciso",fn:"le espressioni di tempo relative (毎日, 明日, 来週…) <b>non vogliono に</b>: qui non serve nessuna particella (al massimo は)"},
+ mean:{p:"で",u:5,g:"で: mezzo",fn:"indica il <b>mezzo</b> o lo strumento con cui si fa l’azione"},
+ sel:{p:"に",u:5,g:"にします: scegliere",fn:"con します indica la <b>scelta</b> (“prendo…, scelgo…”)"},
+ gaq:{p:"が",u:5,g:"が e は: dove cade l’attenzione",fn:"dopo un interrogativo (誰・何) e nella risposta indica il <b>soggetto su cui cade l’attenzione</b>: dopo 誰 e 何 non si usa は"},
+ mo0:{p:"も",u:5,g:"も + negativo: niente, da nessuna parte",fn:"dopo un interrogativo, con il verbo negativo, significa “<b>niente / da nessuna parte</b>”"},
+ kara:{p:"から",u:5,g:"から: perché",fn:"dopo una frase ne indica la <b>causa</b> (“perché…, quindi…”)"},
+ tgt:{p:"に",u:5,fn:"indica la <b>persona verso cui</b> è diretta l’azione (a chi si insegna, si scrive, si spedisce; da chi si prende in prestito)"},
+ with:{p:"と",u:6,g:"と: complemento di compagnia",fn:"indica la <b>persona con cui</b> si fa l’azione (“con”)"},
+ plc:{p:"で",u:6,g:"で: luogo dell’azione",fn:"indica il <b>luogo in cui si svolge un’azione</b> (con あります・います invece serve に)"},
+ meet:{p:"に",u:6,alt:["と"],fn:"con 会います indica la <b>persona che si incontra</b> (va bene anche と)"},
+ into:{p:"に",u:6,fn:"con 入ります indica il <b>luogo in cui si entra</b>"},
+ but:{p:"が",u:6,g:"が: “ma” tra due frasi",fn:"unisce due frasi in contrasto: “<b>ma</b>”"},
+ toka:{p:"とか",u:6,g:"とか: elenco non completo",fn:"elenca alcuni esempi (“…, … e così via”)"},
+ yori:{p:"より",u:7,g:"Comparativo: AはBより",fn:"indica il <b>termine di paragone</b> (“di, rispetto a”)"},
+ ichi:{p:"で",u:7,g:"Superlativo: で一番 e とても",fn:"delimita l’<b>ambito del superlativo</b> (“tra…, in…”) con 一番"},
+ suki:{p:"が",u:7,g:"好き: piacere",fn:"con 好き indica <b>ciò che piace</b> (non si usa を)"},
+ hodo:{p:"ほど",u:7,g:"ほど + negativo: non così … come",fn:"con il predicato negativo: “<b>non così … come</b>”"},
+ onaji:{p:"と",u:7,g:"Uguaglianza: と同じくらい",fn:"con 同じくらい: “<b>tanto quanto</b>”"},
+ hou:{p:"が",u:8,g:"Confronto tra due: どちら e の方が",fn:"con の方 indica <b>quale dei due</b> prevale"},
+ aru:{p:"で",u:8,g:"で con あります: svolgersi",fn:"con あります riferito a un evento indica il <b>luogo dove si svolge</b>"},
+ ride:{p:"に",u:8,fn:"con 乗ります indica il <b>mezzo su cui si sale</b>"},
+ arrive:{p:"に",u:8,fn:"con 着きます indica il <b>luogo d’arrivo</b>"},
+ per:{p:"に",u:8,g:"～回: quante volte",fn:"“in” un periodo: 一週間<b>に</b>三回 = tre volte alla settimana"},
+ hoshii:{p:"が",u:9,g:"～がほしいです: volere qualcosa",fn:"con ほしい indica <b>la cosa desiderata</b>"},
+ manner:{p:"で",u:9,g:"で: il modo",fn:"indica il <b>modo</b> o la lingua in cui si fa qualcosa"},
+ live:{p:"に",u:9,g:"～ています: azione in corso o stato",fn:"con 住んでいます indica il <b>luogo in cui si abita</b>"},
+ stay:{p:"に",u:10,fn:"con 泊まります indica il <b>luogo in cui si pernotta</b>"},
+ naru:{p:"に",u:10,g:"～になります・～になりたいです",fn:"con なります indica <b>ciò che si diventa</b>"},
+ takoto:{p:"が",u:10,g:"～たことがあります: l’esperienza",fn:"こと<b>が</b>あります: “è già capitato di…”"},
+ hou2:{p:"が",u:10,g:"～た方がいいです: dare un consiglio",fn:"方<b>が</b>いいです: “è meglio…”"},
+ dereason:{p:"で",u:10,g:"で: il motivo di un giudizio",fn:"indica il <b>motivo</b> di un giudizio (“famoso <b>per</b>…”)"},
+ hou3:{p:"が",u:11,g:"～ない方がいいです: sconsigliare",fn:"方<b>が</b>いいです: “è meglio (non)…”"},
+ dekiru:{p:"が",u:11,g:"Nome + ができます: è possibile",fn:"con できます indica <b>ciò che si può fare</b>"},
+ jouzu:{p:"が",u:11,fn:"con 上手 (bravo) indica <b>la cosa in cui si è bravi</b>"},
+ koto:{p:"が",u:12,g:"～ことができます: capacità e possibilità",fn:"こと<b>が</b>できます: “<b>sapere / potere</b> fare”"},
+ purp:{p:"に",u:12,g:"～に行きます: andare a fare",fn:"dopo la radice del verbo (o un nome d’azione) indica lo <b>scopo</b> del movimento: “andare <b>a</b> fare”"},
+ mae:{p:"の",u:12,g:"前に: prima di",fn:"nome + の + 前に: “<b>prima di</b>”"},
+ ato:{p:"の",u:12,g:"の後で: dopo",fn:"nome + の + 後で: “<b>dopo</b>”"},
+ naruS:{p:"が",u:12,g:"～くなります: aggettivi in i",fn:"indica <b>ciò che cambia</b> con なります"},
+ node:{p:"ので",u:11,g:"ので: perché (formale)",fn:"dopo una frase ne indica la <b>causa</b>, in modo più cortese e oggettivo di から (“siccome…”)"},
+ supga:{p:"が",u:7,g:"Superlativo: で一番 e とても",fn:"nel superlativo indica <b>chi o che cosa spicca</b> nel confronto"},
+};
+// particelle studiate fino a un'unità (per la tastiera delle particelle e per i distrattori)
+function trPartsUpTo(u){const s=new Map();Object.values(ROLE).forEach(r=>{if(r.p&&r.u<=u&&!s.has(r.p))s.set(r.p,r.u)});return [...s.keys()]}
+// particelle che si confondono facilmente: per ogni funzione, le alternative SICURAMENTE sbagliate nel contesto
+const TR_CONF={top:["を","に","で"],also:["を","で"],gen:["と","で","に"],and:["の","に"],ku:["が","で","に"],exl:["で","を"],exs:["を","で","に"],pos:["と","に"],ya:["の","を"],from:["まで","に"],to:["から","で"],obj:["が","で","に"],dest:["で","を"],time:["で","を"],mean:["に","を"],sel:["を","で"],gaq:["は","を"],mo0:["は","を"],with:["に","で","を"],plc:["に","を"],meet:["を","で"],into:["を","で"],tgt:["を","で"],yori:["から","まで","と"],ichi:["に","を"],suki:["を","で"],hou:["を","に"],aru:["に","を"],ride:["を","で"],arrive:["で","を"],hoshii:["を","で"],manner:["に","を"],live:["で","を"],stay:["で","を"],naru:["を","で"],dekiru:["を","で"],purp:["へ","を","で"],dereason:["に","を"],contr:["を","に"],kara:["まで","より"],hodo:["より","から"],onaji:["に","の"],koto:["を","に"]};
+
+// ---------- costruzione delle frasi ----------
+const tW=s=>({s,k:"w"}),tP=(r,s,alt)=>({s:s===undefined?ROLE[r].p:s,k:"p",r,alt:alt||ROLE[r].alt}),tV=s=>({s,k:"v"}),tC=s=>({s,k:"c"});
+// sintagma: f = si può spostare prima del predicato; q = parte che si può chiedere (o oggetto, p luogo, d meta, m mezzo, c compagnia, t tempo, h ora)
+const ph=(f,t,q)=>({f:f?1:0,t:t.filter(Boolean),q});
+const TR_QW={o:["何","Che cosa"],p:["どこ","Dove"],d:["どこ","Dove"],m:["何","Come"],c:["誰","Con chi"],t:["いつ","Quando"],h:["何時","A che ora"]};
+function trCtx(maxU){const c={maxU,u:1,gram:new Set(),forms:[]};
+ c.need=u=>{if(u>maxU)throw TR_FAIL;if(u>c.u)c.u=u};
+ c.g=t=>{const i=TR_GI[t];if(i==null)return;c.need(G[i][0]);c.gram.add(t)};
+ c.coin=p=>Math.random()<p;
+ c.pick=(list,f)=>{const a=list.filter(o=>o.u<=maxU&&(!f||f(o)));if(!a.length)throw TR_FAIL;const hit=a.filter(o=>o.u===maxU),o=hit.length&&Math.random()<.4?trPick(hit):trPick(a);c.need(o.u);return o};
+ c.pickN=(list,n,f)=>{const a=trShuf(list.filter(o=>o.u<=maxU&&(!f||f(o))));if(a.length<n)throw TR_FAIL;const r=a.slice(0,n);r.forEach(o=>c.need(o.u));return r};
+ c.subj=(me)=>{if(Math.random()<(me??.2)){c.need(1);return L_ME}return c.pick(L_PPL)};
+ c.top=(s,r)=>ph(1,[tW(s.jp),tP(r||"top")]);
+ c.topW=(jp,r)=>ph(1,[tW(jp),tP(r||"top")]);
+ c.v=key=>{const v=VB[key];if(!v)throw TR_FAIL;c.need(v.u);return v};
+ c.F=f=>{const d=TR_FORM[f];if(d){c.need(d[0]);c.g(d[1])}};
+ // predicato verbale (con le parti che contengono particelle separate: こと・が・あります…)
+ c.pred=(v,f)=>{c.F(f);c.forms.push({v,f});
+  if(f==="takoto"||f==="takotoN")return [tV(v.ta+"こと"),tP("takoto"),tV(f==="takoto"?"あります":"ありません")];
+  if(f==="tahou")return [tV(v.ta+"方"),tP("hou2"),tV("いいです")];
+  if(f==="naihou")return [tV(v.na+"方"),tP("hou3"),tV("いいです")];
+  if(f==="koto"||f==="kotoN")return [tV(v.d+"こと"),tP("koto"),tV(f==="koto"?"できます":"できません")];
+  return [tV(jvF(v,f))]};
+ c.objPh=(v,o)=>v.obj?ph(1,[tW(v.obj),tP("obj")]):o?ph(1,[tW(o.jp),tP("obj")],"o"):null;
+ c.tense=(o)=>{o=o||{};const a=[["pres",4],["neg",1.2]];if(maxU>=6&&!o.noPast)a.push(["past",3],["pneg",.8]);if(o.aff)return a.filter(x=>!x[0].includes("neg")).length&&maxU>=6&&Math.random()<.45?"past":"pres";let t=Math.random()*a.reduce((s,x)=>s+x[1],0);for(const [f,w] of a){if((t-=w)<=0)return f}return "pres"};
+ c.time=(f,o)=>{o=o||{};const cls=f==="past"||f==="pneg"?"x":"fh";const a=L_TIME.filter(t=>t.u<=maxU&&[...cls].some(k=>t.t.includes(k))&&(!o.noNi||!t.p)&&(!o.noHol||!/休み/.test(t.jp)));if(f&&f.includes("neg"))o.noHour=1;if(maxU>=5&&!o.noHour)L_HOUR.forEach(h=>{if(h.u<=maxU)a.push({...h,p:"に",t:"fhx",hour:1,u:Math.max(5,h.u)})});if(!a.length)throw TR_FAIL;const t=trPick(a);c.need(t.u);return t};
+ c.timePh=t=>t.p?ph(1,[tW(t.jp),tP("time")],t.hour?"h":"t"):ph(1,[tW(t.jp),tP("time0","")],"t");
+ c.dest=(f)=>{const a=[...L_PL.filter(o=>o.jp!=="家"&&o.jp!=="うち"&&o.jp!=="町"&&o.jp!=="教室"&&o.jp!=="食堂"),...L_CITY].filter(o=>o.u<=maxU&&(!f||f(o)));if(!a.length)throw TR_FAIL;const d=trPick(a);c.need(d.u);return {...d,k:d.k||"L"}};
+ c.mean=d=>{const a=L_MEAN.filter(m=>m.u<=maxU&&m.k.includes(d.k||"L"));if(!a.length)throw TR_FAIL;const m=trPick(a);c.need(m.u);return m};
+ c.comp=s=>{const a=[...L_COMP.filter(o=>o.u<=maxU&&(!o.self||s.me)),...L_PPL.filter(p=>p.u<=maxU&&p.jp!==s.jp).map(p=>({jp:p.jp,it:"con "+p.it,u:p.u}))];const o=trPick(a);c.need(o.u);return o};
+ // attività: {v, o (oggetto o null), pls (luoghi possibili)}
+ c.act=(o)=>{o=o||{};const cand=ACT.filter(a=>{const v=VB[a.v];if(!v||v.u>maxU)return false;if(o.obj&&!a.o)return false;if(o.noObj&&a.o)return false;if(o.v&&!o.v.includes(a.v))return false;if(o.pl){if(a.o)return a.o.some(x=>x.u<=maxU&&x.pl.some(p=>(trPL(p)||{u:99}).u<=maxU));return (a.pl||[]).some(p=>(trPL(p)||{u:99}).u<=maxU)}if(a.o)return a.o.some(x=>x.u<=maxU);return true});
+  if(!cand.length)throw TR_FAIL;const a=trPick(cand),v=c.v(a.v);let ob=null,pls=(a.pl||[]);
+  if(a.o){ob=c.pick(a.o,x=>!o.pl||x.pl.some(p=>(trPL(p)||{u:99}).u<=maxU));pls=ob.pl}
+  pls=pls.map(trPL).filter(p=>p&&p.u<=maxU);return {v,o:ob,pls,intr:a.intr}};
+ c.S=(cl,it,x)=>{const C=Array.isArray(cl[0])||(cl[0]&&cl[0].ph)?cl:[cl];return {cl:C.map(ps=>Array.isArray(ps)?{ph:ps.filter(Boolean)}:{...ps,ph:ps.ph.filter(Boolean)}),it,...(x||{})}};
+ return c}
+// parti italiane → frase (t tempo, s soggetto, v verbo, o oggetto, p luogo, d meta, m mezzo, c compagnia, x altro)
+const IT_ORD=["t","s","v","o","p","d","m","c","h","x"];
+function itSent(P,end){return itCap(IT_ORD.map(k=>P[k]).filter(Boolean).join(" ").replace(/\s+/g," "))+(end==null?".":end)}
+const itDemG=(it,g)=>g==="f"?it.replace(/o$/,"a"):it;
+function itQuest(P,key){const rest=IT_ORD.filter(k=>k!==key&&k!=="v"&&k!=="s"&&k!=="t").map(k=>P[k]);return itCap([TR_QW[key][1],P.v,P.s,...rest,key==="t"||key==="h"?null:P.t].filter(Boolean).join(" ").replace(/\s+/g," "))+"?"}
+
+// ---------- schemi di frase ----------
+const TPL=[];function TT(id,u,f,o){TPL.push({id,u,f,...(o||{})})}
+const sIt=s=>s.me?"":s.it;
+const gEnd=(s,m,f)=>s.g==="f"?f:m;
+// UNITÀ 1
+TT("u1_nat",1,c=>{const s=c.pick(L_PPL),nj=trPick(s.nat),n=L_NAT.find(o=>o.jp===nj),q=c.coin(.3);c.g("です (copula)");
+ return c.S([c.top(s),ph(0,[tW(n.jp),tV("です"),q&&tP("q")])],`${s.it} è ${gEnd(s,n.m,n.f)}${q?"?":"."}`)});
+TT("u1_stud",1,c=>{const s=c.subj(.15),l=c.pick(L_LANG),j=c.pick(L_JOB,o=>o.jp==="学生"||o.jp==="先生"),neg=c.coin(.3),q=!neg&&c.coin(.2);c.g(neg?"Negazione di です":"です (copula)");
+ const pred=neg?[tW(l.jp),tP("gen"),tW(j.jp),tV("では"),tV("ありません")]:[tW(l.jp),tP("gen"),tW(j.jp),tV("です"),q&&tP("q")];
+ const jw=s.g==="f"?j.f:j.m;return c.S([c.top(s),ph(0,pred)],itCap(itJ(sIt(s),neg?"non":"",s.me?"sono":"è",itInd(jw,s.g==="f"?"f":"m"),"di",l.it))+(q?"?":"."))});
+TT("u1_hobby",1,c=>{const s=c.subj(.25),h=c.pick(L_HOB),two=c.coin(.4),h2=two?c.pick(L_HOB,o=>o.jp!==h.jp):null;
+ return c.S([ph(1,[tW(s.jp),tP("gen"),tW("趣味"),tP("top")]),ph(0,[tW(h.jp),two&&tP("and"),two&&tW(h2.jp),tV("です")])],`${s.me?(two?"I miei hobby":"Il mio hobby"):(two?"Gli hobby di ":"L’hobby di ")+s.it} ${two?"sono":"è"} ${h.it}${two?" e "+h2.it:""}.`)});
+TT("u1_also",1,c=>{const n=c.pick(L_NAT,o=>L_PPL.filter(p=>p.u<=c.maxU&&p.nat.includes(o.jp)).length>=2),[a,b]=c.pickN(L_PPL,2,p=>p.nat.includes(n.jp));
+ return c.S([[c.top(a),ph(0,[tW(n.jp),tV("です")])],[ph(1,[tW(b.jp),tP("also")]),ph(0,[tW(n.jp),tV("です")])]],`${a.it} è ${gEnd(a,n.m,n.f)}. Anche ${b.it} è ${gEnd(b,n.m,n.f)}.`)});
+TT("u1_also2",1,c=>{const l=c.pick(L_LANG),[a,b]=c.pickN(L_PPL,2),st=p=>p.g==="f"?"una studentessa":"uno studente";
+ return c.S([[c.top(a),ph(0,[tW(l.jp),tP("gen"),tW("学生"),tV("です")])],[ph(1,[tW(b.jp),tP("also")]),ph(0,[tW(l.jp),tP("gen"),tW("学生"),tV("です")])]],`${a.it} è ${st(a)} di ${l.it}. Anche ${b.it} è ${st(b)} di ${l.it}.`)});
+TT("u1_senmon",1,c=>{const s=c.subj(.2),m=c.pick(L_SUBJ);return c.S([ph(1,[tW(s.jp),tP("gen"),tW("専門"),tP("top")]),ph(0,[tW(m.jp),tV("です")])],`${s.me?"La mia specializzazione":"La specializzazione di "+s.it} è ${m.def}.`)});
+TT("u1_uni",1,c=>{const s=c.subj(.2),un=c.pick(L_UNI);return c.S([c.top(s),ph(0,[tW(un.jp),tP("gen"),tW("学生"),tV("です")])],`${s.me?"Sono":s.it+" è"} ${s.g==="f"?"una studentessa":"uno studente"} ${un.it}.`)});
+TT("u1_qhobby",1,c=>{const s=c.pick(L_PPL);c.g("何 nan / nani");return c.S([ph(1,[tW(s.jp),tP("gen"),tW("趣味"),tP("top")]),ph(0,[tW("何"),tV("です"),tP("q")])],`Qual è l’hobby di ${s.it}?`)});
+TT("u1_dnat",1,c=>{const s=c.pick(L_PPL),nj=trPick(s.nat),n=L_NAT.find(o=>o.jp===nj),yes=c.coin(.4),w=yes?n:c.pick(L_NAT,o=>o.jp!==n.jp);c.g("か (domanda)");if(!yes)c.g("Negazione di です");
+ return c.S([{sp:"A",ph:[c.top(s),ph(0,[tW(w.jp),tV("です"),tP("q")])]},{sp:"B",ph:yes?[ph(0,[tW("はい、"),tV("そうです")])]:[ph(0,[tW("いいえ、"),tW(w.jp),tV("では"),tV("ありません")]),ph(0,[tC("。"),tW(n.jp),tV("です")])]}],`— ${s.it} è ${gEnd(s,w.m,w.f)}? — ${yes?"Sì, è così.":`No, non è ${gEnd(s,w.m,w.f)}. È ${gEnd(s,n.m,n.f)}.`}`,{dlg:1})});
+// UNITÀ 2
+TT("u2_kore",2,c=>{const d=c.pick(L_DEM),s=c.subj(.25),o=c.pick(L_OBJ),q=c.coin(.25);c.g("Dimostrativi: これ・それ・あれ");
+ const poss=s.me?(o.g==="f"?"la mia ":"il mio ")+o.n:itDef(o.n,o.g)+" di "+s.it;return c.S([ph(1,[tW(d.jp),tP("top")]),ph(0,[tW(s.jp),tP("gen"),tW(o.jp),tV("です"),q&&tP("q")])],`${itCap(itDemG(d.it,o.g))} è ${poss}${q?"?":"."}`)});
+TT("u2_kono",2,c=>{const d=c.pick(L_ADEM),o=c.pick(L_OBJ),s=c.subj(.25);c.g("Dimostrativi: この・その・あの");c.g("Omissione del nome già noto");
+ return c.S([ph(1,[tW(d.jp),tW(o.jp),tP("top")]),ph(0,[tW(s.jp),tP("gen"),tV("です")])],`${itCap(d.f(o.n,o.g))} è ${s.me?(o.g==="f"?"mia":"mio"):"di "+s.it}.`)});
+TT("u2_dare",2,c=>{const d=c.pick(L_ADEM),o=c.pick(L_OBJ),s=c.pick(L_PPL);c.g("誰・誰の (chi / di chi)");c.g("Omissione del nome già noto");
+ return c.S([{sp:"A",ph:[ph(1,[tW(d.jp),tW(o.jp),tP("top")]),ph(0,[tW("誰"),tP("gen"),tV("です"),tP("q")])]},{sp:"B",ph:[ph(0,[tW(s.jp),tP("gen"),tV("です")])]}],`— Di chi è ${d.f(o.n,o.g)}? — È di ${s.it}.`,{dlg:1})});
+TT("u2_bday",2,c=>{const s=c.subj(.25),m=1+Math.floor(Math.random()*12),d=trPick([1,2,3,4,5,6,7,8,9,10,14,15,20,24,25,30]);c.g("Giorni del mese");c.g("Mesi: numero + 月");
+ return c.S([ph(1,[tW(s.jp),tP("gen"),tW("誕生日"),tP("top")]),ph(0,[tW(kanjiNum(m)+"月"+kanjiNum(d)+"日"),tV("です")])],`${s.me?"Il mio compleanno":"Il compleanno di "+s.it} è ${d===1?"il primo":d===8?"l’8":"il "+d} ${IT_MON[m-1]}.`)});
+TT("u2_age",2,c=>{const s=c.subj(.25),n=18+Math.floor(Math.random()*13);c.g("Età: ～才・何才");return c.S([c.top(s),ph(0,[tW(kanjiNum(n)+"才"),tV("です")])],`${s.me?"Ho":s.it+" ha"} ${n} anni.`)});
+TT("u2_nanno",2,c=>{const o=c.pick(L_OBJ,x=>"本 雑誌 教科書 辞書".includes(x.jp)),t=c.pick(lxs([["日本語","di giapponese"],["イタリア語","di italiano"],["歴史","di storia"],["料理","di cucina"],["美術","d’arte"],["音楽","di musica"]],["jp","it"]),x=>o.jp!=="辞書"||/語/.test(x.jp)),d=c.pick(L_DEM);c.g("何の: di che cosa? che tipo di?");
+ return c.S([{sp:"A",ph:[ph(1,[tW(d.jp),tP("top")]),ph(0,[tW("何"),tP("gen"),tW(o.jp),tV("です"),tP("q")])]},{sp:"B",ph:[ph(0,[tW(t.jp),tP("gen"),tW(o.jp),tV("です")])]}],`— Che ${o.n} è ${itDemG(d.it,o.g)}? — È ${itInd(o.n,o.g)} ${t.it}.`,{dlg:1})});
+TT("u2_fam",2,c=>{const s=c.pick(L_PPL),f=c.pick(L_FAM),j=c.pick(L_JOB,o=>f.young?"学生 留学生 会社員".includes(o.jp):o.jp!=="学生"&&o.jp!=="留学生");
+ return c.S([ph(1,[tW(s.jp),tP("gen"),tW(f.jp),tP("top")]),ph(0,[tW(j.jp),tV("です")])],`${itCap(f.it)} di ${s.it} è ${itInd(f.g==="f"?j.f:j.m,f.g)}.`)});
+// UNITÀ 3
+TT("u3_doko",3,c=>{const p=c.pick(L_PL,o=>o.b);c.g("どこ・どこの: chiedere dove");return c.S([c.topW(p.jp),ph(0,[tW("どこ"),tV("です"),tP("q")])],`${itPlural(p.n)?"Dove sono":"Dov’è"} ${p.n}?`)});
+TT("u3_koko",3,c=>{const p=c.pick(L_PL,o=>o.b),d=c.pick(lxs([["ここ","qui"],["そこ","lì"],["あそこ","laggiù"]],["jp","it"]).map(o=>({...o,u:3}))),y=c.coin(.35);c.g("Questo posto e laggiù: ここ・そこ・あそこ");
+ return c.S([c.topW(p.jp),ph(0,[tW(d.jp),tV("です"),y&&tP("yo")])],`${itCap(p.n)} ${itPlural(p.n)?"sono":"è"} ${d.it}.`)});
+TT("u3_kai",3,c=>{const p=c.pick(L_PL,o=>"レストラン 本屋さん 喫茶店 銀行".includes(o.jp)),b=trPick([["デパート","dei grandi magazzini"],["駅","della stazione"],["ビル","di quel palazzo"]]),n=2+Math.floor(Math.random()*6),y=c.coin(.3);c.g("Piani: ～階・何階");c.need(3);
+ return c.S([c.topW(p.jp),ph(0,[b[0]==="ビル"&&tW("あの"),tW(b[0]),tP("gen"),tW(kanjiNum(n)+"階"),tV("です"),y&&tP("yo")])],`${itCap(p.n)} è al ${n}º piano ${b[1]}.`)});
+TT("u3_kudasai",3,c=>{const a=c.pick(L_CNT),two=c.coin(.55),b=two?c.pick(L_CNT,o=>o.jp!==a.jp):null,na=trPick(TR_N15),nb=trPick(TR_N15);c.g("Richieste: ～をください");
+ return c.S([ph(0,[tW(a.jp),tP("ku"),tW(na[0]+a.c),two&&tP("and")]),two&&ph(0,[tW(b.jp),tP("ku"),tW(nb[0]+b.c)]),ph(0,[tV("ください")])],`Mi dia ${itCount(na[1],a)}${two?" e "+itCount(nb[1],b):""}, per favore.`)});
+TT("u3_ikura",3,c=>{const o=c.pick(L_PRICE),d=c.pick(L_ADEM),pr=trPick([["十","dieci"],["二十","venti"],["三十","trenta"],["五十","cinquanta"]]);c.g("Chiedere il prezzo: いくら");
+ return c.S([{sp:"A",ph:[ph(1,[tW(d.jp),tW(o.jp),tP("top")]),ph(0,[tW("いくら"),tV("です"),tP("q")])]},{sp:"B",ph:[ph(0,[tW(pr[0]+"ユーロ"),tV("です"),c.coin(.4)&&tP("yo")])]}],`— Quanto costa ${d.f(o.n,o.g)}? — Costa ${pr[1]} euro.`,{dlg:1})});
+TT("u3_oishii",3,c=>{const f=c.pick(lxs([["すきやき","sukiyaki","m"],["てんぷら","tempura","f"],["ピザ","pizza","f"],["やきとり","yakitori","m"],["ワイン","vino","m"],["ビール","birra","f"],["さしみ","sashimi","m"]],["jp","w","g"]).map(o=>({...o,u:3})));c.g("おいしい: l’aggettivo prima del nome");c.g("La particella finale ね");
+ return c.S([ph(0,[tW("おいしい"),tW(f.jp),tV("です"),tP("ne")])],`È ${itInd(f.w+" "+(f.g==="f"?"buonissima":"buonissimo"),f.g)}, vero?`)});
+TT("u3_chikaku",3,c=>{const [p,q]=c.pickN(L_PL,2,o=>o.b);return c.S([c.topW(p.jp),ph(0,[tW(q.jp),tP("gen"),tW("近く"),tV("です")])],`${itCap(p.n)} ${itPlural(p.n)?"sono":"è"} vicino ${itPrep("a",q.n)}.`)});
+TT("u3_watashi",3,c=>{const o=c.pick(L_ORDER);c.g("は come tema: “per quanto mi riguarda”");return c.S([ph(1,[tW("私"),tP("top")]),ph(0,[tW(o.jp),tV("です")])],`Io prendo ${o.it}.`)});
+TT("u3_ji",3,c=>{const h=c.pick(L_HOUR);c.g("Orari: ～時・半・何時");return c.S([{sp:"A",ph:[ph(0,[tW("今、"),tW("何時"),tV("です"),tP("q")])]},{sp:"B",ph:[ph(0,[tW(h.jp),tV("です"),c.coin(.4)&&tP("yo")])]}],`— Che ore sono? — ${h.jp==="十二時"?"È mezzogiorno":h.jp==="一時"?"È l’una":"Sono "+h.it.replace(/^alle /,"le ")}.`,{dlg:1})});
+// UNITÀ 4
+const L_HAS=[{t:["部屋"],it:"nella stanza",u:4,x:["テレビ un televisore","つくえ una scrivania","いす una sedia","パソコン un computer","テーブル un tavolo"]},{t:["駅","の","近く"],it:"vicino alla stazione",u:4,x:["銀行 una banca","郵便局 un ufficio postale","喫茶店 un caffè","本屋さん una libreria","薬局 una farmacia","ホテル un albergo"]},{t:["大学","の","中"],it:"dentro l’università",u:4,x:["食堂 una mensa","図書館 una biblioteca","喫茶店 un caffè","本屋さん una libreria"]},{t:["かばん","の","中"],it:"nella borsa",u:4,x:["本 un libro","辞書 un dizionario","携帯電話 un cellulare","ノート un quaderno","えんぴつ una matita","かさ un ombrello"]},{t:["つくえ","の","上"],it:"sulla scrivania",u:4,x:["本 un libro","辞書 un dizionario","パソコン un computer","時計 un orologio","携帯電話 un cellulare","ノート un quaderno"]},{t:["教室"],it:"in aula",u:4,a:1,x:["学生 degli studenti","先生 il professore","留学生 degli studenti stranieri"]},{t:["公園"],it:"al parco",u:4,a:1,x:["子供 dei bambini","女の人 una donna","観光客 dei turisti"]},{t:["広場"],it:"in piazza",u:4,a:1,x:["観光客 dei turisti","子供 dei bambini"]},{t:["レストラン"],it:"al ristorante",u:4,a:1,x:["客 dei clienti"]}].map(h=>({...h,x:h.x.map(s=>{const [jp,...r]=s.split(" ");return lx({jp,it:r.join(" ")})})}));
+TT("u4_aru",4,c=>{const h=c.pick(L_HAS,o=>o.x.some(x=>x.u<=c.maxU)),x=c.pick(h.x);c.g("あります・います: esserci");
+ return c.S([ph(1,[...h.t.map((w,i)=>w==="の"?tP("pos"):tW(w)),tP("exl")],"p"),ph(1,[tW(x.jp),tP("exs")]),ph(0,[tV(h.a?"います":"あります")])],`${itCap(h.it)} ${itPlural(x.it)?"ci sono":"c’è"} ${x.it}.`)});
+const L_FURN=lxs([["つくえ","la scrivania"],["いす","la sedia"],["テーブル","il tavolo"],["かばん","la borsa",1],["箱","la scatola",1]],["jp","n","cont"]).map(o=>({...o,u:4}));
+const L_POSW=[["上",n=>"sopra "+n],["下",n=>"sotto "+n],["中",n=>"dentro "+n],["横",n=>"accanto "+itPrep("a",n)],["前",n=>"davanti "+itPrep("a",n)],["後ろ",n=>"dietro "+n],["そば",n=>"vicino "+itPrep("a",n)]].map(([jp,f])=>({jp,f,u:4}));
+const L_THING=lxs([["本","il libro","un libro"],["辞書","il dizionario","un dizionario"],["かさ","l’ombrello","un ombrello"],["時計","l’orologio","un orologio"],["携帯電話","il cellulare","un cellulare"],["ノート","il quaderno","un quaderno"],["えんぴつ","la matita","una matita"],["パソコン","il computer","un computer"],["りんご","la mela","una mela"]],["jp","def","ind"]).map(o=>({...o,u:Math.max(o.u,4)}));
+TT("u4_pos",4,c=>{const t=c.pick(L_THING),f=c.pick(L_FURN,o=>!(o.cont&&"パソコン かさ".includes(t.jp))),p=c.pick(L_POSW,o=>f.cont?o.jp==="中":o.jp!=="中");c.g("Indicare la posizione: luogo + の + 上・下・中…");
+ const loc=ph(1,[tW(f.jp),tP("pos"),tW(p.jp),tP("exl")],"p");
+ if(c.coin(.5)){c.g("どこ con あります・います");return c.S([ph(1,[tW(t.jp),tP("top")]),loc,ph(0,[tV("あります")])],`${itCap(t.def)} è ${p.f(f.n)}.`)}
+ return c.S([loc,ph(1,[tW(t.jp),tP("exs")]),ph(0,[tV("あります")])],`${itCap(p.f(f.n))} c’è ${t.ind}.`)});
+TT("u4_aida",4,c=>{const [a,b,q]=c.pickN(L_PL,3,o=>o.b);c.g("Indicare la posizione: luogo + の + 上・下・中…");
+ return c.S([ph(1,[tW(a.jp),tP("and"),tW(b.jp),tP("pos"),tW("間"),tP("exl")]),ph(1,[tW(q.jp),tP("exs")]),ph(0,[tV("あります")])],`Tra ${a.n} e ${b.n} c’è ${q.i}.`)});
+TT("u4_ya",4,c=>{const h=c.pick(L_HAS,o=>!o.a&&o.x.filter(x=>x.u<=c.maxU).length>=2),[a,b]=c.pickN(h.x,2);c.g("や: elenco non completo");
+ return c.S([ph(1,[...h.t.map(w=>w==="の"?tP("pos"):tW(w)),tP("exl")]),ph(1,[tW(a.jp),tP("ya"),tW(b.jp),tP("exs")]),ph(0,[tV("あります")])],`${itCap(h.it)} ci sono ${a.it}, ${b.it} e altre cose.`)});
+const L_OPEN=lxs([["授業","La lezione è"],["会議","La riunione è"],["昼休み","La pausa pranzo è"],["銀行","La banca è aperta"],["図書館","La biblioteca è aperta"],["郵便局","L’ufficio postale è aperto"],["試験","L’esame è"]],["jp","it"]);
+TT("u4_kara",4,c=>{const e=c.pick(L_OPEN);c.g("から・まで: da… a…");
+ if(c.coin(.35)&&!/^(授業|会議|昼休み|試験)$/.test(e.jp)){const days=L_TIME.filter(t=>/曜日$/.test(t.jp)&&t.jp.length===3&&t.u<=c.maxU);c.need(4);const i=Math.floor(Math.random()*(days.length-1)),j=i+1+Math.floor(Math.random()*(days.length-1-i));
+  return c.S([c.topW(e.jp),ph(0,[tW(days[i].jp),tP("from"),tW(days[j].jp),tP("to"),tV("です")])],`${e.it} dal ${days[i].it} ${days[j].it==="domenica"?"alla":"al"} ${days[j].it}.`)}
+ const hs=L_HOUR.filter(h=>!/半/.test(h.jp)&&h.jp!=="七時"&&h.jp!=="八時");const i=Math.floor(Math.random()*(hs.length-2)),j=i+1+Math.floor(Math.random()*Math.min(5,hs.length-1-i));
+ return c.S([c.topW(e.jp),ph(0,[tW(hs[i].jp),tP("from"),tW(hs[j].jp),tP("to"),tV("です")])],`${e.it} ${hs[i].da} ${hs[j].it}.`)});
+const L_TSU=lxs([["りんご","mele","つくえ 箱"],["箱","scatole","部屋 つくえ"],["いす","sedie","部屋 教室"],["かばん","borse","部屋"]],["jp","pl","loc"]).map(o=>({...o,u:4}));
+const TSU=[["二つ","due"],["三つ","tre"],["四つ","quattro"],["五つ","cinque"]];
+TT("u4_tsu",4,c=>{const t=c.pick(L_TSU),n=trPick(TSU),l=trPick(t.loc.split(" "));c.g("Contare oggetti: ～つ");
+ const L={つくえ:[["つくえ","の","上"],"sulla scrivania"],箱:[["箱","の","中"],"nella scatola"],部屋:[["部屋"],"nella stanza"],教室:[["教室"],"in aula"]}[l];
+ return c.S([ph(1,[...L[0].map(w=>w==="の"?tP("pos"):tW(w)),tP("exl")]),ph(1,[tW(t.jp),tP("exs"),tW(n[0])]),ph(0,[tV("あります")])],`${itCap(L[1])} ci sono ${n[1]} ${t.pl}.`)});
+TT("u4_iru",4,c=>{const s=c.pick(L_PPL),p=c.pick(L_PL,o=>o.jp!=="うち");c.g("あります・います: esserci");
+ if(c.coin(.4)){c.g("どこ con あります・います");return c.S([{sp:"A",ph:[c.top(s),ph(0,[tW("どこ"),tP("exl"),tV("います"),tP("q")])]},{sp:"B",ph:[ph(1,[tW(p.jp),tP("exl")]),ph(0,[tV("います"),c.coin(.4)&&tP("yo")])]}],`— Dov’è ${s.it}? — È ${p.a}.`,{dlg:1})}
+ return c.S([c.top(s),ph(1,[tW(p.jp),tP("exl")],"p"),ph(0,[tV("います")])],`${s.it} è ${p.a}.`)});
+TT("u4_nanika",4,c=>{const h=c.pick(L_HAS,o=>!o.a&&o.x.some(x=>x.u<=c.maxU)),x=c.pick(h.x);c.g("何か・誰か・どこか (indefiniti)");
+ return c.S([{sp:"A",ph:[ph(1,[...h.t.map(w=>w==="の"?tP("pos"):tW(w)),tP("exl")]),ph(1,[tW("何か")]),ph(0,[tV("あります"),tP("q")])]},{sp:"B",ph:[ph(0,[tW("はい、")]),ph(1,[tW(x.jp),tP("exs")]),ph(0,[tV("あります")])]}],`— C’è qualcosa ${h.it}? — Sì, c’è ${x.it}.`,{dlg:1})});
+// UNITÀ 5
+TT("u5_go",5,c=>{const s=c.subj(.2),f=c.tense(),d=c.dest(),tm=c.coin(.65)?c.time(f,{noHol:(d.k||"L")==="L",noHour:f.includes("neg")}):null,m=c.coin(.45)?c.mean(d):null,v=c.v("行く");
+ const P={t:tm&&tm.it,s:sIt(s),v:itVerb(v.it,f,s),d:d.a,m:m&&m.it};
+ return c.S([c.top(s),tm&&c.timePh(tm),ph(1,[tW(d.jp),tP("dest")],"d"),m&&ph(1,[tW(m.jp),tP("mean")],"m"),ph(0,c.pred(v,f))],itSent(P),{P})});
+TT("u5_kaeru",5,c=>{const s=c.subj(.3),f=c.tense(),tm=c.coin(.6)?c.time(f):null,v=c.v("帰る"),d=trPick([["うち","a casa",5],["家","a casa",4],["国",s.me?"nel mio paese":"nel suo paese",1],...(s.nat&&s.nat[0]==="日本人"?[["日本","in Giappone",1]]:[])]);c.need(d[2]);
+ const P={t:tm&&tm.it,s:sIt(s),v:itVerb(v.it,f,s),d:d[1]};return c.S([c.top(s),tm&&c.timePh(tm),ph(1,[tW(d[0]),tP("dest")],"d"),ph(0,c.pred(v,f))],itSent(P),{P})});
+TT("u5_obj",5,c=>{const s=c.subj(.2),a=c.act(),f=c.tense(),tm=c.coin(.6)?c.time(f):null;
+ const P={t:tm&&tm.it,s:sIt(s),v:itVerb(a.v.it,f,s),o:a.o&&a.o.it};return c.S([c.top(s),tm&&c.timePh(tm),c.objPh(a.v,a.o),ph(0,c.pred(a.v,f))],itSent(P),{P})});
+TT("u5_inv",5,c=>{c.g("Invitare: ～ませんか");const tm=c.coin(.45)?c.time("pres",{noHour:c.coin(.5)}):null;c.need(2);
+ if(c.coin(.45)){const d=c.dest(o=>(o.k||"L")!=="F"),v=c.v("行く");return c.S([tm&&c.timePh(tm),ph(1,[tW("いっしょに")]),ph(1,[tW(d.jp),tP("dest")],"d"),ph(0,c.pred(v,"inv"))],`${itCap(itJ(tm&&tm.it,"perché non andiamo insieme",d.a))}?`)}
+ const a=c.act({v:["読む","食べる","飲む","見る","聞く","テニス","サッカー","買いもの","さんぽ","勉強","昼ごはん","晩ごはん"]});return c.S([tm&&c.timePh(tm),ph(1,[tW("いっしょに")]),c.objPh(a.v,a.o),ph(0,c.pred(a.v,"inv"))],`${itCap(itJ(tm&&tm.it,"perché non",a.v.it.p4,a.o&&a.o.it,"insieme"))}?`)});
+TT("u5_mas",5,c=>{c.g("Proporre e accettare: ～ましょう");c.need(2);
+ if(c.coin(.5)){const d=c.dest(o=>(o.k||"L")!=="F"),v=c.v("行く");return c.S([ph(1,[tW("いっしょに")]),ph(1,[tW(d.jp),tP("dest")]),ph(0,c.pred(v,"mas"))],`Andiamo insieme ${d.a}!`)}
+ const a=c.act({v:["読む","食べる","飲む","見る","聞く","テニス","サッカー","買いもの","さんぽ","勉強","昼ごはん","晩ごはん"]});return c.S([ph(1,[tW("いっしょに")]),c.objPh(a.v,a.o),ph(0,c.pred(a.v,"mas"))],`${itCap(itJ(a.v.it.p4,a.o&&a.o.it,"insieme"))}!`)});
+TT("u5_nanimo",5,c=>{const s=c.subj(.3),f=c.maxU>=6&&c.coin(.5)?"pneg":"neg",tm=c.coin(.5)?c.time(f,{noHour:1}):null;c.g("も + negativo: niente, da nessuna parte");
+ if(c.coin(.5)){const a=c.act({v:["読む","食べる","飲む","見る","買う","書く"]});return c.S([c.top(s),tm&&c.timePh(tm),ph(1,[tW("何"),tP("mo0")]),ph(0,c.pred(a.v,f))],itSent({t:tm&&tm.it,s:sIt(s),v:itVerb(a.v.it,f,s),o:"niente"}))}
+ const v=c.v("行く");return c.S([c.top(s),tm&&c.timePh(tm),ph(1,[tW("どこ"),tP("dest"),tP("mo0")]),ph(0,c.pred(v,f))],itSent({t:tm&&tm.it,s:sIt(s),v:itVerb(v.it,f,s),d:"da nessuna parte"}))});
+const L_ROUTE=[["ローマ","ミラノ","電車","三時間","Da Roma","a Milano","in treno","tre ore"],["ローマ","ナポリ","電車","一時間","Da Roma","a Napoli","in treno","un’ora"],["東京","京都","新幹線","二時間","Da Tokyo","a Kyoto","con lo shinkansen","due ore"],["東京","大阪","新幹線","三時間","Da Tokyo","a Osaka","con lo shinkansen","tre ore"],["京都","大阪","電車","三十分","Da Kyoto","a Osaka","in treno","trenta minuti"],["家","大学","バス","二十分","Da casa","all’università","in autobus","venti minuti"],["駅","大学","地下鉄","十分","Dalla stazione","all’università","in metropolitana","dieci minuti"],["イタリア","日本","飛行機","十四時間","Dall’Italia","al Giappone","in aereo","quattordici ore"],["うち","駅","自転車","十五分","Da casa","alla stazione","in bicicletta","quindici minuti"],["ローマ","フィレンツェ","電車","一時間半","Da Roma","a Firenze","in treno","un’ora e mezza"]].map(r=>({r,u:Math.max(5,trKanjiUnit(r.slice(0,4).join("")),...r.slice(0,3).map(w=>(L_PL.concat(L_CITY,L_MEAN).find(o=>o.jp===w)||{u:1}).u))}));
+TT("u5_kakaru",5,c=>{const R=c.pick(L_ROUTE).r;c.g("かかります: quanto tempo ci vuole");c.need(4);
+ if(c.coin(.35))return c.S([{sp:"A",ph:[ph(1,[tW(R[0]),tP("from")]),ph(1,[tW(R[1]),tP("to")]),ph(1,[tW(R[2]),tP("mean")]),ph(0,[tW("どのくらい"),tV("かかります"),tP("q")])]},{sp:"B",ph:[ph(0,[tW(R[3]),tW("くらい"),tV("かかります"),c.coin(.4)&&tP("yo")])]}],`— Quanto ci vuole ${"d"+R[4].slice(1)} ${R[5]} ${R[6]}? — Ci vogli${/^un’/.test(R[7])?"a":"ono"} circa ${R[7]}.`,{dlg:1});
+ return c.S([ph(1,[tW(R[0]),tP("from")]),ph(1,[tW(R[1]),tP("to")]),ph(1,[tW(R[2]),tP("mean")]),ph(0,[tW(R[3]),tV("かかります")])],`${R[4]} ${R[5]} ci vogli${/^un’/.test(R[7])?"a":"ono"} ${R[7]} ${R[6]}.`)});
+TT("u5_fromto",5,c=>{const s=c.subj(.25),R=c.pick(L_ROUTE,o=>!/^(家|うち|駅)$/.test(o.r[0])).r,f=c.tense({noPast:c.coin(.5)}),v=c.v("行く");c.need(4);
+ return c.S([c.top(s),ph(1,[tW(R[0]),tP("from")]),ph(1,[tW(R[1]),tP("to")]),ph(1,[tW(R[2]),tP("mean")],"m"),ph(0,c.pred(v,f))],itSent({s:sIt(s),v:itVerb(v.it,f,s),d:"d"+R[4].slice(1)+" "+R[5],m:R[6]}))});
+TT("u5_ni",5,c=>{const s=c.subj(.6),o=c.pick(L_ORDER);c.g("にします: scegliere");
+ if(c.coin(.35)&&!s.me)return c.S([{sp:"A",ph:[c.top(s),ph(1,[tW("何"),tP("sel")]),ph(0,[tV("します"),tP("q")])]},{sp:"B",ph:[ph(1,[tW("私"),tP("top")]),ph(1,[tW(o.jp),tP("sel")]),ph(0,[tV("します")])]}],`— ${s.it}, cosa prende? — Io prendo ${o.it}.`,{dlg:1});
+ return c.S([c.top(s),ph(1,[tW(o.jp),tP("sel")]),ph(0,[tV("します")])],`${s.me?"Io prendo":s.it+" prende"} ${o.it}.`)});
+TT("u5_kara",5,c=>{c.g("から: perché");const s=c.subj(.5),R=[];
+ const k=Math.floor(Math.random()*4);
+ if(k===0){const tm=c.coin(.5)?["今晩","stasera"]:["毎日","ogni giorno"];const v=c.v("勉強");return c.S([[ph(1,[tW("明日"),tP("top")]),ph(0,[tW("試験"),tV("です"),tP("kara"),tC("、")])],[c.top(s),ph(1,[tW(tm[0])]),c.objPh(v),ph(0,c.pred(v,"pres"))]],`Domani c’è l’esame, quindi ${itJ(tm[1],sIt(s),itVerb(v.it,"pres",s))}.`)}
+ if(k===1){const d=c.dest(o=>o.k==="J"||o.k==="I"||o.k==="F"),hol=c.pick(L_TIME,o=>/休み$/.test(o.jp)),v=c.v("行く");return c.S([[ph(1,[tW("来週"),tP("top")]),ph(0,[tW(hol.jp.replace(/に$/,"")),tV("です"),tP("kara"),tC("、")])],[c.top(s),ph(1,[tW(d.jp),tP("dest")],"d"),ph(0,c.pred(v,"pres"))]],`La settimana prossima ${hol.jp==="夏休み"?"ci sono le vacanze estive":"ci sono le vacanze invernali"}, quindi ${itJ(sIt(s),itVerb(v.it,"pres",s),d.a)}.`)}
+ if(k===2){const p=c.pick(L_PL,o=>"レストラン すし屋 喫茶店".includes(o.jp)),v=c.v("来る");c.need(3);return c.S([[ph(1,[tW("この"),tW(p.jp),tP("top")]),ph(0,[tW("おいしい"),tV("です"),tP("kara"),tC("、")])],[ph(1,[tW("また")]),ph(0,c.pred(v,"pres"))]],`${itCap(itQuesto(p.n.replace(/^(il|la|lo|l’) ?/,""),p.n.startsWith("la")?"f":"m"))} è buono, quindi ci tornerò.`)}
+ const v=c.v("勉強"),l=c.pick(L_LANG,o=>o.jp!=="英語");return c.S([[ph(0,[tW(l.jp),tP("gen"),tW("学生"),tV("です"),tP("kara"),tC("、")])],[ph(1,[tW("毎日")]),ph(1,[tW(l.jp),tP("gen"),tW("勉強"),tP("obj")]),ph(0,[tV("します")])]],`Sono uno studente di ${l.it}, quindi studio ${l.def} ogni giorno.`)});
+TT("u5_gaq",5,c=>{const p=c.pick(L_PPL),d=c.dest(o=>(o.k||"L")!=="F"),v=c.v("行く");c.g("が e は: dove cade l’attenzione");
+ return c.S([{sp:"A",ph:[ph(1,[tW("誰"),tP("gaq")]),ph(1,[tW(d.jp),tP("dest")]),ph(0,[tV("行きます"),tP("q")])]},{sp:"B",ph:[ph(1,[tW(p.jp),tP("gaq")]),ph(0,[tV("行きます")])]}],`— Chi va ${d.a}? — Ci va ${p.it}.`,{dlg:1})});
+TT("u5_hour",5,c=>{const s=c.subj(.3),key=trPick(["出かける","起きる","寝る"]),v=c.v(key),f=c.tense(),tm=c.coin(.5)?c.time(f,{noHour:1,noNi:1}):null,h=c.pick(L_HOUR);c.need(5);
+ const P={t:tm&&tm.it,s:sIt(s),v:itVerb(v.it,f,s),h:h.it};return c.S([c.top(s),tm&&c.timePh(tm),ph(1,[tW(h.jp),tP("time")],"h"),ph(0,c.pred(v,f))],itSent(P),{P})});
+TT("u5_kariru",5,c=>{const s=c.subj(.3),p=c.pick(L_PPL,o=>o.jp!==s.jp),o=c.pick(L_BORROW),v=c.v("借りる"),f=c.tense();
+ return c.S([c.top(s),ph(1,[tW(p.jp),tP("tgt")]),ph(1,[tW(o.jp),tP("obj")],"o"),ph(0,c.pred(v,f))],itSent({s:sIt(s),v:itVerb(v.it,f,s),o:o.it,x:"da "+p.it}))});
+TT("u5_tokubetsu",5,c=>{const s=c.subj(.3),v=c.v("着る"),f=c.tense({noPast:1}),tm=c.coin(.5)?c.time(f,{noHour:1}):null;c.g("特別: un altro tipo di aggettivo");
+ return c.S([c.top(s),tm&&c.timePh(tm),ph(1,[tW("特別な"),tW("服"),tP("obj")]),ph(0,c.pred(v,f))],itSent({t:tm&&tm.it,s:sIt(s),v:itVerb(v.it,f,s),o:"un vestito speciale"}))});
+// UNITÀ 6
+TT("u6_plc",6,c=>{const s=c.subj(.2),a=c.act({pl:1});if(!a.pls.length)throw TR_FAIL;const pl=trPick(a.pls),f=c.tense(),tm=c.coin(.55)?c.time(f):null;
+ const P={t:tm&&tm.it,s:sIt(s),v:itVerb(a.v.it,f,s),o:a.o&&a.o.it,p:pl.a};
+ return c.S([c.top(s),tm&&c.timePh(tm),ph(1,[tW(pl.jp),tP("plc")],"p"),c.objPh(a.v,a.o),ph(0,c.pred(a.v,f))],itSent(P),{P})});
+TT("u6_with",6,c=>{const s=c.subj(.25),cp=c.comp(s),f=c.tense({aff:1}),tm=c.coin(.6)?c.time(f):null;
+ if(c.coin(.5)){const d=c.dest(),m=c.coin(.3)?c.mean(d):null,v=c.v("行く");const P={t:tm&&tm.it,s:sIt(s),v:itVerb(v.it,f,s),d:d.a,m:m&&m.it,c:cp.it};
+  return c.S([c.top(s),tm&&c.timePh(tm),ph(1,[tW(cp.jp),tP("with")],"c"),ph(1,[tW(d.jp),tP("dest")],"d"),m&&ph(1,[tW(m.jp),tP("mean")],"m"),ph(0,c.pred(v,f))],itSent(P),{P})}
+ const a=c.act({pl:1});if(!a.pls.length)throw TR_FAIL;const pl=trPick(a.pls);const P={t:tm&&tm.it,s:sIt(s),v:itVerb(a.v.it,f,s),o:a.o&&a.o.it,p:pl.a,c:cp.it};
+ return c.S([c.top(s),tm&&c.timePh(tm),ph(1,[tW(cp.jp),tP("with")],"c"),ph(1,[tW(pl.jp),tP("plc")],"p"),c.objPh(a.v,a.o),ph(0,c.pred(a.v,f))],itSent(P),{P})});
+TT("u6_hitori",6,c=>{const s=c.subj(.3),f=c.coin(.6)?"past":"pres",d=c.dest(),v=c.v("行く"),tm=c.coin(.5)?c.time(f,{noHour:1}):null;c.need(6);
+ return c.S([c.top(s),tm&&c.timePh(tm),ph(1,[tW("一人で")]),ph(1,[tW(d.jp),tP("dest")],"d"),ph(0,c.pred(v,f))],itSent({t:tm&&tm.it,s:sIt(s),v:itVerb(v.it,f,s),d:d.a,x:s.g==="f"?"da sola":s.g==="x"?"da solo/a":"da solo"}))});
+TT("u6_ga",6,c=>{const s=c.subj(.3),a=c.act({v:["読む","食べる","飲む","見る","聞く","買う"]});const [o1,o2]=c.pickN(ACT.find(x=>x.v===a.v.d).o,2),past=c.maxU>=6&&c.coin(.35),f1=past?"past":"pres",f2=past?"pneg":"neg";c.g("が: “ma” tra due frasi");
+ return c.S([[c.top(s),ph(1,[tW(o1.jp),tP("contr")]),ph(0,[...c.pred(a.v,f1),tP("but"),tC("、")])],[ph(1,[tW(o2.jp),tP("contr")]),ph(0,c.pred(a.v,f2))]],`${itSent({s:sIt(s),v:itVerb(a.v.it,f1,s),o:o1.it},"")}, ma ${itVerb(a.v.it,f2,s)} ${o2.it}.`)});
+TT("u6_mou",6,c=>{const s=c.pick(L_PPL),a=c.act({v:["読む","食べる","見る","買う","書く","昼ごはん","晩ごはん","宿題","朝ごはん"]}),yes=c.coin(.5);c.g("もう e まだです");
+ return c.S([{sp:"A",ph:[c.top(s),ph(1,[tW("もう")]),c.objPh(a.v,a.o),ph(0,[...c.pred(a.v,"past"),tP("q")])]},{sp:"B",ph:yes?[ph(0,[tW("はい、"),tW("もう")]),ph(0,c.pred(a.v,"past"))]:[ph(0,[tW("いいえ、"),tV("まだです")])]}],`— ${s.it} ${itVerb(a.v.it,"past",s).replace(/^(ha|è|si è) /,"$1 già ")}${a.o?" "+a.o.it:""}? — ${yes?"Sì, l’ha già fatto.":"No, non ancora."}`,{dlg:1})});
+TT("u6_ninzu",6,c=>{const h=c.pick(L_HAS,o=>o.a&&o.x.some(x=>x.u<=c.maxU&&/^(dei|degli) /.test(x.it))),x=c.pick(h.x,o=>/^(dei|degli) /.test(o.it)),n=trPick([["二人","due"],["三人","tre"],["四人","quattro"],["五人","cinque"],["十人","dieci"]]);c.g("Contare le persone: ～人");
+ return c.S([ph(1,[...h.t.map(w=>tW(w)),tP("exl")]),ph(1,[tW(x.jp),tP("exs"),tW(n[0])]),ph(0,[tV("います")])],`${itCap(h.it)} ci sono ${n[1]} ${x.it.replace(/^(dei|degli) /,"")}.`)});
+TT("u6_toka",6,c=>{const s=c.subj(.3),pl=c.pick(L_PL,o=>"デパート 市場 スーパー".includes(o.jp)),cand=L_BUY.filter(o=>o.pl.includes(pl.jp)),[a,b]=c.pickN(cand,2),v=c.v("買う");c.g("とか: elenco non completo");
+ return c.S([c.top(s),ph(1,[tW(pl.jp),tP("plc")],"p"),ph(1,[tW(a.jp),tP("toka"),tW(b.jp),tP("toka"),tP("obj")]),ph(0,c.pred(v,"past"))],itSent({s:sIt(s),v:itVerb(v.it,"past",s),o:`${a.it}, ${b.it} e così via`,p:pl.a}))});
+TT("u6_deshita",6,c=>{const k=trPick([["雨","pioveva","non pioveva"],["休み","era festa","non era festa"],["いい天気","c’era bel tempo","non c’era bel tempo"]]),t=c.pick(L_TIME,o=>o.t==="x"),neg=c.coin(.3);c.g("です al passato: でした・ではありませんでした");
+ return c.S([ph(1,[tW(t.jp),tP("top")]),ph(0,[tW(k[0]),tV(neg?"ではありませんでした":"でした")])],`${itCap(t.it)} ${neg?k[2]:k[1]}.`)});
+TT("u6_au",6,c=>{const s=c.subj(.3),p=c.pick(L_PPL,o=>o.jp!==s.jp),v=c.v("会う"),f=c.tense({aff:1}),pl=c.coin(.6)?c.pick(L_PL,o=>"駅 喫茶店 大学 カフェ 公園 レストラン".includes(o.jp)):null,tm=c.coin(.5)?c.time(f):null;
+ return c.S([c.top(s),tm&&c.timePh(tm),pl&&ph(1,[tW(pl.jp),tP("plc")],"p"),ph(1,[tW(p.jp),tP("meet")]),ph(0,c.pred(v,f))],itSent({t:tm&&tm.it,s:sIt(s),v:itVerb(v.it,f,s),o:p.it,p:pl&&pl.a}))});
+TT("u6_hairu",6,c=>{const s=c.subj(.3),v=c.v("入る"),f=c.tense({aff:1}),p=c.pick(lxs([["温泉","fa il bagno alle terme","ha fatto il bagno alle terme"],["教室","entra in aula","è entrat* in aula"],["部屋","entra nella stanza","è entrat* nella stanza"]],["jp","pres","past"]));
+ const it=(f==="past"?p.past:p.pres).replace("*",s.g==="f"?"a":"o");return c.S([c.top(s),ph(1,[tW(p.jp),tP("into")]),ph(0,c.pred(v,f))],itCap(itJ(sIt(s),s.me?it.replace(/^fa /,"faccio ").replace(/^entra /,"entro ").replace(/^ha /,"ho ").replace(/^è /,"sono "):it))+".")});
+// UNITÀ 7
+const adjIt=(a,g)=>g==="f"?a.f:a.m;
+TT("u7_adj",7,c=>{c.g("Coniugazione degli aggettivi");const f=trPick(["pres","pres","neg","past","pneg"]);
+ if(c.coin(.3)){const s=c.subj(.35),a=c.pick(L_ADJ,o=>"忙しい 元気 ひま 悲しい うれしい".includes(o.jp)),tm=f.startsWith("p")&&f!=="pres"?c.time("past",{noHour:1,noNi:1}):null;
+  return c.S([c.top(s),tm&&ph(1,[tW(tm.jp)]),ph(0,[f==="pres"&&c.coin(.4)&&tW("とても"),tV(adjF(a,f))])],itSent({t:tm&&tm.it,s:sIt(s),v:itCop(f,s.me),x:adjIt(a,s.g==="f"?"f":"m")}))}
+ const n=c.pick(L_ADJN),d=c.pick(L_ADEM),a=c.pick(L_ADJ,o=>n.a.includes(o.jp)),very=f==="pres"&&c.coin(.35),not=f==="neg"&&c.coin(.35);if(not)c.need(7);
+ return c.S([ph(1,[tW(d.jp),tW(n.jp),tP("top")]),ph(0,[very&&tW("とても"),not&&tW("あまり"),tV(adjF(a,f))])],`${itCap(d.f(n.n,n.g))} ${itCop(f,0)} ${very?"molto ":not?"molto ":""}${adjIt(a,n.g)}.`)});
+const L_CITYADJ={京都:"きれい 静か 有名",東京:"にぎやか 有名",大阪:"にぎやか",ローマ:"きれい 有名 にぎやか",ヴェネツィア:"きれい 有名",フィレンツェ:"きれい 有名",ミラノ:"にぎやか 便利",ナポリ:"にぎやか",奈良:"静か きれい",神戸:"きれい"};
+TT("u7_attr",7,c=>{const ct=c.pick(L_CITY,o=>L_CITYADJ[o.jp]),a=c.pick(L_ADJ,o=>L_CITYADJ[ct.jp].includes(o.jp)),q=c.coin(.25);c.g("Funzione attributiva e predicato aggettivale");
+ return c.S([c.topW(ct.jp),ph(0,[q?tW("どんな"):tW(adjF(a,"attr")),tW("町"),tV("です"),q&&tP("q")])],q?`Che tipo di città è ${ct.n}?`:`${ct.n} è una città ${a.f}.`)});
+TT("u7_attrN",7,c=>{const n=c.pick(L_ADJN),a=c.pick(L_ADJ,o=>n.a.includes(o.jp)),d=c.pick(L_DEM);c.g("Funzione attributiva e predicato aggettivale");
+ return c.S([ph(1,[tW(d.jp),tP("top")]),ph(0,[tW(adjF(a,"attr")),tW(n.jp),tV("です")])],`${itCap(d.it)} è ${itInd(n.n,n.g)} ${adjIt(a,n.g)}.`)});
+function trCmpPair(c){const gr=c.pick(L_CMP.map(g=>({...g,u:Math.max(trADJ(g.a).u,...g.items.slice(0,2).map(j=>(g.src.find(o=>o.jp===j)||{u:1}).u))})),g=>g.items.filter(j=>(g.src.find(o=>o.jp===j)||{u:99}).u<=c.maxU).length>=2);
+ const items=gr.items.filter(j=>(gr.src.find(o=>o.jp===j)||{u:99}).u<=c.maxU);const i=Math.floor(Math.random()*(items.length-1)),j=i+1+Math.floor(Math.random()*(items.length-1-i));const A=trNoun(gr.src,items[i]),B=trNoun(gr.src,items[j]);[A,B].forEach(o=>c.need(o.u));
+ const rev=gr.r&&c.coin(.4);const adj=trADJ(rev?gr.r:gr.a);c.need(adj.u);return rev?{A:B,B:A,adj}:{A,B,adj}}
+TT("u7_yori",7,c=>{const {A,B,adj}=trCmpPair(c);c.g("Comparativo: AはBより");
+ return c.S([c.topW(A.jp),ph(1,[tW(B.jp),tP("yori")]),ph(0,[tV(adjF(adj,"pres"))])],`${itCap(A.n)} è più ${adjIt(adj,A.g)} ${itPrep("di",B.n)}.`)});
+TT("u7_hodo",7,c=>{const {A,B,adj}=trCmpPair(c);c.g("ほど + negativo: non così … come");
+ return c.S([c.topW(B.jp),ph(1,[tW(A.jp),tP("hodo")]),ph(0,[tV(adjF(adj,"neg"))])],`${itCap(B.n)} non è ${adjIt(adj,B.g)} quanto ${A.n}.`)});
+TT("u7_onaji",7,c=>{const n=c.pick(L_ADJN),a=c.pick(L_ADJ,o=>n.a.includes(o.jp));c.g("Uguaglianza: と同じくらい");c.need(2);
+ return c.S([ph(1,[tW("この"),tW(n.jp),tP("top")]),ph(1,[tW("あの"),tW(n.jp),tP("onaji")]),ph(0,[tW("同じくらい"),tV(adjF(a,"pres"))])],`${itCap(itQuesto(n.n,n.g))} è ${adjIt(a,n.g)} quanto quell${n.g==="f"?"a":"o"}.`)});
+const L_SUP=[{t:["日本料理"],it:"Tra i piatti giapponesi",x:"すきやき てんぷら さしみ やきとり",a:"好き",u:7},{t:["イタリア","の","町"],it:"Tra le città italiane",x:"ローマ ミラノ ナポリ フィレンツェ ヴェネツィア",a:"きれい 好き",u:7},{t:["家族"],it:"Nella mia famiglia",x:"父 母",a:"忙しい",u:7},{t:["クラス"],it:"Nella classe",x:"ルカさん ミラさん マリアさん アンナさん トムさん ケンさん",a:"まじめ 元気",u:7,noNaka:1}];
+const L_PPLIT=Object.fromEntries([...L_PPL.map(p=>[p.jp,p.it]),["父","mio padre"],["母","mia madre"],["すきやき","il sukiyaki"],["てんぷら","la tempura"],["さしみ","il sashimi"],["やきとり","lo yakitori"],["ローマ","Roma"],["ミラノ","Milano"],["ナポリ","Napoli"],["フィレンツェ","Firenze"],["ヴェネツィア","Venezia"]]);
+const L_GEN={ミラさん:"f",マリアさん:"f",アンナさん:"f",母:"f",ローマ:"f",ミラノ:"f",ナポリ:"f",フィレンツェ:"f",ヴェネツィア:"f",てんぷら:"f"};
+TT("u7_ichiban",7,c=>{const sp=c.pick(L_SUP),x=trPick(sp.x.split(" ").filter(w=>trKanjiUnit(w)<=c.maxU&&(L_CITY.concat(L_FOOD).find(o=>o.jp===w)||{u:1}).u<=c.maxU)),ak=trPick(sp.a.split(" "));if(!x)throw TR_FAIL;c.g("Superlativo: で一番 e とても");
+ const like=ak==="好き";if(like)c.g("好き: piacere");const a=like?null:trADJ(ak);if(a)c.need(a.u);const g=L_GEN[x]||"m";
+ return c.S([ph(1,[...sp.t.map(w=>w==="の"?tP("gen"):tW(w)),!sp.noNaka&&tP("gen"),!sp.noNaka&&tW("中"),tP("ichi")]),ph(1,[tW(x),tP(like?"suki":"supga")]),ph(0,[tW("一番"),tV(like?"好きです":adjF(a,"pres"))])],like?`${sp.it}, ${L_PPLIT[x]} è quello che mi piace di più.`.replace(/è quello/,g==="f"?"è quella":"è quello"):`${sp.it}, ${L_PPLIT[x]} è ${g==="f"?"la":"il"} più ${adjIt(a,g)}.`)});
+const L_LIKE=[...L_HOB.map(o=>({jp:o.jp,it:o.it,u:o.u})),...L_FOOD.filter(o=>/^(il|la|lo|l’|i|gli|le) /.test(o.it)).map(o=>({jp:o.jp,it:o.it,u:o.u})),...lxs([["日本語","il giapponese"],["お好み焼き","l’okonomiyaki"],["スポーツ","lo sport",9]],["jp","it","u"])];
+TT("u7_suki",7,c=>{const s=c.subj(.4),n=c.pick(L_LIKE),k=trPick(["pos","pos","neg","dai"]);c.g("好き: piacere");const pl=itPlural(n.it);
+ const pred=k==="neg"?[tW("あまり"),tV("好きではありません")]:k==="dai"?[tV("大好きです")]:[tV("好きです")];
+ const who=s.me?"mi":"a "+s.it;const it=k==="neg"?`${s.me?"Non mi":"A "+s.it+" non"} piac${pl?"ciono":"e"} molto ${n.it}`:`${s.me?"Mi":"A "+s.it} piac${pl?"ciono":"e"} ${k==="dai"?"moltissimo ":""}${n.it}`;
+ return c.S([c.top(s),ph(1,[tW(n.jp),tP("suki")]),ph(0,pred)],it+".")});
+TT("u7_kute",7,c=>{const n=c.pick(L_ADJN,o=>o.a.filter(j=>(trADJ(j)||{u:99}).u<=c.maxU).length>=2),d=c.pick(L_ADEM),[a,b]=c.pickN(L_ADJ,2,o=>n.a.includes(o.jp));if(trAntonyms(a.jp,b.jp))throw TR_FAIL;c.g("Unire gli aggettivi: ～くて・～で");
+ return c.S([ph(1,[tW(d.jp),tW(n.jp),tP("top")]),ph(0,[tW(adjF(a,"te")),tV(adjF(b,"pres"))])],`${itCap(d.f(n.n,n.g))} è ${adjIt(a,n.g)} e ${adjIt(b,n.g)}.`)});
+TT("u7_no",7,c=>{const n=c.pick(L_LIKE);c.g("の al posto del nome");c.need(7);return c.S([ph(1,[tW("一番"),tW("好きな"),tW("の"),tP("top")]),ph(0,[tW(n.jp),tV("です")])],`Quello che mi piace di più è ${n.it}.`)});
+TT("u7_okuru",7,c=>{const s=c.subj(.3),p=c.pick([...L_PPL.filter(o=>o.jp!==s.jp).map(o=>({jp:o.jp,it:"a "+o.it,u:o.u})),...lx2([["友だち","a un amico",2],["先生","al professore",1],["両親","ai miei genitori",5],["母","a mia madre",4]])].filter(o=>!/^(両親|母)$/.test(o.jp)||s.me)),key=trPick(["書く","送る"]),v=c.v(key),o=c.pick(L_WRITE,x=>key==="書く"?"手紙 はがき メール".includes(x.jp):"手紙 はがき メール".includes(x.jp)),f=c.tense({aff:1}),tm=c.coin(.4)?c.time(f):null;
+ return c.S([c.top(s),tm&&c.timePh(tm),ph(1,[tW(p.jp),tP("tgt")]),ph(1,[tW(o.jp),tP("obj")],"o"),ph(0,c.pred(v,f))],itSent({t:tm&&tm.it,s:sIt(s),v:itVerb(v.it,f,s),o:o.it,x:p.it}))});
+function lx2(rows){return lxs(rows,["jp","it","u"])}
+// UNITÀ 8
+TT("u8_te",8,c=>{c.g("La forma in て: azioni in sequenza");const s=c.subj(.3),f=c.tense({aff:1}),tm=c.coin(.5)?c.time(f,{noHour:1}):null;
+ if(c.coin(.35)){const R=["起きる","シャワー","朝ごはん"].map(k=>c.v(k)),last=c.coin(.5);const steps=last?[...R.slice(1),c.v("行く")]:R;c.need(8);
+  const it=steps.map(v=>itVerb(v.it,"pres",s)+(v.d==="行く"?" all’università":""));
+  return c.S([[c.top(s),ph(1,[tW("毎朝")]),c.objPh(steps[0]),ph(0,[tV(jvF(steps[0],"te")),tC("、")])],[c.objPh(steps[1]),ph(0,[tV(jvF(steps[1],"te")),tC("、")])],[steps[2].d==="行く"?ph(1,[tW("大学"),tP("dest")]):c.objPh(steps[2]),ph(0,c.pred(steps[2],"pres"))]],itCap(itJ("ogni mattina",sIt(s),it[0]+",",it[1],"e",it[2]))+".")}
+ const a=c.act({pl:1});if(!a.pls.length)throw TR_FAIL;const pl=trPick(a.pls.filter(p=>!/^(家|うち)$/.test(p.jp)).concat([])),v=c.v("行く");if(!pl)throw TR_FAIL;
+ return c.S([[c.top(s),tm&&c.timePh(tm),ph(1,[tW(pl.jp),tP("dest")],"d"),ph(0,[tV(v.te),tC("、")])],[c.objPh(a.v,a.o),ph(0,c.pred(a.v,f))]],`${itSent({t:tm&&tm.it,s:sIt(s),v:itVerb(v.it,f,s),d:pl.a},"")} e ${itJ(itVerb(a.v.it,f,s),a.o&&a.o.it)}.`)});
+TT("u8_tai",8,c=>{const s=L_ME;c.g("Desiderativo: ～たい（です）");const q=c.coin(.25);
+ if(c.coin(.4)){const d=c.dest(),v=c.v("行く");return c.S([c.top(s),ph(1,[tW(d.jp),tP("dest")],"d"),ph(0,c.pred(v,"tai"))],`Voglio andare ${d.a}.`)}
+ const a=c.act({obj:1,v:["読む","食べる","飲む","見る","聞く","買う"]});return c.S([c.top(s),ph(1,[tW(a.o.jp),tP("obj",undefined,["が"])],"o"),ph(0,c.pred(a.v,"tai"))],`Voglio ${a.v.it.inf} ${a.o.it}.`)});
+TT("u8_dochira",8,c=>{const {A,B,adj}=trCmpPair(c);c.g("Confronto tra due: どちら e の方が");
+ return c.S([{sp:"A",ph:[ph(1,[tW(A.jp),tP("and"),tW(B.jp),tP("and")]),ph(1,[tW("どちら"),tP("gaq")]),ph(0,[tV(adjF(adj,"pres")),tP("q")])]},{sp:"B",ph:[ph(1,[tW(A.jp),tP("gen"),tW("方"),tP("hou")]),ph(0,[tV(adjF(adj,"pres"))])]}],`— ${A.city?"Quale città":"Che cosa"} è più ${A.city?adj.f:adj.m}, ${A.n} o ${B.n}? — ${itCap(A.n)}.`,{dlg:1})});
+TT("u8_noru",8,c=>{const s=c.subj(.3),m=c.pick(L_MEAN,o=>o.jp!=="車"),v=c.v("乗る"),f=c.tense({aff:1}),pl=m.jp.match(/電車|地下鉄|新幹線/)&&c.coin(.6)?trPL("駅"):null;
+ return c.S([c.top(s),pl&&ph(1,[tW(pl.jp),tP("plc")],"p"),ph(1,[tW(m.jp),tP("ride")]),ph(0,c.pred(v,f))],itSent({s:sIt(s),v:itVerb(v.it,f,s),o:m.n,p:pl&&pl.a}))});
+const L_EVT=lxs([["学会","il convegno","大学 ホテル"],["講演会","la conferenza","大学 美術館"],["コンサート","il concerto","劇場 大学"],["パーティー","la festa","レストラン ホテル"],["夕食会","la cena sociale","レストラン ホテル"],["試合","la partita","大学 学校"]],["jp","it","pl"]).map(o=>({...o,pl:o.pl.split(" ")}));
+TT("u8_aru",8,c=>{const e=c.pick(L_EVT),pl=c.pick(e.pl.map(trPL).filter(Boolean)),tm=c.coin(.5)?c.time("pres",{noHour:1}):null;c.g("で con あります: svolgersi");
+ if(c.coin(.5))return c.S([tm&&c.timePh(tm),c.topW(e.jp),ph(1,[tW(pl.jp),tP("aru")],"p"),ph(0,[tV("あります")])],itSent({t:tm&&tm.it,s:e.it,v:"si tiene",p:pl.a}));
+ return c.S([tm&&c.timePh(tm),ph(1,[tW(pl.jp),tP("aru")],"p"),ph(1,[tW(e.jp),tP("exs")]),ph(0,[tV("あります")])],itSent({t:tm&&tm.it,p:pl.a,v:"c’è",o:itInd(e.it.replace(/^(il|la|lo|l’) ?/,""),e.it.startsWith("la")?"f":"m")}))});
+TT("u8_kai",8,c=>{const s=c.subj(.3),n=trPick([["一回","una volta"],["二回","due volte"],["三回","tre volte"],["四回","quattro volte"]]),f="pres";c.g("～回: quante volte");c.need(5);
+ if(c.coin(.5)){const d=c.dest(o=>"ジム 図書館 映画館 公園 プール 大学 レストラン 美術館 喫茶店".includes(o.jp)),v=c.v("行く");return c.S([c.top(s),ph(1,[tW("一週間"),tP("per"),tW(n[0])]),ph(1,[tW(d.jp),tP("dest")],"d"),ph(0,c.pred(v,f))],itSent({s:sIt(s),v:itVerb(v.it,f,s),d:d.a,x:n[1]+" alla settimana"}))}
+ const a=c.act({v:["テニス","サッカー","さんぽ","料理","アルバイト","練習","そうじ","買いもの"]});return c.S([c.top(s),ph(1,[tW("一週間"),tP("per"),tW(n[0])]),c.objPh(a.v),ph(0,c.pred(a.v,f))],itSent({s:sIt(s),v:itVerb(a.v.it,f,s),x:n[1]+" alla settimana"}))});
+const L_CAUSE=[{t:[["熱","exs"],["あって"]],it3:"aveva la febbre",it1:"avevo la febbre",u:8},{t:[["忙しくて"]],it3:"era molto impegnat*",it1:"ero molto impegnat*",u:8},{t:[["風邪","obj"],["ひいて"]],it3:"ha preso l’influenza",it1:"ho preso l’influenza",u:9},{t:[["お腹","exs"],["痛くて"]],it3:"aveva mal di pancia",it1:"avevo mal di pancia",u:10}];
+TT("u8_tecause",8,c=>{const s=c.subj(.35),k=c.pick(L_CAUSE);c.g("La forma in て: causa");const e=trPick(["uni","home","hosp","party"]);let P2,it2;
+ if(e==="uni"){const v=c.v("行く");P2=[ph(1,[tW("大学"),tP("dest")]),ph(0,c.pred(v,"pneg"))];it2=itVerb(v.it,"pneg",s)+" all’università"}
+ else if(e==="home"){const v=c.v(c.maxU>=9?"寝る":"帰る");P2=v.d==="寝る"?[ph(1,[tW("うち"),tP("plc")]),ph(0,c.pred(v,"past"))]:[ph(1,[tW("うち"),tP("dest")]),ph(0,c.pred(v,"past"))];it2=v.d==="寝る"?(s.me?"sono rimasto/a a letto":"è rimast"+(s.g==="f"?"a":"o")+" a letto")+" a casa":itVerb(v.it,"past",s)+" a casa"}
+ else if(e==="hosp"){const v=c.v("行く");P2=[ph(1,[tW("病院"),tP("dest")]),ph(0,c.pred(v,"past"))];it2=itVerb(v.it,"past",s)+" in ospedale";c.need(4)}
+ else{const v=c.v("行く");P2=[ph(1,[tW("パーティー"),tP("dest")]),ph(0,c.pred(v,"pneg"))];it2=itVerb(v.it,"pneg",s)+" alla festa"}
+ if(k.t[0][0]==="忙しくて")c.need(7);
+ return c.S([[c.top(s),...k.t.map(([w,r])=>r?ph(1,[tW(w),tP(r)]):ph(0,[tV(w),tC("、")]))],P2],`${itCap(itJ(sIt(s),(s.me?k.it1:k.it3).replace("*",s.g==="f"?"a":"o")))}, quindi ${it2}.`)});
+TT("u8_oshieru",8,c=>{const s=c.subj(.3),p=c.pick(L_PPL,o=>o.jp!==s.jp),l=c.pick(L_LANG),v=c.v("教える"),f=c.tense({aff:1});
+ return c.S([c.top(s),ph(1,[tW(p.jp),tP("tgt")]),ph(1,[tW(l.jp),tP("obj")],"o"),ph(0,c.pred(v,f))],itSent({s:sIt(s),v:itVerb(v.it,f,s),o:l.def,x:"a "+p.it}))});
+TT("u8_tsuku",8,c=>{const s=c.subj(.3),h=c.pick(L_HOUR),d=c.dest(o=>"駅 大学 京都 大阪 東京 ローマ ミラノ ホテル 空港".includes(o.jp)),v=c.v("着く"),f=c.coin(.7)?"past":"pres";
+ const P={s:sIt(s),v:itVerb(v.it,f,s),d:d.a,h:h.it};return c.S([c.top(s),ph(1,[tW(h.jp),tP("time")],"h"),ph(1,[tW(d.jp),tP("arrive")]),ph(0,c.pred(v,f))],itSent(P),{P})});
+TT("u8_aruku",8,c=>{const s=c.subj(.3),v=c.v("歩く"),f=c.tense({aff:1}),R=trPick([["家","駅","da casa alla stazione"],["駅","大学","dalla stazione all’università"],["うち","公園","da casa al parco"]]);
+ return c.S([c.top(s),ph(1,[tW(R[0]),tP("from")]),ph(1,[tW(R[1]),tP("to")]),ph(0,c.pred(v,f))],itSent({s:sIt(s),v:itVerb(v.it,f,s),x:R[2]}))});
+// UNITÀ 9
+TT("u9_teiru",9,c=>{const s=c.subj(.2),a=c.act({pl:1});if(!a.pls.length)throw TR_FAIL;const pl=trPick(a.pls);
+ return c.S([c.top(s),ph(1,[tW("今")]),ph(1,[tW(pl.jp),tP("plc")],"p"),c.objPh(a.v,a.o),ph(0,c.pred(a.v,"teiru"))],itSent({t:"adesso",s:sIt(s),v:itVerb(a.v.it,"teiru",s),o:a.o&&a.o.it,p:pl.a}),{P:{t:"adesso",s:sIt(s),v:itVerb(a.v.it,"teiru",s),o:a.o&&a.o.it,p:pl.a}})});
+TT("u9_sumu",9,c=>{const s=c.subj(.3),ct=c.pick(L_CITY,o=>o.k!=="F"),v=c.v("住む");return c.S([c.top(s),ph(1,[tW(ct.jp),tP("live")],"p"),ph(0,c.pred(v,"teiru"))],itSent({s:sIt(s),v:s.me?"abito":"abita",p:ct.a}),{P:{s:sIt(s),v:s.me?"abito":"abita",p:ct.a}})});
+const L_TEKUDA=[[[["ここ","exl"],["名前","obj"]],"書く","Per favore, scriva qui il suo nome."],[[["この本","obj"]],"読む","Per favore, legga questo libro."],[[["この辞書","obj"]],"使う","Per favore, usi questo dizionario."],[[["この薬","obj"]],"飲む","Per favore, prenda questa medicina."],[[["明日"],["九時","time"],["大学","dest"]],"来る","Per favore, venga all’università domani alle nove."],[[["駅","plc"],["電車","ride"]],"乗る","Per favore, prenda il treno alla stazione."],[[["日本語","manner"],["レポート","obj"]],"書く","Per favore, scriva la relazione in giapponese."],[[["タクシー","obj"]],"呼ぶ","Per favore, chiami un taxi."]];
+TT("u9_tekuda",9,c=>{const [P,k,it]=trPick(L_TEKUDA),v=c.v(k);const ps=P.map(([w,r])=>{const ws=w.startsWith("この")?[tW("この"),tW(w.slice(2))]:[tW(w)];if(r==="time"||r==="dest"||r==="ride"||r==="plc"||r==="manner")c.need(ROLE[r].u);return ph(1,[...ws,r&&tP(r)])});ps.forEach(p=>p.t.forEach(t=>t.k==="w"&&c.need(trKanjiUnit(t.s))));if(P.some(p=>p[0]==="レポート"))c.need(6);
+ return c.S([...ps,ph(0,c.pred(v,"tekuda"))],it)});
+TT("u9_tekara",9,c=>{const s=c.subj(.35),a=c.act({v:["朝ごはん","昼ごはん","晩ごはん","シャワー","宿題","読む","そうじ","勉強"]});c.g("～てから: dopo che");const f=c.tense({aff:1});
+ let P2,it2;if(c.coin(.5)){const d=c.dest(o=>(o.k||"L")==="L"),v=c.v("行く");P2=[ph(1,[tW(d.jp),tP("dest")],"d"),ph(0,c.pred(v,f))];it2=itJ(itVerb(v.it,f,s),d.a)}else{const b=c.act({v:["テニス","さんぽ","買いもの","見る","聞く"].filter(k=>k!==a.v.key&&k!==a.v.d)});P2=[c.objPh(b.v,b.o),ph(0,c.pred(b.v,f))];it2=itJ(itVerb(b.v.it,f,s),b.o&&b.o.it)}
+ const pp=a.v.it.aux==="e"?"essere "+itAgr(a.v.it.pp,s.g):"aver "+a.v.it.pp;
+ return c.S([[c.top(s),c.objPh(a.v,a.o),ph(0,[tV(a.v.te+"から"),tC("、")])],P2],`Dopo ${pp}${a.o?" "+a.o.it:""}, ${sIt(s)?sIt(s)+" ":""}${it2}.`)});
+const L_TEMOII=[[["この","辞書"],"使う","usare questo dizionario"],[["この","パソコン"],"使う","usare questo computer"],[["この","本"],"借りる","prendere in prestito questo libro"],[["かさ"],"借りる","prendere in prestito l’ombrello"],[["ここ"],"食べる","mangiare qui",1],[["ここ"],"見る","guardare qui",1]];
+TT("u9_temoii",9,c=>{const [w,k,it,plc]=trPick(L_TEMOII.filter(r=>!r[3])),v=c.v(k);w.forEach(x=>c.need(trKanjiUnit(x)));
+ return c.S([ph(1,[...w.map(tW),tP(plc?"plc":"obj")]),ph(0,c.pred(v,"temoii"))],`Posso ${it}?`)});
+TT("u9_hoshii",9,c=>{const n=c.pick(L_ADJN,o=>"車 時計 かばん パソコン 辞書".includes(o.jp)),a=c.pick(L_ADJ,o=>"新しい 安い きれい".includes(o.jp)&&n.a.includes(o.jp));c.g("～がほしいです: volere qualcosa");
+ return c.S([ph(1,[tW("私"),tP("top")]),ph(1,[tW(adjF(a,"attr")),tW(n.jp),tP("hoshii")]),ph(0,[tV("ほしいです")])],`Vorrei ${itInd(n.n,n.g)} ${adjIt(a,n.g)}.`)});
+const L_TRY=[["食べる","さしみ","il sashimi"],["食べる","すきやき","il sukiyaki"],["食べる","てんぷら","la tempura"],["食べる","お好み焼き","l’okonomiyaki"],["見る","歌舞伎","il kabuki"],["見る","オペラ","un’opera"],["読む","小説","un romanzo giapponese",1],["読む","まんが","i manga giapponesi",1],["飲む","酒","il sakè"]];
+TT("u9_temiru",9,c=>{const [k,o,it,jp]=trPick(L_TRY),v=c.v(k);c.need(trKanjiUnit(o));if(o==="お好み焼き")c.need(7);const objT=jp?[tW("日本"),tP("gen"),tW(o),tP("obj")]:[tW(o),tP("obj")];
+ return c.S([ph(1,[tW("私"),tP("top")]),ph(1,objT,"o"),ph(0,c.pred(v,"temiru"))],`Provo a ${v.it.inf} ${it}.`)});
+TT("u9_manner",9,c=>{const s=c.subj(.3),l=c.pick(L_LANG),v=c.v("書く"),o=c.pick(L_WRITE,x=>"手紙 メール 論文 レポート 日記".includes(x.jp)),f=c.tense();
+ return c.S([c.top(s),ph(1,[tW(l.jp),tP("manner")]),ph(1,[tW(o.jp),tP("obj")],"o"),ph(0,c.pred(v,f))],itSent({s:sIt(s),v:itVerb(v.it,f,s),o:o.it,x:"in "+l.it}))});
+const L_OOPS=[["食べる","お菓子","tutti i dolci"],["食べる","ケーキ","tutta la torta"],["飲む","ワイン","tutto il vino"],["飲む","ジュース","tutto il succo di frutta"]];
+TT("u9_shimau",9,c=>{const [k,o,it]=trPick(L_OOPS),v=c.v(k),s=c.subj(.5);c.need(trKanjiUnit(o));if(o==="お菓子")c.need(8);if(o==="ジュース")c.need(7);
+ return c.S([c.top(s),ph(1,[tW(o),tP("obj")],"o"),ph(0,c.pred(v,"shimau"))],itSent({s:sIt(s),v:itVerb(v.it,"shimau",s),o:it}))});
+// UNITÀ 10
+TT("u10_takoto",10,c=>{const s=c.subj(.35),neg=c.coin(.3),f=neg?"takotoN":"takoto";
+ if(c.coin(.45)){const d=c.dest(o=>(o.k||"L")!=="L"),v=c.v("行く");return c.S([c.top(s),ph(1,[tW(d.jp),tP("dest")],"d"),ph(0,c.pred(v,f))],itSent({s:sIt(s),v:(neg?(s.me?"non sono mai stat":"non è mai stat"):(s.me?"sono già stat":"è già stat"))+(s.g==="f"?"a":s.g==="x"?"o/a":"o"),d:d.a}))}
+ const a=c.act({obj:1,v:["食べる","飲む","見る","読む"]});return c.S([c.top(s),ph(1,[tW(a.o.jp),tP("obj")],"o"),ph(0,c.pred(a.v,f))],itSent({s:sIt(s),v:itVerb(a.v.it,f,s),o:a.o.it}))});
+const L_ADVICE=[[[["病院","dest"]],"行く","andare in ospedale"],[[],"薬","prendere la medicina"],[[["毎日"],["日本語","obj"]],"勉強する","studiare il giapponese ogni giorno"],[[["この","本","obj"]],"読む","leggere questo libro"],[[["うち","plc"]],"寝る","dormire a casa"],[[["タクシー","obj"]],"呼ぶ","chiamare un taxi"],[[["やさい","obj"]],"食べる","mangiare la verdura"]];
+TT("u10_tahou",10,c=>{const [P,k,it]=trPick(L_ADVICE),v=c.v(k);const ps=P.map(t=>{const r=t.length>1&&ROLE[t[t.length-1]]?t[t.length-1]:null,ws=r?t.slice(0,-1):t;ws.forEach(w=>c.need(trKanjiUnit(w)));return ph(1,[...ws.map(tW),r&&tP(r)])});const y=c.coin(.4);
+ return c.S([...ps,v.obj&&c.objPh(v),ph(0,[...c.pred(v,"tahou"),y&&tP("yo")])],`È meglio ${it}.`)});
+TT("u10_tari",10,c=>{const s=c.subj(.4),tm=c.pick(L_TIME,o=>/^(週末|日曜日|夏休み|冬休み)$/.test(o.jp)),past=c.coin(.4);c.g("～たり～たりします: elencare azioni");
+ const pool=["読む","見る","聞く","テニス","サッカー","さんぽ","料理","買いもの","そうじ","宿題"].filter(k=>VB[k]&&VB[k].u<=c.maxU),[k1,k2]=trShuf(pool);if(!k2)throw TR_FAIL;const a=c.act({v:[k1]}),b=c.act({v:[k2]});
+ const f=past?"past":"pres",sv=c.v("する");
+ return c.S([[c.top(s),c.timePh(tm),c.objPh(a.v,a.o),ph(0,[tV(a.v.ta+"り"),tC("、")])],[c.objPh(b.v,b.o),ph(0,[tV(b.v.ta+"り"),tV(jvF(sv,f))])]],itSent({t:tm.it,s:sIt(s),v:`${itJ(itVerb(a.v.it,f,s),a.o&&a.o.it)}, ${itJ(itVerb(b.v.it,f,s),b.o&&b.o.it)} e così via`}))});
+TT("u10_naru",10,c=>{const j=c.pick(L_JOB,o=>"医者 先生 教師 研究者 作家 選手 エンジニア".includes(o.jp)),v=c.v("行く");c.g("～になります・～になりたいです");c.need(10);
+ if(c.coin(.55))return c.S([ph(1,[tW("私"),tP("top")]),ph(1,[tW(j.jp),tP("naru")]),ph(0,[tV("なりたいです")])],`Voglio diventare ${j.m}.`);
+ const s=c.pick(L_PPL);return c.S([c.top(s),ph(1,[tW(j.jp),tP("naru")]),ph(0,[tV("なりました")])],`${s.it} è diventat${s.g==="f"?"a":"o"} ${s.g==="f"?j.f:j.m}.`)});
+const L_FAMOUS=[["京都","寺","per i templi"],["奈良","寺","per i templi"],["ナポリ","ピザ","per la pizza"],["大阪","お好み焼き","per l’okonomiyaki"],["広島","お好み焼き","per l’okonomiyaki"],["フィレンツェ","美術館","per i musei"],["ヴェネツィア","カーニバル","per il carnevale"],["神戸","肉","per la carne"]];
+TT("u10_dereason",10,c=>{const [ct,n,it]=trPick(L_FAMOUS),C=L_CITY.find(o=>o.jp===ct);c.need(C.u);c.need(trKanjiUnit(n));c.need(10);
+ return c.S([c.topW(ct),ph(1,[tW(n),tP("dereason")]),ph(0,[tV("有名です")])],`${C.n} è famosa ${it}.`)});
+// UNITÀ 11
+const L_NAIDE=[[[["ここ","plc"]],"食べる","mangiare qui"],[[["図書館","plc"]],"食べる","mangiare in biblioteca"],[[["教室","plc"],["携帯電話","obj"]],"使う","usare il cellulare in aula"],[[["授業中"],["携帯電話","obj"]],"使う","usare il cellulare durante la lezione",1],[[["ここ","plc"],["写真","obj"]],"見る","guardare le foto qui"],[[["あまり"],["心配"]],"する","preoccuparsi troppo"]];
+TT("u11_naide",11,c=>{const [P,k,it,chuu]=trPick(L_NAIDE.filter(r=>r[1]!=="する")),v=c.v(k);if(chuu)c.g("中: in corso, durante");const ps=P.map(([w,r])=>{c.need(trKanjiUnit(w));return ph(1,[tW(w),r&&tP(r),!r&&w.endsWith("中")&&tP("top")])});
+ return c.S([...ps,ph(0,c.pred(v,"naide"))],`Per favore, non ${it.replace(/^(\w+)re\b/,(m)=>({mangiare:"mangi",usare:"usi",guardare:"guardi"})[m]||m)}.`)});
+const L_NAIHOU=[[[["夜"],["コーヒー","obj"]],"飲む","bere caffè la sera"],[[["あまり"],["酒","obj"]],"飲む","bere troppo sakè"],[[["あまり"],["お菓子","obj"]],"食べる","mangiare troppi dolci"],[[["あまり"],["テレビ","obj"]],"見る","guardare troppo la televisione"],[[["夜"],["ステーキ","obj"]],"食べる","mangiare la bistecca la sera"]];
+TT("u11_naihou",11,c=>{const [P,k,it]=trPick(L_NAIHOU),v=c.v(k);const ps=P.map(([w,r])=>{c.need(trKanjiUnit(w));(L_FOOD.concat(L_DRINK,L_WATCH).find(o=>o.jp===w)||{u:1}).u>c.maxU&&c.need(99);return ph(1,[tW(w),r&&tP(r)])});const y=c.coin(.4);
+ return c.S([...ps,ph(0,[...c.pred(v,"naihou"),y&&tP("yo")])],`È meglio non ${it}.`)});
+TT("u11_nakute",11,c=>{const s=c.subj(.4),tm=c.pick(L_TIME,o=>/^(明日|来週|今日|月曜日|金曜日|日曜日)$/.test(o.jp));
+ if(c.coin(.5)){const d=c.dest(o=>"大学 図書館 学校 銀行 郵便局 駅".includes(o.jp)),v=c.v(c.coin(.5)?"行く":"来る");return c.S([ph(1,[tW(tm.jp),tP("top")]),ph(1,[tW(d.jp),tP("dest")]),ph(0,c.pred(v,"nakute"))],`${itCap(tm.it)} non è necessario ${v.it.inf} ${d.a}.`)}
+ const a=c.act({obj:1,v:["買う","書く","読む"]});return c.S([ph(1,[tW(tm.jp),tP("top")]),ph(1,[tW(a.o.jp),tP("obj")]),ph(0,c.pred(a.v,"nakute"))],`${itCap(tm.it)} non è necessario ${a.v.it.inf} ${a.o.it}.`)});
+const L_DEKIRU=[["公園","テニス","Al parco si può giocare a tennis."],["デパート","買いもの","Ai grandi magazzini si possono fare compere."],["図書館","勉強","In biblioteca si può studiare."],["ホテル","食事","In albergo si può mangiare."],["大学","サッカー","All’università si può giocare a calcio."],["ジム","練習","In palestra ci si può allenare."]];
+TT("u11_dekiru",11,c=>{const [p,n,it]=trPick(L_DEKIRU);c.need(trPL(p).u);c.need(trKanjiUnit(n));if(n==="食事")c.need(11);
+ return c.S([ph(1,[tW(p),tP("plc")],"p"),ph(1,[tW(n),tP("dekiru")]),ph(0,[tV("できます")])],it)});
+const L_NODE=[["寒い","コート","着る","fa freddo","fa freddo","indosso il cappotto","indossa il cappotto"],["暑い","ジュース","飲む","fa caldo","fa caldo","bevo un succo di frutta","beve un succo di frutta"],["忙しい","パーティー","行く","sono molto impegnat*","è molto impegnat*","non vado alla festa","non va alla festa"],["むずかしい","先生","聞く","è difficile","è difficile","chiedo al professore","chiede al professore"]];
+TT("u11_node",11,c=>{const s=c.subj(.6),[adj,n,k,c1,c3,e1,e3]=trPick(L_NODE),v=c.v(k);c.g("ので: perché (formale)");c.need(trADJ(adj).u);
+ const P2=k==="行く"?[ph(1,[tW(n),tP("dest")]),ph(0,c.pred(v,"neg"))]:k==="聞く"?[ph(1,[tW(n),tP("tgt")]),ph(0,c.pred(v,"pres"))]:[ph(1,[tW(n),tP("obj")]),ph(0,c.pred(v,"pres"))];
+ const gx=s.g==="f"?"a":s.g==="x"?"o/a":"o";
+ return c.S([[ph(0,[tW(adj),tP("node"),tC("、")])],[c.top(s),...P2]],`Siccome ${(s.me?c1:c3).replace("*",gx)}, ${s.me?e1:itJ(sIt(s),e3)}.`)});
+TT("u11_chuu",11,c=>{const s=c.pick(L_PPL),n=trPick([["会議中","in riunione"],["授業中","a lezione"]]);c.g("中: in corso, durante");return c.S([c.top(s),ph(1,[tW("今")]),ph(0,[tW(n[0]),tV("です")])],`${s.it} adesso è ${n[1]}.`)});
+// UNITÀ 12
+// abilità: sintagmi [[parole…, ruolo della particella finale]], verbo, italiano
+const L_SKILL=[[[["車","obj"]],"運転する","guidare la macchina"],[[["日本語","manner"],["手紙","obj"]],"書く","scrivere una lettera in giapponese"],[[],"スキー","sciare"],[[["自転車","ride"]],"乗る","andare in bicicletta"],[[["日本語","gen","新聞","obj"]],"読む","leggere il giornale giapponese"],[[],"料理","cucinare"],[[["日本語","gen","歌"]],"歌","cantare una canzone giapponese"]];
+TT("u12_koto",12,c=>{const s=c.subj(.35),[P,k,it]=trPick(L_SKILL),v=c.v(k),neg=c.coin(.3);
+ const ps=P.map(row=>{const toks=[];for(let i=0;i<row.length;i++){const w=row[i];if(ROLE[w])toks.push(tP(w));else{c.need(trKanjiUnit(w));toks.push(tW(w))}}return ph(1,toks)});
+ // per i verbi composti (歌を歌う) il nome è già nel primo sintagma: si aggiunge solo を
+ if(v.obj&&P.length&&P[0].includes(v.obj)){ps[0].t.push(tP("obj"));return c.S([c.top(s),...ps,ph(0,c.pred({...v,obj:null},neg?"kotoN":"koto"))],itSent({s:sIt(s),v:(neg?(s.me?"non so ":"non sa "):(s.me?"so ":"sa "))+it}))}
+ return c.S([c.top(s),...ps,v.obj&&c.objPh(v),ph(0,c.pred(v,neg?"kotoN":"koto"))],itSent({s:sIt(s),v:(neg?(s.me?"non so ":"non sa "):(s.me?"so ":"sa "))+it}))});
+const L_MAE=[["寝る","andare a letto",["読む","聞く","シャワー"]],["出かける","uscire",["朝ごはん","シャワー"]],["日本へ行く","andare in Giappone",["勉強"]]];
+TT("u12_mae",12,c=>{const s=c.subj(.35);c.g("前に: prima di");let P1,it1;
+ if(c.coin(.35)){const n=c.pick(lx2([["授業","la lezione",4],["会議","la riunione",4],["試験","l’esame",2],["食事","il pasto",11]]));P1=[ph(0,[tW(n.jp),tP("mae"),tW("前に"),tC("、")])];it1="Prima "+itPrep("di",n.it)}
+ else{const [k,it]=trPick(L_MAE);c.F("d");if(k==="日本へ行く"){c.v("行く");P1=[ph(1,[tW("日本"),tP("dest")]),ph(0,[tV("行く"),tW("前に"),tC("、")])];it1="Prima di andare in Giappone"}else{const v=c.v(k);P1=[ph(0,[tV(v.d),tW("前に"),tC("、")])];it1="Prima di "+it}}
+ const b=c.act({v:["読む","聞く","シャワー","朝ごはん","勉強","宿題"]});
+ return c.S([P1,[c.top(s),c.objPh(b.v,b.o),ph(0,c.pred(b.v,"pres"))]],`${it1}, ${itJ(sIt(s),itVerb(b.v.it,"pres",s),b.o&&b.o.it)}.`)});
+TT("u12_niiku",12,c=>{const s=c.subj(.3),a=c.act({pl:1,v:["読む","食べる","飲む","見る","買う","借りる","テニス","サッカー","さんぽ","買いもの","勉強"]});if(!a.pls.length)throw TR_FAIL;const pl=trPick(a.pls.filter(p=>!/^(家|うち)$/.test(p.jp)));if(!pl)throw TR_FAIL;const f=c.tense({aff:1}),v=c.v("行く");c.g("～に行きます: andare a fare");
+ const purp=a.v.obj&&a.v.d==="する"?[tW(a.v.obj),tP("purp")]:[...(a.v.obj?[tW(a.v.obj),tP("obj")]:[]),tW(a.v.m),tP("purp")];
+ const objPh=a.o?ph(1,[tW(a.o.jp),tP("obj")],"o"):null;
+ return c.S([c.top(s),ph(1,[tW(pl.jp),tP("dest")],"d"),objPh,ph(0,[...purp,...c.pred(v,f)])],itSent({s:sIt(s),v:itVerb(v.it,f,s),d:pl.a,x:"a "+itJ(a.v.it.inf,a.o&&a.o.it)}))});
+TT("u12_ato",12,c=>{const s=c.subj(.3),n=c.pick(lx2([["授業","la lezione",4],["会議","la riunione",4],["試験","l’esame",2],["仕事","il lavoro",1]])),f=c.tense({aff:1});c.g("の後で: dopo");
+ const d=c.dest(o=>"喫茶店 カフェ 図書館 公園 レストラン 映画館".includes(o.jp)),cp=c.coin(.5)?c.comp(s):null,v=c.v("行く");
+ return c.S([[ph(0,[tW(n.jp),tP("ato"),tW("後で"),tC("、")])],[c.top(s),cp&&ph(1,[tW(cp.jp),tP("with")],"c"),ph(1,[tW(d.jp),tP("dest")],"d"),ph(0,c.pred(v,f))]],`Dopo ${n.it}, ${itJ(sIt(s),itVerb(v.it,f,s),d.a,cp&&cp.it)}.`)});
+TT("u12_naru",12,c=>{const k=Math.floor(Math.random()*3);
+ if(k===0){const s=c.subj(.3),l=c.pick(L_LANG);c.g("～になります: aggettivi in na");c.need(11);return c.S([c.top(s),ph(1,[tW(l.jp),tP("jouzu")]),ph(0,[tW("上手に"),tV("なりました")])],`${s.me?"Sono diventato/a":s.it+" è diventat"+(s.g==="f"?"a":"o")} brav${s.g==="f"?"a":s.g==="x"?"o/a":"o"} in ${l.it}.`)}
+ if(k===1){const ct=c.pick(L_CITY,o=>o.k!=="F"),a=c.pick(L_ADJ,o=>"にぎやか きれい 静か 便利 有名".includes(o.jp));c.g("～になります: aggettivi in na");return c.S([c.topW(ct.jp),ph(0,[tW(adjF(a,"adv")),tV("なりました")])],`${ct.n} è diventata ${a.f}.`)}
+ const a=c.pick(L_ADJ,o=>"暑い 寒い 涼しい".includes(o.jp));c.g("～くなります: aggettivi in i");return c.S([ph(0,[tW(adjF(a,"adv")),tV("なりました"),c.coin(.4)&&tP("ne")])],({暑い:"Ha cominciato a fare caldo",寒い:"Ha cominciato a fare freddo",涼しい:"Ha cominciato a fare fresco"})[a.jp]+".")});
+
+// ---------- completamento e controllo delle frasi generate ----------
+function trFinish(s,c,t){
+ s.cl.forEach(cl=>{const last=cl.ph[cl.ph.length-1];if(!last)return;const lt=last.t[last.t.length-1];if(!lt||lt.k!=="c")last.t.push(tC("。"))});
+ let u=Math.max(c.u,t.u);const rules=new Set(c.gram);
+ s.cl.forEach(cl=>cl.ph.forEach(p=>p.t.forEach(k=>{if(k.k==="p"){const r=ROLE[k.r];if(r.u>u)u=r.u;if(r.g)rules.add(r.g)}})));
+ s.u=u;s.rules=[...rules].filter(g=>TR_GI[g]!=null).sort((a,b)=>G[TR_GI[b]][0]-G[TR_GI[a]][0]);s.tpl=t.id;s.forms=c.forms;s.jp=trText(s);
+ const toks=s.cl.reduce((a,cl)=>a+cl.ph.reduce((b,p)=>b+p.t.filter(k=>k.s&&k.k!=="c").length,0),0),np=trParts(s).filter(k=>k.s).length,multi=s.cl.length>1;
+ s.lvl=(np<=2&&!multi&&toks<=6)?1:(np>=5||multi||toks>=11)?3:2;return s}
+const trParts=s=>{const a=[];s.cl.forEach(cl=>cl.ph.forEach(p=>p.t.forEach(k=>{if(k.k==="p")a.push(k)})));return a};
+function trText(s,o){o=o||{};const lines=s.cl.map((cl,ci)=>{let t="";cl.ph.forEach(p=>p.t.forEach(k=>{if(o.blank&&o.blank.has(k)){t+="（　）";return}if(o.hl&&o.hl.has(k)){t+=`<b class="tr-hl">${k.s||"—"}</b>`;return}t+=k.s}));return (s.dlg&&cl.sp?cl.sp+"：":"")+t});return s.dlg?lines.join("\n"):lines.join("")}
+// unità da cui partire: le più recenti dell'intervallo pesano di più (non solo frasi facili dell'unità 1)
+function trPickUnit(focus){const mn=Math.min(...focus),w=focus.map(u=>Math.pow(u-mn+1,1.2));let t=Math.random()*w.reduce((a,b)=>a+b,0);for(let i=0;i<focus.length;i++){if((t-=w[i])<=0)return focus[i]}return focus[focus.length-1]}
+function trGen(o){const focus=o.focus.filter(u=>u<=o.maxU);if(!focus.length)return null;const tries=o.tries||90;
+ for(let k=0;k<tries;k++){const tu=o.tu||trPickUnit(focus);const cand=TPL.filter(t=>t.u<=tu&&(!o.tf||o.tf(t)));if(!cand.length)continue;
+  const w=cand.map(t=>t.u===tu?4:1);let r=Math.random()*w.reduce((a,b)=>a+b,0),t=cand[0];for(let i=0;i<cand.length;i++){if((r-=w[i])<=0){t=cand[i];break}}
+  const c=trCtx(tu);let s;try{s=t.f(c)}catch(e){if(e===TR_FAIL)continue;throw e}if(!s)continue;trFinish(s,c,t);
+  if(s.u!==tu||s.u>o.maxU||!trKanjiOK(s.jp,s.u))continue;
+  if(o.lvl&&s.lvl!==o.lvl&&k<tries*.8)continue;
+  if(o.need&&!o.need(s))continue;
+  if(o.avoid&&o.avoid.has(s.jp)&&k<tries*.9)continue;
+  return s}
+ return null}
+// domanda e risposta generate da una frase (dove? che cosa? con chi? quando? come?)
+function trQA(s){if(!s.P||s.dlg||s.cl.length!==1)return null;const f=(s.forms[s.forms.length-1]||{}).f;if(f&&!["pres","past","teiru"].includes(f))return null;
+ const ps=s.cl[0].ph,cands=ps.map((p,i)=>({p,i})).filter(o=>o.p.q&&s.P[o.p.q]&&TR_QW[o.p.q]);if(!cands.length)return null;const top=ps[0]&&ps[0].t[1]&&ps[0].t[1].r==="top"&&ps[0].t[0].s!=="私";if(!top)return null;
+ const {p:tp,i:ti}=trPick(cands),key=tp.q,cp=k=>({...k});
+ const qPh=ps.map((p,i)=>{if(i!==ti)return {...p,t:p.t.map(cp)};const parts=key==="t"?[]:p.t.filter(k=>k.k==="p"&&k.s).map(cp);return {...p,t:[tW(TR_QW[key][0]),...parts]}});
+ const last=qPh[qPh.length-1];const end=last.t.pop();last.t.push(tP("q"),end);
+ const aPh=ps.slice(1).map(p=>({...p,t:p.t.map(cp)}));
+ const rules=[...new Set([...s.rules,"か (domanda)"])];
+ return {...s,dlg:1,qa:key,cl:[{sp:"A",ph:qPh},{sp:"B",ph:aPh}],it:`— ${itQuest(s.P,key)} — ${s.it}`,itQ:itQuest(s.P,key),itA:s.it,rules,jp:null,lvl:3}}
+function trWithText(s){s.jp=trText(s);return s}
+
+// ---------- categorie ----------
+const TR_CATS=[
+ ["part","Inserisci particelle","助","Completa frasi e brevi dialoghi con le particelle giuste: uno o più spazi, particelle simili da distinguere, con o senza suggerimenti."],
+ ["ord","Ordina frase","並","Ricostruisci la frase giapponese mettendo in ordine parole e particelle; dalle frasi brevi a quelle con più strutture."],
+ ["comp","Completa la frase","完","Scegli o scrivi la forma che manca (verbo, interrogativo, parola) leggendo il contesto."],
+ ["form","Forme grammaticali","形","Coniuga verbi e aggettivi: ～ません, ～ました, forma in て, in た, in ない, dizionario… e trasforma frasi intere."],
+ ["trij","Traduzione italiano → giapponese","訳","Scrivi in giapponese la frase italiana. Kanji e kana valgono allo stesso modo."],
+ ["trji","Traduzione giapponese → italiano","意","Leggi la frase giapponese e scegli la traduzione corretta tra frasi molto simili."],
+ ["voc","Vocabolario","語","Significato e scrittura delle parole delle unità selezionate."],
+ ["kan","Kanji","字","Lettura e scrittura dei kanji e delle parole in kanji studiate."],
+ ["free","Scrittura autonoma","書","Rispondi con frasi tue e confrontale con un modello; ti autovaluti."],
+ ["mix","Esercizi misti","混","Un po’ di tutto, come in una verifica: particelle, ordine, forme, traduzioni, lessico."]];
+const TR_CATN=Object.fromEntries(TR_CATS.map(c=>[c[0],c[1]]));
+const TR_HASMODE={part:1,comp:1,form:1,voc:1,kan:1,trij:0,trji:0,ord:0,free:0,mix:1};
+let TR={on:false};
+function trCfg(){const d={cat:"part",n:10,diff:"mix",mode:"mix",cont:false};S.trCfg={...d,...(S.trCfg||{})};return S.trCfg}
+function trUnits(){const all=[...new Set(AV())].sort((a,b)=>a-b),focus=S.un&&S.un.length?S.un.filter(u=>all.includes(u)).sort((a,b)=>a-b):all.slice();return {focus,maxU:Math.max(...focus),all}}
+const TR_LVL={easy:1,mid:2,hard:3};
+let TR_SEQ=0;
+function trX(type,u,prompt,ans,extra){const x=type==="mc"?["mc",u,prompt,ans,extra.correct||0,""]:[type,u,prompt,ans,""];Object.assign(x,{_generated:1,_tr:1,_noTr:1,_group:extra.group,_difficulty:extra.lvl||2,_id:"tr|"+extra.group+"|"+(extra.key||prompt)+"|"+(++TR_SEQ),_cat:extra.cat},extra.x||{});return x}
+const trHint=(it,hide)=>hide?`<details class="tr-it"><summary>Mostra la traduzione</summary>“${esc(it)}”</details>`:`<span class="ex-hint">“${esc(it)}”</span>`;
+const trMode=m=>m==="mix"?(Math.random()<.5?"mc":"auto"):m;
+
+// ===== INSERISCI PARTICELLE =====
+function trMkPart(s,mode,o){const parts=trParts(s).filter(k=>k.s||o.zero);const real=parts.filter(k=>k.s);if(!real.length)return null;let blanks;
+ if(mode==="one"||mode==="sim"){let pool=real.filter(k=>k.r!=="q");if(o.focusP)pool=pool.filter(k=>k.s===o.focusP);if(mode==="sim")pool=pool.filter(k=>TR_CONF[k.r]);if(!pool.length)return null;const mx=Math.max(...pool.map(k=>ROLE[k.r].u)),best=pool.filter(k=>ROLE[k.r].u===mx);blanks=[trPick(Math.random()<.7?best:pool)]}
+ else{blanks=parts.filter(k=>k.s||(o.zero&&Math.random()<.6));if(blanks.filter(k=>k.s).length<2)return null;if(o.focusP&&!blanks.some(k=>k.s===o.focusP))return null}
+ const B=new Set(blanks),text=trText(s,{blank:B}),u=s.u,hide=o.lvl===3&&!s.rules.some(g=>/も \(anche\)|と \(e\)|や:|とか/.test(g));
+ const exp=blanks.map(k=>({p:k.s||"x",alt:(k.alt||[]).filter(a=>a!==k.s),r:k.r}));
+ if(mode==="sim"){const k=blanks[0],studied=trPartsUpTo(o.maxU),ok=[k.s,...(k.alt||[])],dis=trShuf((TR_CONF[k.r]||[]).filter(p=>studied.includes(p)&&!ok.includes(p))).slice(0,3);if(dis.length<1)return null;const opts=trShuf([k.s,...dis]);
+  return trX("mc",u,`Scegli la particella corretta.\n${text}\n${trHint(s.it,hide)}`,opts,{correct:opts.indexOf(k.s),group:"particle",cat:"part",lvl:s.lvl,key:text,x:{_s:s,_blanks:blanks,_exp:exp,_rules:s.rules,_full:s.jp}})}
+ let combos=[[]];exp.forEach(e=>{combos=combos.flatMap(c=>[e.p,...e.alt].map(a=>[...c,a]))});combos=combos.slice(0,48);
+ const instr=blanks.length===1?"Inserisci la particella mancante.":`Inserisci le particelle mancanti${blanks.some(k=>!k.s)?" (scrivi x dove non serve nessuna particella)":""}.`;
+ return trX("fill",u,`${instr}\n${text}\n${trHint(s.it,hide)}`,combos.map(c=>c.join("・")),{group:"particle",cat:"part",lvl:s.lvl,key:text,x:{_s:s,_blanks:blanks,_exp:exp,_rules:s.rules,_full:s.jp,_chips:o.chips}})}
+function trGenPart(U,cfg,o){o=o||{};const lvl=TR_LVL[cfg.diff],am=trMode(cfg.mode);
+ const modes=lvl===1?["one","one","all","sim"]:lvl===2?["one","all","all","dlg","sim"]:lvl===3?["all","all","dlg","dlg","sim"]:["one","all","all","dlg","sim"];
+ for(let k=0;k<12;k++){let m=trPick(modes);if(m==="sim"&&am==="auto")m="all";
+  if(m==="dlg"){const s0=trGen({...U,need:s=>!!(s.P&&s.cl.length===1)||s.dlg,avoid:TR_AVOID});if(!s0)continue;const s=s0.dlg?s0:trQA(s0);if(!s)continue;trWithText(s);const x=trMkPart(s,"all",{...o,maxU:U.maxU,lvl:3,chips:am==="mc"});if(x){TR_AVOID.add(s0.jp);return x}continue}
+  const s=trGen({...U,lvl:m==="one"?(lvl===3?0:lvl):lvl,need:s=>trParts(s).filter(t=>t.s&&t.r!=="q").length>=(m==="all"?2:1)&&(!o.focusP||trParts(s).some(t=>t.s===o.focusP))&&(!o.rule||s.rules.includes(o.rule)),avoid:TR_AVOID});if(!s)continue;
+  const x=trMkPart(s,m,{...o,maxU:U.maxU,lvl:s.lvl,zero:lvl===3&&Math.random()<.5,chips:am==="mc"});if(x){TR_AVOID.add(s.jp);return x}}
+ return null}
+const TR_AVOID=new Set();
+// verifica per spazio: la particella deve essere proprio quella (へ e に contano uguali solo dove sono entrambe corrette)
+const trKana=v=>toHira(String(v||"").normalize("NFKC").trim());
+function trFillSubmit(){const x=EX[eq[ei]],fields=[...document.querySelectorAll(".ex-prompt .ex-inline-blank")],vals=fields.map(f=>f.value.trim());
+ const res=x._exp.map((e,i)=>{const v=trKana(vals[i]),ok=e.p==="x"?(/^[xX×✕ｘ]?$/.test(vals[i]||"")||e.alt.includes(v)):(v===e.p||e.alt.includes(v));return {i,p:e.p,v:vals[i]||"",ok,r:e.r}});
+ const ok=res.every(r=>r.ok);EXG={given:vals.map(v=>v||"—").join("・"),extra:{fill:res.filter(r=>!r.ok),tr:res,parts:res.map(r=>[r.p,r.ok])}};fin(ok,x._full)}
+
+// ===== ORDINA FRASE =====
+function trPerms(a){if(a.length<=1)return [a.slice()];const out=[];a.forEach((x,i)=>{trPerms(a.slice(0,i).concat(a.slice(i+1))).forEach(p=>out.push([x,...p]))});return out}
+const trNormOrd=t=>String(t).replace(/<[^>]+>/g,"").replace(/[、。，．,.\s　]/g,"");
+function trOrdAlts(s,cis){const per=cis.map(ci=>{const ps=s.cl[ci].ph,runs=[];let cur=[];ps.forEach((p,i)=>{if(p.f)cur.push(i);else{if(cur.length)runs.push(cur);cur=[]}});if(cur.length)runs.push(cur);
+  let vs=[ps.map((p,i)=>i)];runs.forEach(run=>{if(run.length<2)return;const pm=trPerms(run).slice(0,120);vs=vs.flatMap(v=>pm.map(m=>{const n=v.slice();run.forEach((pos,k)=>{n[pos]=m[k]});return n}))});
+  return vs.slice(0,240).map(v=>v.map(i=>ps[i].t.map(k=>k.s).join("")).join(""))});
+ let out=[""];per.forEach(arr=>{out=out.flatMap(a=>arr.map(b=>a+b))});out=out.slice(0,800).map(trNormOrd);
+ // in un elenco A と B / A や B / A とか B とか l'ordine dei due nomi è libero
+ cis.forEach(ci=>s.cl[ci].ph.forEach(p=>{const t=p.t;for(let i=0;i+2<t.length;i++){if(t[i].k==="w"&&t[i+1].k==="p"&&["and","ya","toka"].includes(t[i+1].r)&&t[i+2].k==="w"){const a=t[i].s+t[i+1].s+t[i+2].s,b=t[i+2].s+t[i+1].s+t[i].s;out=out.concat(out.filter(x=>x.includes(a)).map(x=>x.replace(a,b)))}}}));
+ return [...new Set(out)]}
+function trTiles(s,cis,split){const out=[];cis.forEach(ci=>s.cl[ci].ph.forEach(p=>{let cur="";p.t.forEach(k=>{if(!k.s)return;if(k.k==="c"){if(cur)cur+=k.s;else if(out.length)out[out.length-1]+=k.s;return}
+  if(split){if(cur)out.push(cur);cur=k.s;return}cur+=k.s;if(k.k==="p"){out.push(cur);cur=""}});if(cur)out.push(cur)}));
+ if(out.length)out[out.length-1]=out[out.length-1].replace(/。+$/,"");return out.filter(Boolean)}
+function trMkOrd(s,split,o){const cis=s.dlg?[s.cl.length-1]:s.cl.map((c,i)=>i),tiles=trTiles(s,cis,split);if(tiles.length<((o&&o.min)||3)||tiles.length>16)return null;if(new Set(tiles).size===1)return null;
+ const alts=trOrdAlts(s,cis),main=trNormOrd(tiles.join(""));if(!alts.includes(main))alts.unshift(main);
+ const ctx=s.dlg?s.cl.slice(0,-1).map((cl,i)=>(cl.sp?cl.sp+"：":"")+cl.ph.map(p=>p.t.map(k=>k.s).join("")).join("")).join("\n")+"\n"+(s.cl[s.cl.length-1].sp||"B")+"：…":"";
+ const it=s.dlg?(s.itA||s.it.split(" — ").pop()):s.it;
+ return trX("ord",s.u,`${s.dlg?"Riordina la risposta per completare il dialogo.":"Riordina le parole per formare la frase."}\n${ctx?ctx+"\n":""}<span class="ex-hint">“${esc(it)}”</span>`,tiles,{group:"order",cat:"ord",lvl:s.lvl,key:main,x:{_s:s,_alts:alts,_rules:s.rules,_full:trText({...s,cl:cis.map(i=>s.cl[i]),dlg:0})}})}
+function trGenOrd(U,cfg,o){o=o||{};const lvl=TR_LVL[cfg.diff]||0;
+ for(let k=0;k<10;k++){const L=lvl||trPick([1,2,2,3]);let s;
+  if(L===3&&Math.random()<.35){const s0=trGen({...U,need:s=>!!s.P,avoid:TR_AVOID});s=s0&&trQA(s0);if(s)trWithText(s)}
+  if(!s)s=trGen({...U,lvl:L,need:s=>(!o.rule||s.rules.includes(o.rule)),avoid:TR_AVOID});if(!s)continue;
+  const x=trMkOrd(s,L>=2||Math.random()<.25,{...o,min:k<7?(L===3?6:L===2?4:3):3});if(x){TR_AVOID.add(s.jp);return x}}
+ return null}
+
+// ===== TRADUZIONI =====
+function trWords(s){const w=[];s.cl.forEach(cl=>cl.ph.forEach(p=>p.t.forEach(k=>{if(k.k==="w"&&k.s&&!/^(私|これ|それ|あれ|この|その|あの|ここ|そこ|あそこ|何|誰|どこ|いつ)$/.test(k.s)&&!/[、。]$/.test(k.s))w.push(k.s.replace(/、$/,""))})));(s.forms||[]).forEach(f=>{if(f.v&&f.v.obj)w.push(f.v.obj);if(f.v)w.push(f.v.d)});return [...new Set(w)]}
+function trMkTrIJ(s,o){if(s.dlg)return null;const cis=s.cl.map((c,i)=>i);let alts=trOrdAlts(s,cis);
+ // con 私 come soggetto si accetta anche la frase senza 私は
+ const ps0=s.cl[0].ph[0];if(ps0&&ps0.t[0]&&ps0.t[0].s==="私"&&ps0.t[1]&&ps0.t[1].r==="top"){const s2={...s,cl:[{...s.cl[0],ph:s.cl[0].ph.slice(1)},...s.cl.slice(1)]};alts=alts.concat(trOrdAlts(s2,cis))}
+ const main=trNormOrd(s.jp);alts=[main,...alts.filter(a=>a!==main)].slice(0,400);
+ const words=o.lvl===3?[]:trWords(s);
+ return trX("tx",s.u,`Traduci in giapponese:\n<span class="ex-hint">“${esc(s.it)}”</span>${words.length?`\n<span class="tr-words">Parole utili: ${words.map(w=>`<span class="jp">${w}</span>`).join(" · ")}</span>`:""}`,alts,{group:"translate",cat:"trij",lvl:s.lvl,key:main,x:{_s:s,_rules:s.rules,_full:s.jp}})}
+function trSim(a,b){const A=a.jp.split(""),B=b.jp.split("");const m=new Map();A.forEach(c=>m.set(c,(m.get(c)||0)+1));let k=0;B.forEach(c=>{if(m.get(c)>0){k++;m.set(c,m.get(c)-1)}});return k/Math.max(A.length,B.length)}
+function trMkTrJI(s,U){if(s.dlg)return null;const pool=[];for(let i=0;i<14&&pool.length<10;i++){const t=trGen({...U,tu:s.u,tf:x=>x.id===s.tpl,tries:12});if(t&&t.it!==s.it&&t.jp!==s.jp&&!pool.some(p=>p.it===t.it))pool.push(t)}
+ if(pool.length<3)for(let i=0;i<10&&pool.length<6;i++){const t=trGen({...U,tu:s.u,tries:12});if(t&&t.it!==s.it&&!t.dlg&&!pool.some(p=>p.it===t.it))pool.push(t)}
+ if(pool.length<3)return null;const dis=pool.sort((a,b)=>trSim(s,b)-trSim(s,a)).slice(0,3).map(p=>p.it),opts=trShuf([s.it,...dis]);
+ return trX("mc",s.u,`Che cosa significa questa frase?\n${s.jp}`,opts,{correct:opts.indexOf(s.it),group:"translate",cat:"trji",lvl:s.lvl,key:s.jp,x:{_it:1,_s:s,_rules:s.rules,_full:s.jp}})}
+
+// ===== COMPLETA LA FRASE / FORME =====
+const TR_VFORMS=["pres","neg","past","pneg","inv","mas","tai","teiru","tekuda","naide"];
+const TR_FLAB={pres:"presente cortese (～ます)",neg:"negativa (～ません)",past:"passata (～ました)",pneg:"passata negativa (～ませんでした)",inv:"di invito (～ませんか)",mas:"esortativa (～ましょう)",tai:"desiderativa (～たいです)",te:"in て",ta:"in た",na:"in ない",d:"dizionario",teiru:"in ～ています",tekuda:"di richiesta (～てください)",naide:"～ないでください"};
+const trFU=f=>(TR_FORM[f]||[1])[0];
+function trPredTok(s){const cl=s.cl[s.cl.length-1],p=cl.ph[cl.ph.length-1],vs=p.t.filter(k=>k.k==="v");return vs.length===1?vs[0]:null}
+function trMkComp(s,U,am){const fv=s.forms[s.forms.length-1];const tok=trPredTok(s);
+ if(fv&&tok&&TR_VFORMS.includes(fv.f)&&tok.s===jvF(fv.v,fv.f)){const right=tok.s,cand=TR_VFORMS.filter(f=>f!==fv.f&&trFU(f)<=U.maxU).map(f=>jvF(fv.v,f)).filter(t=>t!==right);if(cand.length<2)return null;
+  const text=trText(s,{blank:new Set([tok])}),dict=fv.v.obj?fv.v.obj+"を"+fv.v.d:fv.v.d;
+  if(am==="auto")return trX("tx",s.u,`Completa la frase con la forma giusta di ${dict}.\n${text}\n<span class="ex-hint">“${esc(s.it)}”</span>`,[right],{group:"complete",cat:"comp",lvl:s.lvl,key:text,x:{_s:s,_rules:s.rules,_full:s.jp,_pred:{v:fv.v,f:fv.f}}});
+  const opts=trShuf([right,...trShuf(cand).slice(0,3)]);return trX("mc",s.u,`Completa la frase con la forma giusta.\n${text}\n<span class="ex-hint">“${esc(s.it)}”</span>`,opts,{correct:opts.indexOf(right),group:"complete",cat:"comp",lvl:s.lvl,key:text,x:{_s:s,_rules:s.rules,_full:s.jp,_pred:{v:fv.v,f:fv.f}}})}
+ return null}
+const TR_QWORDS=[["何",1],["誰",2],["いつ",2],["どこ",3],["何時",3],["いくら",3],["どちら",8],["どのくらい",5]];
+function trMkQComp(s,U){if(!s.dlg)return null;let tok=null;s.cl[0].ph.forEach(p=>p.t.forEach(k=>{if(k.k==="w"&&TR_QWORDS.some(q=>q[0]===k.s))tok=k}));if(!tok)return null;
+ const right=tok.s,cand=TR_QWORDS.filter(q=>q[1]<=U.maxU&&q[0]!==right&&!(right==="何"&&q[0]==="何時")&&!(right==="何時"&&q[0]==="何")).map(q=>q[0]);if(cand.length<2)return null;const opts=trShuf([right,...trShuf(cand).slice(0,3)]);
+ return trX("mc",s.u,`Completa la domanda con l’interrogativo giusto.\n${trText(s,{blank:new Set([tok])})}\n<span class="ex-hint">“${esc(s.it)}”</span>`,opts,{correct:opts.indexOf(right),group:"complete",cat:"comp",lvl:3,key:s.jp,x:{_s:s,_rules:s.rules,_full:s.jp}})}
+function trGenComp(U,cfg){const am=trMode(cfg.mode),lvl=TR_LVL[cfg.diff]||0;
+ for(let k=0;k<10;k++){if(Math.random()<.25){const s0=trGen({...U,need:s=>!!s.P||s.dlg,avoid:TR_AVOID});const s=s0&&(s0.dlg?s0:trQA(s0));if(s){trWithText(s);const x=trMkQComp(s,U);if(x)return x}}
+  const s=trGen({...U,lvl,need:s=>{const fv=s.forms[s.forms.length-1],t=trPredTok(s);return !!(fv&&t&&TR_VFORMS.includes(fv.f)&&t.s===jvF(fv.v,fv.f))},avoid:TR_AVOID});if(!s)continue;const x=trMkComp(s,U,am);if(x){TR_AVOID.add(s.jp);return x}}
+ return null}
+// coniugazione isolata
+const TR_VLIST=()=>Object.values(VB).filter(v=>v.d!=="する"&&v.d!=="浴びる"&&!v.key);
+function trWrongTe(v){const s=v.d.slice(0,-1),w=[s+"って",s+"んで",s+"いて",v.m+"て",s+"して"].filter(t=>t!==v.te);return [...new Set(w)]}
+function trFormWhy(v,f){const g=v.g===2?"verbo del gruppo 2 (in -ru): si toglie る":v.g===3?"verbo irregolare":"verbo del gruppo 1 (in -u)";const d=v.d,last=d.slice(-1);
+ if(f==="te"||f==="ta"){if(v.g===2)return `${d}: ${g} e si aggiunge ${f==="te"?"て":"た"}.`;if(v.g===3)return `${d}: ${g}, forma da imparare a memoria.`;if(d==="行く")return `行く è l’eccezione del gruppo 1: ${f==="te"?"行って":"行った"}.`;const m={う:"う・つ・る → っ",つ:"う・つ・る → っ",る:"う・つ・る → っ",む:"む・ぶ・ぬ → ん + で",ぶ:"む・ぶ・ぬ → ん + で",ぬ:"む・ぶ・ぬ → ん + で",く:"く → い",ぐ:"ぐ → い + で",す:"す → し"}[last];return `${d}: ${g}, termina in ${last}: ${m}${f==="ta"?" (con た/だ al posto di て/で)":""}.`}
+ if(f==="na")return v.g===2?`${d}: ${g} e si aggiunge ない.`:v.g===3?`${d}: ${g}: ${v.na}.`:`${d}: ${g}: la -u diventa -a + ない${last==="う"?" (う → わ)":""}.`;
+ if(f==="d")return `La forma dizionario di ${v.m}ます è ${d} (${g}).`;
+ return `Si parte dalla radice ${v.m}- (${v.m}ます) e si aggiunge la desinenza ${jvF(v,f).slice(v.m.length)}.`}
+// trasformazioni delle frasi con です (dall'unità 1): negativa, domanda, passato
+function trGenCopula(U){const tr=[["neg","Volgi la frase alla forma negativa.",1,"Negazione di です"],["q","Trasforma la frase in domanda.",1,"か (domanda)"],["past","Volgi la frase al passato.",6,"です al passato: でした・ではありませんでした"],["pneg","Volgi la frase al passato negativo.",6,"です al passato: でした・ではありませんでした"]].filter(t=>t[2]<=U.maxU);
+ for(let k=0;k<8;k++){const [f,instr,,rule]=trPick(tr);const s=trGen({...U,need:s=>{if(s.dlg||s.cl.length!==1)return false;const p=s.cl[0].ph[s.cl[0].ph.length-1],v=p.t.filter(t=>t.k==="v");return v.length===1&&v[0].s==="です"&&p.t[p.t.length-1].s==="。"&&!p.t.some(t=>t.k==="p"&&t.r==="q")},avoid:TR_AVOID});if(!s)continue;
+  const p=s.cl[0].ph[s.cl[0].ph.length-1],t=p.t.find(t=>t.k==="v"&&t.s==="です"),rep={neg:["ではありません","じゃありません"],q:["ですか"],past:["でした"],pneg:["ではありませんでした","じゃありませんでした"]}[f];
+  const ans=[];rep.forEach(r=>{t.s=r;ans.push(...trOrdAlts(s,[0]))});t.s="です";const main=trNormOrd(s.jp.replace(/です。$/,rep[0]+"。"));
+  const why={neg:"です al negativo diventa ではありません (anche じゃありません, più colloquiale).",q:"Per fare una domanda basta aggiungere か alla fine: ですか.",past:"です al passato diventa でした.",pneg:"です al passato negativo diventa ではありませんでした."}[f];
+  return trX("tx",s.u,`${instr}\n${s.jp}\n<span class="ex-hint">“${esc(s.it)}”</span>`,[main,...ans.filter(a=>a!==main)].slice(0,200),{group:"transform",cat:"form",lvl:1,key:s.jp+f,x:{_s:s,_rules:[rule,...s.rules],_full:s.jp.replace(/です。$/,rep[0]+"。"),_why:why}})}return null}
+function trGenForm(U,cfg){const am=trMode(cfg.mode),lvl=TR_LVL[cfg.diff]||0,maxU=U.maxU;
+ if(maxU<5||Math.random()<.15){const x=trGenCopula(U);if(x)return x}
+ // trasformazione di una frase (livello medio e difficile)
+ if((lvl>=2||!lvl)&&Math.random()<.4){const tr=[["neg","Volgi la frase alla forma negativa.",5],["past","Volgi la frase al passato.",6],["pneg","Volgi la frase al passato negativo.",6],["teiru","Trasforma con ～ています (azione in corso).",9]].filter(t=>t[2]<=maxU);
+  for(let k=0;k<8&&tr.length;k++){const [f2,instr]=trPick(tr);const s=trGen({...U,need:s=>{const fv=s.forms[s.forms.length-1],t=trPredTok(s);return s.cl.length===1&&!s.dlg&&fv&&fv.f==="pres"&&t&&t.s===jvF(fv.v,"pres")&&(f2!=="teiru"||!/^(行く|来る|帰る|起きる|寝る|出かける|着く)$/.test(fv.v.d))},avoid:TR_AVOID});if(!s)continue;
+   const fv=s.forms[s.forms.length-1],t=trPredTok(s),old=t.s;t.s=jvF(fv.v,f2);const tgt=trText(s),alts=trOrdAlts(s,[0]);t.s=old;
+   return trX("tx",s.u,`${instr}\n${s.jp}`,[trNormOrd(tgt),...alts.filter(a=>a!==trNormOrd(tgt))].slice(0,300),{group:"transform",cat:"form",lvl:2,key:s.jp+f2,x:{_s:s,_rules:[...new Set([TR_FORM[f2][1],...s.rules])],_full:tgt,_why:trFormWhy(fv.v,f2),_formOf:{v:fv.v,f:f2}}})}}
+ // aggettivi (dall'unità 7)
+ if(maxU>=7&&Math.random()<.3){const a=trPick(L_ADJ.filter(x=>x.u<=maxU&&x.jp!=="特別")),f=trPick(["neg","past","pneg","te"]),right=adjF(a,f),lab={neg:"negativa cortese",past:"passata cortese",pneg:"passata negativa cortese",te:"in て (くて・で)"}[f];
+  const why=a.t==="i"?`${a.jp} è un aggettivo in い: ${({neg:"い → くないです",past:"い → かったです",pneg:"い → くなかったです",te:"い → くて"})[f]}${a.jp==="いい"?" (いい si coniuga partendo da よい)":""}.`:`${a.jp} è un aggettivo in な: ${({neg:"＋ではありません",past:"＋でした",pneg:"＋ではありませんでした",te:"＋で"})[f]}.`;
+  const rules=["Coniugazione degli aggettivi",f==="te"?"Unire gli aggettivi: ～くて・～で":null].filter(Boolean);
+  if(am==="auto")return trX("tx",a.u,`Scrivi la forma ${lab} di ${a.jp}${a.t==="na"?"（な）":""} (${a.m}).`,[right,...adjAlt(a,f)],{group:"transform",cat:"form",lvl:1,key:a.jp+f,x:{_rules:rules,_why:why}});
+  const wrong=a.t==="i"?[a.jp+"でした",a.jp+"ではありません",a.jp.replace(/い$/,"")+"くないでした",a.jp+"くて"]:[a.jp+"くないです",a.jp+"かったです",a.jp+"くて",a.jp+"でしたです"];const opts=trShuf([right,...trShuf(wrong.filter(w=>w!==right&&!adjAlt(a,f).includes(w))).slice(0,3)]);
+  return trX("mc",a.u,`Qual è la forma ${lab} di ${a.jp}${a.t==="na"?"（な）":""} (${a.m})?`,opts,{correct:opts.indexOf(right),group:"transform",cat:"form",lvl:1,key:a.jp+f,x:{_rules:rules,_why:why}})}
+ const fs=["neg","past","pneg","inv","mas","te","tai","ta","na","d","teiru"].filter(f=>trFU(f)<=maxU),focusF=fs.filter(f=>U.focus.includes(trFU(f))),f=trPick(focusF.length&&Math.random()<.6?focusF:fs);
+ const vs=TR_VLIST().filter(v=>v.u<=maxU);if(!vs.length)return null;const v=trPick(vs),right=jvF(v,f),masu=v.m+"ます";
+ const prompt=`Scrivi la forma ${TR_FLAB[f]} di ${masu} (${v.it.inf}).`;const rules=[TR_FORM[f][1]];
+ if(am==="auto")return trX("tx",Math.max(v.u,trFU(f)),prompt,[right],{group:"transform",cat:"form",lvl:1,key:masu+f,x:{_rules:rules,_why:trFormWhy(v,f)}});
+ let wrong=f==="te"?trWrongTe(v):f==="ta"?trWrongTe(v).map(t=>t.replace(/て$/,"た").replace(/で$/,"だ")):f==="na"?[v.m+"ない",v.d.slice(0,-1)+"ない",v.d+"ない"]:fs.filter(x=>x!==f&&!["te","ta","na","d"].includes(x)).map(x=>jvF(v,x));
+ wrong=[...new Set(wrong)].filter(w=>w!==right);if(wrong.length<2)wrong=wrong.concat(["neg","past","inv"].map(x=>jvF(v,x)).filter(w=>w!==right));const opts=trShuf([right,...trShuf([...new Set(wrong)]).slice(0,3)]);
+ return trX("mc",Math.max(v.u,trFU(f)),`Qual è la forma ${TR_FLAB[f]} di ${masu} (${v.it.inf})?`,opts,{correct:opts.indexOf(right),group:"transform",cat:"form",lvl:1,key:masu+f,x:{_rules:rules,_why:trFormWhy(v,f)}})}
+
+// ===== VOCABOLARIO E KANJI =====
+const trMean=c=>String(c[2]).split(/[;(]/)[0].replace(/\s*\(.*$/,"").trim();
+function trVocPool(U){return [...KR.filter(c=>U.focus.includes(c[3])).map(c=>({w:String(c[0]),r:String(c[1]).split("·")[0].trim(),m:trMean(c),u:c[3],k:1})),...V.filter(c=>U.focus.includes(c[3])).map(c=>({w:String(c[0]),r:String(c[0]),m:trMean(c),u:c[3]}))].filter(o=>o.m&&o.w.length<=12)}
+function trGenVoc(U,cfg){const am=trMode(cfg.mode),pool=trVocPool(U);if(pool.length<4)return null;const o=trPick(pool),dir=Math.random()<.5;
+ const dis=trShuf(pool.filter(p=>p.m!==o.m&&p.w!==o.w)).slice(0,3);
+ if(am==="auto"&&Math.random()<.7)return trX("tx",o.u,`Come si dice in giapponese?\n<span class="ex-hint">“${esc(o.m)}”</span>`,[o.w,o.r].filter((v,i,a)=>a.indexOf(v)===i),{group:"vocab",cat:"voc",lvl:1,key:o.w,x:{_voc:o}});
+ if(dir){const opts=trShuf([o.m,...dis.map(d=>d.m)]);return trX("mc",o.u,`Che cosa significa questa parola?\n${o.w}`,opts,{correct:opts.indexOf(o.m),group:"vocab",cat:"voc",lvl:1,key:o.w,x:{_it:1,_voc:o}})}
+ const opts=trShuf([o.w,...dis.map(d=>d.w)]);return trX("mc",o.u,`Come si dice “${o.m}”?`,opts,{correct:opts.indexOf(o.w),group:"vocab",cat:"voc",lvl:1,key:o.w,x:{_voc:o}})}
+function trGenKan(U,cfg){const am=trMode(cfg.mode),pool=trVocPool(U).filter(o=>o.k&&/[一-鿿]/.test(o.w)&&o.r&&/^[ぁ-ゖー]+$/.test(o.r)),t=Math.random();
+ if(t<.35&&pool.length>=4){const o=trPick(pool);if(am==="auto")return trX("tx",o.u,`Scrivi la lettura in hiragana:\n${o.w}`,[o.r],{group:"kanji",cat:"kan",lvl:1,key:"r"+o.w,x:{_voc:o}});
+  const dis=trShuf(pool.filter(p=>p.r!==o.r)).sort((a,b)=>Math.abs(a.r.length-o.r.length)-Math.abs(b.r.length-o.r.length)).slice(0,3),opts=trShuf([o.r,...dis.map(d=>d.r)]);return trX("mc",o.u,`Qual è la lettura di ${o.w}?`,opts,{correct:opts.indexOf(o.r),group:"kanji",cat:"kan",lvl:1,key:"r"+o.w,x:{_voc:o}})}
+ if(t<.6&&pool.length>=4){const o=trPick(pool);if(am!=="mc")return trX("tx",o.u,`Scrivi in kanji:\n${o.r}\n<span class="ex-hint">“${esc(o.m)}”</span>`,[o.w],{group:"kanji",cat:"kan",lvl:2,key:"w"+o.w,x:{_voc:o}});
+  const dis=trShuf(pool.filter(p=>p.w!==o.w&&p.w.length===o.w.length)).slice(0,3);if(dis.length<3)return null;const opts=trShuf([o.w,...dis.map(d=>d.w)]);return trX("mc",o.u,`Quale kanji corrisponde a ${o.r} (“${o.m}”)?`,opts,{correct:opts.indexOf(o.w),group:"kanji",cat:"kan",lvl:1,key:"w"+o.w,x:{_voc:o}})}
+ const x=examKanjiQ(U.focus,new Set());if(x){Object.assign(x,{_tr:1,_noTr:1,_cat:"kan",_id:"tr|kq|"+x[3][x[4]]+"|"+(++TR_SEQ)})}return x}
+
+// ===== SCRITTURA AUTONOMA =====
+function trGenFree(U){for(let k=0;k<8;k++){const s0=trGen({...U,need:s=>!!s.P||(s.dlg&&s.cl.length===2),avoid:TR_AVOID});const s=s0&&(s0.dlg?s0:trQA(s0));if(!s)continue;trWithText(s);const q=s.cl[0].ph.map(p=>p.t.map(t=>t.s).join("")).join(""),a=s.cl[1].ph.map(p=>p.t.map(t=>t.s).join("")).join("");
+  const itQ=s.itQ||String(s.it).split(" — ")[0].replace(/^—\s*/,"");
+  return trX("write",s.u,`Rispondi in giapponese con una frase completa.\nA：${q}\n<span class="ex-hint">“${esc(itQ)}” — rispondi come vuoi, poi confronta con il modello.</span>`,[a.replace(/。$/,"")],{group:"free",cat:"free",lvl:2,key:q,x:{_s:s,_rules:s.rules}})}return null}
+
+// ===== ARCHIVIO: esercizi del libro e della banca delle particelle =====
+const TR_BOOK={part:x=>exGroup(x)==="particle",ord:x=>exGroup(x)==="order",comp:x=>["complete","choice"].includes(exGroup(x)),form:x=>["transform","error"].includes(exGroup(x)),trij:x=>exGroup(x)==="translate"&&x[0]==="tx",trji:x=>(exGroup(x)==="translate"&&x._it)||["comprehension","reading"].includes(exGroup(x)),voc:x=>exGroup(x)==="odd",kan:x=>["kanji","kana"].includes(exGroup(x)),free:x=>exGroup(x)==="free"||x[0]==="write",mix:x=>["truefalse","comprehension","reading","choice","error","particle","order","complete","transform"].includes(exGroup(x))};
+const TR_BOOKSHARE={part:.3,ord:.25,comp:.4,form:.35,trij:.3,trji:.35,voc:.1,kan:.4,free:.5,mix:.3};
+function trBookItems(cat,U,cfg){const lvl=TR_LVL[cfg.diff],seen=S.exSeen||{};const L=EX.map((x,i)=>i).filter(i=>{const x=EX[i];return !x._generated&&!x._tr&&U.focus.includes(x[1])&&TR_BOOK[cat](x)&&exerciseJPReady(x)&&x[0]!=="listen"&&(!lvl||exDifficulty(x)===lvl)});
+ // ordine casuale pesato: le unità più recenti dell'intervallo escono più spesso
+ const mn=Math.min(...U.focus),wsh=a=>a.map(i=>[Math.pow(Math.random(),1/Math.pow(EX[i][1]-mn+1,1.2)),i]).sort((p,q)=>q[0]-p[0]).map(p=>p[1]);
+ const fresh=L.filter(i=>!seen[exerciseIdentity(EX[i])]),old=L.filter(i=>seen[exerciseIdentity(EX[i])]);return [...wsh(fresh),...wsh(old)]}
+function trBankItem(U){const us=U.focus.filter(u=>PART_BANK[u]);if(!us.length)return null;const u=trPick(us),e=trPick(PART_BANK[u]),x=["fill",u,e[0]+"\n“"+e[2]+"”",[e[1]],"Particelle studiate fino all’Unità "+u+"."];x._group="particle";x._generated=1;x._id=["particle",u,e[0]].join("|");return x}
+// un esercizio generato della categoria
+function trGenOne(cat,U,cfg,o){switch(cat){case"part":return trGenPart(U,cfg,o);case"ord":return trGenOrd(U,cfg,o);case"comp":return trGenComp(U,cfg);case"form":return trGenForm(U,cfg);
+ case"trij":{for(let k=0;k<8;k++){const s=trGen({...U,lvl:TR_LVL[cfg.diff]||0,need:s=>!s.dlg&&(!o||!o.rule||s.rules.includes(o.rule)),avoid:TR_AVOID});if(!s)continue;const x=trMkTrIJ(s,{lvl:TR_LVL[cfg.diff]});if(x){TR_AVOID.add(s.jp);return x}}return null}
+ case"trji":{for(let k=0;k<6;k++){const s=trGen({...U,lvl:TR_LVL[cfg.diff]||0,need:s=>!s.dlg,avoid:TR_AVOID});if(!s)continue;const x=trMkTrJI(s,U);if(x){TR_AVOID.add(s.jp);return x}}return null}
+ case"voc":return trGenVoc(U,cfg);case"kan":return trGenKan(U,cfg);case"free":return trGenFree(U)}return null}
+// composizione della sessione
+function trBuild(cfg,n,o){o=o||{};const U=trUnits(),cat=cfg.cat,out=[];
+ const cats=cat==="mix"?null:[cat];const pickCat=()=>o.rule?trPick(["ord","trij","part"]):cats?cat:trPick(["part","part","ord","ord","comp","form","trij","trji","voc","kan"]);
+ const book={};const bookFor=c=>book[c]||(book[c]=trBookItems(c==="mix"?"mix":c,U,cfg));
+ for(let k=0;k<n*3&&out.length<n;k++){const c=pickCat();let x=null;
+  const useBook=!o.focusP&&!o.rule&&Math.random()<TR_BOOKSHARE[c];
+  if(useBook){if(c==="part"&&Math.random()<.35){const b=trBankItem(U);if(b){EX.push(b);out.push(EX.length-1);continue}}const L=bookFor(c);const i=L.find(i=>!out.includes(i));if(i!=null){out.push(i);continue}}
+  try{x=trGenOne(c,U,cfg,o)}catch(e){console.warn("tr",e);x=null}
+  if(x){EX.push(x);out.push(EX.length-1);continue}
+  if(o.rule||o.focusP)continue;
+  const L=bookFor(c),i=L.find(i=>!out.includes(i));if(i!=null)out.push(i)}
+ // sessione mirata su una regola: se le frasi generate non bastano, si completano con gli esercizi del libro su quella regola
+ if(o.rule&&out.length<n){const i=TR_GI[o.rule];if(i!=null)exercisesForRule(G[i][0]+"|"+G[i][1],n-out.length).forEach(j=>{if(!out.includes(j))out.push(j)})}
+ return out}
+
+// ===== SCHERMATA ESERCIZI: categorie, unità, impostazioni, risultati =====
+function trSetUnits(list){const n=new Set(AV()).size;S.un=list&&list.length&&list.length<n?[...new Set(list)].sort((a,b)=>a-b):null;save();side();trHome()}
+function trToggleU(u){const all=[...new Set(AV())].sort((a,b)=>a-b);let c=S.un?S.un.slice():all.slice();if(!S.un)c=[u];else c=c.includes(u)?c.filter(x=>x!==u):c.concat(u);trSetUnits(c)}
+function trUpTo(n){trSetUnits([...new Set(AV())].filter(u=>u<=+n))}
+function trSet(k,v){const c=trCfg();c[k]=v;save();trHome();if(k==="cat"){const p=document.getElementById("tr-cfg");if(p&&p.getBoundingClientRect().top>innerHeight*.75)p.scrollIntoView({behavior:"smooth",block:"start"})}}
+const trPct=(a,b)=>b?Math.round(a/b*100):0;
+function trStats(){const t=S.trSt||(S.trSt={cat:{},unit:{},sess:[],day:{}});t.cat=t.cat||{};t.unit=t.unit||{};t.sess=t.sess||[];t.day=t.day||{};return t}
+function trHome(){TR.on=false;EXRUN_TITLE="";const cfg=trCfg(),U=trUnits(),all=U.all,last=Math.max(...all),cur=S.un?S.un.slice().sort((a,b)=>a-b):null,st=trStats();
+ const rng=n=>all.filter(u=>u<=n),same=(a,b)=>JSON.stringify(a)===JSON.stringify(b);
+ const presets=[["Solo unità 1",[1]],["Unità 1–3",rng(3)],["Unità 1–5",rng(5)],[`Tutte (1–${last})`,null]];
+ const contiguous=cur&&cur[0]===1&&cur.every((u,i)=>u===i+1);
+ const desc=cur?(contiguous?`unità 1–${U.maxU}`:`unità ${cur.join(", ")}`):`tutte le unità (1–${last})`;
+ const cats=TR_CATS.map(([id,l,ic,d])=>{const r=st.cat[id]||{ok:0,ko:0},n=r.ok+r.ko;return `<button class="g tr-cat ${cfg.cat===id?"on":""}" onclick="trSet('cat','${id}')" aria-pressed="${cfg.cat===id}"><span class="tr-ic jp" aria-hidden="true">${ic}</span><span class="tr-ct"><b>${l}</b><span class="mu">${d}</span>${n?`<span class="tr-cs">${n} fatti · ${trPct(r.ok,n)}% corretti</span>`:""}</span></button>`}).join("");
+ const nOpts=[5,10,20,30].map(n=>`<button class="btn ${cfg.n===n?"on":""}" onclick="trSet('n',${n})">${n}</button>`).join("")+`<label class="tr-num">Altro <input type="number" min="1" max="100" value="${[5,10,20,30].includes(cfg.n)?"":cfg.n}" placeholder="—" onchange="const v=Math.max(1,Math.min(100,parseInt(this.value)||10));trSet('n',v)"></label>`;
+ const dOpts=[["easy","Facile"],["mid","Intermedia"],["hard","Difficile"],["mix","Mista"]].map(([v,l])=>`<button class="btn ${cfg.diff===v?"on":""}" onclick="trSet('diff','${v}')">${l}</button>`).join("");
+ const mOpts=[["mc","Scelta multipla"],["auto","Risposta autonoma"],["mix","Entrambe"]].map(([v,l])=>`<button class="btn ${cfg.mode===v?"on":""}" onclick="trSet('mode','${v}')">${l}</button>`).join("");
+ const contOK=cfg.cat==="part"||cfg.cat==="ord";
+ const modeHelp={part:"Scelta multipla: tastiera con le particelle studiate e domande “particelle simili”. Risposta autonoma: scrivi tu ogni particella.",comp:"Scegli tra le forme proposte oppure scrivila tu.",form:"Scegli la forma giusta oppure scrivila tu.",voc:"Scegli tra quattro parole oppure scrivi la parola in giapponese.",kan:"Scegli la lettura o il kanji oppure scrivili tu.",mix:"Vale per i tipi di esercizio che lo prevedono."}[cfg.cat]||"";
+ el(`<div class="ex-head"><div><div class="ex-title">Esercizi</div><div class="ex-sub">Scegli le unità e il tipo di allenamento. Le frasi usano tutto ciò che hai studiato fino all’ultima unità scelta, mai niente delle unità successive.</div></div></div>
+ <section class="g tr-units"><b>Unità da includere</b><div class="row tr-pre">${presets.map(([l,v])=>`<button class="btn ${same(cur,v)?"on":""}" onclick='trSetUnits(${JSON.stringify(v)})'>${l}</button>`).join("")}<label class="tr-upto">Dalla 1 fino alla <select onchange="trUpTo(this.value)" aria-label="Fino all’unità">${all.map(u=>`<option value="${u}" ${contiguous&&U.maxU===u?"selected":""}>${u}</option>`).join("")}${contiguous?"":`<option selected disabled>—</option>`}</select></label></div>
+ <div class="tr-chips-u"><span class="mu">Personalizza:</span>${all.map(u=>`<button class="chip ${!cur||cur.includes(u)?"on":""}" aria-pressed="${!cur||cur.includes(u)}" onclick="trToggleU(${u})">${u}</button>`).join("")}</div>
+ <div class="tr-prog">Programma: <b>${desc}</b>. Grammatica, particelle, vocaboli e kanji di ${cur&&!contiguous?`tutte le unità fino alla ${U.maxU} (con le domande concentrate sulle unità scelte)`:`tutte le unità fino alla ${U.maxU}`}; le unità più recenti hanno più spazio.</div></section>
+ <div class="tr-cats">${cats}</div>
+ <section class="g tr-cfg" id="tr-cfg"><b>${TR_CATN[cfg.cat]}</b>
+ <div class="tr-row"><span>Numero di domande</span><div class="row">${nOpts}</div></div>
+ <div class="tr-row"><span>Difficoltà</span><div class="row">${dOpts}</div></div>
+ ${TR_HASMODE[cfg.cat]?`<div class="tr-row"><span>Risposte</span><div><div class="row">${mOpts}</div><div class="mu tr-help">${modeHelp}</div></div></div>`:""}
+ ${contOK?`<div class="tr-row"><span>Allenamento continuo</span><div><label class="tr-sw"><input type="checkbox" ${cfg.cont?"checked":""} onchange="trSet('cont',this.checked)"> Prosegui con nuove domande senza tornare al menu</label></div></div>`:""}
+ <button class="btn ok tr-go" onclick="trStart()">Inizia · ${TR_CATN[cfg.cat]} · ${cfg.cont&&contOK?"continuo":cfg.n+" domande"}</button></section>
+ ${trResultsHtml()}`)}
+// ---------- risultati e progressi ----------
+function trResultsHtml(){const st=trStats(),cats=TR_CATS.map(([id,l])=>[id,l,st.cat[id]||{ok:0,ko:0}]).filter(c=>c[2].ok+c[2].ko),tot=cats.reduce((a,c)=>a+c[2].ok+c[2].ko,0),ok=cats.reduce((a,c)=>a+c[2].ok,0);
+ if(!tot)return `<section class="g tr-res"><b>I tuoi risultati</b><div class="mu" style="margin-top:6px">Qui compariranno esercizi svolti, percentuali per categoria e per unità, particelle e regole da ripassare.</div></section>`;
+ const bar=(l,r,extra)=>{const n=r.ok+r.ko,p=trPct(r.ok,n);return `<div class="tr-bar"><span>${l}</span><span class="mini-bar"><i style="width:${p}%;background:var(${p>=80?"--ok":p>=60?"--ac2":"--ko"})"></i></span><span class="mu">${p}% · ${n}</span>${extra||""}</div>`};
+ const units=Object.entries(st.unit).filter(([u,r])=>r.ok+r.ko).sort((a,b)=>a[0]-b[0]);
+ const wp=weakParts().filter(o=>o.r.ok+o.r.ko>=2).slice(0,6),wr=weakRules().slice(0,6);
+ const sess=st.sess.slice(-12);
+ return `<section class="g tr-res"><b>I tuoi risultati</b>
+ <div class="tr-kpi"><div><span class="big">${tot}</span><span class="mu">esercizi svolti</span></div><div><span class="big">${trPct(ok,tot)}%</span><span class="mu">risposte corrette</span></div><div><span class="big">${st.sess.length}</span><span class="mu">sessioni</span></div></div>
+ <div class="tr-cols"><div><div class="xp-sub">Per categoria</div>${cats.map(([id,l,r])=>bar(l,r)).join("")}</div><div><div class="xp-sub">Per unità</div>${units.map(([u,r])=>bar("Unità "+u,r)).join("")||'<div class="mu">—</div>'}</div></div>
+ ${sess.length>1?`<div class="xp-sub">Andamento delle ultime sessioni</div><div class="dash-trend">${sess.map(s=>`<div title="${esc(TR_CATN[s.cat]||"")} · ${s.ok}/${s.n}"><i style="height:${Math.max(4,trPct(s.ok,s.n))}%"></i><small>${trPct(s.ok,s.n)}%</small></div>`).join("")}</div>`:""}
+ <div class="tr-cols"><div><div class="xp-sub">Particelle con più errori</div>${wp.length?wp.map(o=>bar(`<span class="jp">${esc(o.p)}</span>`,o.r,`<button class="btn tool" onclick="trTarget({focusP:'${o.p}'})">Allenati</button>`)).join(""):'<div class="mu">Nessuna particella critica per ora.</div>'}</div>
+ <div><div class="xp-sub">Strutture da ripassare</div>${wr.length?wr.map(o=>{const t=o.k.split("|").slice(1).join("|"),i=TR_GI[t];return `<div class="tr-bar tr-rule"><span>${esc(t)} <span class="mu">· U${o.k.split("|")[0]}</span></span><span class="mu">${trPct(o.r.ok,o.r.ok+o.r.ko)}%</span><span class="row" style="margin:0">${i!=null?`<button class="btn tool" onclick="grOpen(${i})">Regola</button>`:""}<button class="btn tool" onclick='trTarget({rule:${JSON.stringify(t)}})'>Allenati</button></span></div>`}).join(""):'<div class="mu">Nessuna regola critica per ora.</div>'}</div></div></section>`}
+// sessione mirata (da particella o regola debole)
+function trTarget(o){trStart({...o,cat:o.focusP?"part":"mix"})}
+
+// ---------- avvio e svolgimento ----------
+function trStart(o){o=o||{};const cfg={...trCfg(),...(o.cat?{cat:o.cat}:{})},n=cfg.cont&&(cfg.cat==="part"||cfg.cat==="ord")?10:cfg.n;
+ const list=trBuild(cfg,n,o);if(!list.length){el(`<div class="g">Non ci sono esercizi per questa combinazione di unità e difficoltà. Prova un’altra difficoltà o aggiungi unità.</div><button class="btn" onclick="trHome()">← Indietro</button>`);return}
+ TR={on:true,cfg,o,cat:cfg.cat,cont:cfg.cont&&(cfg.cat==="part"||cfg.cat==="ord"),ok:0,n:0,start:Date.now()};
+ EXAM.on=false;cur="es";nav();if(typeof subBar==="function")subBar();
+ const U=trUnits();EXRUN_TITLE=`${o.rule?"Allenamento mirato · "+o.rule:o.focusP?"Allenamento mirato · particella "+o.focusP:TR_CATN[cfg.cat]} · Unità${U.focus.length>1&&U.focus.every((u,i)=>u===U.focus[0]+i)?U.focus[0]+"–"+U.maxU:U.focus.join(", ")}`;
+ eq=list;ei=0;emiss=[];eok=0;ex()}
+function trMore(){const add=trBuild(TR.cfg,10,TR.o);eq.push(...add)}
+function trEnd(){if(!TR.on||TR.ended)return;const st=trStats(),done=ei;if(done>0){st.sess.push({t:Date.now(),cat:TR.cat,n:Math.min(done,eq.length),ok:eok});if(st.sess.length>80)st.sess.splice(0,st.sess.length-80);save()}TR.ended=true}
+function trSummary(){trEnd();const n=Math.min(ei,eq.length),pct=trPct(eok,n),byRule={};
+ emiss.forEach(i=>{const x=EX[i];(x._rules||rulesForExercise(x).map(r=>G[r.i][1])).slice(0,1).forEach(r=>{byRule[r]=(byRule[r]||0)+1})});
+ const weak=Object.entries(byRule).sort((a,b)=>b[1]-a[1]).slice(0,4);
+ el(`<div class="ex-head"><div><div class="ex-title">${esc(EXRUN_TITLE)}</div><div class="ex-sub">Sessione conclusa</div></div></div>
+ <div class="card" style="cursor:default;min-height:170px"><div class="big">${pct>=85?"🎉":pct>=60?"👍":"🌱"}</div><div class="mid">${eok}/${n} corrette · ${pct}%</div><div class="mu">${pct>=85?"Ottimo lavoro!":"Gli errori tornano nel ripasso: rifalli finché non sono sicuri."}</div></div>
+ ${weak.length?`<div class="g"><b>Da ripassare</b>${weak.map(([r,k])=>`<div class="tr-bar tr-rule"><span>${esc(r)}</span><span class="mu">${k} errori</span><span class="row" style="margin:0">${TR_GI[r]!=null?`<button class="btn tool" onclick="grOpen(${TR_GI[r]})">Regola</button>`:""}<button class="btn tool" onclick='trTarget({rule:${JSON.stringify(r)}})'>Allenati</button></span></div>`).join("")}</div>`:""}
+ <div class="row">${emiss.length?`<button class="btn ok" onclick="TR.on=true;TR.ended=false;TR.cont=false;eq=emiss.slice();ei=0;emiss=[];eok=0;ex()">Rifai gli errori (${emiss.length})</button>`:""}<button class="btn on" onclick="trStart(TR.o)">Nuova sessione</button><button class="btn" onclick="trHome()">Cambia esercizi</button></div>`)}
+function trStop(){if(TR.cont||ei<eq.length){eq=eq.slice(0,ei);}trSummary()}
+
+// ---------- spiegazioni ----------
+const TR_RLAB={top:"tema",contr:"elemento a contrasto",also:"“anche”",gen:"specificazione",and:"“e”",q:"domanda",ku:"cosa richiesta",yo:"informazione nuova",ne:"conferma",exl:"luogo dove si trova",exs:"ciò che c’è",pos:"posizione",ya:"elenco non completo",from:"punto di partenza",to:"punto d’arrivo",obj:"oggetto",dest:"meta",time:"momento preciso",time0:"tempo (senza に)",mean:"mezzo",sel:"scelta",gaq:"soggetto in evidenza",mo0:"“niente / da nessuna parte”",kara:"causa",tgt:"persona destinataria",with:"compagnia",plc:"luogo dell’azione",meet:"persona incontrata",into:"luogo in cui si entra",but:"“ma”",toka:"esempi",yori:"termine di paragone",ichi:"ambito del superlativo",suki:"ciò che piace",hodo:"“non così… come”",onaji:"“tanto quanto”",hou:"quello che prevale",aru:"luogo dell’evento",ride:"mezzo su cui si sale",arrive:"luogo d’arrivo",per:"periodo",hoshii:"cosa desiderata",manner:"modo / lingua",live:"luogo in cui si abita",stay:"luogo del pernottamento",naru:"ciò che si diventa",takoto:"esperienza",hou2:"consiglio",hou3:"sconsiglio",dereason:"motivo",dekiru:"ciò che si può fare",jouzu:"ambito della bravura",koto:"capacità",purp:"scopo",mae:"prima di",ato:"dopo",node:"causa (formale)",naruS:"ciò che cambia"};
+const trRuleObj=t=>{const i=TR_GI[t];return i==null?null:{i,key:G[i][0]+"|"+G[i][1]}};
+function trStructHtml(s){if(!s)return "";const cl=s.dlg?[s.cl[s.cl.length-1]]:s.cl;
+ return `<div class="tr-struct">${cl.map(c=>c.ph.map(p=>{const txt=p.t.map(k=>k.s).join("").replace(/[。]$/,"");if(!txt)return "";const pr=p.t.filter(k=>k.k==="p"&&k.s).map(k=>TR_RLAB[k.r]).filter(Boolean);const lab=!p.f&&p.t.some(k=>k.k==="v")?"predicato":pr.length?pr[pr.length-1]:"";return `<span class="tr-seg"><span class="jp">${esc(txt)}</span>${lab?`<small>${lab}</small>`:""}</span>`}).join("")).join('<span class="tr-sep">／</span>')}</div>`}
+function trExplain(x,ok,given,right,extra){const s=x._s,rows=[];let diag="",notes=[],rules=[];
+ const full=s?trText(s,{hl:new Set(x._blanks||[])}):"";
+ if(x[0]==="fill"&&x._exp){const res=(extra&&extra.tr)||x._exp.map((e,i)=>({i,p:e.p,v:"",ok:true,r:e.r}));
+  rows.push(`<div class="xp-row"><span>Frase completa</span><b class="jp tr-full">${full}</b></div>`);
+  diag=`<div class="tr-blanks">${res.map(r=>{const R=ROLE[r.r];return `<div class="tr-blank ${r.ok?"good":"bad"}"><span class="tr-n">${r.i+1}</span><div><b class="jp">${r.p==="x"?"— (nessuna)":esc(r.p)}</b>${!r.ok?` <span class="mu">· hai scritto <b class="jp">${esc(r.v||"(vuoto)")}</b></span>`:""}<div>${R.fn}${(R.alt||[]).length&&r.p!=="x"?` (accettata anche ${R.alt.join(", ")})`:""}</div><div class="mu" style="font-size:12px">${R.g?`${esc(R.g)} · Unità ${G[TR_GI[R.g]][0]}`:`Unità ${R.u}`}</div></div></div>`}).join("")}</div>`;
+  res.filter(r=>!r.ok).forEach(r=>{const g=ROLE[r.r].g;if(g)rules.push(g)})}
+ else if(x[0]==="mc"&&x._blanks){const k=x._blanks[0],R=ROLE[k.r];rows.push(`<div class="xp-row"><span>Frase completa</span><b class="jp tr-full">${full}</b></div>`);if(!ok)rows.push(`<div class="xp-row"><span>Hai scelto</span><b class="jp">${esc(given||"")}</b></div>`);
+  diag=`<div class="tr-blanks"><div class="tr-blank ${ok?"good":"bad"}"><span class="tr-n">${esc(k.s)}</span><div>${R.fn}<div class="mu" style="font-size:12px">${R.g?`${esc(R.g)} · Unità ${G[TR_GI[R.g]][0]}`:`Unità ${R.u}`}</div></div></div></div>`;if(R.g)rules.push(R.g)}
+ else if(x[0]==="ord"){const g=trNormOrd(given||""),alt=ok&&g!==trNormOrd(x[3].join(""));if(!ok&&given)rows.push(`<div class="xp-row"><span>La tua frase</span><b class="jp">${esc(given)}</b></div>`);rows.push(`<div class="xp-row"><span>${ok?"Frase":"Ordine corretto"}</span><b class="jp">${esc(x._full||x[3].join("")+"。")}</b></div>`);
+  if(alt)notes.push("Hai usato un ordine diverso ma corretto: in giapponese i complementi possono cambiare posto, purché ogni particella resti attaccata alla sua parola e il predicato chiuda la frase. Qui sopra c’è l’ordine più comune.");
+  if(!ok)notes.push("Regole dell’ordine: il predicato (verbo, aggettivo o です) va <b>sempre alla fine</b>; ogni particella segue la parola a cui si riferisce; ciò che specifica (の, aggettivi, この/その/あの) sta <b>prima</b> del nome; di solito tema e tempo aprono la frase.");
+  if(x._alts&&x._alts.length>1&&!alt)notes.push(`Sono accettati ${x._alts.length} ordini diversi: quello mostrato è il più naturale.`)}
+ else if(x[0]==="tx"||x[0]==="mc"){if(!ok&&given)rows.push(`<div class="xp-row"><span>La tua risposta</span><b class="jp">${esc(given)}</b></div>`);rows.push(`<div class="xp-row"><span>${ok?"Risposta":"Risposta corretta"}</span><b class="jp">${esc(x._full||right)}</b></div>`);
+  if(!ok&&x[0]==="tx"&&given&&String(given).trim()){const d=diagnose(x,given,x[3][0]);diag=`<div class="xp-diag">${d.msg}${d.hl?`<div class="xp-hl jp">${d.hl}</div>`:""}</div>`}
+  if(x._cat==="trij"&&x[3].length>1)notes.push(`Sono accettati anche altri ordini delle parole (${x[3].length} varianti) e la scrittura in kana al posto dei kanji.`)}
+ if(x._why)notes.push(x._why);
+ if(x._pred){const f=x._pred.f,lab=TR_FLAB[f];notes.push(`<b class="jp">${esc(jvF(x._pred.v,f))}</b> = forma ${lab} di ${x._pred.v.m}ます: ${({pres:"azione abituale o futura",neg:"negazione al presente/futuro",past:"azione conclusa nel passato",pneg:"negazione al passato",inv:"invito (“perché non…?”)",mas:"proposta (“facciamo…!”)",tai:"desiderio di chi parla",teiru:"azione in corso o stato",tekuda:"richiesta cortese",naide:"richiesta di non fare"})[f]||""}.`)}
+ if(x._voc){const o=x._voc;notes.push(`<span class="jp">${esc(o.w)}</span>${o.r&&o.r!==o.w?` (<span class="jp">${esc(o.r)}</span>)`:""} = ${esc(o.m)} · Unità ${o.u}`)}
+ const it=s?(s.it):"";
+ if(s&&x._cat!=="trji")rows.push(`<div class="xp-row"><span>Traduzione</span><span>${esc(it)}</span></div>`);
+ if(s&&x._cat==="trji")rows.push(`<div class="xp-row"><span>Traduzione</span><span>${esc(it)}</span></div>`);
+ const sub=s&&(x[0]==="ord"||x._cat==="trij"||x._cat==="trji"||x._cat==="comp")?`<div class="xp-sub">Struttura della frase</div>${trStructHtml(s)}`:"";
+ (x._rules||[]).forEach(r=>rules.push(r));const seen=new Set(),R=rules.filter(r=>TR_GI[r]!=null&&!seen.has(r)&&seen.add(r)).slice(0,ok?1:2).map(trRuleObj).filter(Boolean);
+ const kinfo=x._cat==="kan"&&x._voc?kanjiInfo(x._voc.w):"";
+ return `<div class="xp">${rows.join("")}${diag}${sub}${notes.map(n=>`<div class="xp-note">${n}</div>`).join("")}${kinfo}${R.length?`<div class="xp-sub">${ok?"La regola":"La regola da applicare"}</div>${R.map(r=>ruleCard(r,"")).join("")}`:""}</div>`}
+
+// ---------- riordino: interfaccia ----------
+let TRSEL=null,TRDRAG=null;
+function trOrdUI(){return `<div class="tr-ord"><div class="ex-sub">La tua frase <span class="mu">· tocca una parola già messa per selezionarla e spostarla</span></div><div id="pk" class="tr-ans" ondragover="event.preventDefault()" ondrop="trDrop(event,null)"></div>
+ <div class="tr-ordbar"><button class="btn tool" id="tr-l" onclick="trMove(-1)" aria-label="Sposta a sinistra">◀ Sposta</button><button class="btn tool" id="tr-r" onclick="trMove(1)" aria-label="Sposta a destra">Sposta ▶</button><button class="btn tool" id="tr-x" onclick="trRemove()">✕ Togli</button><button class="btn tool" onclick="if(pk.length){pk.pop();TRSEL=null;tiles()}">↶ Annulla</button><button class="btn tool" onclick="pk=[];TRSEL=null;tiles()">⟲ Ricomincia</button></div>
+ <div class="ex-sub">Parole da usare</div><div id="pl" class="tr-pool"></div><button class="btn ok" style="width:100%;margin-top:10px" onclick="exOrd()">Controlla la risposta</button></div>`}
+tiles=function(){const x=EX[eq[ei]];if(!x||!$("pk"))return;if(TRSEL!=null&&TRSEL>=pk.length)TRSEL=null;
+ $("pk").innerHTML=pk.map((i,j)=>`<button class="btn tr-tile ${TRSEL===j?"sel":""}" draggable="true" ondragstart="TRDRAG={from:'a',j:${j}}" ondragover="event.preventDefault()" ondrop="trDrop(event,${j})" onclick="TRSEL=TRSEL===${j}?null:${j};tiles()">${x[3][i]}</button>`).join("")||`<span class="mu tr-empty">Tocca le parole qui sotto nell’ordine giusto</span>`;
+ $("pl").innerHTML=sh.filter(i=>!pk.includes(i)).map(i=>`<button class="btn tr-tile" draggable="true" ondragstart="TRDRAG={from:'p',i:${i}}" onclick="trAdd(${i})">${x[3][i]}</button>`).join("")||`<span class="mu">Tutte le parole sono state usate: controlla la risposta.</span>`;
+ ["tr-l","tr-r","tr-x"].forEach(id=>{const b=$(id);if(b)b.disabled=TRSEL==null});try{kjExercise()}catch(e){}};
+function trAdd(i){if(TRSEL!=null){pk.splice(TRSEL,0,i);TRSEL++}else pk.push(i);tiles()}
+function trMove(d){if(TRSEL==null)return;const j=TRSEL+d;if(j<0||j>=pk.length)return;[pk[TRSEL],pk[j]]=[pk[j],pk[TRSEL]];TRSEL=j;tiles()}
+function trRemove(){if(TRSEL==null)return;pk.splice(TRSEL,1);TRSEL=null;tiles()}
+function trDrop(e,j){e.preventDefault();e.stopPropagation();const d=TRDRAG;TRDRAG=null;if(!d)return;if(d.from==="p"){if(j==null)pk.push(d.i);else pk.splice(j,0,d.i)}else{const v=pk.splice(d.j,1)[0];const t=j==null?pk.length:(d.j<j?j-1:j);pk.splice(t,0,v)}TRSEL=null;tiles()}
+
+// ---------- tastiera delle particelle ----------
+let TRBL=null;document.addEventListener("focusin",e=>{if(e.target&&e.target.classList&&e.target.classList.contains("ex-inline-blank"))TRBL=e.target});
+function trChip(p){const fs=[...document.querySelectorAll(".ex-prompt .ex-inline-blank")];if(!fs.length)return;let f=TRBL&&fs.includes(TRBL)&&!TRBL.disabled?TRBL:fs.find(x=>!x.value)||fs[fs.length-1];if(f.disabled)return;f.value=p;const nx=fs.slice(fs.indexOf(f)+1).find(x=>!x.value)||fs.find(x=>!x.value);TRBL=nx||f;document.querySelectorAll(".ex-inline-blank").forEach(b=>b.classList.toggle("tr-cur",b===TRBL))}
+function trChipsHtml(){const U=trUnits(),ps=trPartsUpTo(U.maxU).sort((a,b)=>a.length-b.length);return `<div class="tr-pchips" role="group" aria-label="Particelle studiate">${ps.map(p=>`<button class="btn tr-pc jp" onclick="trChip('${p}')">${p}</button>`).join("")}<button class="btn tr-pc" onclick="trChip('x')" title="nessuna particella">x</button><button class="btn tr-pc" onclick="trChip('')" title="cancella">⌫</button></div>`}
+
+// ---------- collegamento con il motore degli esercizi ----------
+const _jpPromptTR=japanesePrompt;japanesePrompt=function(x){return x&&x._tr?String(x[2]):_jpPromptTR(x)};
+const _fillSubTR=exFillSubmit;exFillSubmit=function(){const x=EX[eq[ei]];if(x&&x._exp)return trFillSubmit();return _fillSubTR()};
+const _ordTR=exOrd;exOrd=function(){const x=EX[eq[ei]];if(x&&x._alts){const g=pk.map(i=>x[3][i]).join("");EXG={given:g+"。"};fin(pk.length===x[3].length&&x._alts.includes(trNormOrd(g)),x._full||x[3].join("")+"。");return}return _ordTR()};
+const _explTR=explainHtml;explainHtml=function(x,ok,given,right,extra){return x&&x._tr?trExplain(x,ok,given,right,extra):_explTR(x,ok,given,right,extra)};
+const _rfeTR=rulesForExercise;rulesForExercise=function(x){if(x&&x._rules)return x._rules.map(trRuleObj).filter(Boolean).map(r=>G_TOK[r.i]).filter(Boolean).slice(0,3);return _rfeTR(x)};
+const _logTR=logResult;logResult=function(x,ok,extra){const id=exerciseIdentity(x),had=S.exLog&&S.exLog[id];_logTR(x,ok,extra);if(x._tr&&!had&&S.exLog){delete S.exLog[id]}
+ if(TR.on&&!EXAM.on){const st=trStats(),c=TR.cat==="mix"?(x._cat||trCatOf(x)):TR.cat,u=x[1];const a=st.cat[c]||(st.cat[c]={ok:0,ko:0});ok?a.ok++:a.ko++;const b=st.unit[u]||(st.unit[u]={ok:0,ko:0});ok?b.ok++:b.ko++;save()}};
+function trCatOf(x){for(const [c] of TR_CATS)if(c!=="mix"&&TR_BOOK[c](x))return c;return "mix"}
+const _finTR=fin;fin=function(ok,right){const x=EX[eq[ei]];_finTR(ok,right);if(!TR.on||EXAM.on)return;
+ if(TR.cont&&ei+1>=eq.length){try{trMore()}catch(e){}}
+ const fb=$("fb");if(!fb)return;const nb=fb.querySelector("button.btn.on[onclick*='ei++']");if(nb){nb.textContent=ei+1>=eq.length?"Vedi i risultati":"Prossimo esercizio →"}
+ if(TR.cont&&nb&&!fb.querySelector(".tr-stop")){nb.insertAdjacentHTML("afterend",`<button class="btn tr-stop" style="width:100%;margin-top:6px" onclick="ei++;trStop()">Termina l’allenamento</button>`)}};
+const _exTR=ex;ex=function(){if(TR.on&&!EXAM.on&&ei>=eq.length){if(TR.cont&&!TR.ended){try{trMore()}catch(e){}}if(ei>=eq.length){trSummary();return}}
+ _exTR();{const y=EX[eq[ei]];if(y&&y._tr&&S.exSeen&&S.exSeen[exerciseIdentity(y)]){delete S.exSeen[exerciseIdentity(y)];save()}}
+ if(!TR.on||EXAM.on)return;const x=EX[eq[ei]];if(!x)return;
+ const head=document.querySelector(".ex-head .row");if(head&&!head.querySelector(".tr-stop2")){head.insertAdjacentHTML("afterbegin",`<button class="btn tr-stop2" onclick="trStop()">Termina</button>`);const back=head.querySelector("button[onclick*='exStart']");if(back)back.setAttribute("onclick","if(confirm('Vuoi lasciare la sessione? I risultati delle risposte date restano salvati.')){trEnd();trHome()}")}
+ const cnt=document.querySelector(".ex-count");if(cnt&&TR.cont)cnt.textContent=`${ei+1} · ✓ ${eok} · ✗ ${emiss.length} · allenamento continuo`;
+ if(x[0]==="ord"){const bd=$("bd");if(bd){TRSEL=null;bd.innerHTML=trOrdUI();tiles()}}
+ if(x[0]==="fill"){const wantChips=x._tr?x._chips:(TR.cfg.mode==="mc"||(TR.cfg.mode==="mix"&&Math.random()<.5));if(wantChips){const bd=$("bd");if(bd)bd.insertAdjacentHTML("afterbegin",trChipsHtml())}const f=document.querySelector(".ex-inline-blank");if(f&&matchMedia("(pointer:fine)").matches)f.focus()}};
+// uscire da altre viste chiude la sessione di allenamento
+const _runListTR=runList;runList=function(list,title){TR.on=false;return _runListTR(list,title)};
+if(typeof examStart==="function"){const _esTR=examStart;examStart=function(){TR.on=false;return _esTR.apply(this,arguments)}}
+exSetup=trHome;
 
 // @@MOD_END@@
 nav();side();go("ho");
